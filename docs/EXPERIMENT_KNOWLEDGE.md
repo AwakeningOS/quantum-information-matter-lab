@@ -35,6 +35,49 @@ unobserved alternatives
 self-reading state
 ```
 
+## Research positioning: witness to decision boundary
+
+The intended next line of research is not merely:
+
+```text
+use contextuality as a witness
+```
+
+The intended line is:
+
+```text
+put contextuality/context structure into the membrane decision boundary
+```
+
+The practical question is:
+
+```text
+Can contextuality change a membrane decision?
+Can that change depend on memory, unchosen alternatives, and context order?
+```
+
+This should be treated as a staged program:
+
+```text
+contextual_membrane_v0:
+  entrance / component sanity test
+  asks whether the membrane decision changes with context
+  confirms: the membrane sees context/question structure
+
+contextual_membrane_v1_memory_ablation:
+  main next test
+  asks whether past context remains as causal residue
+  asks whether unchosen alternatives affect later decisions
+  asks whether context order changes the membrane trajectory
+```
+
+Short form:
+
+```text
+v0 = context-looking membrane
+v1 = memory-bearing boundary
+```
+
 ## contextual_membrane_v0 knowledge
 
 ### What was tested
@@ -102,6 +145,8 @@ low_memory_decay
 high_memory_decay
 same-context replay
 same-transition replay
+order reversal / order shuffle
+unchosen-alternative ablation
 ```
 
-Primary success should require memory ablation to reduce event-level fit or delayed context effects, not merely preserve context-conditioned bias.
+Primary success should require memory ablation, unchosen-alternative ablation, or order manipulation to change event-level fit or delayed context effects, not merely preserve context-conditioned bias.

@@ -20,13 +20,51 @@ The first post-bootstrap experiment added by this agent is:
 contextual_membrane_v0
 ```
 
-Files currently added on branch `agent/contextual-membrane-v0-20260708-final`:
+Files currently added on branch `agent/contextual-membrane-v0-20260708-final` and merged to `main`:
 
 ```text
 experiments/contextual_membrane_v0_protocol_2026-07-08.md
 scripts/contextual/contextual_membrane_v0.py
 data/contextual/contextual_membrane_v0_seed20260708.json
 results/contextual_membrane_v0_report_2026-07-08.md
+```
+
+## Research positioning
+
+The user's intended research direction is not merely to run contextuality as an external witness.
+
+The target line is:
+
+```text
+put contextuality into the component decision boundary
+```
+
+More precisely, the intended question is:
+
+```text
+Does contextuality change a membrane decision?
+Does that change depend on memory, unchosen alternatives, and context order?
+```
+
+This creates a two-step position:
+
+```text
+contextual_membrane_v0:
+  entry experiment
+  checks whether the membrane can see context/question structure
+  asks: does context change the membrane decision?
+
+contextual_membrane_v1_memory_ablation:
+  main next experiment
+  checks whether the membrane becomes a boundary with memory
+  asks: do past contexts, unchosen alternatives, and order alter later membrane decisions?
+```
+
+In short:
+
+```text
+v0 = did the membrane become a context-looking component?
+v1 = did the membrane become a memory-bearing boundary?
 ```
 
 ## Result
@@ -72,6 +110,7 @@ Core idea:
 keep context compatibility fixed
 vary memory_decay and memory_gain
 add same-context replay control
+measure delayed effects from prior context and unchosen alternatives
 require memory ablation to reduce event-level fit or delayed context effects
 ```
 
@@ -79,4 +118,4 @@ require memory ablation to reduce event-level fit or delayed context effects
 
 The current result is a contextual component result only.
 
-It does not establish quantum-specific behavior, measurement contextuality, life, metabolism, self-repair, consciousness, or physical matter synthesis.
+It does not establish quantum-specific behavior, formal measurement contextuality, life, metabolism, self-repair, consciousness, or physical matter synthesis.
