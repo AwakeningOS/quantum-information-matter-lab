@@ -70,6 +70,20 @@ def main() -> None:
     if not membrane_csv.exists():
         raise AssertionError(f"missing CSV: {membrane_csv}")
 
+    v1_json = ROOT / "data/contextual/contextual_membrane_v1_memory_ablation_seed20260708.json"
+    v1_csv = ROOT / "data/contextual/contextual_membrane_v1_memory_ablation_seed20260708_summary.csv"
+    run_cmd([
+        py,
+        "scripts/contextual/contextual_membrane_v1_memory_ablation.py",
+        "--seed", "20260708",
+        "--steps", "512",
+        "--out", str(v1_json),
+        "--csv", str(v1_csv),
+    ])
+    assert_json(v1_json, "contextual_membrane_v1_memory_ablation")
+    if not v1_csv.exists():
+        raise AssertionError(f"missing CSV: {v1_csv}")
+
     print("OK: raw-log checks passed")
 
 
