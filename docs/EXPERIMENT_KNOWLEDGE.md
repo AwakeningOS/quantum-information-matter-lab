@@ -23,20 +23,6 @@ The intended line is:
 put contextuality/context structure into the component decision boundary
 ```
 
-Staged program:
-
-```text
-v0 = context-looking membrane
-v1 = memory-bearing boundary
-v2 = counterfactual-residue boundary
-v3 = order-sensitive boundary
-v4 = joint/non-additive boundary
-reactor v0 = downstream propagation
-reactor v1 = hardened propagation controls
-quantum anchor = separate audit bridge to witness logic
-quantum anchor v1 = explicit witness-table audit candidate
-```
-
 ## Completed result index
 
 ```text
@@ -49,6 +35,7 @@ contextual_reactor_v0_membrane_to_flow = PASS_MEMBRANE_TO_FLOW_PROPAGATION
 contextual_reactor_v1_flow_controls = PASS_HARDENED_MEMBRANE_TO_FLOW_CONTROLS
 contextual_membrane_quantum_anchor_probe = PASS_ANCHOR_CANDIDATE_SURROGATE_NOT_QUANTUM
 contextual_membrane_quantum_anchor_probe_v1 = PASS_STRICT_WITNESS_TABLE_AUDIT_CANDIDATE_NOT_QUANTUM
+contextual_membrane_quantum_anchor_probe_v2_hardware_mapping = PASS_HARDWARE_MAPPING_AUDIT_CANDIDATE_NOT_NEW_QPU_RESULT
 ```
 
 ## Core component lesson
@@ -60,74 +47,71 @@ This result survived multi-seed, matched pass-rate, matched signal, additive-bou
 
 ## contextual_membrane_quantum_anchor_probe_v1 knowledge
 
-### What was tested
-
-Explicit witness-table audit candidate:
-
 ```text
-KCBS-style directed-transition probability table
-PM-style 3x3 parity table
-no-disturbance / marginal-consistency checks
-exhaustive deterministic assignment bound checks
-```
-
-Variants:
-
-```text
-full_witness_table_anchor
-additive_boundary_table
-same_marginals_independent_table
-shuffled_context_table
-noncontextual_hidden_assignment_fit
-strong_classical_table_baseline
-```
-
-### Computed bounds
-
-```text
+Verdict = PASS_STRICT_WITNESS_TABLE_AUDIT_CANDIDATE_NOT_QUANTUM
 KCBS-style directed-transition bound = 2
 PM-style parity accuracy bound = 5/6 = 0.8333333333333334
+full_witness_table_anchor kcbs_witness_sum_mean = 2.256568549
+full_witness_table_anchor pm_parity_accuracy_mean = 0.921974446
+full_witness_table_anchor kcbs_no_disturbance_max_abs_mean = 0.000000000000
+full_witness_table_anchor pm_no_disturbance_max_abs_mean = 0.000000000000
+```
+
+Lesson:
+
+```text
+The simulated membrane anchor can be represented by explicit PM/KCBS-shaped probability tables that pass deterministic-bound and no-disturbance checks under the stated controls.
+```
+
+## contextual_membrane_quantum_anchor_probe_v2_hardware_mapping knowledge
+
+### What was tested
+
+Hardware-format compatibility audit:
+
+```text
+Map v1 simulated witness-table values to existing PM/KCBS hardware-backed witness reporting formats.
+Keep simulated table values and hardware-backed witness values separate.
+Compare margins, margin ratios, and finite-shot survival under hardware SE scale.
 ```
 
 ### Result snapshot
 
 ```text
-Verdict = PASS_STRICT_WITNESS_TABLE_AUDIT_CANDIDATE_NOT_QUANTUM
+Verdict = PASS_HARDWARE_MAPPING_AUDIT_CANDIDATE_NOT_NEW_QPU_RESULT
 
-full_witness_table_anchor kcbs_witness_sum_mean = 2.256568549
-additive_boundary_table kcbs_witness_sum_mean = 1.601132037
-same_marginals_independent_table kcbs_witness_sum_mean = 1.241136885
-shuffled_context_table kcbs_witness_sum_mean = 1.986193805
-noncontextual_hidden_assignment_fit kcbs_witness_sum_mean = 1.735531896
-strong_classical_table_baseline kcbs_witness_sum_mean = 1.873890389
+KCBS simulated S = 2.256568549
+KCBS simulated violation = 0.256568549
+KCBS hardware S = 2.2232666015625
+KCBS hardware violation = 0.2232666015625
+KCBS sim/hardware margin ratio = 1.149157766
 
-full_witness_table_anchor pm_parity_accuracy_mean = 0.921974446
-additive_boundary_table pm_parity_accuracy_mean = 0.628229114
-same_marginals_independent_table pm_parity_accuracy_mean = 0.608851602
-shuffled_context_table pm_parity_accuracy_mean = 0.696225106
-noncontextual_hidden_assignment_fit pm_parity_accuracy_mean = 0.804391588
-strong_classical_table_baseline pm_parity_accuracy_mean = 0.813065892
-```
-
-### No-disturbance snapshot
-
-```text
-full_witness_table_anchor kcbs_no_disturbance_max_abs_mean = 0.000000000000
-full_witness_table_anchor pm_no_disturbance_max_abs_mean = 0.000000000000
+PM simulated chi-equivalent = 5.063693352
+PM simulated violation = 1.063693352
+PM hardware xplus violation = 1.049805
+PM hardware yplus violation = 0.857422
+PM hardware z0 violation = 0.644531
+PM sim/hardware margin ratio range = 1.013229459 to 1.650336992
 ```
 
 ### Lesson
 
-The simulated membrane anchor can be represented by explicit PM/KCBS-shaped probability tables that pass deterministic-bound and no-disturbance checks under the stated controls.
+The audit formats now line up:
 
-This is stronger than the previous surrogate audit but remains an audit-candidate result only.
+```text
+KCBS: S value, bound, violation, SE, z
+PM: chi value, bound, violation, SE, z
+```
+
+This makes a finite-shot stress test and a future component-specific hardware-backed audit easier to design.
 
 ### Do not claim
 
 ```text
-Do not claim this demonstrates quantum-specific behavior.
-Do not claim this is hardware-backed.
-Do not claim this proves formal measurement contextuality of a physical implementation.
+Do not claim this is a new QPU result.
+Do not claim this is new hardware evidence.
+Do not claim simulated table margins and hardware margins were pooled.
+Do not claim this proves formal measurement contextuality of the component.
 Do not claim this demonstrates biological organization or consciousness.
 Do not claim this demonstrates matter synthesis.
 ```
@@ -135,14 +119,15 @@ Do not claim this demonstrates matter synthesis.
 ## Next experiment option
 
 ```text
-contextual_membrane_quantum_anchor_probe_v2_hardware_mapping
+contextual_membrane_quantum_anchor_probe_v3_finite_shot_stress
 ```
 
 Required improvements:
 
 ```text
-map the explicit witness-table anchor to existing PM/KCBS hardware-backed result formats
-separate simulated table values from real QPU witness values
-add finite-shot noise model and compare with hardware witness margins
-keep quantum-specific claim promotion gated by hardware-backed witness controls
+inject finite-shot sampling into the explicit witness tables
+vary shots from low to hardware-like regimes
+compare survival probability against PM/KCBS margins
+add adversarial no-disturbance drift
+require witness survival without relying on exact expected tables
 ```

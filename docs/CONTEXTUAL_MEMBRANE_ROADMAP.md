@@ -16,8 +16,6 @@ to downstream reactor propagation
 to quantum-anchor probing
 ```
 
-This is not merely using contextuality as an external witness.
-
 The goal is to put context structure into the component decision boundary.
 
 ## Priority order and status
@@ -71,24 +69,11 @@ DONE
 Verdict: PASS_ANCHOR_CANDIDATE_SURROGATE_NOT_QUANTUM
 ```
 
-Lesson:
-
-```text
-The implemented membrane boundary can be mapped to a PM/KCBS-like surrogate audit pattern under the stated controls.
-This is an anchor-candidate result only, not a quantum-specific claim.
-```
-
 ### 8. contextual_membrane_quantum_anchor_probe_v1
 
 ```text
 DONE
 Verdict: PASS_STRICT_WITNESS_TABLE_AUDIT_CANDIDATE_NOT_QUANTUM
-```
-
-Purpose:
-
-```text
-replace surrogate scores with explicit witness tables and noncontextual-bound checks
 ```
 
 Lesson:
@@ -101,7 +86,8 @@ This is still not a hardware-backed quantum claim.
 ### 9. contextual_membrane_quantum_anchor_probe_v2_hardware_mapping
 
 ```text
-NEXT / HARDWARE-MAPPING AUDIT
+DONE
+Verdict: PASS_HARDWARE_MAPPING_AUDIT_CANDIDATE_NOT_NEW_QPU_RESULT
 ```
 
 Purpose:
@@ -110,13 +96,32 @@ Purpose:
 map the witness-table anchor to existing PM/KCBS hardware-backed result formats
 ```
 
+Lesson:
+
+```text
+The simulated witness-table margins and existing hardware-backed witness margins can be compared in the same reporting convention, while remaining separate evidence streams.
+```
+
+### 10. contextual_membrane_quantum_anchor_probe_v3_finite_shot_stress
+
+```text
+NEXT / FINITE-SHOT STRESS AUDIT
+```
+
+Purpose:
+
+```text
+test whether the explicit witness-table anchor survives finite-shot sampling and adversarial no-disturbance drift
+```
+
 Required upgrades:
 
 ```text
-separate simulated table values from real QPU witness values
-add finite-shot noise model
-compare simulated witness margins with hardware witness margins
-keep quantum-specific claim promotion gated by hardware-backed witness controls
+finite-shot sampling over multiple shot counts
+hardware-like shot regime
+adversarial no-disturbance drift
+survival probability for KCBS and PM witnesses
+separate simulated table stress from hardware-backed claims
 ```
 
 ## Short summary
@@ -131,5 +136,6 @@ reactor v0 = downstream propagation
 reactor v1 = hardened propagation controls
 quantum anchor = surrogate audit bridge, not quantum promotion
 quantum anchor v1 = strict witness-table audit candidate
-quantum anchor v2 = hardware-mapping audit
+quantum anchor v2 = hardware-format mapping audit
+quantum anchor v3 = finite-shot stress audit
 ```
