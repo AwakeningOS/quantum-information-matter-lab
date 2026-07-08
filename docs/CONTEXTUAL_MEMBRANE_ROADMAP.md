@@ -64,23 +64,11 @@ DONE
 Verdict: PASS_HARDENED_MEMBRANE_TO_FLOW_CONTROLS
 ```
 
-Lesson:
-
-```text
-The propagation result survives matched pass-rate, matched signal shuffle, matched signal lag, additive-boundary, no-memory, no-counterfactual, and strong reactor-without-membrane controls across 5 seeds.
-```
-
 ### 7. contextual_membrane_quantum_anchor_probe
 
 ```text
 DONE
 Verdict: PASS_ANCHOR_CANDIDATE_SURROGATE_NOT_QUANTUM
-```
-
-Purpose:
-
-```text
-test whether the contextual membrane decision boundary can be connected to a PM/KCBS-like witness shape
 ```
 
 Lesson:
@@ -93,7 +81,8 @@ This is an anchor-candidate result only, not a quantum-specific claim.
 ### 8. contextual_membrane_quantum_anchor_probe_v1
 
 ```text
-NEXT / STRICTER AUDIT
+DONE
+Verdict: PASS_STRICT_WITNESS_TABLE_AUDIT_CANDIDATE_NOT_QUANTUM
 ```
 
 Purpose:
@@ -102,13 +91,32 @@ Purpose:
 replace surrogate scores with explicit witness tables and noncontextual-bound checks
 ```
 
+Lesson:
+
+```text
+The simulated membrane anchor can be represented by explicit PM/KCBS-shaped probability tables that pass deterministic-bound and no-disturbance checks under the stated controls.
+This is still not a hardware-backed quantum claim.
+```
+
+### 9. contextual_membrane_quantum_anchor_probe_v2_hardware_mapping
+
+```text
+NEXT / HARDWARE-MAPPING AUDIT
+```
+
+Purpose:
+
+```text
+map the witness-table anchor to existing PM/KCBS hardware-backed result formats
+```
+
 Required upgrades:
 
 ```text
-explicit KCBS/PM witness table
-no-disturbance / marginal-consistency checks
-noncontextual polytope or exhaustive deterministic assignment bound checks
-optional mapping to existing PM/KCBS hardware-backed result structure
+separate simulated table values from real QPU witness values
+add finite-shot noise model
+compare simulated witness margins with hardware witness margins
+keep quantum-specific claim promotion gated by hardware-backed witness controls
 ```
 
 ## Short summary
@@ -122,5 +130,6 @@ v4 = joint/non-additive boundary
 reactor v0 = downstream propagation
 reactor v1 = hardened propagation controls
 quantum anchor = surrogate audit bridge, not quantum promotion
-quantum anchor v1 = stricter witness-table audit
+quantum anchor v1 = strict witness-table audit candidate
+quantum anchor v2 = hardware-mapping audit
 ```
