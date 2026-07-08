@@ -22,6 +22,26 @@ Treat measurement/contextual structure as a component interface.
 
 The target is a new experimental sandbox where information-material parts can be built, tested, combined, and gradually made more contextual. The point is not to keep the system small and safe forever. The point is to grow it without losing the evidence discipline learned from the audit.
 
+## Design anchors
+
+The repository has two anchor documents that future agents should read before proposing experiments:
+
+```text
+docs/WORLDVIEW_AND_RESEARCH_GOAL.md
+  The worldview and long-range research goal behind contextual information matter.
+
+paper/where_quantum_structure_survives_v1_4.md
+  Reference paper for where quantum structure survived the audit.
+```
+
+The operational lesson from the reference paper is:
+
+```text
+Quantum structure did not survive as ordinary downstream transport.
+It survived at the measurement-context boundary.
+Therefore, this lab treats contextual structure as a component interface.
+```
+
 ## Initial component roadmap
 
 ```text
@@ -90,6 +110,6 @@ results/               human reports and status index
 experiments/           protocols before major runs
 configs/               fixed experiment configs
 docs/                  design notes and migration notes
-paper/                 future manuscripts and figure mappings
+paper/                 manuscript/reference paper copies and future figure mappings
 archive/               old/superseded material
 ```
