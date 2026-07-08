@@ -1,0 +1,135 @@
+{
+  "experiment": "quantum_homeostatic_parts_observation_v4_repair_vs_overdrive",
+  "date": "2026-07-08",
+  "layer": "QUANTUM_OBSERVATION",
+  "status": "OBSERVATION_LOG",
+  "config": {
+    "seed": 20260708,
+    "target": "C",
+    "n_touches": 6,
+    "recovery_modes": ["weak_recovery", "gentle_recovery", "strong_recovery", "oscillatory_recovery", "extreme_recovery", "full_reset_baseline"],
+    "touch_types": ["unitary_touch", "measurement_touch"],
+    "conditions": ["high_energy", "high_toxicity"],
+    "mechanical_label_definitions": {
+      "stable_repair": "0.75<=response_ratio<=1.10, overshoot<=0.15, state_distance_last<=0.25, oscillation_envelope<=1.10, fatigue<=0.20, bias<=0.12",
+      "damped_oscillatory_repair": "overshoot>0.15, oscillation_envelope<0.90, state_distance_last<=0.15, fatigue<=0.30",
+      "overdrive": "overshoot>=0.30 with growing oscillation, or state_distance_last>=0.75, or response_ratio>=1.25 while fatigue/bias increase",
+      "collapse_or_exhausted_repair": "response_ratio<=0.20, coherence_last<=0.20, fatigue_last>=0.30"
+    }
+  },
+  "main_observations": [
+    {
+      "condition": "high_energy",
+      "recovery_mode": "gentle_recovery",
+      "touch_type": "unitary_touch",
+      "response_ratio_last_over_first": 0.954003707,
+      "overshoot_max": 0.0,
+      "state_distance_last": 0.0758656072,
+      "oscillation_envelope_ratio": 0.0,
+      "bias_last": 0.032506796,
+      "fatigue_last": 0.046800278,
+      "mechanical_label": "stable_repair"
+    },
+    {
+      "condition": "high_energy",
+      "recovery_mode": "strong_recovery",
+      "touch_type": "unitary_touch",
+      "response_ratio_last_over_first": 1.035908941,
+      "overshoot_max": 0.174949411,
+      "state_distance_last": 0.0260516299,
+      "oscillation_envelope_ratio": 0.331310936,
+      "bias_last": 0.023213113,
+      "fatigue_last": 0.02422576,
+      "mechanical_label": "damped_oscillatory_repair"
+    },
+    {
+      "condition": "high_energy",
+      "recovery_mode": "oscillatory_recovery",
+      "touch_type": "unitary_touch",
+      "response_ratio_last_over_first": 1.081767736,
+      "overshoot_max": 0.257713327,
+      "state_distance_last": 0.0812575432,
+      "oscillation_envelope_ratio": 0.534286226,
+      "bias_last": 0.029253764,
+      "fatigue_last": 0.05332542,
+      "mechanical_label": "damped_oscillatory_repair"
+    },
+    {
+      "condition": "high_energy",
+      "recovery_mode": "extreme_recovery",
+      "touch_type": "unitary_touch",
+      "response_ratio_last_over_first": 0.943625235,
+      "overshoot_max": 0.245897274,
+      "state_distance_last": 1.0698560591,
+      "oscillation_envelope_ratio": 5.290555134,
+      "bias_last": 0.424455566,
+      "fatigue_last": 0.648256006,
+      "mechanical_label": "overdrive"
+    },
+    {
+      "condition": "high_toxicity",
+      "recovery_mode": "weak_recovery",
+      "touch_type": "measurement_touch",
+      "response_ratio_last_over_first": 0.0,
+      "overshoot_max": 0.0,
+      "state_distance_last": 2.0435109888,
+      "oscillation_envelope_ratio": 0.0,
+      "coherence_last": 0.0,
+      "bias_last": 0.980157211,
+      "fatigue_last": 0.835481525,
+      "mechanical_label": "collapse_or_exhausted_repair"
+    },
+    {
+      "condition": "high_toxicity",
+      "recovery_mode": "oscillatory_recovery",
+      "touch_type": "unitary_touch",
+      "response_ratio_last_over_first": 1.312665687,
+      "overshoot_max": 0.316634425,
+      "state_distance_last": 0.2723835122,
+      "oscillation_envelope_ratio": 1.357167475,
+      "bias_last": 0.04813772,
+      "fatigue_last": 0.138894844,
+      "mechanical_label": "overdrive"
+    },
+    {
+      "condition": "high_toxicity",
+      "recovery_mode": "extreme_recovery",
+      "touch_type": "measurement_touch",
+      "response_ratio_last_over_first": 0.583472454,
+      "overshoot_max": 0.077049961,
+      "state_distance_last": 1.9252840941,
+      "oscillation_envelope_ratio": 4.126339725,
+      "bias_last": 0.906860352,
+      "fatigue_last": 1.0,
+      "mechanical_label": "overdrive"
+    },
+    {
+      "condition": "high_toxicity",
+      "recovery_mode": "full_reset_baseline",
+      "touch_type": "measurement_touch",
+      "response_ratio_last_over_first": 1.0,
+      "overshoot_max": 0.0,
+      "state_distance_last": 0.0,
+      "oscillation_envelope_ratio": 0.0,
+      "bias_last": 0.02,
+      "fatigue_last": 0.02,
+      "mechanical_label": "stable_repair"
+    }
+  ],
+  "label_counts": {
+    "stable_repair": 7,
+    "damped_oscillatory_repair": 6,
+    "overdrive": 6,
+    "collapse_or_exhausted_repair": 3,
+    "partial_repair_or_fatigue": 2
+  },
+  "observation_notes": [
+    "This is an observation log, not a PASS/FAIL test.",
+    "Healthy/overdrive labels are assigned mechanically from predeclared response, overshoot, state-distance, oscillation-envelope, fatigue, and bias thresholds.",
+    "Gentle recovery under high energy is classified as stable repair.",
+    "Strong/oscillatory recovery can produce damped oscillatory repair when the oscillation envelope decays.",
+    "Oscillatory or extreme recovery under high toxicity can become overdrive when the envelope and/or state distance grows.",
+    "Weak recovery under high toxicity can collapse or exhaust response.",
+    "Full reset stays stable and remains the reference that removes cross-touch memory."
+  ]
+}

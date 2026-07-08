@@ -19,6 +19,7 @@ quantum_homeostatic_parts_observation_v0 = OBSERVATION_LOG
 quantum_homeostatic_parts_observation_v1_pulse_map = OBSERVATION_LOG
 quantum_homeostatic_parts_observation_v2_causal_touch_response = OBSERVATION_LOG
 quantum_homeostatic_parts_observation_v3_recovery_cycle = OBSERVATION_LOG
+quantum_homeostatic_parts_observation_v4_repair_vs_overdrive = OBSERVATION_LOG
 ```
 
 ## quantum_homeostatic_parts_observation_v0 knowledge
@@ -57,74 +58,6 @@ Global field pulse: all links peak together
 
 ## quantum_homeostatic_parts_observation_v3_recovery_cycle knowledge
 
-### What was added
-
-v3 introduces repeated touches and records cross-touch state variables:
-
-```text
-pre_coherence_residual
-pre_population_bias
-pre_baseline_negativity
-pre_fatigue_index
-```
-
-Recovery modes:
-
-```text
-passive_recovery
-active_recovery
-full_reset_baseline
-```
-
-Touch types:
-
-```text
-unitary_touch
-measurement_touch
-```
-
-Conditions:
-
-```text
-high_energy
-high_toxicity
-```
-
-### Key ratios
-
-```text
-high_energy + full_reset + unitary: last/first = 1.000000000
-high_energy + full_reset + measurement: last/first = 1.000000000
-high_energy + active_recovery + unitary: last/first = 0.882453216
-high_energy + active_recovery + measurement: last/first = 0.728685139
-high_energy + passive_recovery + measurement: last/first = 0.126848576
-
-high_toxicity + full_reset + unitary: last/first = 1.000000000
-high_toxicity + full_reset + measurement: last/first = 1.000000000
-high_toxicity + active_recovery + unitary: last/first = 0.683273682
-high_toxicity + active_recovery + measurement: last/first = 0.403944250
-high_toxicity + passive_recovery + measurement: last/first = 0.000000000
-```
-
-### State traces
-
-```text
-high_energy active unitary:
-  coherence 0.860000000 -> 0.774896250
-  fatigue 0.020000000 -> 0.060639219
-
-high_energy active measurement:
-  population bias 0.020000000 -> 0.085963248
-  fatigue 0.020000000 -> 0.125592500
-
-high_toxicity passive measurement:
-  coherence 0.700000000 -> 0.000000000
-  population bias 0.020000000 -> 0.639302544
-  fatigue 0.020000000 -> 0.645545760
-```
-
-### Interpretation
-
 ```text
 Full reset removes cross-touch memory and keeps response stable.
 Active recovery under high energy mostly preserves unitary-touch response.
@@ -132,16 +65,89 @@ Measurement touch leaves more population bias and fatigue than unitary touch.
 High toxicity makes recovery harder and turns repeated measurement into strong response decay.
 ```
 
+## quantum_homeostatic_parts_observation_v4_repair_vs_overdrive knowledge
+
+### What was added
+
+v4 defines repair/overdrive labels before running the observation:
+
+```text
+stable_repair
+damped_oscillatory_repair
+overdrive
+collapse_or_exhausted_repair
+```
+
+Metrics:
+
+```text
+response_ratio_last_over_first
+overshoot_max
+state_distance_last
+oscillation_envelope_ratio
+bias_last
+fatigue_last
+```
+
+### Key observations
+
+```text
+high_energy + gentle + unitary:
+  response ratio = 0.954003707
+  state_distance_last = 0.0758656072
+  label = stable_repair
+
+high_energy + strong + unitary:
+  response ratio = 1.035908941
+  overshoot_max = 0.174949411
+  oscillation_envelope_ratio = 0.331310936
+  label = damped_oscillatory_repair
+
+high_energy + oscillatory + unitary:
+  response ratio = 1.081767736
+  overshoot_max = 0.257713327
+  oscillation_envelope_ratio = 0.534286226
+  label = damped_oscillatory_repair
+
+high_energy + extreme + unitary:
+  state_distance_last = 1.0698560591
+  oscillation_envelope_ratio = 5.290555134
+  bias_last = 0.424455566
+  fatigue_last = 0.648256006
+  label = overdrive
+
+high_toxicity + weak + measurement:
+  response ratio = 0.000000000
+  coherence_last = 0.000000000
+  fatigue_last = 0.835481525
+  label = collapse_or_exhausted_repair
+
+high_toxicity + oscillatory + unitary:
+  response ratio = 1.312665687
+  overshoot_max = 0.316634425
+  oscillation_envelope_ratio = 1.357167475
+  label = overdrive
+```
+
+### Interpretation
+
+```text
+Gentle recovery can repair without overshoot.
+Strong/oscillatory recovery can ring and then settle when the envelope decays.
+Extreme recovery or toxic oscillatory recovery becomes overdrive when state-distance or envelope grows.
+Weak recovery under toxic measurement can collapse into exhausted repair.
+```
+
 ## Next experiment option
 
 ```text
-quantum_homeostatic_parts_observation_v4_repair_vs_overdrive
+quantum_homeostatic_parts_observation_v5_adaptive_recovery_controller
 ```
 
 Required improvements:
 
 ```text
-test whether too-strong active recovery becomes overdrive
-compare gentle recovery, strong recovery, and oscillatory recovery
-watch whether repeated touches produce stable adaptation or runaway rebound
+let recovery gain depend on state-distance and fatigue
+compare fixed recovery against adaptive recovery
+watch whether adaptive recovery avoids both exhaustion and overdrive
 ```

@@ -11,7 +11,7 @@ boundary -> memory -> residue -> order -> joint -> flow -> witness-format bridge
 ## Quantum homeostatic observation line
 
 ```text
-whole-field -> quantum-coupled parts -> negativity pulses -> pulse timing map -> local touch response -> recovery cycle -> repair vs overdrive
+whole-field -> quantum-coupled parts -> negativity pulses -> pulse timing map -> local touch response -> recovery cycle -> repair vs overdrive -> adaptive recovery
 ```
 
 ## Completed contextual line
@@ -86,12 +86,6 @@ DONE
 Status: OBSERVATION_LOG
 ```
 
-Purpose:
-
-```text
-touch C repeatedly, let the system recover between touches, and watch whether the negativity response adapts, saturates, or habituates
-```
-
 Main observation:
 
 ```text
@@ -105,7 +99,8 @@ high-toxicity passive measurement recovery: last/first = 0.000000000
 ### 5. quantum_homeostatic_parts_observation_v4_repair_vs_overdrive
 
 ```text
-NEXT / REPAIR VS OVERDRIVE OBSERVATION
+DONE
+Status: OBSERVATION_LOG
 ```
 
 Purpose:
@@ -114,13 +109,35 @@ Purpose:
 test whether too-strong active recovery becomes overdrive rather than healthy repair
 ```
 
+Main observation:
+
+```text
+high-energy gentle recovery: stable_repair
+high-energy strong/oscillatory recovery: damped_oscillatory_repair
+high-energy extreme recovery: overdrive
+high-toxicity oscillatory/extreme recovery: overdrive
+high-toxicity weak measurement recovery: collapse_or_exhausted_repair
+full reset baseline: stable_repair
+```
+
+### 6. quantum_homeostatic_parts_observation_v5_adaptive_recovery_controller
+
+```text
+NEXT / ADAPTIVE RECOVERY OBSERVATION
+```
+
+Purpose:
+
+```text
+let recovery gain depend on state-distance and fatigue, then compare fixed recovery against adaptive recovery
+```
+
 Required upgrades:
 
 ```text
-gentle recovery
-strong recovery
-oscillatory recovery
-rebound amplitude
-runaway / overshoot index
-stable adaptation vs overdrive comparison
+adaptive recovery gain
+fixed-gain controls
+state-distance feedback
+fatigue-aware damping
+avoid both exhaustion and overdrive
 ```
