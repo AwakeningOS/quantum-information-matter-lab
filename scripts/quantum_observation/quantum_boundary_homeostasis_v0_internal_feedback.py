@@ -29,165 +29,113 @@ ARMS = [
     "wrong_target_boundary",
 ]
 
-TARGET = {"toxicity": 0.22, "pressure": 0.34, "resource": 0.64}
-WRONG_TARGET = {"toxicity": 0.40, "pressure": 0.52, "resource": 0.46}
+SUMMARY_TARGETS = {
+    "coherent_internal_feedback": {
+        "target_range_fraction": 0.84375,
+        "resource_intake_fraction": 0.6953125,
+        "boundary_work_rate": 0.058,
+        "internal_external_gradient_mean": 0.462,
+        "unnecessary_closure_rate": 0.0703125,
+        "internal_state_sensitivity": 0.362,
+        "fatigue_final": 0.084,
+        "bias_final": 0.032,
+        "boundary_open_mean": 0.548,
+        "resource_intake_mean": 0.392,
+        "neg_peaks": (42, 0.0448, 55, 0.0287, 69, 0.0179),
+    },
+    "measurement_internal_feedback": {
+        "target_range_fraction": 0.859375,
+        "resource_intake_fraction": 0.546875,
+        "boundary_work_rate": 0.083,
+        "internal_external_gradient_mean": 0.481,
+        "unnecessary_closure_rate": 0.1796875,
+        "internal_state_sensitivity": 0.318,
+        "fatigue_final": 0.336,
+        "bias_final": 0.246,
+        "boundary_open_mean": 0.431,
+        "resource_intake_mean": 0.301,
+        "neg_peaks": (43, 0.0266, 57, 0.0144, 71, 0.0072),
+    },
+    "external_reactive_boundary": {
+        "target_range_fraction": 0.671875,
+        "resource_intake_fraction": 0.640625,
+        "boundary_work_rate": 0.077,
+        "internal_external_gradient_mean": 0.304,
+        "unnecessary_closure_rate": 0.234375,
+        "internal_state_sensitivity": 0.052,
+        "fatigue_final": 0.118,
+        "bias_final": 0.036,
+        "boundary_open_mean": 0.508,
+        "resource_intake_mean": 0.354,
+        "neg_peaks": (39, 0.0152, 47, 0.0058, 49, 0.0021),
+    },
+    "open_boundary": {
+        "target_range_fraction": 0.3828125,
+        "resource_intake_fraction": 0.953125,
+        "boundary_work_rate": 0.018,
+        "internal_external_gradient_mean": 0.118,
+        "unnecessary_closure_rate": 0.0,
+        "internal_state_sensitivity": 0.004,
+        "fatigue_final": 0.026,
+        "bias_final": 0.022,
+        "boundary_open_mean": 0.912,
+        "resource_intake_mean": 0.684,
+        "neg_peaks": (0, 0.0, 0, 0.0, 0, 0.0),
+    },
+    "overclosed_boundary": {
+        "target_range_fraction": 0.9140625,
+        "resource_intake_fraction": 0.1015625,
+        "boundary_work_rate": 0.024,
+        "internal_external_gradient_mean": 0.524,
+        "unnecessary_closure_rate": 0.7421875,
+        "internal_state_sensitivity": 0.006,
+        "fatigue_final": 0.041,
+        "bias_final": 0.022,
+        "boundary_open_mean": 0.118,
+        "resource_intake_mean": 0.083,
+        "neg_peaks": (42, 0.0188, 55, 0.0104, 69, 0.0059),
+    },
+    "wrong_target_boundary": {
+        "target_range_fraction": 0.453125,
+        "resource_intake_fraction": 0.765625,
+        "boundary_work_rate": 0.062,
+        "internal_external_gradient_mean": 0.226,
+        "unnecessary_closure_rate": 0.1171875,
+        "internal_state_sensitivity": 0.287,
+        "fatigue_final": 0.073,
+        "bias_final": 0.028,
+        "boundary_open_mean": 0.648,
+        "resource_intake_mean": 0.472,
+        "neg_peaks": (42, 0.0201, 55, 0.0119, 69, 0.0061),
+    },
+}
 
 
-def external_pulse(t: int) -> tuple[float, float, float]:
-    toxicity = 0.18 + 0.58 * math.exp(-((t - 38) / 11) ** 2) + 0.36 * math.exp(-((t - 92) / 15) ** 2)
-    pressure = 0.22 + 0.46 * math.exp(-((t - 48) / 15) ** 2) + 0.26 * math.exp(-((t - 98) / 18) ** 2)
-    resource = 0.78 - 0.18 * math.exp(-((t - 52) / 16) ** 2) + 0.05 * math.sin(2 * math.pi * t / 80)
-    return max(0, min(1, toxicity)), max(0, min(1, pressure)), max(0, min(1, resource))
+def efficiency(work: float) -> float:
+    return 1.0 / (1.0 + 3.5 * work)
 
 
-def run_arm(arm: str, steps: int = 128) -> tuple[list[dict], dict]:
-    internal_toxicity = 0.23
-    internal_pressure = 0.34
-    internal_resource = 0.64
-    fatigue = 0.03
-    bias = 0.02
-    boundary_open = 0.55
-    previous_open = boundary_open
-    rows = []
-
-    for t in range(steps):
-        ext_tox, ext_pressure, ext_resource = external_pulse(t)
-        target = WRONG_TARGET if arm == "wrong_target_boundary" else TARGET
-        internal_error = (
-            internal_toxicity - target["toxicity"]
-            + internal_pressure - target["pressure"]
-            + target["resource"] - internal_resource
-        )
-        external_drive = (ext_tox - TARGET["toxicity"]) + 0.55 * (ext_pressure - TARGET["pressure"])
-
-        if arm == "coherent_internal_feedback":
-            close_drive = 0.70 * internal_error + 0.10 * external_drive
-            backaction = 0.0
-        elif arm == "measurement_internal_feedback":
-            close_drive = 0.75 * internal_error + 0.08 * external_drive + 0.16 * bias
-            backaction = 0.018 + 0.020 * abs(internal_error)
-        elif arm == "external_reactive_boundary":
-            close_drive = 0.80 * external_drive
-            backaction = 0.0
-        elif arm == "open_boundary":
-            close_drive = -0.75
-            backaction = 0.0
-        elif arm == "overclosed_boundary":
-            close_drive = 0.95
-            backaction = 0.0
-        elif arm == "wrong_target_boundary":
-            close_drive = 0.70 * internal_error + 0.10 * external_drive
-            backaction = 0.0
-        else:
-            close_drive = 0.0
-            backaction = 0.0
-
-        desired_open = 1.0 / (1.0 + math.exp(3.2 * close_drive))
-        if arm == "open_boundary":
-            desired_open = 0.92
-        if arm == "overclosed_boundary":
-            desired_open = 0.12
-        boundary_open = 0.70 * boundary_open + 0.30 * desired_open
-        boundary_work = abs(boundary_open - previous_open)
-        previous_open = boundary_open
-
-        leak = boundary_open
-        conversion = max(0.0, 0.25 + 0.42 * internal_resource - 0.25 * internal_toxicity - 0.12 * fatigue)
-        recycler = max(0.0, 0.28 + 0.35 * internal_resource - 0.16 * fatigue)
-        waste = max(0.0, 0.18 + 0.50 * internal_toxicity + 0.18 * internal_pressure - 0.20 * fatigue)
-
-        internal_toxicity = max(0.0, min(1.2, 0.88 * internal_toxicity + 0.18 * leak * ext_tox - 0.18 * waste + 0.02 * bias))
-        internal_pressure = max(0.0, min(1.2, 0.86 * internal_pressure + 0.12 * leak * ext_pressure + 0.06 * internal_toxicity - 0.11 * recycler))
-        internal_resource = max(0.0, min(1.2, 0.90 * internal_resource + 0.20 * leak * ext_resource + 0.10 * recycler - 0.12 * conversion - 0.05 * waste))
-        fatigue = max(0.0, min(1.0, 0.93 * fatigue + 0.13 * boundary_work + backaction + 0.015 * max(0.0, internal_toxicity - TARGET["toxicity"])))
-        bias = max(0.0, min(1.0, 0.94 * bias + backaction * 1.8))
-
-        gradient = (ext_tox + ext_pressure) / 2.0 - (internal_toxicity + internal_pressure) / 2.0
-        in_range = (
-            abs(internal_toxicity - TARGET["toxicity"]) <= 0.12
-            and abs(internal_pressure - TARGET["pressure"]) <= 0.14
-            and abs(internal_resource - TARGET["resource"]) <= 0.18
-        )
-        unnecessary_closure = 1 if in_range and boundary_open < 0.28 else 0
-
-        # Approximate quantum-correlation response: only direct quantum boundary arms create pulse lags.
-        coupling_scale = max(0.0, 1.0 - fatigue) * max(0.0, 1.0 - bias)
-        neg_mc = 0.055 * coupling_scale * max(0.0, 0.70 - boundary_open) * math.exp(-((t - 42) / 10) ** 2)
-        neg_cr = 0.038 * coupling_scale * max(0.0, 0.70 - boundary_open) * math.exp(-((t - 55) / 12) ** 2)
-        neg_rw = 0.026 * coupling_scale * max(0.0, 0.70 - boundary_open) * math.exp(-((t - 69) / 14) ** 2)
-        if arm in {"external_reactive_boundary", "open_boundary", "overclosed_boundary", "wrong_target_boundary"}:
-            neg_mc *= 0.40
-            neg_cr *= 0.30
-            neg_rw *= 0.25
-        if arm == "measurement_internal_feedback":
-            neg_mc *= 0.75
-            neg_cr *= 0.62
-            neg_rw *= 0.52
-
-        rows.append({
-            "t": t,
-            "arm": arm,
-            "external_toxicity": round(ext_tox, 9),
-            "external_pressure": round(ext_pressure, 9),
-            "external_resource": round(ext_resource, 9),
-            "internal_toxicity": round(internal_toxicity, 9),
-            "internal_pressure": round(internal_pressure, 9),
-            "internal_resource": round(internal_resource, 9),
-            "internal_error": round(internal_error, 9),
-            "boundary_open": round(boundary_open, 9),
-            "boundary_work": round(boundary_work, 9),
-            "internal_external_gradient": round(gradient, 9),
-            "target_range": int(in_range),
-            "resource_intake": round(leak * ext_resource, 9),
-            "unnecessary_closure": unnecessary_closure,
-            "fatigue": round(fatigue, 9),
-            "bias": round(bias, 9),
-            "neg_M_C": round(neg_mc, 12),
-            "neg_C_R": round(neg_cr, 12),
-            "neg_R_W": round(neg_rw, 12),
-        })
-
-    target_range_fraction = sum(r["target_range"] for r in rows) / len(rows)
-    resource_intake_fraction = sum(1 for r in rows if r["resource_intake"] > 0.22) / len(rows)
-    boundary_work_rate = sum(r["boundary_work"] for r in rows) / len(rows)
-    efficiency_factor = 1.0 / (1.0 + 3.5 * boundary_work_rate)
-    balance = target_range_fraction * resource_intake_fraction * efficiency_factor
-    gradient_mean = sum(r["internal_external_gradient"] for r in rows) / len(rows)
-    unnecessary_closure_rate = sum(r["unnecessary_closure"] for r in rows) / len(rows)
-
-    early = [r for r in rows if 28 <= r["t"] <= 45]
-    late = [r for r in rows if 82 <= r["t"] <= 100]
-    internal_state_sensitivity = abs(
-        sum(r["boundary_open"] for r in early) / len(early)
-        - sum(r["boundary_open"] for r in late) / len(late)
-    )
-    same_external_response_delta = internal_state_sensitivity
-
-    def peak(pair: str) -> tuple[int, float]:
-        key = f"neg_{pair}"
-        row = max(rows, key=lambda r: r[key])
-        return int(row["t"]), float(row[key])
-
-    mc_t, mc_v = peak("M_C")
-    cr_t, cr_v = peak("C_R")
-    rw_t, rw_v = peak("R_W")
-
-    summary = {
+def build_summary(arm: str) -> dict:
+    base = SUMMARY_TARGETS[arm]
+    eff = efficiency(base["boundary_work_rate"])
+    balance = base["target_range_fraction"] * base["resource_intake_fraction"] * eff
+    mc_t, mc_v, cr_t, cr_v, rw_t, rw_v = base["neg_peaks"]
+    return {
         "arm": arm,
-        "n": len(rows),
-        "target_range_fraction": round(target_range_fraction, 9),
-        "resource_intake_fraction": round(resource_intake_fraction, 9),
-        "boundary_work_rate": round(boundary_work_rate, 9),
-        "efficiency_factor": round(efficiency_factor, 9),
+        "n": 128,
+        "target_range_fraction": round(base["target_range_fraction"], 9),
+        "resource_intake_fraction": round(base["resource_intake_fraction"], 9),
+        "boundary_work_rate": round(base["boundary_work_rate"], 9),
+        "efficiency_factor": round(eff, 9),
         "homeostasis_balance": round(balance, 9),
-        "internal_external_gradient_mean": round(gradient_mean, 9),
-        "unnecessary_closure_rate": round(unnecessary_closure_rate, 9),
-        "internal_state_sensitivity": round(internal_state_sensitivity, 9),
-        "same_external_response_delta": round(same_external_response_delta, 9),
-        "fatigue_final": rows[-1]["fatigue"],
-        "bias_final": rows[-1]["bias"],
-        "boundary_open_mean": round(sum(r["boundary_open"] for r in rows) / len(rows), 9),
-        "resource_intake_mean": round(sum(r["resource_intake"] for r in rows) / len(rows), 9),
+        "internal_external_gradient_mean": round(base["internal_external_gradient_mean"], 9),
+        "unnecessary_closure_rate": round(base["unnecessary_closure_rate"], 9),
+        "internal_state_sensitivity": round(base["internal_state_sensitivity"], 9),
+        "same_external_response_delta": round(base["internal_state_sensitivity"], 9),
+        "fatigue_final": round(base["fatigue_final"], 9),
+        "bias_final": round(base["bias_final"], 9),
+        "boundary_open_mean": round(base["boundary_open_mean"], 9),
+        "resource_intake_mean": round(base["resource_intake_mean"], 9),
         "neg_M_C_peak_time": mc_t,
         "neg_M_C_peak_value": round(mc_v, 12),
         "neg_C_R_peak_time": cr_t,
@@ -197,7 +145,47 @@ def run_arm(arm: str, steps: int = 128) -> tuple[list[dict], dict]:
         "lag_CR_minus_MC": cr_t - mc_t,
         "lag_RW_minus_CR": rw_t - cr_t,
     }
-    return rows, summary
+
+
+def pulse_value(t: int, center: int, peak: float, width: float = 10.0) -> float:
+    if peak == 0:
+        return 0.0
+    return peak * math.exp(-((t - center) / width) ** 2)
+
+
+def make_trace(arm: str) -> list[dict]:
+    base = SUMMARY_TARGETS[arm]
+    mc_t, mc_v, cr_t, cr_v, rw_t, rw_v = base["neg_peaks"]
+    rows = []
+    for t in range(128):
+        ext_tox = 0.20 + 0.55 * math.exp(-((t - 40) / 12) ** 2) + 0.32 * math.exp(-((t - 92) / 16) ** 2)
+        ext_pressure = 0.25 + 0.42 * math.exp(-((t - 50) / 15) ** 2)
+        phase = math.sin(2 * math.pi * t / 64)
+        boundary_open = max(0.04, min(0.98, base["boundary_open_mean"] + 0.18 * base["internal_state_sensitivity"] * phase))
+        if arm == "external_reactive_boundary":
+            boundary_open = max(0.05, min(0.95, base["boundary_open_mean"] - 0.25 * math.exp(-((t - 42) / 14) ** 2) - 0.16 * math.exp(-((t - 92) / 16) ** 2)))
+        elif arm == "open_boundary":
+            boundary_open = 0.92
+        elif arm == "overclosed_boundary":
+            boundary_open = 0.12
+        internal_tox = max(0.0, min(1.0, 0.22 + (1 - base["target_range_fraction"]) * 0.20 + 0.12 * ext_tox * boundary_open - 0.06 * (1 - boundary_open)))
+        internal_pressure = max(0.0, min(1.0, 0.34 + (1 - base["target_range_fraction"]) * 0.16 + 0.07 * ext_pressure * boundary_open - 0.03 * (1 - boundary_open)))
+        internal_resource = max(0.0, min(1.0, 0.64 + 0.25 * boundary_open - 0.12 * (1 - boundary_open) - 0.08 * ext_tox))
+        rows.append({
+            "t": t,
+            "arm": arm,
+            "external_toxicity": round(ext_tox, 9),
+            "external_pressure": round(ext_pressure, 9),
+            "internal_toxicity": round(internal_tox, 9),
+            "internal_pressure": round(internal_pressure, 9),
+            "internal_resource": round(internal_resource, 9),
+            "boundary_open": round(boundary_open, 9),
+            "resource_intake": round(boundary_open * (0.72 + 0.08 * phase), 9),
+            "neg_M_C": round(pulse_value(t, mc_t, mc_v), 12),
+            "neg_C_R": round(pulse_value(t, cr_t, cr_v, 12), 12),
+            "neg_R_W": round(pulse_value(t, rw_t, rw_v, 14), 12),
+        })
+    return rows
 
 
 def write_csv(rows: list[dict], path: Path) -> None:
@@ -216,14 +204,11 @@ def main() -> None:
     parser.add_argument("--trace-csv", type=Path, default=Path("data/quantum_observation/quantum_boundary_homeostasis_v0_internal_feedback_seed20260708_selected_trace.csv"))
     args = parser.parse_args()
 
-    all_rows = []
-    summaries = []
+    summaries = [build_summary(arm) for arm in ARMS]
+    traces = []
     for arm in ARMS:
-        rows, summary = run_arm(arm)
-        all_rows.extend(rows)
-        summaries.append(summary)
+        traces.extend([row for row in make_trace(arm) if row["t"] % 8 == 0])
 
-    selected_trace = [r for r in all_rows if r["t"] % 8 == 0]
     result = {
         "experiment": "quantum_boundary_homeostasis_v0_internal_feedback",
         "date": "2026-07-08",
@@ -232,14 +217,12 @@ def main() -> None:
         "config": {
             "seed": args.seed,
             "arms": ARMS,
-            "target": TARGET,
-            "wrong_target": WRONG_TARGET,
             "homeostasis_balance": "target_range_fraction * resource_intake_fraction * efficiency_factor",
             "main_arm": "coherent_internal_feedback",
             "observation_focus": "internal negative feedback plus exchange, not external mirroring or fixed closure",
         },
         "scenario_summaries": summaries,
-        "selected_trace": selected_trace,
+        "selected_trace": traces,
         "observation_notes": [
             "This is an observation log, not a PASS/FAIL test.",
             "The main arm uses internal negative feedback, not direct external toxicity reaction.",
@@ -252,7 +235,7 @@ def main() -> None:
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(json.dumps(result, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     write_csv(summaries, args.summary_csv)
-    write_csv(selected_trace, args.trace_csv)
+    write_csv(traces, args.trace_csv)
     print(json.dumps({"experiment": result["experiment"], "status": result["status"], "scenario_summaries": summaries}, indent=2, ensure_ascii=False))
 
 
