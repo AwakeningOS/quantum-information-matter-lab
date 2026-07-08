@@ -35,6 +35,8 @@ META:
 | `results/contextual_membrane_v1_memory_ablation_report_2026-07-08.md` | RAW_LOG_BACKED | CONTEXTUAL_COMPONENT | verdict `PASS_MEMORY_DEPENDENT_BOUNDARY`; no quantum-specific claim |
 | `scripts/contextual/contextual_membrane_v2_counterfactual_residue.py` | RAW_LOG_BACKED | CONTEXTUAL_COMPONENT | counterfactual residue test for unchosen-alternative effects on later membrane decisions |
 | `results/contextual_membrane_v2_counterfactual_residue_report_2026-07-08.md` | RAW_LOG_BACKED | CONTEXTUAL_COMPONENT | verdict `PASS_COUNTERFACTUAL_RESIDUE`; no quantum-specific claim |
+| `scripts/contextual/contextual_membrane_v3_order_effect.py` | RAW_LOG_BACKED | CONTEXTUAL_COMPONENT | order-effect test using the same context/object/u event multiset under order permutations |
+| `results/contextual_membrane_v3_order_effect_report_2026-07-08.md` | RAW_LOG_BACKED | CONTEXTUAL_COMPONENT | verdict `PASS_ORDER_EFFECT`; no quantum-specific claim |
 | `docs/CONTEXTUAL_MEMBRANE_ROADMAP.md` | META | roadmap | planned v1-v4, reactor propagation, and quantum-anchor sequence |
 
 ## Current valid claims
@@ -48,5 +50,7 @@ contextual_membrane_v1_memory_ablation is a raw-log-backed designed contextual c
 contextual_membrane_v1_memory_ablation supports only the claim that the implemented membrane decisions and downstream quality/release trajectory depend on dynamic memory under the tested ablations.
 contextual_membrane_v2_counterfactual_residue is a raw-log-backed designed contextual component result.
 contextual_membrane_v2_counterfactual_residue supports only the claim that the implemented membrane's later decisions depend on unchosen-alternative residue under the tested ablations.
+contextual_membrane_v3_order_effect is a raw-log-backed designed contextual component result.
+contextual_membrane_v3_order_effect supports only the claim that order alone changes the implemented membrane's event timing, final state, and residue distribution while preserving the event multiset.
 Future quantum-specific claims must be promoted through a separate audit witness and controls.
 ```
