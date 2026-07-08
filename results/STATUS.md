@@ -47,7 +47,9 @@ META:
 | `results/contextual_membrane_quantum_anchor_probe_report_2026-07-08.md` | RAW_LOG_BACKED | QUANTUM_AUDIT | verdict `PASS_ANCHOR_CANDIDATE_SURROGATE_NOT_QUANTUM`; no quantum-specific claim |
 | `scripts/contextual/contextual_membrane_quantum_anchor_probe_v1.py` | RAW_LOG_BACKED | QUANTUM_AUDIT | explicit PM/KCBS witness-table audit candidate with no-disturbance and exhaustive deterministic assignment bound checks |
 | `results/contextual_membrane_quantum_anchor_probe_v1_report_2026-07-08.md` | RAW_LOG_BACKED | QUANTUM_AUDIT | verdict `PASS_STRICT_WITNESS_TABLE_AUDIT_CANDIDATE_NOT_QUANTUM`; no quantum-specific or hardware-backed claim |
-| `docs/CONTEXTUAL_MEMBRANE_ROADMAP.md` | META | roadmap | completed v1-v4 membrane line, reactor v0/v1, anchor surrogate, and strict witness-table audit; hardware mapping remains planned |
+| `scripts/contextual/contextual_membrane_quantum_anchor_probe_v2_hardware_mapping.py` | RAW_LOG_BACKED | QUANTUM_AUDIT | hardware-format compatibility audit comparing simulated witness-table margins with existing PM/KCBS hardware-backed witness margins without pooling evidence |
+| `results/contextual_membrane_quantum_anchor_probe_v2_hardware_mapping_report_2026-07-08.md` | RAW_LOG_BACKED | QUANTUM_AUDIT | verdict `PASS_HARDWARE_MAPPING_AUDIT_CANDIDATE_NOT_NEW_QPU_RESULT`; no new QPU result and no quantum-specific claim |
+| `docs/CONTEXTUAL_MEMBRANE_ROADMAP.md` | META | roadmap | completed v1-v4 membrane line, reactor v0/v1, anchor surrogate, strict witness-table audit, and hardware-format mapping; finite-shot stress remains planned |
 
 ## Current valid claims
 
@@ -72,5 +74,7 @@ contextual_membrane_quantum_anchor_probe is a raw-log-backed witness-shaped audi
 contextual_membrane_quantum_anchor_probe supports only the claim that the implemented membrane boundary can be mapped to a PM/KCBS-like surrogate pattern under the stated controls.
 contextual_membrane_quantum_anchor_probe_v1 is a raw-log-backed explicit witness-table audit candidate.
 contextual_membrane_quantum_anchor_probe_v1 supports only the claim that simulated PM/KCBS-shaped tables pass no-disturbance and exhaustive deterministic-assignment bound checks under the stated controls.
+contextual_membrane_quantum_anchor_probe_v2_hardware_mapping is a raw-log-backed hardware-format compatibility audit.
+contextual_membrane_quantum_anchor_probe_v2_hardware_mapping supports only the claim that simulated witness-table margins can be compared in the same reporting convention as existing PM/KCBS hardware-backed witness margins without pooling evidence.
 Future quantum-specific claims must be promoted through a separate real witness or hardware-backed audit.
 ```
