@@ -2,9 +2,7 @@
 
 Updated: 2026-07-08
 
-## Research line
-
-The next information-virtual-matter line is:
+## Contextual component line
 
 ```text
 from a context-looking membrane
@@ -16,126 +14,88 @@ to downstream reactor propagation
 to quantum-anchor probing
 ```
 
-The goal is to put context structure into the component decision boundary.
+## Quantum homeostatic observation line
 
-## Priority order and status
+```text
+from a shared classical whole-field
+to quantum-coupled parts inside that field
+to visible pulses of part-part negativity
+to maps of where correlation rises, moves, and dissolves
+```
 
-### 1. contextual_membrane_v1_memory_ablation
+## Completed contextual line
+
+```text
+contextual_membrane_v1_memory_ablation = DONE / PASS_MEMORY_DEPENDENT_BOUNDARY
+contextual_membrane_v2_counterfactual_residue = DONE / PASS_COUNTERFACTUAL_RESIDUE
+contextual_membrane_v3_order_effect = DONE / PASS_ORDER_EFFECT
+contextual_membrane_v4_joint_boundary = DONE / PASS_JOINT_BOUNDARY
+contextual_reactor_v0_membrane_to_flow = DONE / PASS_MEMBRANE_TO_FLOW_PROPAGATION
+contextual_reactor_v1_flow_controls = DONE / PASS_HARDENED_MEMBRANE_TO_FLOW_CONTROLS
+contextual_membrane_quantum_anchor_probe = DONE / PASS_ANCHOR_CANDIDATE_SURROGATE_NOT_QUANTUM
+contextual_membrane_quantum_anchor_probe_v1 = DONE / PASS_STRICT_WITNESS_TABLE_AUDIT_CANDIDATE_NOT_QUANTUM
+contextual_membrane_quantum_anchor_probe_v2_hardware_mapping = DONE / PASS_HARDWARE_MAPPING_AUDIT_CANDIDATE_NOT_NEW_QPU_RESULT
+```
+
+## Quantum observation line
+
+### 1. quantum_homeostatic_parts_observation_v0
 
 ```text
 DONE
-Verdict: PASS_MEMORY_DEPENDENT_BOUNDARY
-```
-
-### 2. contextual_membrane_v2_counterfactual_residue
-
-```text
-DONE
-Verdict: PASS_COUNTERFACTUAL_RESIDUE
-```
-
-### 3. contextual_membrane_v3_order_effect
-
-```text
-DONE
-Verdict: PASS_ORDER_EFFECT
-```
-
-### 4. contextual_membrane_v4_joint_boundary
-
-```text
-DONE
-Verdict: PASS_JOINT_BOUNDARY
-```
-
-### 5. contextual_reactor_v0_membrane_to_flow
-
-```text
-DONE
-Verdict: PASS_MEMBRANE_TO_FLOW_PROPAGATION
-```
-
-### 6. contextual_reactor_v1_flow_controls
-
-```text
-DONE
-Verdict: PASS_HARDENED_MEMBRANE_TO_FLOW_CONTROLS
-```
-
-### 7. contextual_membrane_quantum_anchor_probe
-
-```text
-DONE
-Verdict: PASS_ANCHOR_CANDIDATE_SURROGATE_NOT_QUANTUM
-```
-
-### 8. contextual_membrane_quantum_anchor_probe_v1
-
-```text
-DONE
-Verdict: PASS_STRICT_WITNESS_TABLE_AUDIT_CANDIDATE_NOT_QUANTUM
-```
-
-Lesson:
-
-```text
-The simulated membrane anchor can be represented by explicit PM/KCBS-shaped probability tables that pass deterministic-bound and no-disturbance checks under the stated controls.
-This is still not a hardware-backed quantum claim.
-```
-
-### 9. contextual_membrane_quantum_anchor_probe_v2_hardware_mapping
-
-```text
-DONE
-Verdict: PASS_HARDWARE_MAPPING_AUDIT_CANDIDATE_NOT_NEW_QPU_RESULT
+Status: OBSERVATION_LOG
 ```
 
 Purpose:
 
 ```text
-map the witness-table anchor to existing PM/KCBS hardware-backed result formats
+watch M, C, R, W as a single 4-qubit density-matrix trajectory immersed in energy/toxicity/pressure
 ```
 
-Lesson:
+Main observation:
 
 ```text
-The simulated witness-table margins and existing hardware-backed witness margins can be compared in the same reporting convention, while remaining separate evidence streams.
+direct_entangling_parts creates M-C / C-R / R-W pair-negativity pulses
+field_only_parts keeps pair negativity at zero
 ```
 
-### 10. contextual_membrane_quantum_anchor_probe_v3_finite_shot_stress
+Key numbers:
 
 ```text
-NEXT / FINITE-SHOT STRESS AUDIT
+direct_entangling_parts neg_M_C_max = 0.126998385
+direct_entangling_parts neg_C_R_max = 0.095496553
+direct_entangling_parts neg_R_W_max = 0.043610747
+
+field_only_parts neg_M_C_max = 0
+field_only_parts neg_C_R_max = 0
+field_only_parts neg_R_W_max = 0
+```
+
+### 2. quantum_homeostatic_parts_observation_v1_pulse_map
+
+```text
+NEXT / OBSERVATION MAP
 ```
 
 Purpose:
 
 ```text
-test whether the explicit witness-table anchor survives finite-shot sampling and adversarial no-disturbance drift
+sweep pulse shapes and coupling strengths, then map where negativity pulses appear and dissolve
 ```
 
 Required upgrades:
 
 ```text
-finite-shot sampling over multiple shot counts
-hardware-like shot regime
-adversarial no-disturbance drift
-survival probability for KCBS and PM witnesses
-separate simulated table stress from hardware-backed claims
+multiple pulse profiles
+multiple coupling regimes
+compact raster output
+pulse onset / peak / decay extraction
+M-C -> C-R -> R-W pulse travel check
 ```
 
 ## Short summary
 
 ```text
-v0 = context-looking membrane
-v1 = memory-bearing boundary
-v2 = counterfactual-residue boundary
-v3 = order-sensitive boundary
-v4 = joint/non-additive boundary
-reactor v0 = downstream propagation
-reactor v1 = hardened propagation controls
-quantum anchor = surrogate audit bridge, not quantum promotion
-quantum anchor v1 = strict witness-table audit candidate
-quantum anchor v2 = hardware-format mapping audit
-quantum anchor v3 = finite-shot stress audit
+contextual line: boundary -> memory -> residue -> order -> joint -> flow -> witness-format bridge
+observation line: M/C/R/W density matrix -> field-modulated entangling links -> negativity pulse map
 ```
