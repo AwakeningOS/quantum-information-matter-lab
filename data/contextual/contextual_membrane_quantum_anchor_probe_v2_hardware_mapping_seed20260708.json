@@ -1,0 +1,194 @@
+{
+  "experiment": "contextual_membrane_quantum_anchor_probe_v2_hardware_mapping",
+  "date": "2026-07-08",
+  "layer": "QUANTUM_AUDIT",
+  "seed": 20260708,
+  "inputs": {
+    "simulated_v1": {
+      "kcbs_table_s": 2.256568549,
+      "kcbs_bound": 2.0,
+      "pm_parity_accuracy": 0.921974446,
+      "pm_parity_bound": 0.8333333333333334
+    },
+    "hardware_backed_witnesses": {
+      "kcbs_kingston": {
+        "family": "KCBS",
+        "statistic": "S_KCBS",
+        "value": 2.2232666015625,
+        "bound": 2.0,
+        "violation": 0.2232666015625,
+        "se": 0.008678203935971344,
+        "z": 25.727,
+        "source_note": "existing IBM Kingston KCBS hardware-backed witness result"
+      },
+      "pm_xplus_kingston": {
+        "family": "PM",
+        "statistic": "chi_PM",
+        "value": 5.049805,
+        "bound": 4.0,
+        "violation": 1.049805,
+        "se": 0.028808,
+        "z": 36.44,
+        "source_note": "existing IBM Kingston PM hardware-backed witness result, xplus"
+      },
+      "pm_yplus_kingston": {
+        "family": "PM",
+        "statistic": "chi_PM",
+        "value": 4.857422,
+        "bound": 4.0,
+        "violation": 0.857422,
+        "se": 0.031218,
+        "z": 27.47,
+        "source_note": "existing IBM Kingston PM hardware-backed witness result, yplus"
+      },
+      "pm_z0_kingston": {
+        "family": "PM",
+        "statistic": "chi_PM",
+        "value": 4.644531,
+        "bound": 4.0,
+        "violation": 0.644531,
+        "se": 0.034165,
+        "z": 18.87,
+        "source_note": "existing IBM Kingston PM hardware-backed witness result, z0"
+      }
+    }
+  },
+  "mapped_simulated_values": {
+    "kcbs_table": {
+      "family": "KCBS",
+      "statistic": "S_KCBS",
+      "value": 2.256568549,
+      "bound": 2.0,
+      "violation": 0.256568549,
+      "source_note": "simulated explicit witness-table audit value from contextual_membrane_quantum_anchor_probe_v1"
+    },
+    "pm_table_chi_equivalent": {
+      "family": "PM",
+      "statistic": "chi_PM_equivalent",
+      "value": 5.063693352,
+      "bound": 4.0,
+      "violation": 1.063693352,
+      "source_note": "simulated PM parity accuracy mapped by chi = 12 * accuracy - 6"
+    }
+  },
+  "comparisons": [
+    {
+      "hardware_result": "kcbs_kingston",
+      "family": "KCBS",
+      "simulated_statistic": "S_KCBS",
+      "simulated_value": 2.256568549,
+      "simulated_bound": 2.0,
+      "simulated_violation": 0.256568549,
+      "hardware_statistic": "S_KCBS",
+      "hardware_value": 2.223266601562,
+      "hardware_bound": 2.0,
+      "hardware_violation": 0.223266601562,
+      "hardware_se": 0.008678203936,
+      "hardware_z": 25.727,
+      "sim_to_hardware_margin_ratio": 1.149157766,
+      "margin_delta_sim_minus_hardware": 0.033301947437,
+      "same_margin_sign": true,
+      "sim_finite_shot_survival_normal": 1.0,
+      "hardware_finite_shot_survival_normal": 1.0,
+      "sim_finite_shot_survival_mc": 1.0,
+      "hardware_finite_shot_survival_mc": 1.0,
+      "evidence_relation": "compared_not_pooled"
+    },
+    {
+      "hardware_result": "pm_xplus_kingston",
+      "family": "PM",
+      "simulated_statistic": "chi_PM_equivalent",
+      "simulated_value": 5.063693352,
+      "simulated_bound": 4.0,
+      "simulated_violation": 1.063693352,
+      "hardware_statistic": "chi_PM",
+      "hardware_value": 5.049805,
+      "hardware_bound": 4.0,
+      "hardware_violation": 1.049805,
+      "hardware_se": 0.028808,
+      "hardware_z": 36.44,
+      "sim_to_hardware_margin_ratio": 1.013229459,
+      "margin_delta_sim_minus_hardware": 0.013888352,
+      "same_margin_sign": true,
+      "sim_finite_shot_survival_normal": 1.0,
+      "hardware_finite_shot_survival_normal": 1.0,
+      "sim_finite_shot_survival_mc": 1.0,
+      "hardware_finite_shot_survival_mc": 1.0,
+      "evidence_relation": "compared_not_pooled"
+    },
+    {
+      "hardware_result": "pm_yplus_kingston",
+      "family": "PM",
+      "simulated_statistic": "chi_PM_equivalent",
+      "simulated_value": 5.063693352,
+      "simulated_bound": 4.0,
+      "simulated_violation": 1.063693352,
+      "hardware_statistic": "chi_PM",
+      "hardware_value": 4.857422,
+      "hardware_bound": 4.0,
+      "hardware_violation": 0.857422,
+      "hardware_se": 0.031218,
+      "hardware_z": 27.47,
+      "sim_to_hardware_margin_ratio": 1.240571565,
+      "margin_delta_sim_minus_hardware": 0.206271352,
+      "same_margin_sign": true,
+      "sim_finite_shot_survival_normal": 1.0,
+      "hardware_finite_shot_survival_normal": 1.0,
+      "sim_finite_shot_survival_mc": 1.0,
+      "hardware_finite_shot_survival_mc": 1.0,
+      "evidence_relation": "compared_not_pooled"
+    },
+    {
+      "hardware_result": "pm_z0_kingston",
+      "family": "PM",
+      "simulated_statistic": "chi_PM_equivalent",
+      "simulated_value": 5.063693352,
+      "simulated_bound": 4.0,
+      "simulated_violation": 1.063693352,
+      "hardware_statistic": "chi_PM",
+      "hardware_value": 4.644531,
+      "hardware_bound": 4.0,
+      "hardware_violation": 0.644531,
+      "hardware_se": 0.034165,
+      "hardware_z": 18.87,
+      "sim_to_hardware_margin_ratio": 1.650336992,
+      "margin_delta_sim_minus_hardware": 0.419162352,
+      "same_margin_sign": true,
+      "sim_finite_shot_survival_normal": 1.0,
+      "hardware_finite_shot_survival_normal": 1.0,
+      "sim_finite_shot_survival_mc": 1.0,
+      "hardware_finite_shot_survival_mc": 1.0,
+      "evidence_relation": "compared_not_pooled"
+    }
+  ],
+  "summary": {
+    "kcbs_simulated_violation": 0.256568549,
+    "kcbs_hardware_violation": 0.2232666015625,
+    "kcbs_margin_ratio_sim_to_hardware": 1.149157766,
+    "pm_simulated_chi_equivalent": 5.063693352,
+    "pm_simulated_chi_violation": 1.063693352,
+    "pm_margin_ratio_min": 1.013229459,
+    "pm_margin_ratio_max": 1.650336992,
+    "finite_shot_survival_min_simulated": 1.0,
+    "finite_shot_survival_min_hardware": 1.0
+  },
+  "criteria": {
+    "kcbs_sim_and_hardware_margins_same_sign": true,
+    "pm_sim_and_all_hardware_margins_same_sign": true,
+    "kcbs_margin_ratio_between_0_5_and_2_0": true,
+    "pm_margin_ratios_between_0_5_and_2_0": true,
+    "kcbs_sim_finite_shot_survival_ge_0_999": true,
+    "kcbs_hardware_finite_shot_survival_ge_0_999": true,
+    "pm_sim_finite_shot_survival_min_ge_0_999": true,
+    "pm_hardware_finite_shot_survival_min_ge_0_999": true,
+    "simulated_and_hardware_evidence_not_pooled": true,
+    "no_quantum_specific_claim_promoted": true
+  },
+  "verdict": "PASS_HARDWARE_MAPPING_AUDIT_CANDIDATE_NOT_NEW_QPU_RESULT",
+  "claim_boundary": [
+    "This is a hardware-format compatibility audit only.",
+    "Simulated table values and hardware-backed witness values are compared but not pooled.",
+    "This does not create a new QPU result and does not promote a quantum-specific claim for the component.",
+    "Any quantum-specific claim still requires a separate real quantum witness or hardware-backed audit of the component itself."
+  ]
+}
