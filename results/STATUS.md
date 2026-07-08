@@ -31,6 +31,9 @@ META:
 | `scripts/contextual/contextual_component_skeleton.py` | CODE_BACKED | CONTEXTUAL_COMPONENT | starter skeleton for contextual component design |
 | `scripts/contextual/contextual_membrane_v0.py` | RAW_LOG_BACKED | CONTEXTUAL_COMPONENT | first contextual membrane component; designed context-conditioned passage behavior with object-only/replay controls |
 | `results/contextual_membrane_v0_report_2026-07-08.md` | RAW_LOG_BACKED | CONTEXTUAL_COMPONENT | verdict `PASS_COMPONENT_BEHAVIOR`; no quantum-specific claim |
+| `scripts/contextual/contextual_membrane_v1_memory_ablation.py` | RAW_LOG_BACKED | CONTEXTUAL_COMPONENT | memory ablation test for membrane boundary; includes no-memory, decay, and replay variants |
+| `results/contextual_membrane_v1_memory_ablation_report_2026-07-08.md` | RAW_LOG_BACKED | CONTEXTUAL_COMPONENT | verdict `PASS_MEMORY_DEPENDENT_BOUNDARY`; no quantum-specific claim |
+| `docs/CONTEXTUAL_MEMBRANE_ROADMAP.md` | META | roadmap | planned v1-v4, reactor propagation, and quantum-anchor sequence |
 
 ## Current valid claims
 
@@ -39,5 +42,7 @@ The repository is scaffolded for contextual information-matter experiments.
 The migrated sandbox and contextual skeleton are code-backed starting points.
 contextual_membrane_v0 is a raw-log-backed designed contextual component result.
 contextual_membrane_v0 supports only the claim that the implemented membrane expresses context-conditioned passage behavior against object-only/replay controls.
+contextual_membrane_v1_memory_ablation is a raw-log-backed designed contextual component result.
+contextual_membrane_v1_memory_ablation supports only the claim that the implemented membrane decisions and downstream quality/release trajectory depend on dynamic memory under the tested ablations.
 Future quantum-specific claims must be promoted through a separate audit witness and controls.
 ```
