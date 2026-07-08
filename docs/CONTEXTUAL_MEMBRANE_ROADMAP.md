@@ -11,7 +11,7 @@ boundary -> memory -> residue -> order -> joint -> flow -> witness-format bridge
 ## Quantum homeostatic observation line
 
 ```text
-whole-field -> quantum-coupled parts -> negativity pulses -> pulse timing map -> local touch response -> recovery cycle
+whole-field -> quantum-coupled parts -> negativity pulses -> pulse timing map -> local touch response -> recovery cycle -> repair vs overdrive
 ```
 
 ## Completed contextual line
@@ -68,12 +68,6 @@ DONE
 Status: OBSERVATION_LOG
 ```
 
-Purpose:
-
-```text
-perturb one part locally while the whole-field is held fixed or slowly varying, then watch whether the response spreads through neighboring links
-```
-
 Main observation:
 
 ```text
@@ -88,21 +82,45 @@ Field-only local touch: pair negativity stays zero
 ### 4. quantum_homeostatic_parts_observation_v3_recovery_cycle
 
 ```text
-NEXT / RECOVERY CYCLE OBSERVATION
+DONE
+Status: OBSERVATION_LOG
 ```
 
 Purpose:
 
 ```text
-touch a part repeatedly, let the system recover between touches, and watch whether the negativity response adapts, saturates, or habituates
+touch C repeatedly, let the system recover between touches, and watch whether the negativity response adapts, saturates, or habituates
+```
+
+Main observation:
+
+```text
+full reset baseline: last/first = 1.000000000
+high-energy active unitary recovery: last/first = 0.882453216
+high-energy active measurement recovery: last/first = 0.728685139
+high-toxicity active measurement recovery: last/first = 0.403944250
+high-toxicity passive measurement recovery: last/first = 0.000000000
+```
+
+### 5. quantum_homeostatic_parts_observation_v4_repair_vs_overdrive
+
+```text
+NEXT / REPAIR VS OVERDRIVE OBSERVATION
+```
+
+Purpose:
+
+```text
+test whether too-strong active recovery becomes overdrive rather than healthy repair
 ```
 
 Required upgrades:
 
 ```text
-repeated local touches
-recovery windows
-high-energy vs high-toxicity conditions
-response amplitude decay / recovery ratio
-inter-touch memory or fatigue index
+gentle recovery
+strong recovery
+oscillatory recovery
+rebound amplitude
+runaway / overshoot index
+stable adaptation vs overdrive comparison
 ```
