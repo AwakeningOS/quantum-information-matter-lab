@@ -45,7 +45,9 @@ META:
 | `results/contextual_reactor_v1_flow_controls_report_2026-07-08.md` | RAW_LOG_BACKED | CLASSICAL_COMPONENT | verdict `PASS_HARDENED_MEMBRANE_TO_FLOW_CONTROLS`; no quantum-specific claim |
 | `scripts/contextual/contextual_membrane_quantum_anchor_probe.py` | RAW_LOG_BACKED | QUANTUM_AUDIT | witness-shaped PM/KCBS surrogate audit bridge with additive, same-marginal, shuffled-context, hidden-state, and strong classical controls |
 | `results/contextual_membrane_quantum_anchor_probe_report_2026-07-08.md` | RAW_LOG_BACKED | QUANTUM_AUDIT | verdict `PASS_ANCHOR_CANDIDATE_SURROGATE_NOT_QUANTUM`; no quantum-specific claim |
-| `docs/CONTEXTUAL_MEMBRANE_ROADMAP.md` | META | roadmap | completed v1-v4 membrane line plus reactor v0/v1 and first quantum-anchor surrogate; stricter witness audit remains planned |
+| `scripts/contextual/contextual_membrane_quantum_anchor_probe_v1.py` | RAW_LOG_BACKED | QUANTUM_AUDIT | explicit PM/KCBS witness-table audit candidate with no-disturbance and exhaustive deterministic assignment bound checks |
+| `results/contextual_membrane_quantum_anchor_probe_v1_report_2026-07-08.md` | RAW_LOG_BACKED | QUANTUM_AUDIT | verdict `PASS_STRICT_WITNESS_TABLE_AUDIT_CANDIDATE_NOT_QUANTUM`; no quantum-specific or hardware-backed claim |
+| `docs/CONTEXTUAL_MEMBRANE_ROADMAP.md` | META | roadmap | completed v1-v4 membrane line, reactor v0/v1, anchor surrogate, and strict witness-table audit; hardware mapping remains planned |
 
 ## Current valid claims
 
@@ -68,5 +70,7 @@ contextual_reactor_v1_flow_controls is a raw-log-backed designed classical compo
 contextual_reactor_v1_flow_controls supports only the claim that membrane-to-flow propagation survives multi-seed, matched pass-rate, matched signal, additive-boundary, and strong no-membrane controls under the stated metrics.
 contextual_membrane_quantum_anchor_probe is a raw-log-backed witness-shaped audit bridge result.
 contextual_membrane_quantum_anchor_probe supports only the claim that the implemented membrane boundary can be mapped to a PM/KCBS-like surrogate pattern under the stated controls.
+contextual_membrane_quantum_anchor_probe_v1 is a raw-log-backed explicit witness-table audit candidate.
+contextual_membrane_quantum_anchor_probe_v1 supports only the claim that simulated PM/KCBS-shaped tables pass no-disturbance and exhaustive deterministic-assignment bound checks under the stated controls.
 Future quantum-specific claims must be promoted through a separate real witness or hardware-backed audit.
 ```
