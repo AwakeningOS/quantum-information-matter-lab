@@ -23,39 +23,38 @@ Keep these layers separate.
 
 ```text
 CLASSICAL_COMPONENT:
-  useful phenomenological components such as membrane, source, sink,
-  reservoir, converter, road, buffer, terrain.
+  reusable phenomenological components such as membrane, source, sink,
+  reservoir, converter, road, buffer, terrain, memory.
 
 CONTEXTUAL_COMPONENT:
-  components whose behavior depends on question/context structure.
-  These are design targets, not automatic quantum claims.
+  components whose behavior depends on question/context structure,
+  compatibility, memory, and unobserved alternatives.
 
 QUANTUM_AUDIT:
-  witness/control tests used only when making quantum-specific claims.
-  Examples: contextuality witness, dephase control, marginal matching,
-  Bell/CHSH control, readout/control comparisons.
+  witness/control tests used when a component is being promoted as
+  quantum-specific or measurement-contextual.
 
 PAPER_ANALYSIS:
   interpretation, limitations, figure mapping, manuscript material.
 
 QUARANTINED:
-  old or failed claims retained only as historical notes.
+  old, failed, or unsupported claims retained only as historical notes.
 ```
 
-Do not let quantum/audit vocabulary leak into component reports unless the controls exist.
+Do not let a component-building report and a quantum/audit claim collapse into the same sentence. Build freely, but label the evidence layer precisely.
 
 ## Vocabulary guard
 
-Allowed component-layer words:
+Component-layer vocabulary is allowed and encouraged when it names an implemented part:
 
 ```text
-classical, phenomenological, stochastic, component, throughput,
-selectivity, retention, release, conversion, fidelity, promiscuity,
-gating, hysteresis, poisoning, stress, buffering, source, sink,
-reservoir, converter, membrane, road, terrain, memory
+component, throughput, selectivity, retention, release, conversion,
+fidelity, promiscuity, gating, hysteresis, poisoning, stress, buffering,
+source, sink, reservoir, converter, membrane, road, terrain, memory,
+self-register, contextual interface
 ```
 
-Audit words require controls:
+Audit vocabulary requires controls:
 
 ```text
 quantum, contextuality, negativity, entanglement, coherence,
@@ -63,7 +62,7 @@ dephase, measurement backaction, Bell, CHSH, nonclassical,
 quantum advantage
 ```
 
-If those words appear in a component report, the report must state whether it is a design target, a tested witness, or a forbidden claim.
+If those words appear in a component report, the report must say whether they are design intent, measured behavior, or audited witness status.
 
 ## Required layout
 
@@ -111,7 +110,7 @@ success/failure criteria
 seeds
 raw outputs
 known limitations
-forbidden claims
+claim boundary
 ```
 
 ### 2. Generator script
@@ -141,7 +140,7 @@ Raw log:
 Run command:
 Layer:
 Verdict:
-Limitations:
+Claim boundary:
 ```
 
 ### 5. Status index
@@ -198,10 +197,10 @@ state update rule
 observed output
 unobserved alternative state
 classical/replay control
-forbidden interpretation
+claim boundary
 ```
 
-Contextual behavior alone is not a quantum claim. Quantum-specific status requires a separate audit.
+Contextual behavior can be a component design before it is a quantum claim. Quantum-specific status requires a separate audit.
 
 ## Quantum/audit workflow
 
@@ -223,8 +222,7 @@ Accept negative results. Showing that a behavior is classical-effective is usefu
 ```text
 Do not paste AI-made tables into results/ as raw data.
 Do not call a behavior quantum-specific without controls.
-Do not call anything life/cell/metabolism/self-repair unless directly defined and measured.
 Do not hide stale logs after changing scripts.
 Do not mix component-building claims and witness claims.
-Do not promote a design metaphor into a physical claim.
+Do not promote a metaphor into a measured result without defining the measurement.
 ```
