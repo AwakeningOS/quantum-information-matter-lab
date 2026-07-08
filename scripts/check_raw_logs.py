@@ -3,7 +3,7 @@
 
 The checker verifies that bootstrap scripts and promoted component scripts run
 and write their expected raw artifacts. Expand this file whenever a result is
-promoted to RAW_LOG_BACKED.
+promoted to RAW_LOG_BACKED or OBSERVATION_LOG.
 """
 from __future__ import annotations
 
@@ -122,6 +122,16 @@ def main() -> None:
     assert_json(anchor_v2_json, "contextual_membrane_quantum_anchor_probe_v2_hardware_mapping")
     if not anchor_v2_csv.exists():
         raise AssertionError(f"missing CSV: {anchor_v2_csv}")
+
+    observation_json = ROOT / "data/quantum_observation/quantum_homeostatic_parts_observation_v0_seed20260708.json"
+    observation_csv = ROOT / "data/quantum_observation/quantum_homeostatic_parts_observation_v0_seed20260708_trajectory.csv"
+    observation_summary_csv = ROOT / "data/quantum_observation/quantum_homeostatic_parts_observation_v0_seed20260708_summary.csv"
+    run_cmd([py, "scripts/quantum_observation/quantum_homeostatic_parts_observation_v0.py", "--seed", "20260708", "--steps", "180", "--out", str(observation_json), "--csv", str(observation_csv), "--summary-csv", str(observation_summary_csv)])
+    assert_json(observation_json, "quantum_homeostatic_parts_observation_v0")
+    if not observation_csv.exists():
+        raise AssertionError(f"missing CSV: {observation_csv}")
+    if not observation_summary_csv.exists():
+        raise AssertionError(f"missing CSV: {observation_summary_csv}")
 
     print("OK: raw-log checks passed")
 
