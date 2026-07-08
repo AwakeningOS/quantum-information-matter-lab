@@ -1,8 +1,6 @@
 # Quantum Information Matter Lab
 
-A clean experimental workspace for building **contextual information-matter components** after Paper A.
-
-This repository is not a claim that a quantum circuit already demonstrates life, cells, metabolism, self-repair, or physical matter synthesis. It is a controlled lab for building reusable information-material components and testing when a component genuinely needs quantum or contextual structure.
+A research workspace for building and evolving **contextual information matter**: information-material components whose behavior depends on context, question structure, memory, and composition.
 
 ## Core direction
 
@@ -22,7 +20,7 @@ Do not treat quantum structure as ordinary flow.
 Treat measurement/contextual structure as a component interface.
 ```
 
-The first target is therefore not a larger classical microreactor. The target is a **contextual information matter** sandbox: components whose behavior depends on compatible/incompatible questions, not only on scalar state variables.
+The target is a new experimental sandbox where information-material parts can be built, tested, combined, and gradually made more contextual. The point is not to keep the system small and safe forever. The point is to grow it without losing the evidence discipline learned from the audit.
 
 ## Initial component roadmap
 
@@ -45,7 +43,7 @@ contextual_self_register:
 
 ## Repository rules
 
-The old repository showed that exploration without evidence discipline quickly creates confusing claims. This repo starts stricter:
+This repository is for construction, not apology. The discipline is simple:
 
 ```text
 No code + no raw log = no result.
@@ -65,8 +63,8 @@ QUARANTINED
 
 ```text
 Status: BOOTSTRAP
-Valid claims: none yet beyond scaffold migration.
-Copied from old repo: only generic operating discipline and reusable sandbox baseline code.
+Valid claims: scaffold migration and starter code only.
+Copied from old repo: generic operating discipline and reusable sandbox baseline code.
 Excluded: old raw logs, paper-specific result claims, and unverified historical notes.
 ```
 
