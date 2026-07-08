@@ -1,0 +1,7 @@
+arm,n,target_range_fraction,resource_intake_fraction,boundary_work_rate,efficiency_factor,homeostasis_balance,internal_external_gradient_mean,unnecessary_closure_rate,internal_state_sensitivity,same_external_response_delta,fatigue_final,bias_final,boundary_open_mean,resource_intake_mean,neg_M_C_peak_time,neg_M_C_peak_value,neg_C_R_peak_time,neg_C_R_peak_value,neg_R_W_peak_time,neg_R_W_peak_value,lag_CR_minus_MC,lag_RW_minus_CR
+coherent_internal_feedback,128,0.84375,0.6953125,0.058,0.831255195,0.487672421,0.462,0.0703125,0.362,0.362,0.084,0.032,0.548,0.392,42,0.0448,55,0.0287,69,0.0179,13,14
+measurement_internal_feedback,128,0.859375,0.546875,0.083,0.774893452,0.364177221,0.481,0.1796875,0.318,0.318,0.336,0.246,0.431,0.301,43,0.0266,57,0.0144,71,0.0072,14,14
+external_reactive_boundary,128,0.671875,0.640625,0.077,0.787711698,0.339046807,0.304,0.234375,0.052,0.052,0.118,0.036,0.508,0.354,39,0.0152,47,0.0058,49,0.0021,8,2
+open_boundary,128,0.3828125,0.953125,0.018,0.940733772,0.343243804,0.118,0.0,0.004,0.004,0.026,0.022,0.912,0.684,0,0.0,0,0.0,0,0.0,0,0
+overclosed_boundary,128,0.9140625,0.1015625,0.024,0.922509225,0.085640657,0.524,0.7421875,0.006,0.006,0.041,0.022,0.118,0.083,42,0.0188,55,0.0104,69,0.0059,13,14
+wrong_target_boundary,128,0.453125,0.765625,0.062,0.821692687,0.285064772,0.226,0.1171875,0.287,0.287,0.073,0.028,0.648,0.472,42,0.0201,55,0.0119,69,0.0061,13,14
