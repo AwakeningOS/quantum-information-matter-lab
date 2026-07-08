@@ -140,6 +140,24 @@ def main() -> None:
     if not reactor_csv.exists():
         raise AssertionError(f"missing CSV: {reactor_csv}")
 
+    reactor_v1_json = ROOT / "data/contextual/contextual_reactor_v1_flow_controls_seed20260708.json"
+    reactor_v1_csv = ROOT / "data/contextual/contextual_reactor_v1_flow_controls_seed20260708_aggregate.csv"
+    reactor_v1_seed_csv = ROOT / "data/contextual/contextual_reactor_v1_flow_controls_seed20260708_seed_summary.csv"
+    run_cmd([
+        py,
+        "scripts/contextual/contextual_reactor_v1_flow_controls.py",
+        "--seed", "20260708",
+        "--steps", "512",
+        "--out", str(reactor_v1_json),
+        "--csv", str(reactor_v1_csv),
+        "--seed-csv", str(reactor_v1_seed_csv),
+    ])
+    assert_json(reactor_v1_json, "contextual_reactor_v1_flow_controls")
+    if not reactor_v1_csv.exists():
+        raise AssertionError(f"missing CSV: {reactor_v1_csv}")
+    if not reactor_v1_seed_csv.exists():
+        raise AssertionError(f"missing CSV: {reactor_v1_seed_csv}")
+
     print("OK: raw-log checks passed")
 
 
