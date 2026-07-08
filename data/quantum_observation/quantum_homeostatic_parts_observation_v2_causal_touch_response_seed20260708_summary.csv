@@ -1,0 +1,15 @@
+mode,target,regime,act_M_peak_time,act_M_peak_value,act_C_peak_time,act_C_peak_value,act_R_peak_time,act_R_peak_value,act_W_peak_time,act_W_peak_value,neg_M_C_peak_time,neg_M_C_peak_value,neg_C_R_peak_time,neg_C_R_peak_value,neg_R_W_peak_time,neg_R_W_peak_value,first_touched_link_peak_time,first_next_link_peak_time,next_minus_touched_peak_lag,response_label
+local_touch_direct,M,fixed_field,32,0.65,42,0.5934,52,0.5079,62,0.4553,35,0.0811,48,0.0346,61,0.0135,35,48,13,local_touch_spreads_to_next_link
+local_touch_direct,C,fixed_field,42,0.5534,32,0.69,42,0.5634,52,0.4879,35,0.0811,35,0.0665,48,0.0271,35,48,13,local_touch_spreads_to_next_link
+local_touch_direct,R,fixed_field,52,0.4979,42,0.5934,32,0.66,42,0.5434,48,0.0422,35,0.0665,35,0.0519,35,48,13,local_touch_spreads_to_next_link
+local_touch_direct,W,fixed_field,62,0.4653,52,0.5379,42,0.5634,32,0.64,61,0.0211,48,0.0346,35,0.0519,35,48,13,local_touch_spreads_to_next_link
+field_only_local_touch,M,fixed_field,32,0.65,42,0.4974,52,0.4518,62,0.4227,0,0.0,0,0.0,0,0.0,,,0,local_activation_without_pair_negativity
+field_only_local_touch,C,fixed_field,42,0.4844,32,0.69,42,0.4714,52,0.4327,0,0.0,0,0.0,0,0.0,,,0,local_activation_without_pair_negativity
+field_only_local_touch,R,fixed_field,52,0.4518,42,0.4974,32,0.66,42,0.4504,0,0.0,0,0.0,0,0.0,,,0,local_activation_without_pair_negativity
+field_only_local_touch,W,fixed_field,62,0.4327,52,0.4879,42,0.4714,32,0.64,0,0.0,0,0.0,0,0.0,,,0,local_activation_without_pair_negativity
+global_field_pulse,GLOBAL,fixed_field,39,0.58,39,0.62,39,0.59,39,0.57,39,0.045,39,0.045,39,0.045,39,39,0,near_simultaneous_global_field_response
+local_touch_direct,M,slow_field,32,0.661,42,0.604,52,0.518,62,0.466,35,0.0834,48,0.0358,61,0.0142,35,48,13,local_touch_spreads_to_next_link
+local_touch_direct,C,slow_field,42,0.564,32,0.701,42,0.574,52,0.498,35,0.0834,35,0.0682,48,0.0280,35,48,13,local_touch_spreads_to_next_link
+local_touch_direct,R,slow_field,52,0.508,42,0.604,32,0.671,42,0.554,48,0.0435,35,0.0682,35,0.0532,35,48,13,local_touch_spreads_to_next_link
+local_touch_direct,W,slow_field,62,0.476,52,0.548,42,0.574,32,0.651,61,0.0220,48,0.0358,35,0.0532,35,48,13,local_touch_spreads_to_next_link
+global_field_pulse,GLOBAL,slow_field,39,0.591,39,0.631,39,0.601,39,0.581,39,0.046,39,0.046,39,0.046,39,39,0,near_simultaneous_global_field_response
