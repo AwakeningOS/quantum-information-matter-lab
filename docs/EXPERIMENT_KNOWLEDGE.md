@@ -56,26 +56,16 @@ Can contextuality change a membrane decision?
 Can that change depend on memory, unchosen alternatives, and context order?
 ```
 
-This should be treated as a staged program:
-
-```text
-contextual_membrane_v0:
-  entrance / component sanity test
-  asks whether the membrane decision changes with context
-  confirms: the membrane sees context/question structure
-
-contextual_membrane_v1_memory_ablation:
-  main next test
-  asks whether past context remains as causal residue
-  asks whether unchosen alternatives affect later decisions
-  asks whether context order changes the membrane trajectory
-```
-
-Short form:
+Staged program:
 
 ```text
 v0 = context-looking membrane
 v1 = memory-bearing boundary
+v2 = counterfactual-residue boundary
+v3 = order-sensitive boundary
+v4 = joint/non-additive boundary
+reactor = downstream propagation
+quantum anchor = connection to real contextuality witness
 ```
 
 ## contextual_membrane_v0 knowledge
@@ -114,7 +104,7 @@ shuffled_context_full compatibility_score_gap = 0.221874876
 
 ### Lesson
 
-The component-level contextual behavior passed the v0 criteria, but memory necessity is not yet established.
+The component-level contextual behavior passed the v0 criteria, but memory necessity was not established.
 
 The context-no-memory variant remained close to full:
 
@@ -123,30 +113,86 @@ event_match_to_full = 0.984375
 score_mae_to_full = 0.008596154
 ```
 
-This means v1 should sharpen the memory question.
+## contextual_membrane_v1_memory_ablation knowledge
 
-### Do not claim
+### What was tested
 
-```text
-Do not claim contextual_membrane_v0 demonstrates quantum-specific behavior.
-Do not claim it demonstrates formal measurement contextuality.
-Do not claim it demonstrates biological organization or consciousness.
-Do not claim memory necessity from v0 alone.
-```
-
-### Better v1 direction
-
-Use memory ablations and delayed-effect metrics:
+A memory-bearing membrane with ablations:
 
 ```text
 full
 no_memory
 low_memory_decay
 high_memory_decay
-same-context replay
-same-transition replay
-order reversal / order shuffle
-unchosen-alternative ablation
+same_context_replay
+same_transition_replay
 ```
 
-Primary success should require memory ablation, unchosen-alternative ablation, or order manipulation to change event-level fit or delayed context effects, not merely preserve context-conditioned bias.
+The test included downstream trajectory variables:
+
+```text
+quality
+release
+reservoir
+cumulative_release
+event timing
+```
+
+### Result snapshot
+
+```text
+Verdict = PASS_MEMORY_DEPENDENT_BOUNDARY
+
+full pass_rate = 0.633928571
+no_memory pass_rate = 0.455357143
+
+full mean_quality = 0.680546428
+no_memory mean_quality = 0.341839146
+
+full mean_release = 0.299855464
+no_memory mean_release = 0.085369974
+
+full final_cumulative_release = 153.963406058
+no_memory final_cumulative_release = 52.369918094
+
+no_memory event_match_to_full = 0.8125
+no_memory score_mae_to_full = 0.199107556
+no_memory release_mae_to_full = 0.21448549
+```
+
+### Lesson
+
+v1 supports the component-level claim that, in the implemented mechanism, dynamic memory changes membrane decisions and downstream quality/release trajectory.
+
+Low memory decay diverged from full, so memory lifetime matters.
+
+High memory decay overshot full, so too much persistence also changes the boundary.
+
+Replay variants stayed event-level different from full, so context/object coupling and order remain important.
+
+### Do not claim
+
+```text
+Do not claim v1 demonstrates quantum-specific behavior.
+Do not claim v1 demonstrates formal measurement contextuality.
+Do not claim v1 demonstrates biological organization or consciousness.
+Do not claim v1 isolates counterfactual residue alone.
+Do not claim v1 isolates pure order effects alone.
+```
+
+## Next experiment: contextual_membrane_v2_counterfactual_residue
+
+The next experiment should isolate unchosen alternatives.
+
+Use variants such as:
+
+```text
+full_observed_and_counterfactual
+observed_only
+counterfactual_only
+no_counterfactual
+counterfactual_sign_flip
+next-pass-bias probe
+```
+
+Primary success should require counterfactual-residue ablation to change next-pass bias or later membrane decisions while observed-path residue is held fixed.
