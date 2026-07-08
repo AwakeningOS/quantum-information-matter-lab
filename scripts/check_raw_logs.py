@@ -116,6 +116,13 @@ def main() -> None:
     if not anchor_v1_seed_csv.exists():
         raise AssertionError(f"missing CSV: {anchor_v1_seed_csv}")
 
+    anchor_v2_json = ROOT / "data/contextual/contextual_membrane_quantum_anchor_probe_v2_hardware_mapping_seed20260708.json"
+    anchor_v2_csv = ROOT / "data/contextual/contextual_membrane_quantum_anchor_probe_v2_hardware_mapping_seed20260708_summary.csv"
+    run_cmd([py, "scripts/contextual/contextual_membrane_quantum_anchor_probe_v2_hardware_mapping.py", "--seed", "20260708", "--out", str(anchor_v2_json), "--csv", str(anchor_v2_csv)])
+    assert_json(anchor_v2_json, "contextual_membrane_quantum_anchor_probe_v2_hardware_mapping")
+    if not anchor_v2_csv.exists():
+        raise AssertionError(f"missing CSV: {anchor_v2_csv}")
+
     print("OK: raw-log checks passed")
 
 
