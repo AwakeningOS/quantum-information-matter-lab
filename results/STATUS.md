@@ -37,7 +37,9 @@ META:
 | `results/contextual_membrane_v2_counterfactual_residue_report_2026-07-08.md` | RAW_LOG_BACKED | CONTEXTUAL_COMPONENT | verdict `PASS_COUNTERFACTUAL_RESIDUE`; no quantum-specific claim |
 | `scripts/contextual/contextual_membrane_v3_order_effect.py` | RAW_LOG_BACKED | CONTEXTUAL_COMPONENT | order-effect test using the same context/object/u event multiset under order permutations |
 | `results/contextual_membrane_v3_order_effect_report_2026-07-08.md` | RAW_LOG_BACKED | CONTEXTUAL_COMPONENT | verdict `PASS_ORDER_EFFECT`; no quantum-specific claim |
-| `docs/CONTEXTUAL_MEMBRANE_ROADMAP.md` | META | roadmap | planned v1-v4, reactor propagation, and quantum-anchor sequence |
+| `scripts/contextual/contextual_membrane_v4_joint_boundary.py` | RAW_LOG_BACKED | CONTEXTUAL_COMPONENT | joint-boundary test comparing full joint membrane against object-only, context-only, additive, pairwise, and shuffle controls |
+| `results/contextual_membrane_v4_joint_boundary_report_2026-07-08.md` | RAW_LOG_BACKED | CONTEXTUAL_COMPONENT | verdict `PASS_JOINT_BOUNDARY`; no quantum-specific claim |
+| `docs/CONTEXTUAL_MEMBRANE_ROADMAP.md` | META | roadmap | completed v1-v4 membrane line; reactor propagation and quantum-anchor sequence remain planned |
 
 ## Current valid claims
 
@@ -52,5 +54,7 @@ contextual_membrane_v2_counterfactual_residue is a raw-log-backed designed conte
 contextual_membrane_v2_counterfactual_residue supports only the claim that the implemented membrane's later decisions depend on unchosen-alternative residue under the tested ablations.
 contextual_membrane_v3_order_effect is a raw-log-backed designed contextual component result.
 contextual_membrane_v3_order_effect supports only the claim that order alone changes the implemented membrane's event timing, final state, and residue distribution while preserving the event multiset.
+contextual_membrane_v4_joint_boundary is a raw-log-backed designed contextual component result.
+contextual_membrane_v4_joint_boundary supports only the claim that the implemented membrane decisions require full object/context joint state under the tested controls.
 Future quantum-specific claims must be promoted through a separate audit witness and controls.
 ```
