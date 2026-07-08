@@ -12,15 +12,7 @@ generator script
 raw log
 report
 STATUS entry
-reproducibility check
-```
-
-## Research positioning
-
-The intended line is:
-
-```text
-put contextuality/context structure into the component decision boundary
+reproducibility check or documented observation output
 ```
 
 ## Completed result index
@@ -36,6 +28,7 @@ contextual_reactor_v1_flow_controls = PASS_HARDENED_MEMBRANE_TO_FLOW_CONTROLS
 contextual_membrane_quantum_anchor_probe = PASS_ANCHOR_CANDIDATE_SURROGATE_NOT_QUANTUM
 contextual_membrane_quantum_anchor_probe_v1 = PASS_STRICT_WITNESS_TABLE_AUDIT_CANDIDATE_NOT_QUANTUM
 contextual_membrane_quantum_anchor_probe_v2_hardware_mapping = PASS_HARDWARE_MAPPING_AUDIT_CANDIDATE_NOT_NEW_QPU_RESULT
+quantum_homeostatic_parts_observation_v0 = OBSERVATION_LOG
 ```
 
 ## Core component lesson
@@ -45,89 +38,88 @@ A contextual membrane can control the flow of a downstream reaction field in thi
 This result survived multi-seed, matched pass-rate, matched signal, additive-boundary, and strong no-membrane controls.
 ```
 
-## contextual_membrane_quantum_anchor_probe_v1 knowledge
+## quantum_homeostatic_parts_observation_v0 knowledge
+
+### What was built
+
+A 4-qubit density-matrix observation model:
 
 ```text
-Verdict = PASS_STRICT_WITNESS_TABLE_AUDIT_CANDIDATE_NOT_QUANTUM
-KCBS-style directed-transition bound = 2
-PM-style parity accuracy bound = 5/6 = 0.8333333333333334
-full_witness_table_anchor kcbs_witness_sum_mean = 2.256568549
-full_witness_table_anchor pm_parity_accuracy_mean = 0.921974446
-full_witness_table_anchor kcbs_no_disturbance_max_abs_mean = 0.000000000000
-full_witness_table_anchor pm_no_disturbance_max_abs_mean = 0.000000000000
+M = membrane
+C = conversion / catalyst
+R = recycler
+W = waste outlet
 ```
 
-Lesson:
+with a shared whole-field:
 
 ```text
-The simulated membrane anchor can be represented by explicit PM/KCBS-shaped probability tables that pass deterministic-bound and no-disturbance checks under the stated controls.
+energy
+toxicity
+pressure
 ```
 
-## contextual_membrane_quantum_anchor_probe_v2_hardware_mapping knowledge
-
-### What was tested
-
-Hardware-format compatibility audit:
+and direct field-modulated entangling links:
 
 ```text
-Map v1 simulated witness-table values to existing PM/KCBS hardware-backed witness reporting formats.
-Keep simulated table values and hardware-backed witness values separate.
-Compare margins, margin ratios, and finite-shot survival under hardware SE scale.
+M-C
+C-R
+R-W
+```
+
+plus a weak M-W phase thread.
+
+### Variants
+
+```text
+direct_entangling_parts
+field_only_parts
+constant_entangling_parts
 ```
 
 ### Result snapshot
 
 ```text
-Verdict = PASS_HARDWARE_MAPPING_AUDIT_CANDIDATE_NOT_NEW_QPU_RESULT
+direct_entangling_parts neg_M_C_max = 0.126998385
+direct_entangling_parts neg_C_R_max = 0.095496553
+direct_entangling_parts neg_R_W_max = 0.043610747
 
-KCBS simulated S = 2.256568549
-KCBS simulated violation = 0.256568549
-KCBS hardware S = 2.2232666015625
-KCBS hardware violation = 0.2232666015625
-KCBS sim/hardware margin ratio = 1.149157766
+field_only_parts neg_M_C_max = 0
+field_only_parts neg_C_R_max = 0
+field_only_parts neg_R_W_max = 0
 
-PM simulated chi-equivalent = 5.063693352
-PM simulated violation = 1.063693352
-PM hardware xplus violation = 1.049805
-PM hardware yplus violation = 0.857422
-PM hardware z0 violation = 0.644531
-PM sim/hardware margin ratio range = 1.013229459 to 1.650336992
+constant_entangling_parts neg_M_C_max = 0.216683639
+constant_entangling_parts neg_C_R_max = 0.021194988
+constant_entangling_parts neg_R_W_max = 0.058936607
 ```
 
-### Lesson
-
-The audit formats now line up:
+### Interpretation
 
 ```text
-KCBS: S value, bound, violation, SE, z
-PM: chi value, bound, violation, SE, z
+The field-only model can coordinate local part activations through a shared classical field, but it does not create pair negativity.
+The direct-entangling model creates actual pair-negativity pulses along M-C / C-R / R-W.
+The constant-entangling model shows a different pulse shape, separating fixed quantum threading from whole-field-modulated threading.
 ```
 
-This makes a finite-shot stress test and a future component-specific hardware-backed audit easier to design.
-
-### Do not claim
+### Important shape
 
 ```text
-Do not claim this is a new QPU result.
-Do not claim this is new hardware evidence.
-Do not claim simulated table margins and hardware margins were pooled.
-Do not claim this proves formal measurement contextuality of the component.
-Do not claim this demonstrates biological organization or consciousness.
-Do not claim this demonstrates matter synthesis.
+Toxicity and pressure increase coupling strengths, but they also increase dephasing.
+Visible negativity is therefore a pulse left by coupling and dissipation pulling against each other.
+In this run, negativity tracked energy windows more clearly than raw toxicity/pressure load.
 ```
 
 ## Next experiment option
 
 ```text
-contextual_membrane_quantum_anchor_probe_v3_finite_shot_stress
+quantum_homeostatic_parts_observation_v1_pulse_map
 ```
 
 Required improvements:
 
 ```text
-inject finite-shot sampling into the explicit witness tables
-vary shots from low to hardware-like regimes
-compare survival probability against PM/KCBS margins
-add adversarial no-disturbance drift
-require witness survival without relying on exact expected tables
+sweep pulse shapes and coupling strengths
+output a compact raster of negativity pulses
+track whether pulses move from M-C to C-R to R-W as toxicity/pressure waves travel through the system
+save pulse onset, peak, decay, and field values together
 ```
