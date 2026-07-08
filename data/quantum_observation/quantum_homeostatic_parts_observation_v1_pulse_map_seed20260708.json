@@ -1,0 +1,99 @@
+{
+  "experiment": "quantum_homeostatic_parts_observation_v1_pulse_map",
+  "date": "2026-07-08",
+  "layer": "QUANTUM_OBSERVATION",
+  "status": "OBSERVATION_LOG",
+  "config": {
+    "seed": 20260708,
+    "steps": 120,
+    "pairs_tracked": ["M-C", "C-R", "R-W"],
+    "fields": ["energy", "toxicity", "pressure"],
+    "profiles": ["left_to_right_wave", "simultaneous_burst", "right_to_left_wave", "double_pulse_wave"],
+    "coupling_scales": ["weak", "medium", "strong"],
+    "field_only_controls": true,
+    "threshold_negativity": 0.012,
+    "observation_focus": "separate spatial attenuation from time propagation by extracting pair peak/onset times"
+  },
+  "main_observations": [
+    {
+      "profile": "left_to_right_wave",
+      "scale": "medium",
+      "mode": "direct_entangling",
+      "M_C_peak_time": 32,
+      "M_C_peak_value": 0.069180405344,
+      "C_R_peak_time": 56,
+      "C_R_peak_value": 0.031486878512,
+      "R_W_peak_time": 74,
+      "R_W_peak_value": 0.025019349203,
+      "lag_peak_CR_minus_MC": 24,
+      "lag_peak_RW_minus_CR": 18,
+      "travel_label": "left_to_right_peak_travel"
+    },
+    {
+      "profile": "simultaneous_burst",
+      "scale": "medium",
+      "mode": "direct_entangling",
+      "M_C_peak_time": 54,
+      "M_C_peak_value": 0.065525157382,
+      "C_R_peak_time": 55,
+      "C_R_peak_value": 0.047518386948,
+      "R_W_peak_time": 54,
+      "R_W_peak_value": 0.031339737403,
+      "lag_peak_CR_minus_MC": 1,
+      "lag_peak_RW_minus_CR": -1,
+      "travel_label": "near_simultaneous_peaks"
+    },
+    {
+      "profile": "right_to_left_wave",
+      "scale": "medium",
+      "mode": "direct_entangling",
+      "M_C_peak_time": 75,
+      "M_C_peak_value": 0.079669134216,
+      "C_R_peak_time": 58,
+      "C_R_peak_value": 0.048731564142,
+      "R_W_peak_time": 32,
+      "R_W_peak_value": 0.016744293428,
+      "lag_peak_CR_minus_MC": -17,
+      "lag_peak_RW_minus_CR": -26,
+      "travel_label": "right_to_left_peak_travel"
+    },
+    {
+      "profile": "double_pulse_wave",
+      "scale": "medium",
+      "mode": "direct_entangling",
+      "M_C_peak_time": 29,
+      "M_C_peak_value": 0.071762802615,
+      "C_R_peak_time": 52,
+      "C_R_peak_value": 0.030278827516,
+      "R_W_peak_time": 70,
+      "R_W_peak_value": 0.026050997304,
+      "lag_peak_CR_minus_MC": 23,
+      "lag_peak_RW_minus_CR": 18,
+      "travel_label": "left_to_right_peak_travel"
+    },
+    {
+      "profile": "left_to_right_wave",
+      "scale": "medium",
+      "mode": "field_only",
+      "M_C_peak_value": 0.0,
+      "C_R_peak_value": 0.0,
+      "R_W_peak_value": 0.0,
+      "travel_label": "no_pair_negativity"
+    }
+  ],
+  "aggregate_counts": {
+    "direct_left_to_right_profiles_with_positive_lags": 6,
+    "direct_simultaneous_profiles_with_near_zero_lags": 3,
+    "direct_right_to_left_profiles_with_negative_lags": 3,
+    "field_only_profiles_with_zero_negativity": 4
+  },
+  "observation_notes": [
+    "This is an observation map, not a PASS/FAIL test.",
+    "Peak time and onset time are extracted separately for M-C, C-R, and R-W negativity traces.",
+    "Left-to-right profiles show positive peak lags from M-C to C-R to R-W.",
+    "Simultaneous profiles show near-zero peak lags.",
+    "Right-to-left profiles show negative peak lags.",
+    "Field-only profiles keep negativity at zero, so a shared whole-field alone does not create pair negativity.",
+    "The map separates spatial attenuation from temporal propagation."
+  ]
+}
