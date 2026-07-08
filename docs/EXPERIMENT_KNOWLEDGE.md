@@ -53,7 +53,7 @@ The practical question is:
 
 ```text
 Can contextuality change a membrane decision?
-Can that change depend on memory, unchosen alternatives, and context order?
+Can that change depend on memory, unchosen alternatives, context order, and joint boundaries?
 ```
 
 Staged program:
@@ -94,8 +94,6 @@ no_memory score_mae_to_full = 0.199107556
 no_memory release_mae_to_full = 0.21448549
 ```
 
-Do not claim v1 isolates counterfactual residue alone or pure order effects alone.
-
 ## contextual_membrane_v2_counterfactual_residue knowledge
 
 v2 supports the component-level claim that later membrane decisions depend on residue from unchosen alternatives.
@@ -121,76 +119,95 @@ previous BLOCK leaves unchosen PASS residue, which raises later score relative t
 previous PASS leaves unchosen BLOCK residue, which lowers later score relative to observed_only.
 ```
 
-Do not claim v2 isolates pure order effects alone.
-
 ## contextual_membrane_v3_order_effect knowledge
 
-### What was tested
-
-The same `(context, object, u)` event multiset under order-only permutations:
-
-```text
-original_order
-reverse_order
-block_shuffle_order
-compatible_cluster_order
-random_order_same_multiset
-context_sorted_order
-```
-
-All variants preserved the event multiset.
-
-### Result snapshot
+v3 supports the component-level claim that order alone can alter event timing, downstream release trajectory, final membrane state, and residue distribution.
 
 ```text
 Verdict = PASS_ORDER_EFFECT
-
 original_order final_cumulative_release = 145.156796757
 reverse_order final_cumulative_release = 132.740948410
 random_order_same_multiset final_cumulative_release = 115.454200271
 context_sorted_order final_cumulative_release = 293.695236578
-
 reverse_order event_match_to_original = 0.535714286
-block_shuffle_order event_match_to_original = 0.593750000
-compatible_cluster_order event_match_to_original = 0.526785714
 random_order_same_multiset event_match_to_original = 0.540178571
-context_sorted_order event_match_to_original = 0.582589286
-
-reverse_order final_residue_l1_to_original = 1.395097921
-block_shuffle_order final_residue_l1_to_original = 1.042309054
-compatible_cluster_order final_residue_l1_to_original = 1.092896097
-random_order_same_multiset final_residue_l1_to_original = 0.856036973
 context_sorted_order final_residue_l1_to_original = 2.306517995
 ```
 
-### Lesson
-
-v3 supports the component-level claim that order alone can alter the implemented membrane's event timing, downstream release trajectory, final membrane state, and residue distribution.
-
 The effect is not explained by object frequency or context frequency, because the event multiset is preserved.
 
-### Do not claim
+## contextual_membrane_v4_joint_boundary knowledge
 
-```text
-Do not claim v3 demonstrates quantum-specific behavior.
-Do not claim v3 demonstrates formal measurement contextuality.
-Do not claim v3 demonstrates biological organization or consciousness.
-Do not claim v3 isolates joint/non-additive object-context boundary effects.
-```
+### What was tested
 
-## Next experiment: contextual_membrane_v4_joint_boundary
-
-The next experiment should isolate full joint boundary effects.
-
-Use variants such as:
+A full joint boundary against controls:
 
 ```text
 full_joint_boundary
 object_only_replay
 context_only_replay
 additive_object_context_model
-pairwise_replay
+static_pairwise_replay
 joint_shuffle_control
 ```
 
-Primary success should require the full joint boundary to reproduce membrane decisions while object-only, context-only, additive, or pairwise controls fail.
+### Result snapshot
+
+```text
+Verdict = PASS_JOINT_BOUNDARY
+
+full_joint_boundary final_cumulative_release = 103.696477783
+object_only_replay final_cumulative_release = 17.522951078
+context_only_replay final_cumulative_release = 12.540111148
+additive_object_context_model final_cumulative_release = 13.964177586
+static_pairwise_replay final_cumulative_release = 36.327646821
+joint_shuffle_control final_cumulative_release = 41.956207828
+
+object_only_replay event_match_to_full = 0.685267857
+context_only_replay event_match_to_full = 0.609375000
+additive_object_context_model event_match_to_full = 0.665178571
+static_pairwise_replay event_match_to_full = 0.805803571
+joint_shuffle_control event_match_to_full = 0.714285714
+
+additive_object_context_model score_mae_to_full = 0.306924220
+static_pairwise_replay release_mae_to_full = 0.139480465
+```
+
+### Lesson
+
+v4 supports the component-level claim that the implemented membrane decisions require full object/context joint state under the tested controls.
+
+The important distinction:
+
+```text
+object alone is not enough
+context alone is not enough
+object + context as additive factors is not enough
+static pair identity is not enough
+wrong joint key is not enough
+```
+
+### Do not claim
+
+```text
+Do not claim v4 demonstrates quantum-specific behavior.
+Do not claim v4 demonstrates formal measurement contextuality.
+Do not claim v4 demonstrates biological organization or consciousness.
+```
+
+## Next experiment: contextual_reactor_v0_membrane_to_flow
+
+The v1-v4 membrane line is now complete enough to consider propagation.
+
+Use variants such as:
+
+```text
+full_membrane_to_reactor
+no_memory_membrane_to_reactor
+no_counterfactual_membrane_to_reactor
+order_scrambled_membrane_to_reactor
+additive_boundary_membrane_to_reactor
+reactor_without_membrane
+```
+
+Primary success should require membrane structure to change downstream release, quality, reservoir, and persistence without making any quantum-specific claim.

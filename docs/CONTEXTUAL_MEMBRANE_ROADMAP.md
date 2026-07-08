@@ -49,25 +49,13 @@ DONE
 Verdict: PASS_ORDER_EFFECT
 ```
 
-Purpose:
-
-```text
-test whether the same context/object/u multiset changes the membrane depending only on order
-```
-
-Lesson:
-
-```text
-The same event multiset produced different membrane trajectories when order changed.
-Order alone changed event timing, downstream release, final membrane state, and residue distribution in the implemented component.
-```
-
 ### 4. contextual_membrane_v4_joint_boundary
 
 Status:
 
 ```text
-NEXT
+DONE
+Verdict: PASS_JOINT_BOUNDARY
 ```
 
 Purpose:
@@ -76,24 +64,18 @@ Purpose:
 test whether membrane decisions require the full object/context combination rather than additive single factors
 ```
 
-Controls:
+Lesson:
 
 ```text
-object-only replay
-context-only replay
-additive object+context model
-pairwise replay
-full joint boundary
+Object-only, context-only, additive object+context, static pairwise, and joint-shuffle controls failed to reproduce the full joint membrane under the tested component.
 ```
-
-PASS if only full joint reproduces the boundary.
 
 ### 5. contextual_reactor_v0_membrane_to_flow
 
 Status:
 
 ```text
-PLANNED
+NEXT
 ```
 
 Purpose:
@@ -105,6 +87,17 @@ test whether contextual membrane decisions propagate downstream to release, qual
 This is a component propagation test, not a quantum-specific test.
 
 Run this after v1-v4 make the membrane interesting enough.
+
+Suggested variants:
+
+```text
+full_membrane_to_reactor
+no_memory_membrane_to_reactor
+no_counterfactual_membrane_to_reactor
+order_scrambled_membrane_to_reactor
+additive_boundary_membrane_to_reactor
+reactor_without_membrane
+```
 
 ### 6. contextual_membrane_quantum_anchor_probe
 

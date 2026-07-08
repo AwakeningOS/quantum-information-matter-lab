@@ -26,7 +26,7 @@ More precisely, the intended question is:
 
 ```text
 Does contextuality change a membrane decision?
-Does that change depend on memory, unchosen alternatives, and context order?
+Does that change depend on memory, unchosen alternatives, context order, and joint boundaries?
 ```
 
 Short form:
@@ -106,41 +106,49 @@ The same context/object/u event multiset produces different membrane trajectorie
 Order alone changes event timing, downstream release, final membrane state, and residue distribution in the implemented component.
 ```
 
-Key order comparison:
+### contextual_membrane_v4_joint_boundary
 
 ```text
-original_order final_cumulative_release = 145.156796757
-reverse_order final_cumulative_release = 132.740948410
-random_order_same_multiset final_cumulative_release = 115.454200271
-context_sorted_order final_cumulative_release = 293.695236578
+Verdict: PASS_JOINT_BOUNDARY
+Layer: CONTEXTUAL_COMPONENT
+```
 
-reverse_order event_match_to_original = 0.535714286
-block_shuffle_order event_match_to_original = 0.593750000
-compatible_cluster_order event_match_to_original = 0.526785714
-random_order_same_multiset event_match_to_original = 0.540178571
-context_sorted_order event_match_to_original = 0.582589286
+Main lesson:
 
-reverse_order final_residue_l1_to_original = 1.395097921
-block_shuffle_order final_residue_l1_to_original = 1.042309054
-compatible_cluster_order final_residue_l1_to_original = 1.092896097
-random_order_same_multiset final_residue_l1_to_original = 0.856036973
-context_sorted_order final_residue_l1_to_original = 2.306517995
+```text
+The implemented membrane's decisions require full object/context joint state under the tested controls.
+Object-only, context-only, additive object+context, static pairwise, and joint-shuffle controls fail to reproduce the full membrane.
+```
+
+Key v4 comparison:
+
+```text
+full_joint_boundary final_cumulative_release = 103.696477783
+object_only_replay final_cumulative_release = 17.522951078
+context_only_replay final_cumulative_release = 12.540111148
+additive_object_context_model final_cumulative_release = 13.964177586
+static_pairwise_replay final_cumulative_release = 36.327646821
+joint_shuffle_control final_cumulative_release = 41.956207828
+
+object_only_replay event_match_to_full = 0.685267857
+context_only_replay event_match_to_full = 0.609375000
+additive_object_context_model event_match_to_full = 0.665178571
+static_pairwise_replay event_match_to_full = 0.805803571
+joint_shuffle_control event_match_to_full = 0.714285714
 ```
 
 ## Recommended next experiment
 
 ```text
-contextual_membrane_v4_joint_boundary
+contextual_reactor_v0_membrane_to_flow
 ```
 
 Core idea:
 
 ```text
-compare object-only replay
-compare context-only replay
-compare additive object+context model
-compare pairwise replay
-require full joint boundary to reproduce membrane decisions
+connect membrane PASS/BLOCK outputs to a downstream reactor
+measure release, quality, reservoir, and persistence
+test whether membrane structure changes downstream flow without making quantum-specific claims
 ```
 
 ## Claim boundary
