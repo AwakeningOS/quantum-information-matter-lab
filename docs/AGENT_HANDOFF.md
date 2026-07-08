@@ -71,16 +71,6 @@ The implemented membrane is not merely context-looking.
 Under the tested ablations, dynamic memory changes membrane decisions and downstream quality/release trajectory.
 ```
 
-Key full vs no_memory comparison:
-
-```text
-full pass_rate = 0.633928571
-no_memory pass_rate = 0.455357143
-full final_cumulative_release = 153.963406058
-no_memory final_cumulative_release = 52.369918094
-no_memory event_match_to_full = 0.8125
-```
-
 ### contextual_membrane_v2_counterfactual_residue
 
 ```text
@@ -94,20 +84,6 @@ Main lesson:
 The implemented membrane's later decisions depend on unchosen-alternative residue under the tested ablations.
 ```
 
-Key full vs observed_only comparison:
-
-```text
-full pass_rate = 0.479910714
-observed_only pass_rate = 0.531250000
-
-full final_cumulative_release = 52.388208985
-observed_only final_cumulative_release = 75.770977236
-
-observed_only event_match_to_full = 0.814732143
-observed_only score_mae_to_full = 0.164462842
-observed_only release_mae_to_full = 0.074669816
-```
-
 Counterfactual polarity:
 
 ```text
@@ -116,26 +92,55 @@ counterfactual_sign_flip counterfactual_polarity_probe = -0.407708026
 counterfactual_shuffle counterfactual_polarity_probe = -0.216989363
 ```
 
-Interpretation:
+### contextual_membrane_v3_order_effect
 
 ```text
-previous BLOCK leaves unchosen PASS residue, which raises later score relative to observed_only.
-previous PASS leaves unchosen BLOCK residue, which lowers later score relative to observed_only.
+Verdict: PASS_ORDER_EFFECT
+Layer: CONTEXTUAL_COMPONENT
+```
+
+Main lesson:
+
+```text
+The same context/object/u event multiset produces different membrane trajectories when order is changed.
+Order alone changes event timing, downstream release, final membrane state, and residue distribution in the implemented component.
+```
+
+Key order comparison:
+
+```text
+original_order final_cumulative_release = 145.156796757
+reverse_order final_cumulative_release = 132.740948410
+random_order_same_multiset final_cumulative_release = 115.454200271
+context_sorted_order final_cumulative_release = 293.695236578
+
+reverse_order event_match_to_original = 0.535714286
+block_shuffle_order event_match_to_original = 0.593750000
+compatible_cluster_order event_match_to_original = 0.526785714
+random_order_same_multiset event_match_to_original = 0.540178571
+context_sorted_order event_match_to_original = 0.582589286
+
+reverse_order final_residue_l1_to_original = 1.395097921
+block_shuffle_order final_residue_l1_to_original = 1.042309054
+compatible_cluster_order final_residue_l1_to_original = 1.092896097
+random_order_same_multiset final_residue_l1_to_original = 0.856036973
+context_sorted_order final_residue_l1_to_original = 2.306517995
 ```
 
 ## Recommended next experiment
 
 ```text
-contextual_membrane_v3_order_effect
+contextual_membrane_v4_joint_boundary
 ```
 
 Core idea:
 
 ```text
-use the same context/object multiset
-permute only order
-compare final membrane state, event timing, quality, release, and residue distribution
-require order-only changes to alter final membrane boundary
+compare object-only replay
+compare context-only replay
+compare additive object+context model
+compare pairwise replay
+require full joint boundary to reproduce membrane decisions
 ```
 
 ## Claim boundary
