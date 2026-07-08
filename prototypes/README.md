@@ -1,5 +1,34 @@
 # Prototypes
 
+## Q-Cell: Assimilation v2 mutation/evolution
+
+File:
+
+```text
+prototypes/qcell_absorb_v2_mutation_evolution.html
+```
+
+Open it directly in a browser. It has no external dependencies and does not use localStorage.
+
+Why v2 exists:
+
+```text
+v1 made button effects readable, but mutation still felt like a log line.
+v2 makes absorption change the visible organism: form, organs, wave, and future behavior.
+```
+
+Added game-state features:
+
+```text
+visible form changes: 幼体 / 境界型 / 共鳴型 / 回復型 / 暴走型 / 吸収型 / 休眠殻型
+new organ acquisition after absorption
+wave-pattern changes after rare/interference mutation
+absorption count and generation counter
+cultivation failure state with operation lock
+re-cultivation button
+stabilization action after risky absorption
+```
+
 ## Q-Cell: Assimilation v1 battle readability
 
 File:
