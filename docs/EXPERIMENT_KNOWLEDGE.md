@@ -53,7 +53,7 @@ The practical question is:
 
 ```text
 Can contextuality change a membrane decision?
-Can that change depend on memory, unchosen alternatives, context order, and joint boundaries?
+Can that change depend on memory, unchosen alternatives, context order, joint boundaries, and downstream propagation?
 ```
 
 Staged program:
@@ -138,44 +138,24 @@ The effect is not explained by object frequency or context frequency, because th
 
 ## contextual_membrane_v4_joint_boundary knowledge
 
-### What was tested
-
-A full joint boundary against controls:
-
-```text
-full_joint_boundary
-object_only_replay
-context_only_replay
-additive_object_context_model
-static_pairwise_replay
-joint_shuffle_control
-```
-
-### Result snapshot
+v4 supports the component-level claim that the implemented membrane decisions require full object/context joint state under the tested controls.
 
 ```text
 Verdict = PASS_JOINT_BOUNDARY
-
 full_joint_boundary final_cumulative_release = 103.696477783
 object_only_replay final_cumulative_release = 17.522951078
 context_only_replay final_cumulative_release = 12.540111148
 additive_object_context_model final_cumulative_release = 13.964177586
 static_pairwise_replay final_cumulative_release = 36.327646821
 joint_shuffle_control final_cumulative_release = 41.956207828
-
 object_only_replay event_match_to_full = 0.685267857
 context_only_replay event_match_to_full = 0.609375000
 additive_object_context_model event_match_to_full = 0.665178571
 static_pairwise_replay event_match_to_full = 0.805803571
 joint_shuffle_control event_match_to_full = 0.714285714
-
 additive_object_context_model score_mae_to_full = 0.306924220
 static_pairwise_replay release_mae_to_full = 0.139480465
 ```
-
-### Lesson
-
-v4 supports the component-level claim that the implemented membrane decisions require full object/context joint state under the tested controls.
 
 The important distinction:
 
@@ -187,19 +167,11 @@ static pair identity is not enough
 wrong joint key is not enough
 ```
 
-### Do not claim
+## contextual_reactor_v0_membrane_to_flow knowledge
 
-```text
-Do not claim v4 demonstrates quantum-specific behavior.
-Do not claim v4 demonstrates formal measurement contextuality.
-Do not claim v4 demonstrates biological organization or consciousness.
-```
+### What was tested
 
-## Next experiment: contextual_reactor_v0_membrane_to_flow
-
-The v1-v4 membrane line is now complete enough to consider propagation.
-
-Use variants such as:
+A downstream reactor driven by membrane outputs:
 
 ```text
 full_membrane_to_reactor
@@ -210,4 +182,61 @@ additive_boundary_membrane_to_reactor
 reactor_without_membrane
 ```
 
-Primary success should require membrane structure to change downstream release, quality, reservoir, and persistence without making any quantum-specific claim.
+### Result snapshot
+
+```text
+Verdict = PASS_MEMBRANE_TO_FLOW_PROPAGATION
+
+full_membrane_to_reactor final_persistence = 5.769240129
+no_memory_membrane_to_reactor final_persistence = 1.090516857
+no_counterfactual_membrane_to_reactor final_persistence = 3.376836905
+order_scrambled_membrane_to_reactor final_persistence = 2.944674958
+additive_boundary_membrane_to_reactor final_persistence = 0.784523923
+reactor_without_membrane final_persistence = 0.894988371
+
+full_membrane_to_reactor final_cumulative_release = 38.849451729
+no_memory_membrane_to_reactor final_cumulative_release = 8.940490852
+no_counterfactual_membrane_to_reactor final_cumulative_release = 31.869441381
+order_scrambled_membrane_to_reactor final_cumulative_release = 30.472556495
+additive_boundary_membrane_to_reactor final_cumulative_release = 2.583046640
+reactor_without_membrane final_cumulative_release = 10.431454452
+```
+
+### Lesson
+
+reactor v0 supports the component-level claim that the implemented membrane structure propagates into downstream release, quality, reservoir, and persistence under the tested controls.
+
+The important distinction:
+
+```text
+memory removal weakens downstream release
+counterfactual-residue removal changes downstream release and persistence
+order scrambling changes the final reactor state
+additive boundary replacement strongly suppresses release
+removing membrane coupling changes the reactor trajectory
+```
+
+### Do not claim
+
+```text
+Do not claim reactor v0 demonstrates quantum-specific behavior.
+Do not claim reactor v0 demonstrates formal measurement contextuality.
+Do not claim reactor v0 demonstrates biological organization or consciousness.
+Do not claim reactor v0 demonstrates matter synthesis.
+```
+
+## Next experiment options
+
+Two possible routes:
+
+```text
+contextual_reactor_v1_flow_controls
+contextual_membrane_quantum_anchor_probe
+```
+
+Recommended order if hardening the component line:
+
+```text
+contextual_reactor_v1_flow_controls first
+quantum anchor later and separately
+```
