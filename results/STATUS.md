@@ -55,6 +55,7 @@ META:
 | `docs/qcell/Q_CELL_ABSORB_GAME_SPEC_v0.md` | GAME_PROTOTYPE | Q_CELL_GAME | game design spec for Q-Cell assimilation: battle, absorption, and state-dependent transformation |
 | `prototypes/qcell_absorb_v0.html` | GAME_PROTOTYPE | Q_CELL_GAME | standalone browser prototype with correlation-wave battle and state-dependent trait absorption |
 | `prototypes/qcell_absorb_v1_battle_readability.html` | GAME_PROTOTYPE | Q_CELL_GAME | readability prototype adding objective banner, action deltas, absorption prediction, absorbable state, and reaction codex |
+| `prototypes/qcell_absorb_v2_mutation_evolution.html` | GAME_PROTOTYPE | Q_CELL_GAME | mutation/evolution prototype adding visible form changes, organ acquisition, wave change, generation count, stabilization, and cultivation failure |
 | `prototypes/README.md` | META | prototype | prototype index |
 | `docs/CONTEXTUAL_MEMBRANE_ROADMAP.md` | META | roadmap | contextual line plus quantum homeostatic observation line |
 
@@ -71,5 +72,6 @@ quantum_homeostatic_parts_observation_v4_repair_vs_overdrive records recovery-st
 quantum_boundary_homeostasis_v0_internal_feedback starts the inside/outside boundary line: coherent internal feedback best balances protection, exchange, and efficiency; measurement feedback protects with higher bias/fatigue; external-reactive/open/overclosed/wrong-target controls fail in distinct ways.
 Q-Cell Absorb prototype v0 is a game prototype, not a result claim: it makes correlation-wave battle and state-dependent absorption playable in a standalone HTML file.
 Q-Cell Absorb prototype v1 improves battle readability by translating button presses into visible state deltas and absorption risk prediction.
+Q-Cell Absorb prototype v2 adds actual game-state consequences: visible mutation/evolution, organs, wave changes, stabilization, and cultivation failure.
 Future quantum-specific claims must be promoted through a separate real witness or hardware-backed audit.
 ```
