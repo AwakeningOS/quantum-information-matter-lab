@@ -45,7 +45,8 @@ META:
 | `scripts/quantum_observation/quantum_homeostatic_parts_observation_v0.py` | OBSERVATION_LOG | QUANTUM_OBSERVATION | 4-qubit M/C/R/W trajectory with direct field-modulated entangling gates |
 | `scripts/quantum_observation/quantum_homeostatic_parts_observation_v1_pulse_map.py` | OBSERVATION_LOG | QUANTUM_OBSERVATION | pulse map separating spatial attenuation from temporal propagation |
 | `scripts/quantum_observation/quantum_homeostatic_parts_observation_v2_causal_touch_response.py` | OBSERVATION_LOG | QUANTUM_OBSERVATION | local touch response map separating local perturbation spread from global-field simultaneous drive |
-| `results/quantum_homeostatic_parts_observation_v2_causal_touch_response_report_2026-07-08.md` | OBSERVATION_LOG | QUANTUM_OBSERVATION | records local touch target, activation peaks, pair-negativity peaks, neighbor lags, and response rasters |
+| `scripts/quantum_observation/quantum_homeostatic_parts_observation_v3_recovery_cycle.py` | OBSERVATION_LOG | QUANTUM_OBSERVATION | repeated touch recovery-cycle map tracking coherence, population bias, baseline negativity, and fatigue across touches |
+| `results/quantum_homeostatic_parts_observation_v3_recovery_cycle_report_2026-07-08.md` | OBSERVATION_LOG | QUANTUM_OBSERVATION | records active/passive/reset recovery, unitary/measurement touch, high-energy/high-toxicity conditions, and cross-touch memory variables |
 | `docs/CONTEXTUAL_MEMBRANE_ROADMAP.md` | META | roadmap | contextual line plus quantum homeostatic observation line |
 
 ## Current valid claims and observations
@@ -56,5 +57,6 @@ The contextual membrane/reactor line is raw-log-backed through reactor v1 and qu
 quantum_homeostatic_parts_observation_v0 observed pair-negativity pulses in direct-entangling M-C / C-R / R-W links, while field-only kept pair negativity at zero.
 quantum_homeostatic_parts_observation_v1_pulse_map separates spatial attenuation from temporal propagation by logging M-C / C-R / R-W peak/onset times and lags.
 quantum_homeostatic_parts_observation_v2_causal_touch_response records local perturbation response: edge touches move inward along the chain, middle touches light both neighboring links first, global-field pulse lights all links together, and field-only local touch keeps pair negativity at zero.
+quantum_homeostatic_parts_observation_v3_recovery_cycle records repeated-touch response: full reset stays stable, active high-energy unitary recovery mostly preserves response, passive recovery and measurement/high-toxicity conditions accumulate state traces and show habituation-like decay.
 Future quantum-specific claims must be promoted through a separate real witness or hardware-backed audit.
 ```
