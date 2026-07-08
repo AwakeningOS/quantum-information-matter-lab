@@ -1,0 +1,108 @@
+# Agent Handoff: contextual_membrane_v0
+
+Date: 2026-07-08
+
+## Repository state after this run
+
+The repository now contains the first promoted contextual component experiment:
+
+```text
+contextual_membrane_v0
+```
+
+Files added:
+
+```text
+experiments/contextual_membrane_v0_protocol_2026-07-08.md
+configs/contextual_membrane_v0_seed20260708_config.json
+scripts/contextual/contextual_membrane_v0.py
+data/contextual/contextual_membrane_v0_seed20260708.json
+data/contextual/contextual_membrane_v0_seed20260708_rows.csv
+results/contextual_membrane_v0_report_2026-07-08.md
+docs/CONTEXTUAL_MEMBRANE_V0_HANDOFF.md
+docs/CONTEXTUAL_COMPONENT_LESSONS.md
+```
+
+Repository files updated:
+
+```text
+scripts/check_raw_logs.py
+results/STATUS.md
+```
+
+## What was tested
+
+A contextual membrane was implemented with:
+
+```text
+object base score
+context-object bias
+compatibility relation among contexts
+retained observed/unobserved alternatives
+fixed random event stream
+object-only and replay controls
+```
+
+## Result
+
+```text
+Verdict: PASS_COMPONENT_BEHAVIOR
+```
+
+Key numbers:
+
+```text
+full_contextual object-conditioned context range: 0.333906636
+full_contextual compatibility score gap: 0.285508247
+object_only context range: 0.000000000
+object_marginal_replay event match to full: 0.828125000
+```
+
+## Interpretation for future agents
+
+The v0 component is a valid first contextual-component scaffold. It demonstrates that passage behavior can be made to depend on context and compatibility rather than object identity alone.
+
+However, do not overstate it.
+
+The memory term is implemented, but the comparison to `context_no_memory` shows that memory is not yet the main driver. The strongest v0 effect comes from context-object bias and compatibility penalties.
+
+## Claim boundary
+
+Allowed:
+
+```text
+The implemented component expresses designed context-conditioned membrane behavior
+against object-only and object-marginal replay controls.
+```
+
+Not allowed:
+
+```text
+quantum-specific claim
+measurement contextuality witness claim
+physical matter claim
+life/cell/metabolism/self-repair claim
+consciousness claim
+```
+
+## Recommended next experiment
+
+```text
+contextual_membrane_v1_memory_ablation
+```
+
+Goal:
+
+```text
+Make retained observed/unobserved alternatives causally necessary, not merely present.
+```
+
+Suggested design:
+
+```text
+1. Fix the same object/context event stream.
+2. Compare full memory vs no_memory vs shuffled_memory vs same-context replay.
+3. Add delayed probes where earlier unobserved alternatives affect later passage.
+4. Require memory ablation to reduce event-level match or delayed effect size.
+5. Keep this as CONTEXTUAL_COMPONENT unless a separate audit witness is added.
+```
