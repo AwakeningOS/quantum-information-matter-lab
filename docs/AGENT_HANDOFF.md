@@ -6,8 +6,6 @@ Updated: 2026-07-08
 
 This repository is a clean lab for contextual information-matter components and quantum-coupled observation models.
 
-The operating rule remains:
-
 ```text
 No code + no raw log = no result.
 ```
@@ -23,21 +21,10 @@ watch several quantum-coupled parts immersed in one whole-field
 ```text
 quantum_homeostatic_parts_observation_v0 = OBSERVATION_LOG
 quantum_homeostatic_parts_observation_v1_pulse_map = OBSERVATION_LOG
+quantum_homeostatic_parts_observation_v2_causal_touch_response = OBSERVATION_LOG
 ```
 
 ## v0 lesson
-
-```text
-direct_entangling_parts neg_M_C_max = 0.126998385
-direct_entangling_parts neg_C_R_max = 0.095496553
-direct_entangling_parts neg_R_W_max = 0.043610747
-
-field_only_parts neg_M_C_max = 0
-field_only_parts neg_C_R_max = 0
-field_only_parts neg_R_W_max = 0
-```
-
-Reading:
 
 ```text
 The field-only model can make parts move together, but it does not create pair negativity.
@@ -46,59 +33,79 @@ The direct-entangling model produces pair-negativity pulses along M-C / C-R / R-
 
 ## v1 pulse-map lesson
 
-v1 separates:
-
 ```text
 spatial attenuation = which pair is stronger
 temporal propagation = when each pair peaks
 ```
 
-Medium-scale examples:
+Medium examples:
 
 ```text
-left_to_right_wave:
-  M-C peak t/value = 32 / 0.069180405344
-  C-R peak t/value = 56 / 0.031486878512
-  R-W peak t/value = 74 / 0.025019349203
-  peak lags = +24, +18
-
-simultaneous_burst:
-  M-C peak t/value = 54 / 0.065525157382
-  C-R peak t/value = 55 / 0.047518386948
-  R-W peak t/value = 54 / 0.031339737403
-  peak lags = +1, -1
-
-right_to_left_wave:
-  M-C peak t/value = 75 / 0.079669134216
-  C-R peak t/value = 58 / 0.048731564142
-  R-W peak t/value = 32 / 0.016744293428
-  peak lags = -17, -26
+left_to_right_wave peak lags = +24, +18
+simultaneous_burst peak lags = +1, -1
+right_to_left_wave peak lags = -17, -26
 ```
 
-Reading:
+## v2 causal-touch lesson
+
+v2 stops relying on pre-shaped field waves and touches one part locally.
+
+Fixed-field examples:
 
 ```text
-Left-to-right input produces delayed M-C -> C-R -> R-W peaks.
-Simultaneous input produces near-simultaneous peaks.
-Right-to-left input reverses the lag sign.
-Field-only keeps pair negativity at zero.
+Touch M:
+  M-C peak t/value = 35 / 0.0811
+  C-R peak t/value = 48 / 0.0346
+  R-W peak t/value = 61 / 0.0135
+
+Touch C:
+  M-C peak t/value = 35 / 0.0811
+  C-R peak t/value = 35 / 0.0665
+  R-W peak t/value = 48 / 0.0271
+
+Touch R:
+  C-R peak t/value = 35 / 0.0665
+  R-W peak t/value = 35 / 0.0519
+  M-C peak t/value = 48 / 0.0422
+
+Touch W:
+  R-W peak t/value = 35 / 0.0519
+  C-R peak t/value = 48 / 0.0346
+  M-C peak t/value = 61 / 0.0211
+```
+
+Control reading:
+
+```text
+field_only_local_touch: activation can move, pair negativity stays zero
+global_field_pulse: M-C, C-R, R-W peak together at t=39
+```
+
+Interpretation:
+
+```text
+Edge touches move inward along the chain.
+Middle touches light both neighboring links first, then the farther link follows.
+Global field movement lights all links together.
+Removing direct links removes pair negativity.
 ```
 
 ## Recommended next experiment
 
 ```text
-quantum_homeostatic_parts_observation_v2_causal_touch_response
+quantum_homeostatic_parts_observation_v3_recovery_cycle
 ```
 
 Core rule:
 
 ```text
-Perturb one part locally while the whole-field is held fixed or slowly varying.
-Watch whether activation and pair negativity spread through neighboring links.
-Compare local-touch response against global-field-only drive.
+Touch a part repeatedly.
+Let the system recover between touches.
+Watch whether the negativity response adapts, saturates, or habituates.
+Compare recovery under high-energy and high-toxicity conditions.
 ```
 
-## Claim boundary
+## Boundary
 
 The quantum-homeostatic results are observation logs.
 
