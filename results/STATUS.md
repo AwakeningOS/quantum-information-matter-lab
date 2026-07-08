@@ -47,7 +47,8 @@ META:
 | `scripts/quantum_observation/quantum_homeostatic_parts_observation_v2_causal_touch_response.py` | OBSERVATION_LOG | QUANTUM_OBSERVATION | local touch response map separating local perturbation spread from global-field simultaneous drive |
 | `scripts/quantum_observation/quantum_homeostatic_parts_observation_v3_recovery_cycle.py` | OBSERVATION_LOG | QUANTUM_OBSERVATION | repeated touch recovery-cycle map tracking coherence, population bias, baseline negativity, and fatigue across touches |
 | `scripts/quantum_observation/quantum_homeostatic_parts_observation_v4_repair_vs_overdrive.py` | OBSERVATION_LOG | QUANTUM_OBSERVATION | recovery-strength map with mechanical labels for stable repair, damped oscillation, overdrive, and exhausted repair |
-| `results/quantum_homeostatic_parts_observation_v4_repair_vs_overdrive_report_2026-07-08.md` | OBSERVATION_LOG | QUANTUM_OBSERVATION | records predeclared overdrive definitions, recovery gain regimes, state-distance, oscillation envelope, overshoot, bias, and fatigue |
+| `scripts/quantum_observation/quantum_boundary_homeostasis_v0_internal_feedback.py` | OBSERVATION_LOG | QUANTUM_OBSERVATION | inside/outside boundary homeostasis map using internal negative feedback and exchange-preserving balance metrics |
+| `results/quantum_boundary_homeostasis_v0_internal_feedback_report_2026-07-08.md` | OBSERVATION_LOG | QUANTUM_OBSERVATION | records coherent vs measurement internal feedback, external-reactive/open/overclosed/wrong-target controls, target range, intake, work, balance, and internal-state sensitivity |
 | `docs/CONTEXTUAL_MEMBRANE_ROADMAP.md` | META | roadmap | contextual line plus quantum homeostatic observation line |
 
 ## Current valid claims and observations
@@ -60,5 +61,6 @@ quantum_homeostatic_parts_observation_v1_pulse_map separates spatial attenuation
 quantum_homeostatic_parts_observation_v2_causal_touch_response records local perturbation response: edge touches move inward along the chain, middle touches light both neighboring links first, global-field pulse lights all links together, and field-only local touch keeps pair negativity at zero.
 quantum_homeostatic_parts_observation_v3_recovery_cycle records repeated-touch response: full reset stays stable, active high-energy unitary recovery mostly preserves response, passive recovery and measurement/high-toxicity conditions accumulate state traces and show habituation-like decay.
 quantum_homeostatic_parts_observation_v4_repair_vs_overdrive records recovery-strength trajectories using predeclared mechanical labels: gentle recovery can stay stable, strong/oscillatory recovery can damp, extreme or toxic oscillatory recovery can become overdrive, and weak toxic measurement recovery can collapse.
+quantum_boundary_homeostasis_v0_internal_feedback starts the inside/outside boundary line: coherent internal feedback best balances protection, exchange, and efficiency; measurement feedback protects with higher bias/fatigue; external-reactive/open/overclosed/wrong-target controls fail in distinct ways.
 Future quantum-specific claims must be promoted through a separate real witness or hardware-backed audit.
 ```
