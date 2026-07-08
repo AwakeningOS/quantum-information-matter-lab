@@ -1,0 +1,80 @@
+{
+  "experiment": "contextual_membrane_v0",
+  "date": "2026-07-08",
+  "layer": "CONTEXTUAL_COMPONENT",
+  "seed": 20260708,
+  "config": {
+    "seed": 20260708,
+    "steps": 64,
+    "memory_decay": 0.94,
+    "memory_gain": 0.18,
+    "alternative_gain": 0.06,
+    "incompatibility_penalty": 0.22,
+    "min_score": 0.02,
+    "max_score": 0.98
+  },
+  "summaries": [
+    {
+      "variant": "full_contextual",
+      "n": 64,
+      "pass_rate": 0.3125,
+      "mean_score": 0.380596639,
+      "object_conditioned_context_score_range_mean": 0.333906636,
+      "compatibility_score_gap": 0.285508247,
+      "event_match_to_full": null,
+      "score_mae_to_full": null
+    },
+    {
+      "variant": "context_no_memory",
+      "n": 64,
+      "pass_rate": 0.296875,
+      "mean_score": 0.3775,
+      "object_conditioned_context_score_range_mean": 0.318416667,
+      "compatibility_score_gap": 0.28001955,
+      "event_match_to_full": 0.984375,
+      "score_mae_to_full": 0.008596154
+    },
+    {
+      "variant": "object_only",
+      "n": 64,
+      "pass_rate": 0.40625,
+      "mean_score": 0.443125,
+      "object_conditioned_context_score_range_mean": 0.0,
+      "compatibility_score_gap": 0.046764418,
+      "event_match_to_full": 0.78125,
+      "score_mae_to_full": 0.135082084
+    },
+    {
+      "variant": "object_marginal_replay",
+      "n": 64,
+      "pass_rate": 0.328125,
+      "mean_score": 0.380596639,
+      "object_conditioned_context_score_range_mean": 0.0,
+      "compatibility_score_gap": 0.055738863,
+      "event_match_to_full": 0.828125,
+      "score_mae_to_full": 0.127557338
+    },
+    {
+      "variant": "shuffled_context_full",
+      "n": 64,
+      "pass_rate": 0.3125,
+      "mean_score": 0.384846639,
+      "object_conditioned_context_score_range_mean": 0.213327805,
+      "compatibility_score_gap": 0.221874876,
+      "event_match_to_full": 0.75,
+      "score_mae_to_full": 0.155649413
+    }
+  ],
+  "criteria": {
+    "full_object_conditioned_context_range_ge_0_15": true,
+    "full_compatibility_gap_ge_0_10": true,
+    "object_only_context_range_le_0_05": true,
+    "object_replay_event_match_below_0_90": true
+  },
+  "verdict": "PASS_COMPONENT_BEHAVIOR",
+  "claim_boundary": [
+    "Designed contextual component result, not a quantum-specific claim.",
+    "PASS means the implemented component expresses context-conditioned membrane behavior against object-only/replay controls.",
+    "Quantum/contextuality promotion requires a separate audit witness and controls."
+  ]
+}
