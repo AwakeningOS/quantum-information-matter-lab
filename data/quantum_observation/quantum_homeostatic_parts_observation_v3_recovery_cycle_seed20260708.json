@@ -1,0 +1,44 @@
+{
+  "experiment": "quantum_homeostatic_parts_observation_v3_recovery_cycle",
+  "date": "2026-07-08",
+  "layer": "QUANTUM_OBSERVATION",
+  "status": "OBSERVATION_LOG",
+  "config": {
+    "seed": 20260708,
+    "touch_times": [20, 60, 100, 140],
+    "target": "C",
+    "recovery_modes": ["passive_recovery", "active_recovery", "full_reset_baseline"],
+    "touch_types": ["unitary_touch", "measurement_touch"],
+    "conditions": ["high_energy", "high_toxicity"],
+    "state_variables_tracked": ["pre_coherence_residual", "pre_population_bias", "pre_baseline_negativity", "pre_fatigue_index"],
+    "observation_focus": "repeated local touch response with cross-touch memory variables"
+  },
+  "scenario_summaries": [
+    {"condition":"high_energy","recovery_mode":"passive_recovery","touch_type":"unitary_touch","target":"C","n_touches":4,"first_adjacent_mean_peak":0.075935522263,"last_adjacent_mean_peak":0.034707634089,"response_ratio_last_over_first":0.457067168,"pre_coherence_first":0.86,"pre_coherence_last":0.44061376,"pre_population_bias_first":0.02,"pre_population_bias_last":0.079337272,"pre_fatigue_first":0.02,"pre_fatigue_last":0.169577969,"memory_trace_label":"habituation_like_response_decay"},
+    {"condition":"high_energy","recovery_mode":"passive_recovery","touch_type":"measurement_touch","target":"C","n_touches":4,"first_adjacent_mean_peak":0.066519517502,"last_adjacent_mean_peak":0.008437906089,"response_ratio_last_over_first":0.126848576,"pre_coherence_first":0.86,"pre_coherence_last":0.17337952,"pre_population_bias_first":0.02,"pre_population_bias_last":0.381904432,"pre_fatigue_first":0.02,"pre_fatigue_last":0.3423325,"memory_trace_label":"habituation_like_response_decay"},
+    {"condition":"high_energy","recovery_mode":"active_recovery","touch_type":"unitary_touch","target":"C","n_touches":4,"first_adjacent_mean_peak":0.075935522263,"last_adjacent_mean_peak":0.067009545836,"response_ratio_last_over_first":0.882453216,"pre_coherence_first":0.86,"pre_coherence_last":0.77489625,"pre_population_bias_first":0.02,"pre_population_bias_last":0.015562008,"pre_fatigue_first":0.02,"pre_fatigue_last":0.060639219,"memory_trace_label":"active_recovery_holds_response"},
+    {"condition":"high_energy","recovery_mode":"active_recovery","touch_type":"measurement_touch","target":"C","n_touches":4,"first_adjacent_mean_peak":0.066519517502,"last_adjacent_mean_peak":0.048471783851,"response_ratio_last_over_first":0.728685139,"pre_coherence_first":0.86,"pre_coherence_last":0.696815625,"pre_population_bias_first":0.02,"pre_population_bias_last":0.085963248,"pre_fatigue_first":0.02,"pre_fatigue_last":0.1255925,"memory_trace_label":"partial_recovery_or_mild_decay"},
+    {"condition":"high_energy","recovery_mode":"full_reset_baseline","touch_type":"unitary_touch","target":"C","n_touches":4,"first_adjacent_mean_peak":0.075935522263,"last_adjacent_mean_peak":0.075935522263,"response_ratio_last_over_first":1.0,"pre_coherence_first":0.86,"pre_coherence_last":0.86,"pre_population_bias_first":0.02,"pre_population_bias_last":0.02,"pre_fatigue_first":0.02,"pre_fatigue_last":0.02,"memory_trace_label":"reset_control_stable"},
+    {"condition":"high_energy","recovery_mode":"full_reset_baseline","touch_type":"measurement_touch","target":"C","n_touches":4,"first_adjacent_mean_peak":0.066519517502,"last_adjacent_mean_peak":0.066519517502,"response_ratio_last_over_first":1.0,"pre_coherence_first":0.86,"pre_coherence_last":0.86,"pre_population_bias_first":0.02,"pre_population_bias_last":0.02,"pre_fatigue_first":0.02,"pre_fatigue_last":0.02,"memory_trace_label":"reset_control_stable"},
+    {"condition":"high_toxicity","recovery_mode":"passive_recovery","touch_type":"unitary_touch","target":"C","n_touches":4,"first_adjacent_mean_peak":0.046075042049,"last_adjacent_mean_peak":0.005112266104,"response_ratio_last_over_first":0.110955213,"pre_coherence_first":0.7,"pre_coherence_last":0.097454448,"pre_population_bias_first":0.02,"pre_population_bias_last":0.124237224,"pre_fatigue_first":0.02,"pre_fatigue_last":0.31387491,"memory_trace_label":"habituation_like_response_decay"},
+    {"condition":"high_toxicity","recovery_mode":"passive_recovery","touch_type":"measurement_touch","target":"C","n_touches":4,"first_adjacent_mean_peak":0.040361736835,"last_adjacent_mean_peak":0.0,"response_ratio_last_over_first":0.0,"pre_coherence_first":0.7,"pre_coherence_last":0.0,"pre_population_bias_first":0.02,"pre_population_bias_last":0.639302544,"pre_fatigue_first":0.02,"pre_fatigue_last":0.64554576,"memory_trace_label":"habituation_like_response_decay"},
+    {"condition":"high_toxicity","recovery_mode":"active_recovery","touch_type":"unitary_touch","target":"C","n_touches":4,"first_adjacent_mean_peak":0.046075042049,"last_adjacent_mean_peak":0.031481863624,"response_ratio_last_over_first":0.683273682,"pre_coherence_first":0.7,"pre_coherence_last":0.53359325,"pre_population_bias_first":0.02,"pre_population_bias_last":0.049947625,"pre_fatigue_first":0.02,"pre_fatigue_last":0.18414279,"memory_trace_label":"habituation_like_response_decay"},
+    {"condition":"high_toxicity","recovery_mode":"active_recovery","touch_type":"measurement_touch","target":"C","n_touches":4,"first_adjacent_mean_peak":0.040361736835,"last_adjacent_mean_peak":0.016303891506,"response_ratio_last_over_first":0.40394425,"pre_coherence_first":0.7,"pre_coherence_last":0.424280375,"pre_population_bias_first":0.02,"pre_population_bias_last":0.27222325,"pre_fatigue_first":0.02,"pre_fatigue_last":0.38208144,"memory_trace_label":"habituation_like_response_decay"},
+    {"condition":"high_toxicity","recovery_mode":"full_reset_baseline","touch_type":"unitary_touch","target":"C","n_touches":4,"first_adjacent_mean_peak":0.046075042049,"last_adjacent_mean_peak":0.046075042049,"response_ratio_last_over_first":1.0,"pre_coherence_first":0.7,"pre_coherence_last":0.7,"pre_population_bias_first":0.02,"pre_population_bias_last":0.02,"pre_fatigue_first":0.02,"pre_fatigue_last":0.02,"memory_trace_label":"reset_control_stable"},
+    {"condition":"high_toxicity","recovery_mode":"full_reset_baseline","touch_type":"measurement_touch","target":"C","n_touches":4,"first_adjacent_mean_peak":0.040361736835,"last_adjacent_mean_peak":0.040361736835,"response_ratio_last_over_first":1.0,"pre_coherence_first":0.7,"pre_coherence_last":0.7,"pre_population_bias_first":0.02,"pre_population_bias_last":0.02,"pre_fatigue_first":0.02,"pre_fatigue_last":0.02,"memory_trace_label":"reset_control_stable"}
+  ],
+  "selected_touch_rows": [
+    {"condition":"high_energy","recovery_mode":"active_recovery","touch_type":"unitary_touch","touch_index":1,"pre_coherence_residual":0.86,"pre_population_bias":0.02,"pre_fatigue_index":0.02,"mean_adjacent_peak":0.075935522263},
+    {"condition":"high_energy","recovery_mode":"active_recovery","touch_type":"unitary_touch","touch_index":4,"pre_coherence_residual":0.77489625,"pre_population_bias":0.015562008,"pre_fatigue_index":0.060639219,"mean_adjacent_peak":0.067009545836},
+    {"condition":"high_energy","recovery_mode":"active_recovery","touch_type":"measurement_touch","touch_index":4,"pre_coherence_residual":0.696815625,"pre_population_bias":0.085963248,"pre_fatigue_index":0.1255925,"mean_adjacent_peak":0.048471783851},
+    {"condition":"high_toxicity","recovery_mode":"active_recovery","touch_type":"measurement_touch","touch_index":4,"pre_coherence_residual":0.424280375,"pre_population_bias":0.27222325,"pre_fatigue_index":0.38208144,"mean_adjacent_peak":0.016303891506},
+    {"condition":"high_toxicity","recovery_mode":"passive_recovery","touch_type":"measurement_touch","touch_index":4,"pre_coherence_residual":0.0,"pre_population_bias":0.639302544,"pre_fatigue_index":0.64554576,"mean_adjacent_peak":0.0}
+  ],
+  "observation_notes": [
+    "This is an observation log, not a PASS/FAIL test.",
+    "Response changes are produced through state variables, not by an explicit touch-count response rule.",
+    "Full reset baseline stays stable by removing cross-touch memory.",
+    "Passive recovery shows response decay when coherence falls and bias/fatigue accumulate.",
+    "Active recovery holds high-energy unitary response more strongly, but measurement touch and high-toxicity still leave bias/fatigue traces."
+  ]
+}
