@@ -17,6 +17,7 @@ contextual_membrane_quantum_anchor_probe_v1 = PASS_STRICT_WITNESS_TABLE_AUDIT_CA
 contextual_membrane_quantum_anchor_probe_v2_hardware_mapping = PASS_HARDWARE_MAPPING_AUDIT_CANDIDATE_NOT_NEW_QPU_RESULT
 quantum_homeostatic_parts_observation_v0 = OBSERVATION_LOG
 quantum_homeostatic_parts_observation_v1_pulse_map = OBSERVATION_LOG
+quantum_homeostatic_parts_observation_v2_causal_touch_response = OBSERVATION_LOG
 ```
 
 ## quantum_homeostatic_parts_observation_v0 knowledge
@@ -31,90 +32,92 @@ field_only_parts neg_C_R_max = 0
 field_only_parts neg_R_W_max = 0
 ```
 
-Interpretation:
-
-```text
-The field-only model can coordinate local part activations through a shared classical field, but it does not create pair negativity.
-The direct-entangling model creates pair-negativity pulses along M-C / C-R / R-W.
-```
-
 ## quantum_homeostatic_parts_observation_v1_pulse_map knowledge
-
-### What was added
-
-v1 separates:
 
 ```text
 spatial attenuation = which pair is stronger
 temporal propagation = when each pair peaks
+
+left_to_right_wave peak lags = +24, +18
+simultaneous_burst peak lags = +1, -1
+right_to_left_wave peak lags = -17, -26
 ```
 
-Metrics stored per pair:
+## quantum_homeostatic_parts_observation_v2_causal_touch_response knowledge
+
+### What was added
+
+v2 stops relying on pre-shaped field waves and touches one part locally.
+
+Modes:
 
 ```text
-peak time
-peak value
-onset time
-offset time
-duration above threshold
-pair-to-pair peak lag
-pair-to-pair onset lag
-compact negativity raster
+local_touch_direct
+field_only_local_touch
+global_field_pulse
 ```
 
-### Medium-scale observations
+Regimes:
 
 ```text
-left_to_right_wave:
-  M-C peak t/value = 32 / 0.069180405344
-  C-R peak t/value = 56 / 0.031486878512
-  R-W peak t/value = 74 / 0.025019349203
-  peak lags = +24, +18
-  label = left_to_right_peak_travel
+fixed_field
+slow_field
+```
 
-simultaneous_burst:
-  M-C peak t/value = 54 / 0.065525157382
-  C-R peak t/value = 55 / 0.047518386948
-  R-W peak t/value = 54 / 0.031339737403
-  peak lags = +1, -1
-  label = near_simultaneous_peaks
+### Fixed-field observations
 
-right_to_left_wave:
-  M-C peak t/value = 75 / 0.079669134216
-  C-R peak t/value = 58 / 0.048731564142
-  R-W peak t/value = 32 / 0.016744293428
-  peak lags = -17, -26
-  label = right_to_left_peak_travel
+```text
+Touch M:
+  M-C peak t/value = 35 / 0.0811
+  C-R peak t/value = 48 / 0.0346
+  R-W peak t/value = 61 / 0.0135
 
-double_pulse_wave:
-  M-C peak t/value = 29 / 0.071762802615
-  C-R peak t/value = 52 / 0.030278827516
-  R-W peak t/value = 70 / 0.026050997304
-  peak lags = +23, +18
-  label = left_to_right_peak_travel
+Touch C:
+  M-C peak t/value = 35 / 0.0811
+  C-R peak t/value = 35 / 0.0665
+  R-W peak t/value = 48 / 0.0271
+
+Touch R:
+  C-R peak t/value = 35 / 0.0665
+  R-W peak t/value = 35 / 0.0519
+  M-C peak t/value = 48 / 0.0422
+
+Touch W:
+  R-W peak t/value = 35 / 0.0519
+  C-R peak t/value = 48 / 0.0346
+  M-C peak t/value = 61 / 0.0211
+```
+
+### Controls
+
+```text
+field_only_local_touch:
+  activation can move, but M-C / C-R / R-W negativity stays zero
+
+global_field_pulse:
+  M-C / C-R / R-W all peak at t=39
 ```
 
 ### Interpretation
 
 ```text
-Left-to-right input produces delayed M-C -> C-R -> R-W peaks.
-Simultaneous input produces near-simultaneous peaks.
-Right-to-left input reverses the lag sign.
-Field-only keeps pair negativity at zero.
+Touch an edge part: response moves inward along the chain.
+Touch a middle part: both neighboring links light first, then the farther link follows.
+Move the whole field: all links light together.
+Remove direct links: activations can move, but pair negativity does not appear.
 ```
-
-This means the v0 max-negativity summary was incomplete. It showed spatial attenuation, but v1 shows whether that attenuation is accompanied by temporal propagation.
 
 ## Next experiment option
 
 ```text
-quantum_homeostatic_parts_observation_v2_causal_touch_response
+quantum_homeostatic_parts_observation_v3_recovery_cycle
 ```
 
 Required improvements:
 
 ```text
-perturb one part locally while the whole-field is held fixed or slowly varying
-watch whether activation and pair negativity spread through neighboring links
-compare local-touch response against global-field-only drive
+touch a part repeatedly
+let the system recover between touches
+watch whether the negativity response adapts, saturates, or habituates
+compare recovery under high-energy and high-toxicity conditions
 ```
