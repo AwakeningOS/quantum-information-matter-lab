@@ -58,12 +58,12 @@ A terrain written by question history, not only reaction history.
 
 An internal state that records which context the system uses to read itself.
 
-## Guardrail
+## Promotion path
 
-These are design targets. They are not claims of life, cells, metabolism, self-repair, consciousness, or quantum advantage.
-
-A component becomes a result only after:
+A component becomes a result through:
 
 ```text
 protocol -> generator script -> raw log -> report -> STATUS.md -> reproducibility check
 ```
+
+The research direction is constructive: build the parts, compose them, audit the claims, and keep what survives.
