@@ -22,6 +22,7 @@ watch several quantum-coupled parts immersed in one whole-field
 quantum_homeostatic_parts_observation_v0 = OBSERVATION_LOG
 quantum_homeostatic_parts_observation_v1_pulse_map = OBSERVATION_LOG
 quantum_homeostatic_parts_observation_v2_causal_touch_response = OBSERVATION_LOG
+quantum_homeostatic_parts_observation_v3_recovery_cycle = OBSERVATION_LOG
 ```
 
 ## v0 lesson
@@ -48,41 +49,6 @@ right_to_left_wave peak lags = -17, -26
 
 ## v2 causal-touch lesson
 
-v2 stops relying on pre-shaped field waves and touches one part locally.
-
-Fixed-field examples:
-
-```text
-Touch M:
-  M-C peak t/value = 35 / 0.0811
-  C-R peak t/value = 48 / 0.0346
-  R-W peak t/value = 61 / 0.0135
-
-Touch C:
-  M-C peak t/value = 35 / 0.0811
-  C-R peak t/value = 35 / 0.0665
-  R-W peak t/value = 48 / 0.0271
-
-Touch R:
-  C-R peak t/value = 35 / 0.0665
-  R-W peak t/value = 35 / 0.0519
-  M-C peak t/value = 48 / 0.0422
-
-Touch W:
-  R-W peak t/value = 35 / 0.0519
-  C-R peak t/value = 48 / 0.0346
-  M-C peak t/value = 61 / 0.0211
-```
-
-Control reading:
-
-```text
-field_only_local_touch: activation can move, pair negativity stays zero
-global_field_pulse: M-C, C-R, R-W peak together at t=39
-```
-
-Interpretation:
-
 ```text
 Edge touches move inward along the chain.
 Middle touches light both neighboring links first, then the farther link follows.
@@ -90,19 +56,54 @@ Global field movement lights all links together.
 Removing direct links removes pair negativity.
 ```
 
+## v3 recovery-cycle lesson
+
+v3 asks what carries across repeated touches.
+
+Tracked state variables:
+
+```text
+pre_coherence_residual
+pre_population_bias
+pre_baseline_negativity
+pre_fatigue_index
+```
+
+Key ratios:
+
+```text
+high_energy + full_reset + unitary: last/first = 1.000000000
+high_energy + active_recovery + unitary: last/first = 0.882453216
+high_energy + active_recovery + measurement: last/first = 0.728685139
+high_energy + passive_recovery + measurement: last/first = 0.126848576
+
+high_toxicity + full_reset + measurement: last/first = 1.000000000
+high_toxicity + active_recovery + unitary: last/first = 0.683273682
+high_toxicity + active_recovery + measurement: last/first = 0.403944250
+high_toxicity + passive_recovery + measurement: last/first = 0.000000000
+```
+
+Interpretation:
+
+```text
+Full reset removes cross-touch memory and keeps response stable.
+Active recovery under high energy mostly preserves unitary-touch response.
+Measurement touch leaves more population bias and fatigue than unitary touch.
+High toxicity makes recovery harder and turns repeated measurement into strong response decay.
+```
+
 ## Recommended next experiment
 
 ```text
-quantum_homeostatic_parts_observation_v3_recovery_cycle
+quantum_homeostatic_parts_observation_v4_repair_vs_overdrive
 ```
 
 Core rule:
 
 ```text
-Touch a part repeatedly.
-Let the system recover between touches.
-Watch whether the negativity response adapts, saturates, or habituates.
-Compare recovery under high-energy and high-toxicity conditions.
+Test whether too-strong active recovery becomes overdrive.
+Compare gentle recovery, strong recovery, and oscillatory recovery.
+Watch whether repeated touches produce stable adaptation or runaway rebound.
 ```
 
 ## Boundary
