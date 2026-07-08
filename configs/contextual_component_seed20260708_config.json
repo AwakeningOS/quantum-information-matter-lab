@@ -1,0 +1,17 @@
+{
+  "experiment": "contextual_component_skeleton",
+  "seed": 20260708,
+  "steps": 64,
+  "memory_decay": 0.92,
+  "context_gain": 0.35,
+  "incompatibility_penalty": 0.25,
+  "forbidden_claims": [
+    "life-like behavior",
+    "cells",
+    "metabolism",
+    "self-repair",
+    "self-regulation",
+    "quantum advantage",
+    "physical matter synthesis"
+  ]
+}
