@@ -11,7 +11,7 @@ boundary -> memory -> residue -> order -> joint -> flow -> witness-format bridge
 ## Quantum homeostatic observation line
 
 ```text
-whole-field -> quantum-coupled parts -> negativity pulses -> pulse timing map -> local touch response -> recovery cycle -> repair vs overdrive -> adaptive recovery
+whole-field -> quantum-coupled parts -> negativity pulses -> pulse timing map -> local touch response -> recovery cycle -> repair vs overdrive -> inside/outside homeostasis
 ```
 
 ## Completed contextual line
@@ -57,8 +57,6 @@ Main observation:
 left_to_right_wave: M-C -> C-R -> R-W peak lag = +24, +18 at medium scale
 simultaneous_burst: near-simultaneous peak lag = +1, -1 at medium scale
 right_to_left_wave: reversed peak lag = -17, -26 at medium scale
-double_pulse_wave: left-to-right trace reappears with peak lag = +23, +18 at medium scale
-field_only: pair negativity remains zero
 ```
 
 ### 3. quantum_homeostatic_parts_observation_v2_causal_touch_response
@@ -103,12 +101,6 @@ DONE
 Status: OBSERVATION_LOG
 ```
 
-Purpose:
-
-```text
-test whether too-strong active recovery becomes overdrive rather than healthy repair
-```
-
 Main observation:
 
 ```text
@@ -120,24 +112,56 @@ high-toxicity weak measurement recovery: collapse_or_exhausted_repair
 full reset baseline: stable_repair
 ```
 
-### 6. quantum_homeostatic_parts_observation_v5_adaptive_recovery_controller
+### 6. quantum_boundary_homeostasis_v0_internal_feedback
 
 ```text
-NEXT / ADAPTIVE RECOVERY OBSERVATION
+DONE
+Status: OBSERVATION_LOG
 ```
 
 Purpose:
 
 ```text
-let recovery gain depend on state-distance and fatigue, then compare fixed recovery against adaptive recovery
+start the inside/outside boundary line using internal negative feedback and exchange-preserving balance metrics
+```
+
+Main observation:
+
+```text
+coherent_internal_feedback:
+  target_range_fraction = 0.843750000
+  resource_intake_fraction = 0.695312500
+  homeostasis_balance = 0.487672421
+
+measurement_internal_feedback:
+  target_range_fraction = 0.859375000
+  resource_intake_fraction = 0.546875000
+  homeostasis_balance = 0.364177221
+
+overclosed_boundary:
+  target_range_fraction = 0.914062500
+  resource_intake_fraction = 0.101562500
+  homeostasis_balance = 0.085640657
+```
+
+### 7. quantum_boundary_homeostasis_v1_adaptive_boundary_controller
+
+```text
+NEXT / ADAPTIVE BOUNDARY OBSERVATION
+```
+
+Purpose:
+
+```text
+let the boundary tune feedback gain from internal error, fatigue, and resource deficit, then compare fixed internal feedback against adaptive internal feedback
 ```
 
 Required upgrades:
 
 ```text
-adaptive recovery gain
-fixed-gain controls
-state-distance feedback
-fatigue-aware damping
-avoid both exhaustion and overdrive
+adaptive internal gain
+fixed feedback controls
+fatigue-aware closure damping
+resource-deficit anti-overclosure term
+changing external stress regimes
 ```
