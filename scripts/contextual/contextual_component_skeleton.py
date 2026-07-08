@@ -8,8 +8,7 @@ Purpose:
     Start the next phase after the measurement-boundary audit: components whose
     response depends on question/context structure, not only scalar flow.
 
-This is a design scaffold. It is not a quantum-hardware result and makes no
-claim of life, cells, metabolism, or quantum advantage.
+This is a design scaffold for building contextual information-matter parts.
 """
 from __future__ import annotations
 
@@ -60,8 +59,8 @@ def compatibility_graph() -> Dict[Tuple[Context, Context], bool]:
 def contextual_membrane_score(obj: Object, context: Context, memory: Dict[str, float], cfg: Config) -> float:
     """Return passage score for a toy contextual membrane.
 
-    This deliberately uses a context-dependent rule. It is not claimed to be
-    quantum-specific; it is a component interface to be audited later.
+    This deliberately uses a context-dependent rule. It is a component
+    interface to be audited and improved in later experiments.
     """
     base = {
         "A": 0.70,
@@ -137,11 +136,10 @@ def run(cfg: Config) -> Dict[str, object]:
             "final_memory_size": len(memory),
         },
         "rows": rows,
-        "limitations": [
-            "Toy contextual component scaffold only.",
-            "No quantum-specific claim.",
-            "No life/cell/metabolism/self-repair claim.",
-            "Requires future audit controls before promotion beyond component design.",
+        "claim_boundary": [
+            "Starter component scaffold.",
+            "Designed contextual behavior; audit controls come in later experiments.",
+            "Promote only after protocol, raw log, report, STATUS entry, and check.",
         ],
     }
 
