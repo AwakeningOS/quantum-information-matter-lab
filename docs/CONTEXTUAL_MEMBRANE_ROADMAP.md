@@ -58,62 +58,68 @@ DONE
 Verdict: PASS_JOINT_BOUNDARY
 ```
 
-Purpose:
-
-```text
-test whether membrane decisions require the full object/context combination rather than additive single factors
-```
-
-Lesson:
-
-```text
-Object-only, context-only, additive object+context, static pairwise, and joint-shuffle controls failed to reproduce the full joint membrane under the tested component.
-```
-
 ### 5. contextual_reactor_v0_membrane_to_flow
 
 Status:
 
 ```text
-NEXT
+DONE
+Verdict: PASS_MEMBRANE_TO_FLOW_PROPAGATION
 ```
 
 Purpose:
 
 ```text
-test whether contextual membrane decisions propagate downstream to release, quality, and reservoir
+test whether contextual membrane decisions propagate downstream to release, quality, reservoir, and persistence
 ```
 
-This is a component propagation test, not a quantum-specific test.
+Lesson:
 
-Run this after v1-v4 make the membrane interesting enough.
+```text
+The implemented membrane structure propagates into downstream reactor release, quality, reservoir, and persistence under the tested controls.
+```
+
+### 6. contextual_reactor_v1_flow_controls
+
+Status:
+
+```text
+NEXT if hardening component propagation
+```
+
+Purpose:
+
+```text
+stress-test membrane-to-flow propagation with more controls, multiple seeds, and stronger reactor baselines
+```
 
 Suggested variants:
 
 ```text
 full_membrane_to_reactor
-no_memory_membrane_to_reactor
-no_counterfactual_membrane_to_reactor
-order_scrambled_membrane_to_reactor
-additive_boundary_membrane_to_reactor
-reactor_without_membrane
+matched_random_membrane_signal
+matched_pass_rate_membrane_signal
+frozen_membrane_signal
+shuffled_membrane_signal
+strong_reactor_without_membrane
+multi_seed_panel
 ```
 
-### 6. contextual_membrane_quantum_anchor_probe
+### 7. contextual_membrane_quantum_anchor_probe
 
 Status:
 
 ```text
-LAST
+LAST / SEPARATE
 ```
 
 Purpose:
 
 ```text
-test whether the contextual membrane decision boundary can be connected to a PM/KCBS-like quantum contextuality witness
+test whether the contextual membrane decision boundary can be connected to a PM/KCBS-like contextuality witness
 ```
 
-This comes last. First stabilize the classical contextual membrane line.
+This must remain separate from the component propagation claim.
 
 ## Short summary
 
@@ -123,6 +129,7 @@ v1 = memory-bearing boundary
 v2 = counterfactual-residue boundary
 v3 = order-sensitive boundary
 v4 = joint/non-additive boundary
-reactor = downstream propagation
+reactor v0 = downstream propagation
+reactor v1 = hardened propagation controls
 quantum anchor = connection to real contextuality witness
 ```
