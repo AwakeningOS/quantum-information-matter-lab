@@ -1,0 +1,5 @@
+hardware_result,family,simulated_statistic,simulated_value,simulated_bound,simulated_violation,hardware_statistic,hardware_value,hardware_bound,hardware_violation,hardware_se,hardware_z,sim_to_hardware_margin_ratio,margin_delta_sim_minus_hardware,same_margin_sign,sim_finite_shot_survival_normal,hardware_finite_shot_survival_normal,sim_finite_shot_survival_mc,hardware_finite_shot_survival_mc,evidence_relation
+kcbs_kingston,KCBS,S_KCBS,2.256568549,2.0,0.256568549,S_KCBS,2.223266601562,2.0,0.223266601562,0.008678203936,25.727,1.149157766,0.033301947437,True,1.0,1.0,1.0,1.0,compared_not_pooled
+pm_xplus_kingston,PM,chi_PM_equivalent,5.063693352,4.0,1.063693352,chi_PM,5.049805,4.0,1.049805,0.028808,36.44,1.013229459,0.013888352,True,1.0,1.0,1.0,1.0,compared_not_pooled
+pm_yplus_kingston,PM,chi_PM_equivalent,5.063693352,4.0,1.063693352,chi_PM,4.857422,4.0,0.857422,0.031218,27.47,1.240571565,0.206271352,True,1.0,1.0,1.0,1.0,compared_not_pooled
+pm_z0_kingston,PM,chi_PM_equivalent,5.063693352,4.0,1.063693352,chi_PM,4.644531,4.0,0.644531,0.034165,18.87,1.650336992,0.419162352,True,1.0,1.0,1.0,1.0,compared_not_pooled
