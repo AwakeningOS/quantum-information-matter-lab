@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+.venv/
+.env
+.ipynb_checkpoints/
+.DS_Store
+
+# Keep raw experiment artifacts tracked by default.
+# Do not ignore data/*.json, data/*.csv, data/*.jsonl, or results/*.md.
