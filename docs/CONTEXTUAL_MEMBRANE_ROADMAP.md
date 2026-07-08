@@ -14,6 +14,12 @@ boundary -> memory -> residue -> order -> joint -> flow -> witness-format bridge
 whole-field -> quantum-coupled parts -> negativity pulses -> pulse timing map -> local touch response -> recovery cycle -> repair vs overdrive -> inside/outside homeostasis
 ```
 
+## Q-Cell game prototype line
+
+```text
+observation model -> Q-cell body -> correlation-wave battle -> state-dependent absorption -> transformation loop
+```
+
 ## Completed contextual line
 
 ```text
@@ -119,12 +125,6 @@ DONE
 Status: OBSERVATION_LOG
 ```
 
-Purpose:
-
-```text
-start the inside/outside boundary line using internal negative feedback and exchange-preserving balance metrics
-```
-
 Main observation:
 
 ```text
@@ -156,12 +156,53 @@ Purpose:
 let the boundary tune feedback gain from internal error, fatigue, and resource deficit, then compare fixed internal feedback against adaptive internal feedback
 ```
 
+## Q-Cell game prototype line
+
+### 1. Q-Cell Absorb specification v0
+
+```text
+DONE
+Status: GAME_PROTOTYPE
+Path: docs/qcell/Q_CELL_ABSORB_GAME_SPEC_v0.md
+```
+
+Core rule:
+
+```text
+unexpected change is not pure random mutation
+unexpected change comes from absorbed trait load × current receiver state × wave compatibility
+```
+
+### 2. Q-Cell Absorb prototype v0
+
+```text
+DONE
+Status: GAME_PROTOTYPE
+Path: prototypes/qcell_absorb_v0.html
+```
+
+Implemented loop:
+
+```text
+player Q-cell vs enemy Q-cell
+correlation-wave battle
+opponent homeostasis disruption
+state-dependent trait absorption
+transformation / mutation outcome
+```
+
+### 3. qcell_absorb_v1_battle_readability
+
+```text
+NEXT / GAME PROTOTYPE IMPROVEMENT
+```
+
 Required upgrades:
 
 ```text
-adaptive internal gain
-fixed feedback controls
-fatigue-aware closure damping
-resource-deficit anti-overclosure term
-changing external stress regimes
+clearer battle feedback
+explicit victory / enemy collapse panel
+live absorption-pressure formula
+reaction codex for discovered outcomes
+mission: win, absorb, and stabilize without dormancy
 ```

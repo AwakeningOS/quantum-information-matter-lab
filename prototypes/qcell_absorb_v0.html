@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Q-Cell: Assimilation Prototype v0</title>
+  <style>
+    :root {
+      --bg: #070916;
+      --panel: rgba(16, 21, 45, 0.86);
+      --panel2: rgba(24, 31, 66, 0.72);
+      --line: rgba(130, 170, 255, 0.22);
+      --text: #eef4ff;
+      --muted: #9aa8ca;
+      --good: #68f5bc;
+      --warn: #ffd166;
+      --bad: #ff6b8a;
+      --cyan: #55d7ff;
+      --violet: #b385ff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(90, 90, 210, 0.25), transparent 30%),
+        radial-gradient(circle at 80% 0%, rgba(0, 220, 180, 0.16), transparent 35%),
+        linear-gradient(135deg, #050610, #0b1024 55%, #080915);
+      overflow-x: hidden;
+    }
+    header {
+      padding: 18px 22px 10px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(0, 0, 0, 0.16);
+    }
+    h1 { margin: 0; font-size: 22px; letter-spacing: .02em; }
+    .subtitle { color: var(--muted); margin-top: 4px; font-size: 13px; }
+    main {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 14px;
+      padding: 14px;
+      max-width: 1420px;
+      margin: 0 auto;
+    }
+    .stage {
+      min-width: 0;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 20px 80px rgba(0,0,0,.35);
+    }
+    canvas { display: block; width: 100%; height: 620px; background: rgba(5, 8, 22, 0.7); }
+    .side {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px;
+      box-shadow: 0 14px 50px rgba(0,0,0,.25);
+    }
+    .card h2 { margin: 0 0 10px; font-size: 15px; }
+    .buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    button {
+      appearance: none;
+      border: 1px solid rgba(160,180,255,.28);
+      color: var(--text);
+      background: linear-gradient(180deg, rgba(60,75,150,.75), rgba(25,34,80,.85));
+      padding: 10px 9px;
+      border-radius: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform .08s ease, filter .12s ease, border-color .12s ease;
+    }
+    button:hover { filter: brightness(1.12); border-color: rgba(125,220,255,.75); }
+    button:active { transform: translateY(1px) scale(.99); }
+    button.danger { background: linear-gradient(180deg, rgba(165,55,85,.82), rgba(88,24,52,.9)); }
+    button.good { background: linear-gradient(180deg, rgba(35,145,110,.82), rgba(16,75,70,.9)); }
+    button.warn { background: linear-gradient(180deg, rgba(180,125,35,.82), rgba(94,62,18,.9)); }
+    button:disabled { opacity: .45; cursor: not-allowed; filter: grayscale(.2); }
+    .row { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; margin: 6px 0; font-size: 13px; }
+    .label { color: var(--muted); }
+    .value { font-variant-numeric: tabular-nums; font-weight: 700; }
+    .bar {
+      height: 8px;
+      background: rgba(255,255,255,.08);
+      border-radius: 99px;
+      overflow: hidden;
+      margin: 2px 0 8px;
+    }
+    .fill { height: 100%; width: 50%; background: linear-gradient(90deg, var(--cyan), var(--good)); border-radius: 99px; }
+    .fill.bad { background: linear-gradient(90deg, #ff596f, #ffb25c); }
+    .fill.warn { background: linear-gradient(90deg, #ffd166, #ff7b72); }
+    .small { color: var(--muted); font-size: 12px; line-height: 1.45; }
+    .log {
+      height: 178px;
+      overflow: auto;
+      border-radius: 12px;
+      background: rgba(0,0,0,.22);
+      padding: 10px;
+      font-size: 12px;
+      line-height: 1.45;
+      color: #d8e2ff;
+    }
+    .tagline { color: #e8f8ff; font-weight: 800; margin-bottom: 6px; }
+    .trait-list { display: flex; flex-wrap: wrap; gap: 6px; }
+    .trait {
+      font-size: 11px;
+      padding: 4px 7px;
+      border: 1px solid rgba(150,190,255,.28);
+      border-radius: 999px;
+      color: #dbe8ff;
+      background: rgba(90,130,220,.16);
+    }
+    @media (max-width: 980px) {
+      main { grid-template-columns: 1fr; }
+      canvas { height: 520px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Q-Cell: Assimilation / Qセル・アブソーブ</h1>
+    <div class="subtitle">勝て。取り込め。変質しろ。これは生物そのものではなく、量子的に結合した部品が生命的挙動を示す情報仮想物質モデルのゲーム試作です。</div>
+  </header>
+  <main>
+    <section class="stage">
+      <canvas id="view" width="1000" height="620"></canvas>
+    </section>
+    <aside class="side">
+      <section class="card">
+        <div class="tagline">相関波バトル</div>
+        <div class="buttons">
+          <button id="btnWave">相関波</button>
+          <button id="btnShell">境界殻</button>
+          <button id="btnPurge" class="good">毒排出</button>
+          <button id="btnRest" class="warn">休ませる</button>
+          <button id="btnFlash" class="danger">暴走発光</button>
+          <button id="btnAbsorb" class="good">吸収</button>
+        </div>
+        <p class="small">HP削りではなく、相手の恒常性を崩す。吸収は敵が休眠/破綻した後だけ。結果は乱数ガチャではなく、あなたの現在状態 × 相手trait × 波相性で決まる。</p>
+      </section>
+
+      <section class="card" id="playerStats"></section>
+      <section class="card" id="enemyStats"></section>
+
+      <section class="card">
+        <h2>吸収ログ</h2>
+        <div class="log" id="log"></div>
+      </section>
+    </aside>
+  </main>
+
+  <script>
+    const params = {
+      tickMs: 80,
+      lag1: 13,
+      lag2: 27,
+      waveDecayBase: 0.035,
+      waveDamage: 0.055,
+      flashLoad: 0.18,
+      restRecover: 0.075
+    };
+
+    const TRAITS = {
+      toxin_resistance: { label: '毒耐性', load: 0.28, color: '#70f5a8' },
+      repair_core: { label: '回復核', load: 0.36, color: '#8fffe2' },
+      pressure_wave: { label: '過圧波', load: 0.42, color: '#ffd166' },
+      boundary_shell: { label: '境界殻', load: 0.34, color: '#9bb8ff' },
+      overdrive_light: { label: '暴走光', load: 0.62, color: '#ff65b7' },
+      absorption_mouth: { label: '吸収口', load: 0.45, color: '#c6ff5e' },
+      resonance_core: { label: '共鳴核', load: 0.48, color: '#b98cff' },
+      waste_gate: { label: '排出口', load: 0.30, color: '#7fd4ff' }
+    };
+
+    const WAVE_PATTERNS = ['left_to_right', 'right_to_left', 'simultaneous', 'double_pulse', 'rebound_wave', 'damped_oscillatory', 'spiral'];
+    const waveCompatibility = {
+      left_to_right: { left_to_right: .42, right_to_left: -.40, simultaneous: .12, double_pulse: .30, rebound_wave: -.10, damped_oscillatory: .20, spiral: .28 },
+      right_to_left: { left_to_right: -.40, right_to_left: .42, simultaneous: .12, double_pulse: -.08, rebound_wave: .22, damped_oscillatory: .20, spiral: .28 },
+      simultaneous: { left_to_right: .12, right_to_left: .12, simultaneous: .35, double_pulse: .10, rebound_wave: .05, damped_oscillatory: .18, spiral: .22 },
+      double_pulse: { left_to_right: .30, right_to_left: -.08, simultaneous: .10, double_pulse: .40, rebound_wave: .16, damped_oscillatory: .24, spiral: .34 },
+      rebound_wave: { left_to_right: -.10, right_to_left: .22, simultaneous: .05, double_pulse: .16, rebound_wave: .34, damped_oscillatory: .16, spiral: .36 },
+      damped_oscillatory: { left_to_right: .20, right_to_left: .20, simultaneous: .18, double_pulse: .24, rebound_wave: .16, damped_oscillatory: .38, spiral: .30 },
+      spiral: { left_to_right: .28, right_to_left: .28, simultaneous: .22, double_pulse: .34, rebound_wave: .36, damped_oscillatory: .30, spiral: .45 }
+    };
+
+    function clamp(x, a=0, b=1) { return Math.max(a, Math.min(b, x)); }
+    function fmt(x) { return Number(x).toFixed(3); }
+    function choice(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+
+    class QCell {
+      constructor(name, side, traits, wavePattern) {
+        this.name = name;
+        this.side = side;
+        this.energy = 0.70;
+        this.toxicity = 0.06;
+        this.pressure = 0.45;
+        this.damage = 0.02;
+        this.fatigue = 0.03;
+        this.bias = 0.02;
+        this.boundaryIntegrity = 1.0;
+        this.openness = 0.60;
+        this.overdriveRisk = 0.08;
+        this.assimilationStability = 0.62;
+        this.waveCoherence = 0.78;
+        this.waveReach = 0.78;
+        this.traits = traits.slice();
+        this.wavePattern = wavePattern;
+        this.links = { MC: 0, CR: 0, RW: 0 };
+        this.events = [];
+        this.shellTicks = 0;
+        this.restTicks = 0;
+        this.overdriveEnvelope = 0;
+        this.lastOutcome = '未吸収';
+      }
+      health() {
+        const energyScore = this.energy >= .60 && this.energy <= .80 ? 1 : Math.max(0, 1 - Math.abs(this.energy - .70) / .45);
+        const toxScore = clamp(1 - this.toxicity / .50);
+        const pressureScore = this.pressure >= .30 && this.pressure <= .60 ? 1 : Math.max(0, 1 - Math.abs(this.pressure - .45) / .42);
+        const damageScore = clamp(1 - this.damage / .50);
+        return clamp((energyScore + toxScore + pressureScore + damageScore + this.boundaryIntegrity) / 5);
+      }
+      stateName() {
+        if ((this.overdriveEnvelope > .75 || this.damage > .40) && this.energy > .62) return '暴走';
+        if (this.health() < .25) return '休眠';
+        if (this.energy < .40) return '飢餓';
+        if (this.toxicity > .35) return '毒化';
+        if (this.pressure > .70) return '過圧';
+        if (this.fatigue > .40) return '疲労';
+        if (this.energy < .55) return '空腹';
+        return '元気';
+      }
+      canAbsorbFrom(other) {
+        return other.health() < .25 || other.boundaryIntegrity < .25 || other.toxicity > .75 || other.pressure > .85 || other.damage > .70 || other.stateName() === '暴走';
+      }
+      scheduleWave(origin='M', strength=.09, pattern=this.wavePattern) {
+        const l1 = params.lag1, l2 = params.lag2;
+        const push = (dt, link, amp) => this.events.push({ t: dt, link, amp });
+        if (pattern === 'simultaneous') {
+          push(0, 'MC', strength * .88); push(0, 'CR', strength * .88); push(0, 'RW', strength * .88);
+        } else if (pattern === 'right_to_left' || origin === 'W') {
+          push(0, 'RW', strength); push(l1, 'CR', strength * .76); push(l2, 'MC', strength * .56);
+        } else if (pattern === 'double_pulse') {
+          push(0, 'MC', strength); push(l1, 'CR', strength * .76); push(l2, 'RW', strength * .56);
+          push(18, 'MC', strength * .62); push(18 + l1, 'CR', strength * .48); push(18 + l2, 'RW', strength * .34);
+        } else if (pattern === 'rebound_wave') {
+          push(0, 'MC', strength); push(l1, 'CR', strength * .7); push(l2, 'RW', strength * .5);
+          push(l2 + 12, 'RW', strength * .52); push(l2 + 12 + l1, 'CR', strength * .36); push(l2 + 12 + l2, 'MC', strength * .25);
+        } else if (pattern === 'spiral') {
+          push(0, 'MC', strength * 1.05); push(7, 'CR', strength * .9); push(14, 'RW', strength * .75); push(21, 'MC', strength * .48); push(28, 'CR', strength * .38);
+        } else if (origin === 'C') {
+          push(0, 'MC', strength * .9); push(0, 'CR', strength * .9); push(l1, 'RW', strength * .55);
+        } else if (origin === 'R') {
+          push(0, 'CR', strength * .9); push(0, 'RW', strength * .9); push(l1, 'MC', strength * .55);
+        } else {
+          push(0, 'MC', strength); push(l1, 'CR', strength * .76); push(l2, 'RW', strength * .56);
+        }
+      }
+      step() {
+        const toxExcess = Math.max(0, this.toxicity - .20);
+        const prsExcess = Math.max(0, this.pressure - .60);
+        const engDeficit = Math.max(0, .60 - this.energy);
+        let targetOpen = clamp(.60 - .90 * toxExcess + .70 * engDeficit - .50 * prsExcess - .40 * this.fatigue);
+        if (this.shellTicks > 0) targetOpen = Math.min(targetOpen, .18);
+        if (this.restTicks > 0) targetOpen = Math.min(.72, targetOpen + .08);
+        this.openness += (targetOpen - this.openness) * .22;
+
+        const gamma = params.waveDecayBase + .08 * this.toxicity + .04 * this.pressure + .04 * this.fatigue + .03 * this.bias;
+        for (const k of ['MC','CR','RW']) this.links[k] *= (1 - clamp(gamma, .02, .22));
+        for (const ev of this.events) ev.t -= 1;
+        const due = this.events.filter(ev => ev.t <= 0);
+        this.events = this.events.filter(ev => ev.t > 0);
+        for (const ev of due) this.links[ev.link] = clamp(this.links[ev.link] + ev.amp, 0, .18);
+        const waveSum = this.links.MC + this.links.CR + this.links.RW;
+        this.overdriveEnvelope = clamp(this.overdriveEnvelope * .94 + Math.max(0, waveSum - .18) * .35 + this.overdriveRisk * .01);
+
+        const repairTrait = this.traits.includes('repair_core') ? .018 : 0;
+        const toxinTrait = this.traits.includes('toxin_resistance') ? .018 : 0;
+        const wasteTrait = this.traits.includes('waste_gate') ? .020 : 0;
+        this.energy = clamp(this.energy - .004 - .006 * this.fatigue + (this.restTicks > 0 ? .006 : 0));
+        this.toxicity = clamp(this.toxicity - .003 - toxinTrait - wasteTrait + .006 * this.openness * (this.side === 'enemy' ? .7 : .2));
+        this.pressure = clamp(this.pressure + .002 + .006 * this.openness - .010 * wasteTrait - (this.restTicks > 0 ? .008 : 0));
+        this.damage = clamp(this.damage - .006 - repairTrait + .006 * this.toxicity + .005 * this.overdriveEnvelope);
+        this.fatigue = clamp(this.fatigue * .985 + .003 * waveSum + .008 * this.overdriveEnvelope - (this.restTicks > 0 ? params.restRecover : 0));
+        this.bias = clamp(this.bias * .992);
+        this.boundaryIntegrity = clamp(this.boundaryIntegrity - .004 * this.damage - .004 * this.pressure + (this.shellTicks > 0 ? .012 : .003));
+        this.shellTicks = Math.max(0, this.shellTicks - 1);
+        this.restTicks = Math.max(0, this.restTicks - 1);
+      }
+    }
+
+    const canvas = document.getElementById('view');
+    const ctx = canvas.getContext('2d');
+    const logEl = document.getElementById('log');
+    const playerStats = document.getElementById('playerStats');
+    const enemyStats = document.getElementById('enemyStats');
+
+    let tick = 0;
+    let player = new QCell('あなたのQセル', 'player', ['boundary_shell', 'resonance_core', 'waste_gate'], 'left_to_right');
+    let enemy = new QCell('野生Qセル', 'enemy', ['toxin_resistance', 'overdrive_light', 'absorption_mouth'], 'rebound_wave');
+    enemy.energy = .74; enemy.toxicity = .10; enemy.pressure = .50; enemy.overdriveRisk = .20; enemy.assimilationStability = .48;
+
+    function log(msg) {
+      const line = document.createElement('div');
+      line.textContent = `T${tick}: ${msg}`;
+      logEl.prepend(line);
+    }
+
+    function attackWave(attacker, defender, mode='normal') {
+      const strength = mode === 'flash' ? .15 : .095 * (attacker.waveCoherence + .35);
+      attacker.scheduleWave('M', strength, attacker.wavePattern);
+      const reach = attacker.waveReach + (attacker.traits.includes('resonance_core') ? .18 : 0);
+      const disruption = strength * reach * (mode === 'flash' ? 1.85 : 1.0);
+      defender.fatigue = clamp(defender.fatigue + disruption * .46);
+      defender.damage = clamp(defender.damage + disruption * .25);
+      defender.pressure = clamp(defender.pressure + disruption * .20);
+      if (attacker.traits.includes('pressure_wave')) defender.pressure = clamp(defender.pressure + .08);
+      if (attacker.traits.includes('overdrive_light')) defender.overdriveEnvelope = clamp(defender.overdriveEnvelope + .12);
+      if (mode === 'flash') {
+        attacker.fatigue = clamp(attacker.fatigue + .18);
+        attacker.overdriveRisk = clamp(attacker.overdriveRisk + .08);
+        attacker.damage = clamp(attacker.damage + .035);
+      }
+    }
+
+    function enemyTurn() {
+      if (enemy.health() < .25) return;
+      const h = enemy.health();
+      if (enemy.toxicity > .30 || enemy.pressure > .70) { purge(enemy, false); log('敵Qセルは毒排出した'); return; }
+      if (h < .45 && Math.random() < .35) { rest(enemy, false); log('敵Qセルは休息した'); return; }
+      if (enemy.overdriveRisk > .25 && Math.random() < .30) { attackWave(enemy, player, 'flash'); log('敵Qセルの暴走発光'); return; }
+      attackWave(enemy, player); log('敵Qセルの相関波');
+    }
+
+    function shell(cell, announce=true) {
+      cell.shellTicks = 18;
+      cell.energy = clamp(cell.energy - .025);
+      cell.fatigue = clamp(cell.fatigue + .035);
+      cell.boundaryIntegrity = clamp(cell.boundaryIntegrity + .08);
+      cell.scheduleWave('M', .055, 'damped_oscillatory');
+      if (announce) log('境界殻: 守るが intake は落ちる');
+    }
+    function purge(cell, announce=true) {
+      cell.toxicity = clamp(cell.toxicity - .14);
+      cell.pressure = clamp(cell.pressure - .07);
+      cell.energy = clamp(cell.energy - .045);
+      cell.scheduleWave('W', .06, 'right_to_left');
+      if (announce) log('毒排出: 毒と圧を下げたが energy を消費');
+    }
+    function rest(cell, announce=true) {
+      cell.restTicks = 18;
+      cell.fatigue = clamp(cell.fatigue - .11);
+      cell.bias = clamp(cell.bias - .045);
+      cell.overdriveEnvelope = clamp(cell.overdriveEnvelope - .08);
+      if (announce) log('休ませる: fatigue/bias が下がる');
+    }
+
+    function waveRelation(a, b) {
+      return (waveCompatibility[a] && waveCompatibility[a][b] != null) ? waveCompatibility[a][b] : 0;
+    }
+
+    function absorb() {
+      if (!player.canAbsorbFrom(enemy)) { log('まだ吸収できない。敵の恒常性をもっと崩す必要がある'); return; }
+      const incomingTrait = choice(enemy.traits);
+      const trait = TRAITS[incomingTrait];
+      const compat = waveRelation(player.wavePattern, enemy.wavePattern);
+      const receiverInstability = player.fatigue + player.toxicity + player.damage + player.overdriveRisk - player.assimilationStability;
+      const absorptionPressure = clamp(trait.load + receiverInstability - compat, 0, 1.5);
+      let outcome;
+      if (absorptionPressure < .35) outcome = '安定融合';
+      else if (absorptionPressure < .65) outcome = '変異融合';
+      else if (absorptionPressure < .90) outcome = '拒絶反応';
+      else outcome = '暴走化';
+
+      if (compat > .32 && player.health() > .45 && absorptionPressure < .75) outcome = '希少波獲得';
+      if (compat < -.28 && player.fatigue < .30 && player.damage < .25) outcome = '干渉変異';
+
+      applyAbsorptionOutcome(incomingTrait, outcome, compat, absorptionPressure);
+      log(`吸収: ${trait.label} / 波相性 ${fmt(compat)} / 圧 ${fmt(absorptionPressure)} -> ${outcome}`);
+      spawnEnemy();
+    }
+
+    function applyAbsorptionOutcome(traitKey, outcome, compat, pressure) {
+      if (!player.traits.includes(traitKey) && outcome !== '拒絶反応') player.traits.push(traitKey);
+      if (outcome === '安定融合') {
+        player.assimilationStability = clamp(player.assimilationStability + .08);
+        player.energy = clamp(player.energy + .05);
+        player.fatigue = clamp(player.fatigue + .04);
+      } else if (outcome === '変異融合') {
+        player.assimilationStability = clamp(player.assimilationStability + .02 - pressure * .02);
+        player.overdriveRisk = clamp(player.overdriveRisk + .04);
+        player.fatigue = clamp(player.fatigue + .11);
+        if (compat > .10) player.wavePattern = 'double_pulse';
+      } else if (outcome === '希少波獲得') {
+        player.wavePattern = compat > .36 ? 'spiral' : 'damped_oscillatory';
+        player.waveCoherence = clamp(player.waveCoherence + .10);
+        player.waveReach = clamp(player.waveReach + .07);
+        player.fatigue = clamp(player.fatigue + .12);
+      } else if (outcome === '干渉変異') {
+        player.wavePattern = choice(['simultaneous', 'rebound_wave', 'spiral']);
+        player.damage = clamp(player.damage + .08);
+        player.overdriveRisk = clamp(player.overdriveRisk + .10);
+      } else if (outcome === '拒絶反応') {
+        player.damage = clamp(player.damage + .16);
+        player.fatigue = clamp(player.fatigue + .18);
+        player.boundaryIntegrity = clamp(player.boundaryIntegrity - .12);
+      } else if (outcome === '暴走化') {
+        player.overdriveRisk = clamp(player.overdriveRisk + .22);
+        player.overdriveEnvelope = clamp(player.overdriveEnvelope + .45);
+        player.fatigue = clamp(player.fatigue + .24);
+        player.damage = clamp(player.damage + .12);
+        player.wavePattern = 'rebound_wave';
+      }
+      if (traitKey === 'toxin_resistance') player.toxicity = clamp(player.toxicity - .08);
+      if (traitKey === 'repair_core') player.damage = clamp(player.damage - .10);
+      if (traitKey === 'boundary_shell') player.boundaryIntegrity = clamp(player.boundaryIntegrity + .12);
+      if (traitKey === 'overdrive_light') player.overdriveRisk = clamp(player.overdriveRisk + .12);
+      if (traitKey === 'absorption_mouth') player.assimilationStability = clamp(player.assimilationStability + .05);
+      player.scheduleWave('C', .14, player.wavePattern);
+      player.lastOutcome = outcome;
+    }
+
+    function spawnEnemy() {
+      const traitKeys = Object.keys(TRAITS);
+      const traits = [choice(traitKeys), choice(traitKeys), choice(traitKeys)].filter((v, i, a) => a.indexOf(v) === i);
+      while (traits.length < 3) traits.push(choice(traitKeys));
+      enemy = new QCell('野生Qセル', 'enemy', traits.slice(0, 3), choice(WAVE_PATTERNS));
+      enemy.energy = .62 + Math.random() * .22;
+      enemy.toxicity = .04 + Math.random() * .18;
+      enemy.pressure = .36 + Math.random() * .22;
+      enemy.overdriveRisk = .06 + Math.random() * .22;
+      enemy.assimilationStability = .40 + Math.random() * .34;
+    }
+
+    function performPlayerAction(kind) {
+      if (kind === 'wave') { attackWave(player, enemy); log('相関波: M→C→R→W へ光が走る'); }
+      if (kind === 'shell') shell(player);
+      if (kind === 'purge') purge(player);
+      if (kind === 'rest') rest(player);
+      if (kind === 'flash') { attackWave(player, enemy, 'flash'); log('暴走発光: 高火力だが自分にも負荷'); }
+      enemyTurn();
+    }
+
+    document.getElementById('btnWave').onclick = () => performPlayerAction('wave');
+    document.getElementById('btnShell').onclick = () => performPlayerAction('shell');
+    document.getElementById('btnPurge').onclick = () => performPlayerAction('purge');
+    document.getElementById('btnRest').onclick = () => performPlayerAction('rest');
+    document.getElementById('btnFlash').onclick = () => performPlayerAction('flash');
+    document.getElementById('btnAbsorb').onclick = absorb;
+
+    function bar(label, value, bad=false) {
+      const cls = bad ? 'bad' : (value > .7 ? 'warn' : '');
+      return `<div class="row"><span class="label">${label}</span><span class="value">${fmt(value)}</span></div><div class="bar"><div class="fill ${cls}" style="width:${clamp(value)*100}%"></div></div>`;
+    }
+    function statsHtml(cell) {
+      return `
+        <h2>${cell.name} / ${cell.stateName()}</h2>
+        ${bar('health', cell.health())}
+        ${bar('energy', cell.energy)}
+        ${bar('toxicity', cell.toxicity, true)}
+        ${bar('pressure', cell.pressure, cell.pressure > .65)}
+        ${bar('damage', cell.damage, true)}
+        ${bar('fatigue', cell.fatigue, true)}
+        ${bar('boundary', cell.boundaryIntegrity)}
+        <div class="row"><span class="label">wave</span><span class="value">${cell.wavePattern}</span></div>
+        <div class="trait-list">${cell.traits.map(t => `<span class="trait">${TRAITS[t].label}</span>`).join('')}</div>
+      `;
+    }
+    function updateUi() {
+      playerStats.innerHTML = statsHtml(player);
+      enemyStats.innerHTML = statsHtml(enemy);
+      document.getElementById('btnAbsorb').disabled = !player.canAbsorbFrom(enemy);
+    }
+
+    function drawCell(cell, x, y) {
+      const h = cell.health();
+      const pulse = 1 + Math.sin(tick * .10) * .025 * (1 - cell.fatigue);
+      const radius = (82 + 20 * cell.energy + 18 * cell.pressure - 20 * cell.damage) * pulse;
+      const tox = cell.toxicity;
+      const alpha = .42 + .45 * h - .25 * cell.fatigue;
+      ctx.save();
+      ctx.translate(x, y);
+      const jitter = cell.stateName() === '暴走' ? Math.sin(tick * .9) * 5 : cell.toxicity > .35 ? Math.sin(tick * .55) * 2 : 0;
+      ctx.translate(jitter, 0);
+      const grad = ctx.createRadialGradient(0, 0, radius * .15, 0, 0, radius);
+      grad.addColorStop(0, `rgba(${Math.floor(90 + tox*120)}, ${Math.floor(245 - tox*140)}, 255, ${alpha})`);
+      grad.addColorStop(.62, `rgba(${Math.floor(70 + tox*160)}, ${Math.floor(170 - tox*90)}, ${Math.floor(255 - tox*120)}, ${alpha*.55})`);
+      grad.addColorStop(1, `rgba(90, 150, 255, ${.10 + .35 * cell.boundaryIntegrity})`);
+      ctx.fillStyle = grad;
+      ctx.beginPath();
+      ctx.arc(0, 0, radius, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.lineWidth = 4 + 8 * (1 - cell.openness);
+      ctx.strokeStyle = cell.stateName() === '暴走' ? 'rgba(255,80,160,.95)' : `rgba(140, 210, 255, ${.25 + .65 * cell.boundaryIntegrity})`;
+      ctx.stroke();
+
+      const nodes = [{k:'M',x:-58,y:0},{k:'C',x:-18,y:-18},{k:'R',x:22,y:18},{k:'W',x:60,y:0}];
+      const links = [{a:0,b:1,k:'MC'},{a:1,b:2,k:'CR'},{a:2,b:3,k:'RW'}];
+      for (const link of links) {
+        const A = nodes[link.a], B = nodes[link.b], n = cell.links[link.k];
+        ctx.lineCap = 'round';
+        ctx.lineWidth = 5 + n * 90;
+        ctx.strokeStyle = `rgba(95, 225, 255, ${.16 + n * 6})`;
+        ctx.beginPath(); ctx.moveTo(A.x, A.y); ctx.lineTo(B.x, B.y); ctx.stroke();
+      }
+      for (const nd of nodes) {
+        ctx.fillStyle = 'rgba(235,250,255,.92)';
+        ctx.beginPath(); ctx.arc(nd.x, nd.y, 10, 0, Math.PI*2); ctx.fill();
+        ctx.fillStyle = '#071024'; ctx.font = 'bold 10px system-ui'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(nd.k, nd.x, nd.y);
+      }
+      ctx.fillStyle = 'rgba(238,244,255,.95)';
+      ctx.font = 'bold 16px system-ui'; ctx.textAlign = 'center';
+      ctx.fillText(cell.name, 0, -radius - 24);
+      ctx.fillStyle = cell.stateName() === '暴走' ? '#ff7ab5' : '#b9c8ee';
+      ctx.font = '13px system-ui';
+      ctx.fillText(`${cell.stateName()} / ${cell.wavePattern}`, 0, radius + 26);
+      ctx.restore();
+    }
+
+    function draw() {
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      ctx.fillStyle = 'rgba(255,255,255,.04)';
+      for (let i=0;i<80;i++) {
+        const x = (i*131 + tick*1.2) % canvas.width;
+        const y = (i*79 % canvas.height);
+        ctx.fillRect(x, y, 2, 2);
+      }
+      drawCell(player, 270, 310);
+      drawCell(enemy, 730, 310);
+      ctx.strokeStyle = 'rgba(255,255,255,.18)'; ctx.lineWidth = 2; ctx.setLineDash([8,8]);
+      ctx.beginPath(); ctx.moveTo(400,310); ctx.lineTo(600,310); ctx.stroke(); ctx.setLineDash([]);
+      ctx.fillStyle = 'rgba(238,244,255,.72)'; ctx.font = '13px system-ui'; ctx.textAlign = 'center';
+      ctx.fillText('相手の恒常性を崩し、勝ったらtraitを取り込む', 500, 70);
+      updateUi();
+    }
+
+    function loop() {
+      tick++;
+      player.step(); enemy.step();
+      if (tick % 60 === 0 && enemy.health() > .25) enemyTurn();
+      if (tick % 90 === 0) {
+        player.energy = clamp(player.energy + .035 * player.openness);
+        player.toxicity = clamp(player.toxicity + .012 * player.openness);
+      }
+      draw();
+    }
+
+    log('Prototype ready: 相関波で敵の恒常性を崩し、吸収で変質する');
+    setInterval(loop, params.tickMs);
+    draw();
+  </script>
+</body>
+</html>
