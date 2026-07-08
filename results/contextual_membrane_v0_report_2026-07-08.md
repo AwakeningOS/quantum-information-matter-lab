@@ -3,7 +3,7 @@
 Status: RAW_LOG_BACKED  
 Generator script: `scripts/contextual/contextual_membrane_v0.py`  
 Raw log: `data/contextual/contextual_membrane_v0_seed20260708.json`  
-Raw event rows: `data/contextual/contextual_membrane_v0_seed20260708_rows.csv`  
+Generated event rows: `data/contextual/contextual_membrane_v0_seed20260708_rows.csv`  
 Run command: `python scripts/contextual/contextual_membrane_v0.py --seed 20260708 --steps 64 --out data/contextual/contextual_membrane_v0_seed20260708.json --csv data/contextual/contextual_membrane_v0_seed20260708_rows.csv`  
 Layer: CONTEXTUAL_COMPONENT  
 Verdict: PASS_COMPONENT_BEHAVIOR  
@@ -20,10 +20,10 @@ The component passed the pre-registered component-level criteria.
 | Variant | Pass rate | Object-conditioned context range | Compatibility score gap | Event match to full | Score MAE to full |
 |---|---:|---:|---:|---:|---:|
 | full_contextual | 0.312500000 | 0.333906636 | 0.285508247 | n/a | n/a |
-| context_no_memory | 0.296875000 | 0.318416667 | 0.280019550 | 0.984375000 | 0.015838863 |
-| object_only | 0.406250000 | 0.000000000 | 0.046764418 | 0.781250000 | 0.165451458 |
-| object_marginal_replay | 0.328125000 | 0.000000000 | 0.055738863 | 0.828125000 | 0.161974602 |
-| shuffled_context_full | 0.312500000 | 0.213327805 | 0.221874876 | 0.750000000 | 0.195046614 |
+| context_no_memory | 0.296875000 | 0.318416667 | 0.280019550 | 0.984375000 | 0.008596154 |
+| object_only | 0.406250000 | 0.000000000 | 0.046764418 | 0.781250000 | 0.135082084 |
+| object_marginal_replay | 0.328125000 | 0.000000000 | 0.055738863 | 0.828125000 | 0.127557338 |
+| shuffled_context_full | 0.312500000 | 0.213327805 | 0.221874876 | 0.750000000 | 0.155649413 |
 
 ## Criteria
 
