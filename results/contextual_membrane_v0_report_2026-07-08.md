@@ -3,8 +3,7 @@
 Status: RAW_LOG_BACKED  
 Generator script: `scripts/contextual/contextual_membrane_v0.py`  
 Raw log: `data/contextual/contextual_membrane_v0_seed20260708.json`  
-Generated event rows: `data/contextual/contextual_membrane_v0_seed20260708_rows.csv`  
-Run command: `python scripts/contextual/contextual_membrane_v0.py --seed 20260708 --steps 64 --out data/contextual/contextual_membrane_v0_seed20260708.json --csv data/contextual/contextual_membrane_v0_seed20260708_rows.csv`  
+Run command: `python scripts/contextual/contextual_membrane_v0.py --seed 20260708 --steps 64 --out data/contextual/contextual_membrane_v0_seed20260708.json`  
 Layer: CONTEXTUAL_COMPONENT  
 Verdict: PASS_COMPONENT_BEHAVIOR  
 Claim boundary: designed contextual-component behavior only; no quantum-specific promotion.
