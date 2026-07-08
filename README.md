@@ -24,14 +24,19 @@ The target is a new experimental sandbox where information-material parts can be
 
 ## Design anchors
 
-The repository has two anchor documents that future agents should read before proposing experiments:
+Future agents should read these before proposing experiments:
 
-```text
-docs/WORLDVIEW_AND_RESEARCH_GOAL.md
+- [Worldview and Research Goal](docs/WORLDVIEW_AND_RESEARCH_GOAL.md)  
   The worldview and long-range research goal behind contextual information matter.
 
-paper/where_quantum_structure_survives_v1_4.md
+- [Where Quantum Structure Survives](paper/where_quantum_structure_survives_v1_4.md)  
   Reference paper for where quantum structure survived the audit.
+
+Raw URLs for tools that cannot browse GitHub directory pages:
+
+```text
+https://raw.githubusercontent.com/AwakeningOS/quantum-information-matter-lab/refs/heads/main/docs/WORLDVIEW_AND_RESEARCH_GOAL.md
+https://raw.githubusercontent.com/AwakeningOS/quantum-information-matter-lab/refs/heads/main/paper/where_quantum_structure_survives_v1_4.md
 ```
 
 The operational lesson from the reference paper is:
