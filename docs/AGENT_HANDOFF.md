@@ -32,6 +32,7 @@ reactor v0 = downstream propagation
 reactor v1 = hardened propagation controls
 quantum anchor = separate audit bridge to witness logic
 quantum anchor v1 = explicit witness-table audit candidate
+quantum anchor v2 = hardware-format compatibility audit
 ```
 
 ## Completed experiments
@@ -46,65 +47,59 @@ contextual_reactor_v0_membrane_to_flow = PASS_MEMBRANE_TO_FLOW_PROPAGATION
 contextual_reactor_v1_flow_controls = PASS_HARDENED_MEMBRANE_TO_FLOW_CONTROLS
 contextual_membrane_quantum_anchor_probe = PASS_ANCHOR_CANDIDATE_SURROGATE_NOT_QUANTUM
 contextual_membrane_quantum_anchor_probe_v1 = PASS_STRICT_WITNESS_TABLE_AUDIT_CANDIDATE_NOT_QUANTUM
+contextual_membrane_quantum_anchor_probe_v2_hardware_mapping = PASS_HARDWARE_MAPPING_AUDIT_CANDIDATE_NOT_NEW_QPU_RESULT
 ```
 
-## contextual_reactor_v1_flow_controls lesson
+## contextual_membrane_quantum_anchor_probe_v2 lesson
 
 ```text
-The membrane-to-flow result survives stronger classical controls.
-Same pass rate is not enough.
-Same signal distribution is not enough.
-Lagged signal replay is not enough.
-Additive object/context boundary is not enough.
-Strong non-contextual reactor dynamics are not enough.
+The explicit witness-table anchor can be mapped to existing PM/KCBS hardware-backed witness result formats.
+Simulated table values and hardware-backed witness values are compared but not pooled.
 ```
 
-## contextual_membrane_quantum_anchor_probe_v1 lesson
+Key comparison:
 
 ```text
-The previous surrogate audit has been replaced by explicit PM/KCBS-shaped probability tables.
-The script computes deterministic assignment bounds by exhaustive enumeration:
-  KCBS-style directed-transition bound = 2
-  PM-style parity accuracy bound = 5/6
+KCBS simulated S = 2.256568549
+KCBS simulated violation = 0.256568549
+KCBS hardware S = 2.2232666015625
+KCBS hardware violation = 0.2232666015625
+KCBS sim/hardware margin ratio = 1.149157766
+
+PM simulated chi-equivalent = 5.063693352
+PM simulated violation = 1.063693352
+PM hardware xplus violation = 1.049805
+PM hardware yplus violation = 0.857422
+PM hardware z0 violation = 0.644531
+PM sim/hardware margin ratio range = 1.013229459 to 1.650336992
 ```
 
-Key aggregate comparison:
+Main rule:
 
 ```text
-full_witness_table_anchor kcbs_witness_sum_mean = 2.256568549
-same_marginals_independent_table kcbs_witness_sum_mean = 1.241136885
-shuffled_context_table kcbs_witness_sum_mean = 1.986193805
-strong_classical_table_baseline kcbs_witness_sum_mean = 1.873890389
-
-full_witness_table_anchor pm_parity_accuracy_mean = 0.921974446
-noncontextual_hidden_assignment_fit pm_parity_accuracy_mean = 0.804391588
-strong_classical_table_baseline pm_parity_accuracy_mean = 0.813065892
-```
-
-No-disturbance in full expected tables:
-
-```text
-full_witness_table_anchor kcbs_no_disturbance_max_abs_mean = 0.000000000000
-full_witness_table_anchor pm_no_disturbance_max_abs_mean = 0.000000000000
+This is not a new QPU result.
+This is not a quantum-specific promotion.
+This only shows that the audit formats now line up.
 ```
 
 ## Recommended next experiment
 
 ```text
-contextual_membrane_quantum_anchor_probe_v2_hardware_mapping
+contextual_membrane_quantum_anchor_probe_v3_finite_shot_stress
 ```
 
 Core rule:
 
 ```text
-Map the explicit witness-table anchor to existing PM/KCBS hardware-backed result formats.
-Separate simulated table values from real QPU witness values.
-Add finite-shot noise model and compare with hardware witness margins.
-Do not promote quantum-specific claims unless hardware-backed witness controls pass.
+Inject finite-shot sampling into the explicit witness tables.
+Vary shots from low to hardware-like regimes.
+Compare survival probability against PM/KCBS margins.
+Add adversarial no-disturbance drift.
+Require witness survival without relying on exact expected tables.
 ```
 
 ## Claim boundary
 
-The current results are contextual/classical component results plus witness-shaped audit-bridge results.
+The current results are contextual/classical component results plus witness-shaped audit-bridge and hardware-format compatibility results.
 
 They do not establish quantum-specific behavior, formal measurement contextuality of a physical implementation, life, metabolism, self-repair, consciousness, or physical matter synthesis.
