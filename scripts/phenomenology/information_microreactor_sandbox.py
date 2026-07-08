@@ -2,15 +2,15 @@
 """
 Classical-effective information microreactor sandbox.
 
-Layer: CLASSICAL_COMPONENT / classical-effective phenomenology
+Layer: CLASSICAL_COMPONENT / phenomenology baseline
 
 Purpose:
     Assemble source, road/channel, selective membrane, converter, reservoir,
     sink/release, terrain writing, stress, stabilizer, and contaminant into one
     small deterministic sandbox.
 
-This is not a quantum-witness experiment and makes no quantum-specific claim.
-Migrated from AwakeningOS/AwakeningOS-Quantum-lattice as a reusable baseline.
+This baseline is a reusable component bench. Quantum/contextual audits are added
+in separate files when a component is promoted beyond classical-effective behavior.
 """
 from __future__ import annotations
 
@@ -205,7 +205,6 @@ def simulate(name: str, p: Params, cfg: Config) -> Tuple[Dict[str, Any], List[Di
 
 
 def run(seed: int = 20260708) -> Dict[str, Any]:
-    # Seed retained for interface consistency. This sandbox is deterministic.
     _ = np.random.default_rng(seed)
     cfg = Config(seed=seed)
     summaries = []
@@ -223,11 +222,10 @@ def run(seed: int = 20260708) -> Dict[str, Any]:
         "config": asdict(cfg),
         "scenario_params": {name: asdict(p) for name, p in params.items()},
         "summaries": summaries,
-        "limitations": [
-            "Classical-effective deterministic sandbox, not a quantum-witness experiment.",
-            "No quantum advantage or quantum-specific claim.",
-            "Not a biological metabolism, self-repair, or life-like system.",
-            "Component boundaries are modular so future contextual/quantum audits can target substructures separately.",
+        "claim_boundary": [
+            "Reusable deterministic baseline for component development.",
+            "Quantum/contextual audits are separate experiments.",
+            "Promote only through protocol, raw log, report, STATUS entry, and check.",
         ],
     }
 
