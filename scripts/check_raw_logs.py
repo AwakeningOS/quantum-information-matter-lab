@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Minimal reproducibility checker for canonical raw logs.
 
-The checker intentionally starts small. It verifies that bootstrap scripts run
+The checker verifies that bootstrap scripts and promoted component scripts run
 and write their expected raw artifacts. Expand this file whenever a result is
 promoted to RAW_LOG_BACKED.
 """
@@ -56,7 +56,21 @@ def main() -> None:
     ])
     assert_json(contextual_json, "contextual_component_skeleton")
 
-    print("OK: bootstrap raw-log checks passed")
+    membrane_json = ROOT / "data/contextual/contextual_membrane_v0_seed20260708.json"
+    membrane_csv = ROOT / "data/contextual/contextual_membrane_v0_seed20260708_rows.csv"
+    run_cmd([
+        py,
+        "scripts/contextual/contextual_membrane_v0.py",
+        "--seed", "20260708",
+        "--steps", "64",
+        "--out", str(membrane_json),
+        "--csv", str(membrane_csv),
+    ])
+    assert_json(membrane_json, "contextual_membrane_v0")
+    if not membrane_csv.exists():
+        raise AssertionError(f"missing CSV: {membrane_csv}")
+
+    print("OK: raw-log checks passed")
 
 
 if __name__ == "__main__":
