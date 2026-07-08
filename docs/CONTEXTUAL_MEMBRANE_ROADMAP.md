@@ -11,7 +11,7 @@ boundary -> memory -> residue -> order -> joint -> flow -> witness-format bridge
 ## Quantum homeostatic observation line
 
 ```text
-whole-field -> quantum-coupled parts -> negativity pulses -> pulse timing map -> local touch response
+whole-field -> quantum-coupled parts -> negativity pulses -> pulse timing map -> local touch response -> recovery cycle
 ```
 
 ## Completed contextual line
@@ -51,12 +51,6 @@ DONE
 Status: OBSERVATION_LOG
 ```
 
-Purpose:
-
-```text
-separate spatial attenuation from temporal propagation by extracting pair peak/onset times
-```
-
 Main observation:
 
 ```text
@@ -70,7 +64,8 @@ field_only: pair negativity remains zero
 ### 3. quantum_homeostatic_parts_observation_v2_causal_touch_response
 
 ```text
-NEXT / LOCAL TOUCH RESPONSE OBSERVATION
+DONE
+Status: OBSERVATION_LOG
 ```
 
 Purpose:
@@ -79,12 +74,35 @@ Purpose:
 perturb one part locally while the whole-field is held fixed or slowly varying, then watch whether the response spreads through neighboring links
 ```
 
+Main observation:
+
+```text
+Touch M: M-C -> C-R -> weak R-W tail
+Touch C: M-C and C-R first, then R-W
+Touch R: C-R and R-W first, then M-C
+Touch W: R-W -> C-R -> weak M-C tail
+Global field pulse: all links peak together
+Field-only local touch: pair negativity stays zero
+```
+
+### 4. quantum_homeostatic_parts_observation_v3_recovery_cycle
+
+```text
+NEXT / RECOVERY CYCLE OBSERVATION
+```
+
+Purpose:
+
+```text
+touch a part repeatedly, let the system recover between touches, and watch whether the negativity response adapts, saturates, or habituates
+```
+
 Required upgrades:
 
 ```text
-local perturbation of M, C, R, or W
-fixed-field and slow-field variants
-activation response and negativity response
-neighbor-lag extraction
-local-touch vs global-field-only comparison
+repeated local touches
+recovery windows
+high-energy vs high-toxicity conditions
+response amplitude decay / recovery ratio
+inter-touch memory or fatigue index
 ```
