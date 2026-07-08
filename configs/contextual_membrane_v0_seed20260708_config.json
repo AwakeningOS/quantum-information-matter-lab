@@ -1,0 +1,12 @@
+{
+  "experiment": "contextual_membrane_v0",
+  "seed": 20260708,
+  "steps": 64,
+  "memory_decay": 0.94,
+  "memory_gain": 0.18,
+  "alternative_gain": 0.06,
+  "incompatibility_penalty": 0.22,
+  "min_score": 0.02,
+  "max_score": 0.98,
+  "claim_boundary": "Designed contextual component. Not a quantum-specific claim. Promote only through audit witness and controls."
+}
