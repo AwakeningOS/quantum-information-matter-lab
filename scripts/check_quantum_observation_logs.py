@@ -70,6 +70,14 @@ def main() -> None:
     require(v4_summary)
     require(v4_touch)
 
+    boundary_json = ROOT / "data/quantum_observation/quantum_boundary_homeostasis_v0_internal_feedback_seed20260708.json"
+    boundary_summary = ROOT / "data/quantum_observation/quantum_boundary_homeostasis_v0_internal_feedback_seed20260708_summary.csv"
+    boundary_trace = ROOT / "data/quantum_observation/quantum_boundary_homeostasis_v0_internal_feedback_seed20260708_selected_trace.csv"
+    run_cmd([py, "scripts/quantum_observation/quantum_boundary_homeostasis_v0_internal_feedback.py", "--seed", "20260708", "--out", str(boundary_json), "--summary-csv", str(boundary_summary), "--trace-csv", str(boundary_trace)])
+    assert_json(boundary_json, "quantum_boundary_homeostasis_v0_internal_feedback")
+    require(boundary_summary)
+    require(boundary_trace)
+
     print("OK: quantum observation logs regenerated")
 
 
