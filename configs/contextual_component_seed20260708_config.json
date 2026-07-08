@@ -5,13 +5,5 @@
   "memory_decay": 0.92,
   "context_gain": 0.35,
   "incompatibility_penalty": 0.25,
-  "forbidden_claims": [
-    "life-like behavior",
-    "cells",
-    "metabolism",
-    "self-repair",
-    "self-regulation",
-    "quantum advantage",
-    "physical matter synthesis"
-  ]
+  "claim_boundary": "starter contextual component scaffold; promote claims through protocol, raw log, report, status entry, and check"
 }
