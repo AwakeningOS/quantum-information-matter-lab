@@ -20,25 +20,21 @@ This is not merely using contextuality as an external witness.
 
 The goal is to put context structure into the component decision boundary.
 
-## Priority order
+## Priority order and status
 
 ### 1. contextual_membrane_v1_memory_ablation
+
+Status:
+
+```text
+DONE
+Verdict: PASS_MEMORY_DEPENDENT_BOUNDARY
+```
 
 Purpose:
 
 ```text
 test whether contextual membrane decisions really need memory
-```
-
-Variants:
-
-```text
-full
-no_memory
-low_memory_decay
-high_memory_decay
-same-context replay
-same-transition replay
 ```
 
 Judgment:
@@ -49,6 +45,13 @@ FAIL for memory claim if no_memory remains close to full.
 ```
 
 ### 2. contextual_membrane_v2_counterfactual_residue
+
+Status:
+
+```text
+DONE
+Verdict: PASS_COUNTERFACTUAL_RESIDUE
+```
 
 Purpose:
 
@@ -65,14 +68,24 @@ counterfactual residue
 next-pass bias
 ```
 
-This is the closest experiment to the worldview-level idea that unspoken or unselected meaning can remain as residue.
+Lesson:
+
+```text
+The implemented membrane's later decisions depend on residue from unchosen alternatives under the tested ablations.
+```
 
 ### 3. contextual_membrane_v3_order_effect
+
+Status:
+
+```text
+NEXT
+```
 
 Purpose:
 
 ```text
-test whether the same context set changes the membrane depending only on order
+test whether the same context/object multiset changes the membrane depending only on order
 ```
 
 Examples:
@@ -85,7 +98,23 @@ A -> C -> B
 
 PASS if the same materials and frequencies produce different final membrane states only because order changed.
 
+Suggested variants:
+
+```text
+original_order
+reverse_order
+block_shuffle_order
+compatible_preserving_shuffle
+random_order_same_multiset
+```
+
 ### 4. contextual_membrane_v4_joint_boundary
+
+Status:
+
+```text
+PLANNED
+```
 
 Purpose:
 
@@ -106,6 +135,12 @@ PASS if only full joint reproduces the boundary.
 
 ### 5. contextual_reactor_v0_membrane_to_flow
 
+Status:
+
+```text
+PLANNED
+```
+
 Purpose:
 
 ```text
@@ -117,6 +152,12 @@ This is a component propagation test, not a quantum-specific test.
 Run this after v1-v4 make the membrane interesting enough.
 
 ### 6. contextual_membrane_quantum_anchor_probe
+
+Status:
+
+```text
+LAST
+```
 
 Purpose:
 
