@@ -4,16 +4,11 @@ Updated: 2026-07-08
 
 ## Repository role
 
-This repository is a clean lab for contextual information-matter components and quantum-coupled observation models.
+This repository is a clean lab for contextual information-matter components, quantum-coupled observation models, and Q-Cell game prototypes.
 
 ```text
 No code + no raw log = no result.
-```
-
-## Observation line
-
-```text
-watch quantum-coupled parts immersed in one whole-field, then add an inside/outside boundary
+Game prototypes are playable design artifacts, not scientific result claims.
 ```
 
 ## Completed observation experiments
@@ -39,17 +34,8 @@ v4: recovery strength separates stable repair, damped oscillation, overdrive, an
 
 ## Boundary homeostasis v0 lesson
 
-This run starts the inside/outside boundary line.
-
-Main rule:
-
 ```text
 boundary behavior is driven by internal negative feedback, not external toxicity alone
-```
-
-Balance metric:
-
-```text
 homeostasis_balance = target_range_fraction * resource_intake_fraction * efficiency_factor
 ```
 
@@ -71,55 +57,110 @@ measurement_internal_feedback:
   fatigue_final = 0.336000000
   bias_final = 0.246000000
 
-external_reactive_boundary:
-  target_range_fraction = 0.671875000
-  internal_state_sensitivity = 0.052000000
-  homeostasis_balance = 0.339046807
-
-open_boundary:
-  target_range_fraction = 0.382812500
-  resource_intake_fraction = 0.953125000
-  homeostasis_balance = 0.343243804
-
 overclosed_boundary:
   target_range_fraction = 0.914062500
   resource_intake_fraction = 0.101562500
   unnecessary_closure_rate = 0.742187500
   homeostasis_balance = 0.085640657
-
-wrong_target_boundary:
-  target_range_fraction = 0.453125000
-  resource_intake_fraction = 0.765625000
-  homeostasis_balance = 0.285064772
 ```
 
-Interpretation:
+## Q-Cell game direction
+
+The game direction is not pet-only. It is:
 
 ```text
-Coherent internal feedback best balances protection, exchange, and efficiency.
-Measurement internal feedback protects, but leaves higher bias/fatigue and lowers intake.
-External reactive boundary behaves more like an external mirror than a self-boundary.
-Open boundary exchanges but does not protect.
-Overclosed boundary protects but starves exchange.
-Wrong target boundary regulates around the wrong internal range.
+grow -> battle -> destabilize opponent homeostasis -> absorb trait/wave -> transform -> stabilize -> battle again
 ```
 
-Recommended next experiment:
+Core design rule:
 
 ```text
-quantum_boundary_homeostasis_v1_adaptive_boundary_controller
+stronger does not simply mean more stable
+stronger means changed, loaded, and sometimes unstable
 ```
 
-Core rule:
+Absolute mutation rule:
 
 ```text
-Let the boundary tune its own feedback gain from internal error, fatigue, and resource deficit.
-Compare fixed internal feedback against adaptive internal feedback.
-Watch whether adaptive feedback keeps balance high under changing stress without drifting into closure or exhaustion.
+unexpected change must not be pure random mutation
+unexpected change must come from absorbed trait load × receiver state × wave compatibility
+```
+
+Current game files:
+
+```text
+docs/qcell/Q_CELL_ABSORB_GAME_SPEC_v0.md
+prototypes/qcell_absorb_v0.html
+prototypes/README.md
+```
+
+## Q-Cell Absorb prototype v0
+
+Playable artifact:
+
+```text
+prototypes/qcell_absorb_v0.html
+```
+
+Implemented loop:
+
+```text
+player Q-cell vs enemy Q-cell
+correlation-wave battle
+opponent homeostasis disruption
+trait absorption after opponent collapse
+state-dependent mutation / transformation
+```
+
+Implemented battle actions:
+
+```text
+correlation wave
+boundary shell
+purge toxin
+rest cycle
+overdrive flash
+absorb
+```
+
+Absorption uses:
+
+```text
+incoming trait load
+incoming wave pattern
+receiver fatigue/toxicity/damage/overdrive risk
+receiver assimilation stability
+wave compatibility
+```
+
+The outcome bands are:
+
+```text
+stable integration
+altered integration
+rare wave / interference mutation
+rejection
+overdrive transformation
+```
+
+## Recommended next game/prototype step
+
+```text
+qcell_absorb_v1_battle_readability
+```
+
+Core improvements:
+
+```text
+make battle feedback clearer
+add explicit enemy collapse state and victory panel
+show absorption-pressure formula live
+add small reaction codex for discovered wave/outcome pairs
+add one mission: win, absorb, and stabilize without going dormant
 ```
 
 ## Boundary
 
-The quantum-homeostatic results are observation logs.
+Observation results record trajectories; they do not try to prove advantage or promote a hardware claim.
 
-They record trajectories; they do not try to prove advantage or promote a hardware claim.
+Game prototypes are design artifacts that translate qualitative observed behavior into playable form.
