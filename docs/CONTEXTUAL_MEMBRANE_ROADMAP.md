@@ -5,22 +5,13 @@ Updated: 2026-07-08
 ## Contextual component line
 
 ```text
-from a context-looking membrane
-to a memory-bearing boundary
-to a boundary that retains unchosen alternatives
-to an order-sensitive boundary
-to a joint boundary
-to downstream reactor propagation
-to quantum-anchor probing
+boundary -> memory -> residue -> order -> joint -> flow -> witness-format bridge
 ```
 
 ## Quantum homeostatic observation line
 
 ```text
-from a shared classical whole-field
-to quantum-coupled parts inside that field
-to visible pulses of part-part negativity
-to maps of where correlation rises, moves, and dissolves
+whole-field -> quantum-coupled parts -> negativity pulses -> pulse timing map -> local touch response
 ```
 
 ## Completed contextual line
@@ -46,12 +37,6 @@ DONE
 Status: OBSERVATION_LOG
 ```
 
-Purpose:
-
-```text
-watch M, C, R, W as a single 4-qubit density-matrix trajectory immersed in energy/toxicity/pressure
-```
-
 Main observation:
 
 ```text
@@ -59,43 +44,47 @@ direct_entangling_parts creates M-C / C-R / R-W pair-negativity pulses
 field_only_parts keeps pair negativity at zero
 ```
 
-Key numbers:
-
-```text
-direct_entangling_parts neg_M_C_max = 0.126998385
-direct_entangling_parts neg_C_R_max = 0.095496553
-direct_entangling_parts neg_R_W_max = 0.043610747
-
-field_only_parts neg_M_C_max = 0
-field_only_parts neg_C_R_max = 0
-field_only_parts neg_R_W_max = 0
-```
-
 ### 2. quantum_homeostatic_parts_observation_v1_pulse_map
 
 ```text
-NEXT / OBSERVATION MAP
+DONE
+Status: OBSERVATION_LOG
 ```
 
 Purpose:
 
 ```text
-sweep pulse shapes and coupling strengths, then map where negativity pulses appear and dissolve
+separate spatial attenuation from temporal propagation by extracting pair peak/onset times
+```
+
+Main observation:
+
+```text
+left_to_right_wave: M-C -> C-R -> R-W peak lag = +24, +18 at medium scale
+simultaneous_burst: near-simultaneous peak lag = +1, -1 at medium scale
+right_to_left_wave: reversed peak lag = -17, -26 at medium scale
+double_pulse_wave: left-to-right trace reappears with peak lag = +23, +18 at medium scale
+field_only: pair negativity remains zero
+```
+
+### 3. quantum_homeostatic_parts_observation_v2_causal_touch_response
+
+```text
+NEXT / LOCAL TOUCH RESPONSE OBSERVATION
+```
+
+Purpose:
+
+```text
+perturb one part locally while the whole-field is held fixed or slowly varying, then watch whether the response spreads through neighboring links
 ```
 
 Required upgrades:
 
 ```text
-multiple pulse profiles
-multiple coupling regimes
-compact raster output
-pulse onset / peak / decay extraction
-M-C -> C-R -> R-W pulse travel check
-```
-
-## Short summary
-
-```text
-contextual line: boundary -> memory -> residue -> order -> joint -> flow -> witness-format bridge
-observation line: M/C/R/W density matrix -> field-modulated entangling links -> negativity pulse map
+local perturbation of M, C, R, or W
+fixed-field and slow-field variants
+activation response and negativity response
+neighbor-lag extraction
+local-touch vs global-field-only comparison
 ```
