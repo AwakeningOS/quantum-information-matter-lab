@@ -1,0 +1,18 @@
+name: Reproducibility
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  raw-log-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Check bootstrap raw logs
+        run: python scripts/check_raw_logs.py
