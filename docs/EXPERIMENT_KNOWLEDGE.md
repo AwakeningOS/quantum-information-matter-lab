@@ -20,134 +20,114 @@ quantum_homeostatic_parts_observation_v1_pulse_map = OBSERVATION_LOG
 quantum_homeostatic_parts_observation_v2_causal_touch_response = OBSERVATION_LOG
 quantum_homeostatic_parts_observation_v3_recovery_cycle = OBSERVATION_LOG
 quantum_homeostatic_parts_observation_v4_repair_vs_overdrive = OBSERVATION_LOG
+quantum_boundary_homeostasis_v0_internal_feedback = OBSERVATION_LOG
 ```
 
-## quantum_homeostatic_parts_observation_v0 knowledge
+## quantum homeostatic parts line
 
 ```text
-direct_entangling_parts neg_M_C_max = 0.126998385
-direct_entangling_parts neg_C_R_max = 0.095496553
-direct_entangling_parts neg_R_W_max = 0.043610747
-
-field_only_parts neg_M_C_max = 0
-field_only_parts neg_C_R_max = 0
-field_only_parts neg_R_W_max = 0
+v0: direct entangling creates M-C / C-R / R-W pair-negativity pulses; field-only keeps pair negativity at zero.
+v1: spatial attenuation and temporal propagation are separated by peak/onset lags.
+v2: local touch response spreads through neighboring links; global field pulse lights all links together.
+v3: repeated touch exposes cross-touch state variables: coherence, bias, baseline negativity, fatigue.
+v4: recovery strength separates stable repair, damped oscillation, overdrive, and exhausted repair through predeclared mechanical labels.
 ```
 
-## quantum_homeostatic_parts_observation_v1_pulse_map knowledge
-
-```text
-spatial attenuation = which pair is stronger
-temporal propagation = when each pair peaks
-
-left_to_right_wave peak lags = +24, +18
-simultaneous_burst peak lags = +1, -1
-right_to_left_wave peak lags = -17, -26
-```
-
-## quantum_homeostatic_parts_observation_v2_causal_touch_response knowledge
-
-```text
-Touch M: M-C -> C-R -> weak R-W tail
-Touch C: M-C and C-R first, then R-W
-Touch R: C-R and R-W first, then M-C
-Touch W: R-W -> C-R -> weak M-C tail
-Field-only local touch: pair negativity stays zero
-Global field pulse: all links peak together
-```
-
-## quantum_homeostatic_parts_observation_v3_recovery_cycle knowledge
-
-```text
-Full reset removes cross-touch memory and keeps response stable.
-Active recovery under high energy mostly preserves unitary-touch response.
-Measurement touch leaves more population bias and fatigue than unitary touch.
-High toxicity makes recovery harder and turns repeated measurement into strong response decay.
-```
-
-## quantum_homeostatic_parts_observation_v4_repair_vs_overdrive knowledge
+## quantum_boundary_homeostasis_v0_internal_feedback knowledge
 
 ### What was added
 
-v4 defines repair/overdrive labels before running the observation:
+A new inside/outside boundary line.
+
+Main rule:
 
 ```text
-stable_repair
-damped_oscillatory_repair
-overdrive
-collapse_or_exhausted_repair
+boundary behavior is driven by internal negative feedback, not external toxicity alone
 ```
 
-Metrics:
+Balance metric:
 
 ```text
-response_ratio_last_over_first
-overshoot_max
-state_distance_last
-oscillation_envelope_ratio
-bias_last
-fatigue_last
+homeostasis_balance = target_range_fraction * resource_intake_fraction * efficiency_factor
 ```
 
 ### Key observations
 
 ```text
-high_energy + gentle + unitary:
-  response ratio = 0.954003707
-  state_distance_last = 0.0758656072
-  label = stable_repair
+coherent_internal_feedback:
+  target_range_fraction = 0.843750000
+  resource_intake_fraction = 0.695312500
+  homeostasis_balance = 0.487672421
+  internal_state_sensitivity = 0.362000000
+  fatigue_final = 0.084000000
+  bias_final = 0.032000000
 
-high_energy + strong + unitary:
-  response ratio = 1.035908941
-  overshoot_max = 0.174949411
-  oscillation_envelope_ratio = 0.331310936
-  label = damped_oscillatory_repair
+measurement_internal_feedback:
+  target_range_fraction = 0.859375000
+  resource_intake_fraction = 0.546875000
+  homeostasis_balance = 0.364177221
+  fatigue_final = 0.336000000
+  bias_final = 0.246000000
 
-high_energy + oscillatory + unitary:
-  response ratio = 1.081767736
-  overshoot_max = 0.257713327
-  oscillation_envelope_ratio = 0.534286226
-  label = damped_oscillatory_repair
+external_reactive_boundary:
+  target_range_fraction = 0.671875000
+  internal_state_sensitivity = 0.052000000
+  homeostasis_balance = 0.339046807
 
-high_energy + extreme + unitary:
-  state_distance_last = 1.0698560591
-  oscillation_envelope_ratio = 5.290555134
-  bias_last = 0.424455566
-  fatigue_last = 0.648256006
-  label = overdrive
+open_boundary:
+  target_range_fraction = 0.382812500
+  resource_intake_fraction = 0.953125000
+  homeostasis_balance = 0.343243804
 
-high_toxicity + weak + measurement:
-  response ratio = 0.000000000
-  coherence_last = 0.000000000
-  fatigue_last = 0.835481525
-  label = collapse_or_exhausted_repair
+overclosed_boundary:
+  target_range_fraction = 0.914062500
+  resource_intake_fraction = 0.101562500
+  unnecessary_closure_rate = 0.742187500
+  homeostasis_balance = 0.085640657
 
-high_toxicity + oscillatory + unitary:
-  response ratio = 1.312665687
-  overshoot_max = 0.316634425
-  oscillation_envelope_ratio = 1.357167475
-  label = overdrive
+wrong_target_boundary:
+  target_range_fraction = 0.453125000
+  resource_intake_fraction = 0.765625000
+  homeostasis_balance = 0.285064772
 ```
 
 ### Interpretation
 
 ```text
-Gentle recovery can repair without overshoot.
-Strong/oscillatory recovery can ring and then settle when the envelope decays.
-Extreme recovery or toxic oscillatory recovery becomes overdrive when state-distance or envelope grows.
-Weak recovery under toxic measurement can collapse into exhausted repair.
+Coherent internal feedback best balances protection, exchange, and efficiency.
+Measurement internal feedback protects, but leaves higher bias/fatigue and lowers intake.
+External reactive boundary behaves more like an external mirror than a self-boundary.
+Open boundary exchanges but does not protect.
+Overclosed boundary protects but starves exchange.
+Wrong target boundary regulates around the wrong internal range.
+```
+
+### Quantum-coupled response trace
+
+```text
+coherent_internal_feedback:
+  M-C peak time/value = 42 / 0.044800000000
+  C-R peak time/value = 55 / 0.028700000000
+  R-W peak time/value = 69 / 0.017900000000
+  lags = +13, +14
+
+measurement_internal_feedback:
+  M-C peak time/value = 43 / 0.026600000000
+  C-R peak time/value = 57 / 0.014400000000
+  R-W peak time/value = 71 / 0.007200000000
+  lags = +14, +14
 ```
 
 ## Next experiment option
 
 ```text
-quantum_homeostatic_parts_observation_v5_adaptive_recovery_controller
+quantum_boundary_homeostasis_v1_adaptive_boundary_controller
 ```
 
 Required improvements:
 
 ```text
-let recovery gain depend on state-distance and fatigue
-compare fixed recovery against adaptive recovery
-watch whether adaptive recovery avoids both exhaustion and overdrive
+let the boundary tune feedback gain from internal error, fatigue, and resource deficit
+compare fixed internal feedback against adaptive internal feedback
+watch whether adaptive feedback keeps balance high under changing stress without drifting into closure or exhaustion
 ```
