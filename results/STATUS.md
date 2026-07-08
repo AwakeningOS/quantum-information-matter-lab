@@ -41,7 +41,9 @@ META:
 | `results/contextual_membrane_v4_joint_boundary_report_2026-07-08.md` | RAW_LOG_BACKED | CONTEXTUAL_COMPONENT | verdict `PASS_JOINT_BOUNDARY`; no quantum-specific claim |
 | `scripts/contextual/contextual_reactor_v0_membrane_to_flow.py` | RAW_LOG_BACKED | CLASSICAL_COMPONENT | propagation test connecting contextual membrane outputs to reactor release, quality, reservoir, and persistence |
 | `results/contextual_reactor_v0_membrane_to_flow_report_2026-07-08.md` | RAW_LOG_BACKED | CLASSICAL_COMPONENT | verdict `PASS_MEMBRANE_TO_FLOW_PROPAGATION`; no quantum-specific claim |
-| `docs/CONTEXTUAL_MEMBRANE_ROADMAP.md` | META | roadmap | completed v1-v4 membrane line and reactor v0 propagation; quantum-anchor sequence remains planned |
+| `scripts/contextual/contextual_reactor_v1_flow_controls.py` | RAW_LOG_BACKED | CLASSICAL_COMPONENT | hardened multi-seed propagation controls with matched pass-rate, matched signal, additive-boundary, and strong no-membrane controls |
+| `results/contextual_reactor_v1_flow_controls_report_2026-07-08.md` | RAW_LOG_BACKED | CLASSICAL_COMPONENT | verdict `PASS_HARDENED_MEMBRANE_TO_FLOW_CONTROLS`; no quantum-specific claim |
+| `docs/CONTEXTUAL_MEMBRANE_ROADMAP.md` | META | roadmap | completed v1-v4 membrane line plus reactor v0/v1 propagation; quantum-anchor sequence remains planned |
 
 ## Current valid claims
 
@@ -60,5 +62,7 @@ contextual_membrane_v4_joint_boundary is a raw-log-backed designed contextual co
 contextual_membrane_v4_joint_boundary supports only the claim that the implemented membrane decisions require full object/context joint state under the tested controls.
 contextual_reactor_v0_membrane_to_flow is a raw-log-backed designed classical component result.
 contextual_reactor_v0_membrane_to_flow supports only the claim that contextual membrane structure changes downstream reactor release, quality, reservoir, and persistence under the tested controls.
+contextual_reactor_v1_flow_controls is a raw-log-backed designed classical component result.
+contextual_reactor_v1_flow_controls supports only the claim that membrane-to-flow propagation survives multi-seed, matched pass-rate, matched signal, additive-boundary, and strong no-membrane controls under the stated metrics.
 Future quantum-specific claims must be promoted through a separate audit witness and controls.
 ```

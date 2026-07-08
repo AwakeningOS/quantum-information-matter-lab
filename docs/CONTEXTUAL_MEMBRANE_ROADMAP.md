@@ -67,12 +67,6 @@ DONE
 Verdict: PASS_MEMBRANE_TO_FLOW_PROPAGATION
 ```
 
-Purpose:
-
-```text
-test whether contextual membrane decisions propagate downstream to release, quality, reservoir, and persistence
-```
-
 Lesson:
 
 ```text
@@ -84,25 +78,20 @@ The implemented membrane structure propagates into downstream reactor release, q
 Status:
 
 ```text
-NEXT if hardening component propagation
+DONE
+Verdict: PASS_HARDENED_MEMBRANE_TO_FLOW_CONTROLS
 ```
 
 Purpose:
 
 ```text
-stress-test membrane-to-flow propagation with more controls, multiple seeds, and stronger reactor baselines
+stress-test membrane-to-flow propagation with stronger controls, multiple seeds, matched pass-rate, matched signal replay, and stronger reactor baselines
 ```
 
-Suggested variants:
+Lesson:
 
 ```text
-full_membrane_to_reactor
-matched_random_membrane_signal
-matched_pass_rate_membrane_signal
-frozen_membrane_signal
-shuffled_membrane_signal
-strong_reactor_without_membrane
-multi_seed_panel
+The propagation result survives matched pass-rate, matched signal shuffle, matched signal lag, additive-boundary, no-memory, no-counterfactual, and strong reactor-without-membrane controls across 5 seeds.
 ```
 
 ### 7. contextual_membrane_quantum_anchor_probe
@@ -110,7 +99,7 @@ multi_seed_panel
 Status:
 
 ```text
-LAST / SEPARATE
+NEXT / SEPARATE
 ```
 
 Purpose:
@@ -119,7 +108,13 @@ Purpose:
 test whether the contextual membrane decision boundary can be connected to a PM/KCBS-like contextuality witness
 ```
 
-This must remain separate from the component propagation claim.
+Rules:
+
+```text
+Keep the quantum-anchor probe separate from the component propagation claim.
+Do not promote quantum-specific claims unless witness-level controls pass.
+Use the anchor as an audit bridge, not as proof that the classical component was already quantum.
+```
 
 ## Short summary
 
@@ -131,5 +126,5 @@ v3 = order-sensitive boundary
 v4 = joint/non-additive boundary
 reactor v0 = downstream propagation
 reactor v1 = hardened propagation controls
-quantum anchor = connection to real contextuality witness
+quantum anchor = separate connection to real contextuality witness
 ```
