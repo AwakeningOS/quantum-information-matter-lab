@@ -31,19 +31,6 @@ DONE
 Verdict: PASS_MEMORY_DEPENDENT_BOUNDARY
 ```
 
-Purpose:
-
-```text
-test whether contextual membrane decisions really need memory
-```
-
-Judgment:
-
-```text
-PASS if full alone changes trajectory, event timing, quality, and release.
-FAIL for memory claim if no_memory remains close to full.
-```
-
 ### 2. contextual_membrane_v2_counterfactual_residue
 
 Status:
@@ -53,59 +40,26 @@ DONE
 Verdict: PASS_COUNTERFACTUAL_RESIDUE
 ```
 
-Purpose:
-
-```text
-test whether unchosen alternatives leave residue that changes the next membrane decision
-```
-
-Target observables:
-
-```text
-observed path
-unobserved alternatives
-counterfactual residue
-next-pass bias
-```
-
-Lesson:
-
-```text
-The implemented membrane's later decisions depend on residue from unchosen alternatives under the tested ablations.
-```
-
 ### 3. contextual_membrane_v3_order_effect
 
 Status:
 
 ```text
-NEXT
+DONE
+Verdict: PASS_ORDER_EFFECT
 ```
 
 Purpose:
 
 ```text
-test whether the same context/object multiset changes the membrane depending only on order
+test whether the same context/object/u multiset changes the membrane depending only on order
 ```
 
-Examples:
+Lesson:
 
 ```text
-A -> B -> C
-C -> B -> A
-A -> C -> B
-```
-
-PASS if the same materials and frequencies produce different final membrane states only because order changed.
-
-Suggested variants:
-
-```text
-original_order
-reverse_order
-block_shuffle_order
-compatible_preserving_shuffle
-random_order_same_multiset
+The same event multiset produced different membrane trajectories when order changed.
+Order alone changed event timing, downstream release, final membrane state, and residue distribution in the implemented component.
 ```
 
 ### 4. contextual_membrane_v4_joint_boundary
@@ -113,7 +67,7 @@ random_order_same_multiset
 Status:
 
 ```text
-PLANNED
+NEXT
 ```
 
 Purpose:
@@ -127,6 +81,7 @@ Controls:
 ```text
 object-only replay
 context-only replay
+additive object+context model
 pairwise replay
 full joint boundary
 ```
