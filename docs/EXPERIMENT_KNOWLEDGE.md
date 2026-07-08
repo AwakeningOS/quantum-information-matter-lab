@@ -70,129 +70,112 @@ quantum anchor = connection to real contextuality witness
 
 ## contextual_membrane_v0 knowledge
 
-### What was tested
-
-A membrane whose passage score depends on:
-
-```text
-object identity
-readout/question context
-context compatibility
-retained observed outputs
-retained unobserved alternatives
-```
-
-### Controls and variants
-
-```text
-full_contextual
-context_no_memory
-object_only
-object_marginal_replay
-shuffled_context_full
-```
-
-### Result snapshot
-
-```text
-full_contextual object_conditioned_context_score_range_mean = 0.333906636
-full_contextual compatibility_score_gap = 0.285508247
-object_only object_conditioned_context_score_range_mean = 0.0
-object_marginal_replay compatibility_score_gap = 0.055738863
-shuffled_context_full compatibility_score_gap = 0.221874876
-```
-
 ### Lesson
 
 The component-level contextual behavior passed the v0 criteria, but memory necessity was not established.
 
-The context-no-memory variant remained close to full:
-
 ```text
-event_match_to_full = 0.984375
-score_mae_to_full = 0.008596154
+full_contextual object_conditioned_context_score_range_mean = 0.333906636
+full_contextual compatibility_score_gap = 0.285508247
+context_no_memory event_match_to_full = 0.984375
+context_no_memory score_mae_to_full = 0.008596154
 ```
 
 ## contextual_membrane_v1_memory_ablation knowledge
-
-### What was tested
-
-A memory-bearing membrane with ablations:
-
-```text
-full
-no_memory
-low_memory_decay
-high_memory_decay
-same_context_replay
-same_transition_replay
-```
-
-The test included downstream trajectory variables:
-
-```text
-quality
-release
-reservoir
-cumulative_release
-event timing
-```
-
-### Result snapshot
-
-```text
-Verdict = PASS_MEMORY_DEPENDENT_BOUNDARY
-
-full pass_rate = 0.633928571
-no_memory pass_rate = 0.455357143
-
-full mean_quality = 0.680546428
-no_memory mean_quality = 0.341839146
-
-full mean_release = 0.299855464
-no_memory mean_release = 0.085369974
-
-full final_cumulative_release = 153.963406058
-no_memory final_cumulative_release = 52.369918094
-
-no_memory event_match_to_full = 0.8125
-no_memory score_mae_to_full = 0.199107556
-no_memory release_mae_to_full = 0.21448549
-```
 
 ### Lesson
 
 v1 supports the component-level claim that, in the implemented mechanism, dynamic memory changes membrane decisions and downstream quality/release trajectory.
 
-Low memory decay diverged from full, so memory lifetime matters.
-
-High memory decay overshot full, so too much persistence also changes the boundary.
-
-Replay variants stayed event-level different from full, so context/object coupling and order remain important.
-
-### Do not claim
-
 ```text
-Do not claim v1 demonstrates quantum-specific behavior.
-Do not claim v1 demonstrates formal measurement contextuality.
-Do not claim v1 demonstrates biological organization or consciousness.
-Do not claim v1 isolates counterfactual residue alone.
-Do not claim v1 isolates pure order effects alone.
+Verdict = PASS_MEMORY_DEPENDENT_BOUNDARY
+full pass_rate = 0.633928571
+no_memory pass_rate = 0.455357143
+full final_cumulative_release = 153.963406058
+no_memory final_cumulative_release = 52.369918094
+no_memory event_match_to_full = 0.8125
+no_memory score_mae_to_full = 0.199107556
+no_memory release_mae_to_full = 0.21448549
 ```
 
-## Next experiment: contextual_membrane_v2_counterfactual_residue
+Do not claim v1 isolates counterfactual residue alone or pure order effects alone.
 
-The next experiment should isolate unchosen alternatives.
+## contextual_membrane_v2_counterfactual_residue knowledge
 
-Use variants such as:
+### What was tested
+
+A counterfactual-residue membrane with variants:
 
 ```text
 full_observed_and_counterfactual
 observed_only
 counterfactual_only
-no_counterfactual
+no_residue
 counterfactual_sign_flip
-next-pass-bias probe
+counterfactual_shuffle
 ```
 
-Primary success should require counterfactual-residue ablation to change next-pass bias or later membrane decisions while observed-path residue is held fixed.
+The test isolates residue from unchosen alternatives:
+
+```text
+if PASS happened, BLOCK remains as unchosen alternative
+if BLOCK happened, PASS remains as unchosen alternative
+```
+
+### Result snapshot
+
+```text
+Verdict = PASS_COUNTERFACTUAL_RESIDUE
+
+full pass_rate = 0.479910714
+observed_only pass_rate = 0.531250000
+
+full final_cumulative_release = 52.388208985
+observed_only final_cumulative_release = 75.770977236
+
+observed_only event_match_to_full = 0.814732143
+observed_only score_mae_to_full = 0.164462842
+observed_only release_mae_to_full = 0.074669816
+
+full counterfactual_polarity_probe = 0.170622487
+counterfactual_sign_flip counterfactual_polarity_probe = -0.407708026
+counterfactual_shuffle counterfactual_polarity_probe = -0.216989363
+```
+
+### Lesson
+
+v2 supports the component-level claim that, in the implemented mechanism, later membrane decisions depend on residue from unchosen alternatives.
+
+The key directional result:
+
+```text
+previous BLOCK leaves unchosen PASS residue, which raises later score relative to observed_only.
+previous PASS leaves unchosen BLOCK residue, which lowers later score relative to observed_only.
+```
+
+Sign flip and shuffle controls alter the event timing and reverse/destroy the original polarity.
+
+### Do not claim
+
+```text
+Do not claim v2 demonstrates quantum-specific behavior.
+Do not claim v2 demonstrates formal measurement contextuality.
+Do not claim v2 demonstrates biological organization or consciousness.
+Do not claim v2 isolates pure order effects alone.
+```
+
+## Next experiment: contextual_membrane_v3_order_effect
+
+The next experiment should isolate order effects.
+
+Use variants such as:
+
+```text
+original_order
+reverse_order
+block_shuffle_order
+compatible_preserving_shuffle
+random_order_same_multiset
+```
+
+Primary success should require order-only changes to alter final membrane state, event timing, quality/release trajectory, or residue distribution while the context/object multiset is held fixed.

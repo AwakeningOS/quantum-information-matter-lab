@@ -57,15 +57,6 @@ The membrane decision can depend on context/question structure.
 Memory necessity was not established in v0.
 ```
 
-Important v0 metrics:
-
-```text
-full_contextual object_conditioned_context_score_range_mean = 0.333906636
-full_contextual compatibility_score_gap = 0.285508247
-context_no_memory event_match_to_full = 0.984375
-context_no_memory score_mae_to_full = 0.008596154
-```
-
 ### contextual_membrane_v1_memory_ablation
 
 ```text
@@ -85,35 +76,66 @@ Key full vs no_memory comparison:
 ```text
 full pass_rate = 0.633928571
 no_memory pass_rate = 0.455357143
-
-full mean_quality = 0.680546428
-no_memory mean_quality = 0.341839146
-
-full mean_release = 0.299855464
-no_memory mean_release = 0.085369974
-
 full final_cumulative_release = 153.963406058
 no_memory final_cumulative_release = 52.369918094
-
 no_memory event_match_to_full = 0.8125
-no_memory score_mae_to_full = 0.199107556
-no_memory release_mae_to_full = 0.21448549
+```
+
+### contextual_membrane_v2_counterfactual_residue
+
+```text
+Verdict: PASS_COUNTERFACTUAL_RESIDUE
+Layer: CONTEXTUAL_COMPONENT
+```
+
+Main lesson:
+
+```text
+The implemented membrane's later decisions depend on unchosen-alternative residue under the tested ablations.
+```
+
+Key full vs observed_only comparison:
+
+```text
+full pass_rate = 0.479910714
+observed_only pass_rate = 0.531250000
+
+full final_cumulative_release = 52.388208985
+observed_only final_cumulative_release = 75.770977236
+
+observed_only event_match_to_full = 0.814732143
+observed_only score_mae_to_full = 0.164462842
+observed_only release_mae_to_full = 0.074669816
+```
+
+Counterfactual polarity:
+
+```text
+full counterfactual_polarity_probe = 0.170622487
+counterfactual_sign_flip counterfactual_polarity_probe = -0.407708026
+counterfactual_shuffle counterfactual_polarity_probe = -0.216989363
+```
+
+Interpretation:
+
+```text
+previous BLOCK leaves unchosen PASS residue, which raises later score relative to observed_only.
+previous PASS leaves unchosen BLOCK residue, which lowers later score relative to observed_only.
 ```
 
 ## Recommended next experiment
 
 ```text
-contextual_membrane_v2_counterfactual_residue
+contextual_membrane_v3_order_effect
 ```
 
 Core idea:
 
 ```text
-isolate unchosen alternatives
-compare observed residue vs unobserved-alternative residue
-ablate only counterfactual residue
-measure next-pass bias
-test whether output-not-chosen changes later membrane decisions
+use the same context/object multiset
+permute only order
+compare final membrane state, event timing, quality, release, and residue distribution
+require order-only changes to alter final membrane boundary
 ```
 
 ## Claim boundary
