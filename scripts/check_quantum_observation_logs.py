@@ -22,6 +22,11 @@ def assert_json(path: Path, expected: str) -> None:
         raise AssertionError(f"{path}: expected {expected!r}, got {got!r}")
 
 
+def require(path: Path) -> None:
+    if not path.exists():
+        raise AssertionError(f"missing output: {path}")
+
+
 def main() -> None:
     py = sys.executable
 
@@ -30,16 +35,40 @@ def main() -> None:
     v0_summary = ROOT / "data/quantum_observation/quantum_homeostatic_parts_observation_v0_seed20260708_summary.csv"
     run_cmd([py, "scripts/quantum_observation/quantum_homeostatic_parts_observation_v0.py", "--seed", "20260708", "--steps", "180", "--out", str(v0_json), "--csv", str(v0_traj), "--summary-csv", str(v0_summary)])
     assert_json(v0_json, "quantum_homeostatic_parts_observation_v0")
-    if not v0_traj.exists() or not v0_summary.exists():
-        raise AssertionError("missing v0 observation CSV output")
+    require(v0_traj)
+    require(v0_summary)
 
     v1_json = ROOT / "data/quantum_observation/quantum_homeostatic_parts_observation_v1_pulse_map_seed20260708.json"
     v1_summary = ROOT / "data/quantum_observation/quantum_homeostatic_parts_observation_v1_pulse_map_seed20260708_summary.csv"
     v1_trace = ROOT / "data/quantum_observation/quantum_homeostatic_parts_observation_v1_pulse_map_seed20260708_compact_trace.csv"
     run_cmd([py, "scripts/quantum_observation/quantum_homeostatic_parts_observation_v1_pulse_map.py", "--seed", "20260708", "--steps", "120", "--out", str(v1_json), "--summary-csv", str(v1_summary), "--trace-csv", str(v1_trace)])
     assert_json(v1_json, "quantum_homeostatic_parts_observation_v1_pulse_map")
-    if not v1_summary.exists() or not v1_trace.exists():
-        raise AssertionError("missing v1 pulse-map CSV output")
+    require(v1_summary)
+    require(v1_trace)
+
+    v2_json = ROOT / "data/quantum_observation/quantum_homeostatic_parts_observation_v2_causal_touch_response_seed20260708.json"
+    v2_summary = ROOT / "data/quantum_observation/quantum_homeostatic_parts_observation_v2_causal_touch_response_seed20260708_summary.csv"
+    v2_trace = ROOT / "data/quantum_observation/quantum_homeostatic_parts_observation_v2_causal_touch_response_seed20260708_compact_trace.csv"
+    run_cmd([py, "scripts/quantum_observation/quantum_homeostatic_parts_observation_v2_causal_touch_response.py", "--seed", "20260708", "--steps", "120", "--touch-time", "30", "--out", str(v2_json), "--summary-csv", str(v2_summary), "--trace-csv", str(v2_trace)])
+    assert_json(v2_json, "quantum_homeostatic_parts_observation_v2_causal_touch_response")
+    require(v2_summary)
+    require(v2_trace)
+
+    v3_json = ROOT / "data/quantum_observation/quantum_homeostatic_parts_observation_v3_recovery_cycle_seed20260708.json"
+    v3_summary = ROOT / "data/quantum_observation/quantum_homeostatic_parts_observation_v3_recovery_cycle_seed20260708_summary.csv"
+    v3_touch = ROOT / "data/quantum_observation/quantum_homeostatic_parts_observation_v3_recovery_cycle_seed20260708_touch_rows.csv"
+    run_cmd([py, "scripts/quantum_observation/quantum_homeostatic_parts_observation_v3_recovery_cycle.py", "--seed", "20260708", "--out", str(v3_json), "--summary-csv", str(v3_summary), "--touch-csv", str(v3_touch)])
+    assert_json(v3_json, "quantum_homeostatic_parts_observation_v3_recovery_cycle")
+    require(v3_summary)
+    require(v3_touch)
+
+    v4_json = ROOT / "data/quantum_observation/quantum_homeostatic_parts_observation_v4_repair_vs_overdrive_seed20260708.json"
+    v4_summary = ROOT / "data/quantum_observation/quantum_homeostatic_parts_observation_v4_repair_vs_overdrive_seed20260708_summary.csv"
+    v4_touch = ROOT / "data/quantum_observation/quantum_homeostatic_parts_observation_v4_repair_vs_overdrive_seed20260708_selected_touch_rows.csv"
+    run_cmd([py, "scripts/quantum_observation/quantum_homeostatic_parts_observation_v4_repair_vs_overdrive.py", "--seed", "20260708", "--out", str(v4_json), "--summary-csv", str(v4_summary), "--touch-csv", str(v4_touch)])
+    assert_json(v4_json, "quantum_homeostatic_parts_observation_v4_repair_vs_overdrive")
+    require(v4_summary)
+    require(v4_touch)
 
     print("OK: quantum observation logs regenerated")
 
