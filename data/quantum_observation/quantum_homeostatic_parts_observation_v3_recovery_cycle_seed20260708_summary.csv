@@ -1,0 +1,13 @@
+condition,recovery_mode,touch_type,target,n_touches,first_adjacent_mean_peak,last_adjacent_mean_peak,response_ratio_last_over_first,adjacent_peak_delta_last_minus_first,pre_coherence_first,pre_coherence_last,pre_population_bias_first,pre_population_bias_last,pre_baseline_negativity_first,pre_baseline_negativity_last,pre_fatigue_first,pre_fatigue_last,memory_trace_label
+high_energy,passive_recovery,unitary_touch,C,4,0.075935522263,0.034707634089,0.457067168,-0.041227888174,0.86,0.44061376,0.02,0.079337272,0.006,0.016381787,0.02,0.169577969,habituation_like_response_decay
+high_energy,passive_recovery,measurement_touch,C,4,0.066519517502,0.008437906089,0.126848576,-0.058081611413,0.86,0.17337952,0.02,0.381904432,0.006,0.008610307,0.02,0.3423325,habituation_like_response_decay
+high_energy,active_recovery,unitary_touch,C,4,0.075935522263,0.067009545836,0.882453216,-0.008925976427,0.86,0.77489625,0.02,0.015562008,0.006,0.009541564,0.02,0.060639219,active_recovery_holds_response
+high_energy,active_recovery,measurement_touch,C,4,0.066519517502,0.048471783851,0.728685139,-0.018047733651,0.86,0.696815625,0.02,0.085963248,0.006,0.006935591,0.02,0.1255925,partial_recovery_or_mild_decay
+high_energy,full_reset_baseline,unitary_touch,C,4,0.075935522263,0.075935522263,1.0,0.0,0.86,0.86,0.02,0.02,0.006,0.006,0.02,0.02,reset_control_stable
+high_energy,full_reset_baseline,measurement_touch,C,4,0.066519517502,0.066519517502,1.0,0.0,0.86,0.86,0.02,0.02,0.006,0.006,0.02,0.02,reset_control_stable
+high_toxicity,passive_recovery,unitary_touch,C,4,0.046075042049,0.005112266104,0.110955213,-0.040962775945,0.7,0.097454448,0.02,0.124237224,0.006,0.006811337,0.02,0.31387491,habituation_like_response_decay
+high_toxicity,passive_recovery,measurement_touch,C,4,0.040361736835,0.0,0.0,-0.040361736835,0.7,0.0,0.02,0.639302544,0.006,0.0,0.02,0.64554576,habituation_like_response_decay
+high_toxicity,active_recovery,unitary_touch,C,4,0.046075042049,0.031481863624,0.683273682,-0.014593178425,0.7,0.53359325,0.02,0.049947625,0.006,0.00542254,0.02,0.18414279,habituation_like_response_decay
+high_toxicity,active_recovery,measurement_touch,C,4,0.040361736835,0.016303891506,0.40394425,-0.024057845329,0.7,0.424280375,0.02,0.27222325,0.006,0.001189384,0.02,0.38208144,habituation_like_response_decay
+high_toxicity,full_reset_baseline,unitary_touch,C,4,0.046075042049,0.046075042049,1.0,0.0,0.7,0.7,0.02,0.02,0.006,0.006,0.02,0.02,reset_control_stable
+high_toxicity,full_reset_baseline,measurement_touch,C,4,0.040361736835,0.040361736835,1.0,0.0,0.7,0.7,0.02,0.02,0.006,0.006,0.02,0.02,reset_control_stable
