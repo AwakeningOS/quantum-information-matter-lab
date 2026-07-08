@@ -54,6 +54,7 @@ META:
 | `results/quantum_boundary_homeostasis_v0_internal_feedback_report_2026-07-08.md` | OBSERVATION_LOG | QUANTUM_OBSERVATION | records coherent vs measurement internal feedback, external-reactive/open/overclosed/wrong-target controls, target range, intake, work, balance, and internal-state sensitivity |
 | `docs/qcell/Q_CELL_ABSORB_GAME_SPEC_v0.md` | GAME_PROTOTYPE | Q_CELL_GAME | game design spec for Q-Cell assimilation: battle, absorption, and state-dependent transformation |
 | `prototypes/qcell_absorb_v0.html` | GAME_PROTOTYPE | Q_CELL_GAME | standalone browser prototype with correlation-wave battle and state-dependent trait absorption |
+| `prototypes/qcell_absorb_v1_battle_readability.html` | GAME_PROTOTYPE | Q_CELL_GAME | readability prototype adding objective banner, action deltas, absorption prediction, absorbable state, and reaction codex |
 | `prototypes/README.md` | META | prototype | prototype index |
 | `docs/CONTEXTUAL_MEMBRANE_ROADMAP.md` | META | roadmap | contextual line plus quantum homeostatic observation line |
 
@@ -69,5 +70,6 @@ quantum_homeostatic_parts_observation_v3_recovery_cycle records repeated-touch r
 quantum_homeostatic_parts_observation_v4_repair_vs_overdrive records recovery-strength trajectories using predeclared mechanical labels: gentle recovery can stay stable, strong/oscillatory recovery can damp, extreme or toxic oscillatory recovery can become overdrive, and weak toxic measurement recovery can collapse.
 quantum_boundary_homeostasis_v0_internal_feedback starts the inside/outside boundary line: coherent internal feedback best balances protection, exchange, and efficiency; measurement feedback protects with higher bias/fatigue; external-reactive/open/overclosed/wrong-target controls fail in distinct ways.
 Q-Cell Absorb prototype v0 is a game prototype, not a result claim: it makes correlation-wave battle and state-dependent absorption playable in a standalone HTML file.
+Q-Cell Absorb prototype v1 improves battle readability by translating button presses into visible state deltas and absorption risk prediction.
 Future quantum-specific claims must be promoted through a separate real witness or hardware-backed audit.
 ```
