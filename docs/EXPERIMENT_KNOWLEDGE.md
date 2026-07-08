@@ -33,125 +33,48 @@ v3 = order-sensitive boundary
 v4 = joint/non-additive boundary
 reactor v0 = downstream propagation
 reactor v1 = hardened propagation controls
-quantum anchor = connection to real contextuality witness
+quantum anchor = separate audit bridge to witness logic
 ```
 
-## contextual_membrane_v0 knowledge
+## Earlier component knowledge
 
 ```text
-Verdict = PASS_COMPONENT_BEHAVIOR
-full_contextual object_conditioned_context_score_range_mean = 0.333906636
-full_contextual compatibility_score_gap = 0.285508247
-context_no_memory event_match_to_full = 0.984375
+contextual_membrane_v0 = PASS_COMPONENT_BEHAVIOR
+contextual_membrane_v1_memory_ablation = PASS_MEMORY_DEPENDENT_BOUNDARY
+contextual_membrane_v2_counterfactual_residue = PASS_COUNTERFACTUAL_RESIDUE
+contextual_membrane_v3_order_effect = PASS_ORDER_EFFECT
+contextual_membrane_v4_joint_boundary = PASS_JOINT_BOUNDARY
+contextual_reactor_v0_membrane_to_flow = PASS_MEMBRANE_TO_FLOW_PROPAGATION
+contextual_reactor_v1_flow_controls = PASS_HARDENED_MEMBRANE_TO_FLOW_CONTROLS
 ```
 
-Lesson:
+Core reactor v1 lesson:
 
 ```text
-The membrane decision can depend on context/question structure.
-Memory necessity was not established in v0.
+A contextual membrane can control the flow of a downstream reaction field in this designed component.
+This result survived multi-seed, matched pass-rate, matched signal, additive-boundary, and strong no-membrane controls.
 ```
 
-## contextual_membrane_v1_memory_ablation knowledge
-
-```text
-Verdict = PASS_MEMORY_DEPENDENT_BOUNDARY
-full pass_rate = 0.633928571
-no_memory pass_rate = 0.455357143
-full final_cumulative_release = 153.963406058
-no_memory final_cumulative_release = 52.369918094
-no_memory event_match_to_full = 0.8125
-```
-
-Lesson:
-
-```text
-Dynamic memory changes membrane decisions and downstream quality/release trajectory.
-```
-
-## contextual_membrane_v2_counterfactual_residue knowledge
-
-```text
-Verdict = PASS_COUNTERFACTUAL_RESIDUE
-full counterfactual_polarity_probe = 0.170622487
-counterfactual_sign_flip counterfactual_polarity_probe = -0.407708026
-counterfactual_shuffle counterfactual_polarity_probe = -0.216989363
-```
-
-Lesson:
-
-```text
-Unchosen alternatives leave directional residue that changes later membrane decisions.
-```
-
-## contextual_membrane_v3_order_effect knowledge
-
-```text
-Verdict = PASS_ORDER_EFFECT
-original_order final_cumulative_release = 145.156796757
-random_order_same_multiset final_cumulative_release = 115.454200271
-context_sorted_order final_cumulative_release = 293.695236578
-```
-
-Lesson:
-
-```text
-Order alone can alter event timing, downstream release trajectory, final membrane state, and residue distribution.
-```
-
-## contextual_membrane_v4_joint_boundary knowledge
-
-```text
-Verdict = PASS_JOINT_BOUNDARY
-full_joint_boundary final_cumulative_release = 103.696477783
-object_only_replay final_cumulative_release = 17.522951078
-context_only_replay final_cumulative_release = 12.540111148
-additive_object_context_model final_cumulative_release = 13.964177586
-static_pairwise_replay final_cumulative_release = 36.327646821
-joint_shuffle_control final_cumulative_release = 41.956207828
-```
-
-Lesson:
-
-```text
-object alone is not enough
-context alone is not enough
-object + context as additive factors is not enough
-static pair identity is not enough
-wrong joint key is not enough
-```
-
-## contextual_reactor_v0_membrane_to_flow knowledge
-
-```text
-Verdict = PASS_MEMBRANE_TO_FLOW_PROPAGATION
-full_membrane_to_reactor final_persistence = 5.769240129
-reactor_without_membrane final_persistence = 0.894988371
-full_membrane_to_reactor final_cumulative_release = 38.849451729
-reactor_without_membrane final_cumulative_release = 10.431454452
-```
-
-Lesson:
-
-```text
-The implemented membrane structure propagates into downstream release, quality, reservoir, and persistence under the tested controls.
-```
-
-## contextual_reactor_v1_flow_controls knowledge
+## contextual_membrane_quantum_anchor_probe knowledge
 
 ### What was tested
 
-Hardened propagation controls:
+A witness-shaped audit bridge using:
 
 ```text
-full_membrane_to_reactor
-no_memory_membrane_to_reactor
-no_counterfactual_membrane_to_reactor
-matched_pass_rate_random_membrane
-matched_signal_shuffle_replay
-matched_signal_lag_replay
-additive_boundary_membrane_to_reactor
-strong_reactor_without_membrane
+KCBS-like five-cycle surrogate
+PM-like parity surrogate
+```
+
+Variants:
+
+```text
+full_membrane_anchor
+additive_boundary_anchor
+same_marginals_replay
+shuffled_context_anchor
+noncontextual_hidden_state_fit
+strong_classical_anchor_baseline
 ```
 
 Multi-seed panel:
@@ -167,62 +90,50 @@ Multi-seed panel:
 ### Result snapshot
 
 ```text
-Verdict = PASS_HARDENED_MEMBRANE_TO_FLOW_CONTROLS
+Verdict = PASS_ANCHOR_CANDIDATE_SURROGATE_NOT_QUANTUM
 
-full_membrane_to_reactor final_quality_mean = 1.308064781
-full_membrane_to_reactor final_persistence_mean = 20.400910610
-full_membrane_to_reactor final_cumulative_release_mean = 100.992143180
+full_membrane_anchor kcbs_anchor_sum_mean = 2.272656250
+additive_boundary_anchor kcbs_anchor_sum_mean = 1.632812500
+same_marginals_replay kcbs_anchor_sum_mean = 1.534375000
+shuffled_context_anchor kcbs_anchor_sum_mean = 2.040625000
+noncontextual_hidden_state_fit kcbs_anchor_sum_mean = 1.746875000
+strong_classical_anchor_baseline kcbs_anchor_sum_mean = 1.864062500
 
-matched_pass_rate_random_membrane final_persistence_mean = 5.114475169
-matched_signal_shuffle_replay final_persistence_mean = 9.438825659
-matched_signal_lag_replay final_persistence_mean = 11.981202902
-strong_reactor_without_membrane final_persistence_mean = 10.167187854
-
-matched_pass_rate_random_membrane final_cumulative_release_mean = 45.316304998
-matched_signal_shuffle_replay final_cumulative_release_mean = 76.914353974
-matched_signal_lag_replay final_cumulative_release_mean = 79.115226502
-strong_reactor_without_membrane final_cumulative_release_mean = 52.936920966
-```
-
-### Win counts
-
-```text
-full wins final quality against every control in all 5 seeds
-full wins final persistence against every control in all 5 seeds
-full wins final cumulative release against every control in all 5 seeds
+full_membrane_anchor pm_parity_accuracy_mean = 0.859765625
+additive_boundary_anchor pm_parity_accuracy_mean = 0.616015625
+same_marginals_replay pm_parity_accuracy_mean = 0.611328125
+shuffled_context_anchor pm_parity_accuracy_mean = 0.664713542
+noncontextual_hidden_state_fit pm_parity_accuracy_mean = 0.640885417
+strong_classical_anchor_baseline pm_parity_accuracy_mean = 0.701953125
 ```
 
 ### Lesson
 
-reactor v1 supports the component-level claim that membrane-to-flow propagation is not reducible to:
+The implemented membrane boundary can be mapped to a PM/KCBS-like surrogate audit pattern that survives additive, same-marginal, shuffled-context, noncontextual-fit, and strong-classical controls.
 
-```text
-same pass rate
-same signal distribution
-lagged signal replay
-additive object/context boundary
-stronger reactor dynamics without membrane state
-```
-
-This hardens the classical component claim:
-
-```text
-A contextual membrane can control the flow of a downstream reaction field in this designed component.
-```
+This is only an anchor-candidate result.
 
 ### Do not claim
 
 ```text
-Do not claim reactor v1 demonstrates quantum-specific behavior.
-Do not claim reactor v1 demonstrates formal measurement contextuality.
-Do not claim reactor v1 demonstrates biological organization or consciousness.
-Do not claim reactor v1 demonstrates matter synthesis.
+Do not claim this demonstrates quantum-specific behavior.
+Do not claim this demonstrates formal measurement contextuality.
+Do not claim this is hardware-backed.
+Do not claim this demonstrates biological organization or consciousness.
+Do not claim this demonstrates matter synthesis.
 ```
 
 ## Next experiment option
 
 ```text
-contextual_membrane_quantum_anchor_probe
+contextual_membrane_quantum_anchor_probe_v1
 ```
 
-Keep this separate from the component propagation claim. Treat it as an audit bridge to PM/KCBS-like witness logic, not as a continuation of the classical component result.
+Required improvements:
+
+```text
+replace surrogate scores with explicit witness tables
+add no-disturbance / marginal-consistency checks
+add noncontextual polytope or exhaustive deterministic assignment bound checks
+optionally map to existing PM/KCBS hardware-backed result structure
+```

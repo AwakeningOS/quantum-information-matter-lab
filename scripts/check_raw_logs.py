@@ -35,107 +35,53 @@ def main() -> None:
 
     micro_json = ROOT / "data/microreactor/information_microreactor_sandbox_seed20260708.json"
     micro_csv = ROOT / "data/microreactor/information_microreactor_sandbox_seed20260708_summary.csv"
-    run_cmd([
-        py,
-        "scripts/phenomenology/information_microreactor_sandbox.py",
-        "--seed", "20260708",
-        "--out", str(micro_json),
-        "--csv", str(micro_csv),
-    ])
+    run_cmd([py, "scripts/phenomenology/information_microreactor_sandbox.py", "--seed", "20260708", "--out", str(micro_json), "--csv", str(micro_csv)])
     assert_json(micro_json, "information_microreactor_sandbox")
     if not micro_csv.exists():
         raise AssertionError(f"missing CSV: {micro_csv}")
 
     contextual_json = ROOT / "data/contextual/contextual_component_seed20260708.json"
-    run_cmd([
-        py,
-        "scripts/contextual/contextual_component_skeleton.py",
-        "--seed", "20260708",
-        "--steps", "64",
-        "--out", str(contextual_json),
-    ])
+    run_cmd([py, "scripts/contextual/contextual_component_skeleton.py", "--seed", "20260708", "--steps", "64", "--out", str(contextual_json)])
     assert_json(contextual_json, "contextual_component_skeleton")
 
     membrane_json = ROOT / "data/contextual/contextual_membrane_v0_seed20260708.json"
     membrane_csv = ROOT / "data/contextual/contextual_membrane_v0_seed20260708_rows.csv"
-    run_cmd([
-        py,
-        "scripts/contextual/contextual_membrane_v0.py",
-        "--seed", "20260708",
-        "--steps", "64",
-        "--out", str(membrane_json),
-        "--csv", str(membrane_csv),
-    ])
+    run_cmd([py, "scripts/contextual/contextual_membrane_v0.py", "--seed", "20260708", "--steps", "64", "--out", str(membrane_json), "--csv", str(membrane_csv)])
     assert_json(membrane_json, "contextual_membrane_v0")
     if not membrane_csv.exists():
         raise AssertionError(f"missing CSV: {membrane_csv}")
 
     v1_json = ROOT / "data/contextual/contextual_membrane_v1_memory_ablation_seed20260708.json"
     v1_csv = ROOT / "data/contextual/contextual_membrane_v1_memory_ablation_seed20260708_summary.csv"
-    run_cmd([
-        py,
-        "scripts/contextual/contextual_membrane_v1_memory_ablation.py",
-        "--seed", "20260708",
-        "--steps", "512",
-        "--out", str(v1_json),
-        "--csv", str(v1_csv),
-    ])
+    run_cmd([py, "scripts/contextual/contextual_membrane_v1_memory_ablation.py", "--seed", "20260708", "--steps", "512", "--out", str(v1_json), "--csv", str(v1_csv)])
     assert_json(v1_json, "contextual_membrane_v1_memory_ablation")
     if not v1_csv.exists():
         raise AssertionError(f"missing CSV: {v1_csv}")
 
     v2_json = ROOT / "data/contextual/contextual_membrane_v2_counterfactual_residue_seed20260708.json"
     v2_csv = ROOT / "data/contextual/contextual_membrane_v2_counterfactual_residue_seed20260708_summary.csv"
-    run_cmd([
-        py,
-        "scripts/contextual/contextual_membrane_v2_counterfactual_residue.py",
-        "--seed", "20260708",
-        "--steps", "512",
-        "--out", str(v2_json),
-        "--csv", str(v2_csv),
-    ])
+    run_cmd([py, "scripts/contextual/contextual_membrane_v2_counterfactual_residue.py", "--seed", "20260708", "--steps", "512", "--out", str(v2_json), "--csv", str(v2_csv)])
     assert_json(v2_json, "contextual_membrane_v2_counterfactual_residue")
     if not v2_csv.exists():
         raise AssertionError(f"missing CSV: {v2_csv}")
 
     v3_json = ROOT / "data/contextual/contextual_membrane_v3_order_effect_seed20260708.json"
     v3_csv = ROOT / "data/contextual/contextual_membrane_v3_order_effect_seed20260708_summary.csv"
-    run_cmd([
-        py,
-        "scripts/contextual/contextual_membrane_v3_order_effect.py",
-        "--seed", "20260708",
-        "--steps", "512",
-        "--out", str(v3_json),
-        "--csv", str(v3_csv),
-    ])
+    run_cmd([py, "scripts/contextual/contextual_membrane_v3_order_effect.py", "--seed", "20260708", "--steps", "512", "--out", str(v3_json), "--csv", str(v3_csv)])
     assert_json(v3_json, "contextual_membrane_v3_order_effect")
     if not v3_csv.exists():
         raise AssertionError(f"missing CSV: {v3_csv}")
 
     v4_json = ROOT / "data/contextual/contextual_membrane_v4_joint_boundary_seed20260708.json"
     v4_csv = ROOT / "data/contextual/contextual_membrane_v4_joint_boundary_seed20260708_summary.csv"
-    run_cmd([
-        py,
-        "scripts/contextual/contextual_membrane_v4_joint_boundary.py",
-        "--seed", "20260708",
-        "--steps", "512",
-        "--out", str(v4_json),
-        "--csv", str(v4_csv),
-    ])
+    run_cmd([py, "scripts/contextual/contextual_membrane_v4_joint_boundary.py", "--seed", "20260708", "--steps", "512", "--out", str(v4_json), "--csv", str(v4_csv)])
     assert_json(v4_json, "contextual_membrane_v4_joint_boundary")
     if not v4_csv.exists():
         raise AssertionError(f"missing CSV: {v4_csv}")
 
     reactor_json = ROOT / "data/contextual/contextual_reactor_v0_membrane_to_flow_seed20260708.json"
     reactor_csv = ROOT / "data/contextual/contextual_reactor_v0_membrane_to_flow_seed20260708_summary.csv"
-    run_cmd([
-        py,
-        "scripts/contextual/contextual_reactor_v0_membrane_to_flow.py",
-        "--seed", "20260708",
-        "--steps", "512",
-        "--out", str(reactor_json),
-        "--csv", str(reactor_csv),
-    ])
+    run_cmd([py, "scripts/contextual/contextual_reactor_v0_membrane_to_flow.py", "--seed", "20260708", "--steps", "512", "--out", str(reactor_json), "--csv", str(reactor_csv)])
     assert_json(reactor_json, "contextual_reactor_v0_membrane_to_flow")
     if not reactor_csv.exists():
         raise AssertionError(f"missing CSV: {reactor_csv}")
@@ -143,20 +89,22 @@ def main() -> None:
     reactor_v1_json = ROOT / "data/contextual/contextual_reactor_v1_flow_controls_seed20260708.json"
     reactor_v1_csv = ROOT / "data/contextual/contextual_reactor_v1_flow_controls_seed20260708_aggregate.csv"
     reactor_v1_seed_csv = ROOT / "data/contextual/contextual_reactor_v1_flow_controls_seed20260708_seed_summary.csv"
-    run_cmd([
-        py,
-        "scripts/contextual/contextual_reactor_v1_flow_controls.py",
-        "--seed", "20260708",
-        "--steps", "512",
-        "--out", str(reactor_v1_json),
-        "--csv", str(reactor_v1_csv),
-        "--seed-csv", str(reactor_v1_seed_csv),
-    ])
+    run_cmd([py, "scripts/contextual/contextual_reactor_v1_flow_controls.py", "--seed", "20260708", "--steps", "512", "--out", str(reactor_v1_json), "--csv", str(reactor_v1_csv), "--seed-csv", str(reactor_v1_seed_csv)])
     assert_json(reactor_v1_json, "contextual_reactor_v1_flow_controls")
     if not reactor_v1_csv.exists():
         raise AssertionError(f"missing CSV: {reactor_v1_csv}")
     if not reactor_v1_seed_csv.exists():
         raise AssertionError(f"missing CSV: {reactor_v1_seed_csv}")
+
+    anchor_json = ROOT / "data/contextual/contextual_membrane_quantum_anchor_probe_seed20260708.json"
+    anchor_csv = ROOT / "data/contextual/contextual_membrane_quantum_anchor_probe_seed20260708_aggregate.csv"
+    anchor_seed_csv = ROOT / "data/contextual/contextual_membrane_quantum_anchor_probe_seed20260708_seed_summary.csv"
+    run_cmd([py, "scripts/contextual/contextual_membrane_quantum_anchor_probe.py", "--seed", "20260708", "--trials-per-context", "256", "--out", str(anchor_json), "--csv", str(anchor_csv), "--seed-csv", str(anchor_seed_csv)])
+    assert_json(anchor_json, "contextual_membrane_quantum_anchor_probe")
+    if not anchor_csv.exists():
+        raise AssertionError(f"missing CSV: {anchor_csv}")
+    if not anchor_seed_csv.exists():
+        raise AssertionError(f"missing CSV: {anchor_seed_csv}")
 
     print("OK: raw-log checks passed")
 
