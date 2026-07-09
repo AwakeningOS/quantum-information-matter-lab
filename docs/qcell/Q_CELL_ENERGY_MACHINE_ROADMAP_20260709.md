@@ -754,6 +754,30 @@ charge explicit store cost separately
 then rerun structure-maintenance-cost experiment
 ```
 
+Repair actuator audit v0:
+
+```text
+scripts/quantum_observation/qcell_repair_actuator_audit_v0_gpu.py
+results/qcell_repair_actuator_audit_v0_report_2026-07-10.md
+```
+
+Readout:
+
+```text
+population_fixed_offdiag_restore pass_rate = 0.933333
+phase_only_alignment pass_rate = 0.967083
+diagonal_phase_unitary_alignment pass_rate = 0.130417
+```
+
+Interpretation:
+
+```text
+no candidate fully passed
+population/phase restore candidates can violate positivity
+diagonal unitary is clean but does not reliably improve structure
+structure-maintenance-cost full run remains blocked
+```
+
 ### Step 5 — Selected hardware observations
 
 Do not send the full map to a QPU. Select a small preregistered subset after
