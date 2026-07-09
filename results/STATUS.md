@@ -108,7 +108,6 @@ META:
 | `experiments/qcell_battery_powered_controller_v0_protocol_20260710.md` | OBSERVATION_LOG | QUANTUM_OBSERVATION | protocol for finite controller-reservoir actuator-budget test |
 | `scripts/quantum_observation/qcell_battery_powered_controller_v0_gpu.py` | OBSERVATION_LOG | QUANTUM_OBSERVATION | CUDA finite-M controller-reservoir runner with per-grid checkpoint resume |
 | `scripts/quantum_observation/qcell_battery_powered_controller_v0_postprocess.py` | OBSERVATION_LOG | QUANTUM_OBSERVATION | compact postprocessor for battery-powered controller run |
-| `data/quantum_observation/qcell_battery_powered_controller_v0_grid_summary.csv` | OBSERVATION_LOG | QUANTUM_OBSERVATION | compact finite-M grid/controller/kappa/reservoir summary |
 | `data/quantum_observation/qcell_battery_powered_controller_v0_threshold_summary.csv` | OBSERVATION_LOG | QUANTUM_OBSERVATION | threshold summary for evolved controller finite-reservoir survival |
 | `data/quantum_observation/qcell_battery_powered_controller_v0_manifest.json` | META | QUANTUM_OBSERVATION | battery-powered controller execution shape and validation metadata |
 | `results/qcell_battery_powered_controller_v0_report_2026-07-10.md` | OBSERVATION_LOG | QUANTUM_OBSERVATION | finite controller-reservoir report; QFCBM_0988 remains robust under finite M while QFCBM_0399 remains fragile |

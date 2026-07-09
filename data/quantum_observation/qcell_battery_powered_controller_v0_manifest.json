@@ -99,14 +99,19 @@
   "wall_seconds": 1775.8845129013062,
   "model_note": "finite actuator budget only; signal/computation/switching costs not modelled",
   "input_seed_summary": "/home/youthk/work/qcell_experiment_outputs/qcell_battery_powered_controller_v0_outputs/qcell_battery_powered_controller_v0_seed_summary.csv",
-  "postprocess_outputs": [
+  "postprocess_outputs_generated_locally": [
     "qcell_battery_powered_controller_v0_grid_summary.csv",
     "qcell_battery_powered_controller_v0_threshold_summary.csv",
     "qcell_battery_powered_controller_v0_manifest.json"
+  ],
+  "committed_outputs": [
+    "qcell_battery_powered_controller_v0_threshold_summary.csv",
+    "qcell_battery_powered_controller_v0_manifest.json",
+    "qcell_battery_powered_controller_v0_report_2026-07-10.md"
   ],
   "n_seed_rows": 43380,
   "max_residual": 8.72635297355373e-14,
   "max_emitted_when_starved_cycles": 0.0,
   "zero_battery_dynamic_angle_max": 0.0,
-  "note": "seed-level summary remains local; committed outputs are compact postprocessed summaries"
+  "note": "seed-level and full grid summary outputs remain local or reproducible by script; committed outputs are code, protocol, manifest, report, and threshold excerpt"
 }
