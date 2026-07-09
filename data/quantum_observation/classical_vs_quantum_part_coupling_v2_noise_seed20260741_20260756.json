@@ -1,0 +1,76 @@
+{
+  "experiment": "classical_vs_quantum_part_coupling_v2_noise_model",
+  "date": "2026-07-09",
+  "status": "OBSERVATION_LOG",
+  "protocol": "experiments/classical_vs_quantum_part_coupling_v2_noise_protocol_20260709.md",
+  "summary_csv": "data/quantum_observation/classical_vs_quantum_part_coupling_v2_noise_seed20260741_20260756_summary.csv",
+  "config": {
+    "shots_per_seed": 4096,
+    "noise_seeds": [20260741, 20260742, 20260743, 20260744, 20260745, 20260746, 20260747, 20260748, 20260749, 20260750, 20260751, 20260752, 20260753, 20260754, 20260755, 20260756],
+    "inference_unit": "seed",
+    "bootstrap_resamples": 10000,
+    "estimator": "oriented_phase_effect_P1W = P1_W(phaseM=0,M perturb) - P1_W(phaseM=pi/2,M perturb)",
+    "profiles": {
+      "none": {"p_dephase_layer": 0.0, "p_depolarize_1q": 0.0, "p_depolarize_2q": 0.0, "p_readout_flip": 0.0},
+      "light": {"p_dephase_layer": 0.003, "p_depolarize_1q": 0.001, "p_depolarize_2q": 0.004, "p_readout_flip": 0.01},
+      "medium": {"p_dephase_layer": 0.008, "p_depolarize_1q": 0.003, "p_depolarize_2q": 0.012, "p_readout_flip": 0.025},
+      "heavy": {"p_dephase_layer": 0.018, "p_depolarize_1q": 0.007, "p_depolarize_2q": 0.03, "p_readout_flip": 0.05}
+    }
+  },
+  "summary": [
+    {"profile": "none", "arm": "quantum_field_only", "exact": 0.0, "mean": -0.005005, "ci": [-0.010559, 0.001344], "signs": "+4/-12", "floor_component": true},
+    {"profile": "none", "arm": "quantum_no_entangle", "exact": 0.0, "mean": 0.001663, "ci": [-0.002838, 0.006317], "signs": "+9/-7", "floor_component": true},
+    {"profile": "none", "arm": "quantum_direct_coupled", "exact": 0.046132, "mean": 0.049835, "ci": [0.045914, 0.054184], "signs": "+16/-0"},
+    {"profile": "none", "arm": "quantum_dephased_control", "exact": 0.000115, "mean": 0.000183, "ci": [-0.006088, 0.006912], "signs": "+9/-7", "floor_component": true},
+
+    {"profile": "light", "arm": "quantum_field_only", "exact": 0.0, "mean": -0.001266, "ci": [-0.007156, 0.004624], "signs": "+6/-9", "floor_component": true},
+    {"profile": "light", "arm": "quantum_no_entangle", "exact": 0.0, "mean": 0.001144, "ci": [-0.002319, 0.004853], "signs": "+9/-7", "floor_component": true},
+    {"profile": "light", "arm": "quantum_direct_coupled", "exact": 0.038029, "mean": 0.040390, "ci": [0.037445, 0.043290], "signs": "+16/-0"},
+    {"profile": "light", "arm": "quantum_dephased_control", "exact": 0.000095, "mean": -0.001846, "ci": [-0.008011, 0.004211], "signs": "+8/-8", "floor_component": true},
+
+    {"profile": "medium", "arm": "quantum_field_only", "exact": 0.0, "mean": 0.002594, "ci": [-0.001801, 0.006577], "signs": "+11/-5", "floor_component": true},
+    {"profile": "medium", "arm": "quantum_no_entangle", "exact": 0.0, "mean": -0.003723, "ci": [-0.009018, 0.001572], "signs": "+5/-11", "floor_component": true},
+    {"profile": "medium", "arm": "quantum_direct_coupled", "exact": 0.026703, "mean": 0.026520, "ci": [0.023819, 0.029327], "signs": "+16/-0"},
+    {"profile": "medium", "arm": "quantum_dephased_control", "exact": 0.000068, "mean": -0.002838, "ci": [-0.007416, 0.001556], "signs": "+6/-10", "floor_component": true},
+
+    {"profile": "heavy", "arm": "quantum_field_only", "exact": 0.0, "mean": -0.000504, "ci": [-0.006668, 0.005280], "signs": "+8/-8", "floor_component": true},
+    {"profile": "heavy", "arm": "quantum_no_entangle", "exact": 0.0, "mean": 0.005737, "ci": [0.001465, 0.009460], "signs": "+13/-3", "floor_component": true},
+    {"profile": "heavy", "arm": "quantum_direct_coupled", "exact": 0.012789, "mean": 0.015442, "ci": [0.009781, 0.020599], "signs": "+14/-2"},
+    {"profile": "heavy", "arm": "quantum_dephased_control", "exact": 0.000033, "mean": 0.000748, "ci": [-0.005829, 0.007904], "signs": "+6/-9", "floor_component": true}
+  ],
+  "comparisons": {
+    "none": {
+      "quantum_no_entangle": {"direct_minus_control_mean": 0.048213, "ci": [0.042603, 0.053940], "U": "256/256", "p": 1.6636709775209934e-9, "gap": 0.018555},
+      "quantum_field_only": {"direct_minus_control_mean": 0.054906, "ci": [0.046753, 0.062805], "U": "256/256", "p": 1.6636709775209934e-9, "gap": 0.013428},
+      "quantum_dephased_control": {"direct_minus_control_mean": 0.049730, "ci": [0.042343, 0.057220], "U": "256/256", "p": 1.6636709775209934e-9, "gap": 0.005859}
+    },
+    "light": {
+      "quantum_no_entangle": {"direct_minus_control_mean": 0.039256, "ci": [0.033676, 0.044205], "U": "256/256", "p": 1.6636709775209934e-9, "gap": 0.010010},
+      "quantum_field_only": {"direct_minus_control_mean": 0.041652, "ci": [0.034485, 0.048965], "U": "256/256", "p": 1.6636709775209934e-9, "gap": 0.005371},
+      "quantum_dephased_control": {"direct_minus_control_mean": 0.042241, "ci": [0.036240, 0.048706], "U": "256/256", "p": 1.6636709775209934e-9, "gap": 0.013184}
+    },
+    "medium": {
+      "quantum_no_entangle": {"direct_minus_control_mean": 0.030196, "ci": [0.024368, 0.035904], "U": "252/256", "p": null, "gap": -0.001953},
+      "quantum_field_only": {"direct_minus_control_mean": 0.023937, "ci": [0.019912, 0.028412], "U": "256/256", "p": 1.6636709775209934e-9, "gap": 0.005371},
+      "quantum_dephased_control": {"direct_minus_control_mean": 0.029318, "ci": [0.023865, 0.034500], "U": "256/256", "p": 1.6636709775209934e-9, "gap": 0.005859}
+    },
+    "heavy": {
+      "quantum_no_entangle": {"direct_minus_control_mean": 0.009654, "ci": [0.002899, 0.016006], "U": "193.5/256", "p": null, "gap": -0.028564},
+      "quantum_field_only": {"direct_minus_control_mean": 0.015968, "ci": [0.007721, 0.023972], "U": "212/256", "p": null, "gap": -0.026855},
+      "quantum_dephased_control": {"direct_minus_control_mean": 0.014750, "ci": [0.005005, 0.023697], "U": "201/256", "p": null, "gap": -0.036865}
+    }
+  },
+  "criteria": {
+    "none": {"profile_survives": true, "floor": 0.005005, "floor_ok": true},
+    "light": {"profile_survives": true, "floor": 0.001846, "floor_ok": true},
+    "medium": {"profile_survives": false, "reason": "strict Mann-Whitney max-U separation against no_entangle failed although paired CI stayed positive", "floor": 0.003723, "floor_ok": true},
+    "heavy": {"profile_survives": false, "reason": "diagnostic heavy profile shows no_entangle leakage CI > 0 and separation fails", "floor": 0.005737, "floor_ok": true}
+  },
+  "overall_verdict": "PARTIAL_NOISE_MODEL_CANDIDATE",
+  "notes": [
+    "The signed witness survives none and light noise profiles.",
+    "The medium profile preserves a positive paired direct-no_entangle CI but fails the stricter max-U separation criterion.",
+    "The heavy profile is diagnostic only and shows expected fragility.",
+    "No QPU submission is included."
+  ]
+}
