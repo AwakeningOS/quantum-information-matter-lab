@@ -12,7 +12,7 @@
     "classical_same_graph_transport",
     "no_internal_links"
   ],
-  "wall_seconds": 30.965444326400757,
+  "wall_seconds": 31.160258531570435,
   "max_residual": 5.306866057708248e-14,
   "claim_ceiling": "model-level resource partition counterfactual; no quantum advantage or physical energy claim"
 }

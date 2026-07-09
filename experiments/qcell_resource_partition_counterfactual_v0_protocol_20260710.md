@@ -79,6 +79,20 @@ explained by "discarding quantum structure at the same population." It is more
 likely due to the classical transport rule moving population more effectively
 toward the output.
 
+Accounting decomposition:
+
+```text
+classical_same_graph_transport - quantum_keep_structure:
+  W_attr difference = +10.062027
+  R_out difference = -8.529701
+  Q_noise difference = -1.431690
+  final internal energy difference = -0.255438
+  final D population difference = +0.008533
+```
+
+The gap is currently best read as resource routing: less return through R and
+less modeled noise loss, with more reaching W.
+
 ## Claim ceiling
 
 Allowed:

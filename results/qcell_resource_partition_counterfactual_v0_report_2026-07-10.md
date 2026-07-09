@@ -14,18 +14,28 @@ Date: 2026-07-10 JST
 
 ## Interpretation
 
-This run does not support the resource-partition hypothesis.
+This run does not support the hypothesis that quantum structure suppresses W at
+fixed population. Deleting off-diagonal structure from the same population gave
+`W_loss = 0`.
 
-The same-population shadow gave `W_loss = 0`: deleting off-diagonal structure
-while keeping the same population did not increase W.
+The dephase ladder also moved opposite the proposed pattern: less structure
+gave lower W.
 
-The dephase ladder also moved opposite to the proposed pattern: less structure
-gave lower W, not higher W.
+## Gap Accounting
 
-The higher W in `classical_same_graph_transport` is therefore not explained by
-discarding quantum structure at fixed population. It is more likely explained by
-the classical transport rule moving population toward the output more
-effectively.
+`classical_same_graph_transport - quantum_keep_structure`:
+
+```text
+W_attr difference = +10.062027
+R_out difference = -8.529701
+Q_noise difference = -1.431690
+final internal energy difference = -0.255438
+final D population difference = +0.008533
+```
+
+The current best reading is that classical transport routes less resource back
+through R and loses less to modeled noise, so more reaches W. The gap is not
+explained by deleting quantum structure at fixed population.
 
 ## Claim Ceiling
 

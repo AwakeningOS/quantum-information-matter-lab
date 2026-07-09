@@ -93,7 +93,8 @@ def run_arm(grid, arm, variant, dephase_strength, seeds, resource_on, device):
     resource = eng.t(cpu.r_state("R3_pure_1"), device)
     rho = eng.random_products(seeds, device)
     out_angle = torch.full((n,), grid.theta_out_DW * grid.out_layers, dtype=eng.RDTYPE, device=device)
-    cum = {k: torch.zeros(n, dtype=eng.RDTYPE, device=device) for k in ("w", "w_diag", "loss", "coh", "neg")}
+    initial_energy = eng.sys_energy(rho, bits)
+    cum = {k: torch.zeros(n, dtype=eng.RDTYPE, device=device) for k in ("rin", "rout", "w", "w_diag", "loss", "coh", "neg", "qnoise")}
     max_res = torch.zeros(n, dtype=eng.RDTYPE, device=device)
     loss_ts, coh_ts, neg_ts = [], [], []
     checkpoints = []
@@ -133,7 +134,7 @@ def run_arm(grid, arm, variant, dephase_strength, seeds, resource_on, device):
         end_energy = eng.sys_energy(rho, bits)
         residual = rin - ((end_energy - start_energy) + rout + w + qnoise)
         max_res = torch.maximum(max_res, residual.abs())
-        for k, v in (("w", w), ("w_diag", w_diag), ("loss", loss), ("coh", coh), ("neg", neg)):
+        for k, v in (("rin", rin), ("rout", rout), ("w", w), ("w_diag", w_diag), ("loss", loss), ("coh", coh), ("neg", neg), ("qnoise", qnoise)):
             cum[k] += v
         loss_ts.append(loss); coh_ts.append(coh); neg_ts.append(neg)
         if cycle in (0, 49, 74, 124, 149, 199):
@@ -142,11 +143,18 @@ def run_arm(grid, arm, variant, dephase_strength, seeds, resource_on, device):
                 checkpoints.append({"arm": arm, "resource_on": int(resource_on), "seed": int(seed), "cycle": cycle + 1, **{k: float(v[ix]) for k, v in host.items()}})
     loss_mat = torch.stack(loss_ts); coh_mat = torch.stack(coh_ts); neg_mat = torch.stack(neg_ts)
     host = {k: v.detach().cpu().numpy() for k, v in cum.items()}
+    final_parts = eng.part_energies(rho, bits).detach().cpu().numpy()
+    final_energy = eng.sys_energy(rho, bits).detach().cpu().numpy()
     rows = []
     for ix, seed in enumerate(seeds):
         rows.append({
             "arm": arm, "variant": variant, "dephase_strength": dephase_strength, "resource_on": int(resource_on), "seed": int(seed),
             "W": float(host["w"][ix]), "W_diag_same_population": float(host["w_diag"][ix]), "W_loss_to_structure": float(host["loss"][ix]),
+            "R_in_cum": float(host["rin"][ix]), "R_out_cum": float(host["rout"][ix]), "Q_noise_cum": float(host["qnoise"][ix]),
+            "Delta_E_internal": float(final_energy[ix] - initial_energy.detach().cpu().numpy()[ix]),
+            "final_E_total": float(final_energy[ix]),
+            "final_E": float(final_parts[ix, 0]), "final_A": float(final_parts[ix, 1]), "final_B": float(final_parts[ix, 2]),
+            "final_C": float(final_parts[ix, 3]), "final_D": float(final_parts[ix, 4]),
             "mean_coherence": float(host["coh"][ix] / 200), "mean_negativity": float(host["neg"][ix] / 200),
             "corr_coherence_vs_W_loss": corr_t(coh_mat[:, ix], loss_mat[:, ix]),
             "corr_negativity_vs_W_loss": corr_t(neg_mat[:, ix], loss_mat[:, ix]),
@@ -187,6 +195,16 @@ def main():
             "mean_resource_attributable_W": sum(r["resource_attributable_W"] for r in sub)/len(sub),
             "mean_diag_resource_attributable_W": sum(r["diag_resource_attributable_W"] for r in sub)/len(sub),
             "mean_W_loss_to_structure": sum(r["W_loss_to_structure"] for r in sub)/len(sub),
+            "mean_R_in_cum": sum(r["R_in_cum"] for r in sub)/len(sub),
+            "mean_R_out_cum": sum(r["R_out_cum"] for r in sub)/len(sub),
+            "mean_Q_noise_cum": sum(r["Q_noise_cum"] for r in sub)/len(sub),
+            "mean_Delta_E_internal": sum(r["Delta_E_internal"] for r in sub)/len(sub),
+            "mean_final_E_total": sum(r["final_E_total"] for r in sub)/len(sub),
+            "mean_final_E": sum(r["final_E"] for r in sub)/len(sub),
+            "mean_final_A": sum(r["final_A"] for r in sub)/len(sub),
+            "mean_final_B": sum(r["final_B"] for r in sub)/len(sub),
+            "mean_final_C": sum(r["final_C"] for r in sub)/len(sub),
+            "mean_final_D": sum(r["final_D"] for r in sub)/len(sub),
             "mean_coherence": sum(r["mean_coherence"] for r in sub)/len(sub),
             "mean_negativity": sum(r["mean_negativity"] for r in sub)/len(sub),
             "positive_W_loss_seed_count": sum(1 for r in sub if r["W_loss_to_structure"] > 0),

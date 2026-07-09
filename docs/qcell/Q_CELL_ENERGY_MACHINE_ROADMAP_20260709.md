@@ -806,6 +806,23 @@ dephasing reduced W instead of increasing it
 classical transport's higher W is likely a population-routing effect, not a structure-discard effect
 ```
 
+Gap accounting:
+
+```text
+classical - quantum W_attr = +10.062027
+classical - quantum R_out = -8.529701
+classical - quantum Q_noise = -1.431690
+classical - quantum final internal energy = -0.255438
+classical - quantum final D population = +0.008533
+```
+
+Current best interpretation:
+
+```text
+classical transport routes less resource back out through R and loses less to
+modeled noise, so more reaches W
+```
+
 ### Step 5 — Selected hardware observations
 
 Do not send the full map to a QPU. Select a small preregistered subset after
