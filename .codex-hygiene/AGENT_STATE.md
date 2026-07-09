@@ -7,8 +7,7 @@ GitHub so another agent can continue and the record can support later papers.
 
 ## Current Task
 
-Record the completed Q-cell local-controller causal test v0 and keep raw logs
-out of Git.
+Record completed Q-cell controller evolution v0 and keep raw logs out of Git.
 
 ## Hard Constraints
 
@@ -62,12 +61,17 @@ Branch: `codex/qcell-full2q7-and-bottleneck-record`
   100/100 seeds.
 - `QFCBM_0399` is marginal: gain over fixed positive, but only 64/100 seeds
   beat time-shift action.
+- Controller evolution v0 completed with population 12, generations 4.
+- Best evolved controller holdout mean gain: `4.553862`; hand-coded
+  controller holdout mean gain: `3.324505`.
+- Best evolved controller improved `QFCBM_0988` and `QFCBM_0496`; hand-coded
+  remained slightly better on `QFCBM_0399`.
 - Commit `8bd4ba6` was pushed and draft PR 29 was opened against the PR 28
   head branch.
 
 ## Current Blockers
 
-None for local-controller v0 execution. Compact results need commit/push.
+None for controller evolution v0 execution. Compact results need commit/push.
 
 Local Stage 1 output:
 
@@ -79,8 +83,8 @@ Local Stage 2 raw output:
 
 ## Next 1-3 Actions
 
-1. Inspect local-controller v0 diff.
-2. Commit compact local-controller v0 code/results/report.
+1. Inspect controller evolution v0 diff.
+2. Commit compact controller evolution v0 code/results/report.
 3. Next research action: battery-powered actuator or fair quantum/classical
    comparison design, depending on user priority.
 

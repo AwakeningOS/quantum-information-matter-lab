@@ -1,0 +1,28 @@
+{
+  "candidate_id": "gen2_mut008_from_gen1_mut008_from_hand_coded",
+  "params": {
+    "gain": 0.8954970900800753,
+    "leak": 0.0,
+    "downstream_bias": 1.6168544646335714,
+    "ad_gate": 1.2724551382033202,
+    "d_block": 1.2411067859023053,
+    "max_angle_mult": 1.9116732153219738
+  },
+  "holdout": {
+    "candidate_id": "gen2_mut008_from_gen1_mut008_from_hand_coded",
+    "param_gain": 0.8954970900800753,
+    "param_leak": 0.0,
+    "param_downstream_bias": 1.6168544646335714,
+    "param_ad_gate": 1.2724551382033202,
+    "param_d_block": 1.2411067859023053,
+    "param_max_angle_mult": 1.9116732153219738,
+    "score": 4.553862358540537,
+    "mean_gain": 4.553862358540537,
+    "median_gain": 0.20324125225361983,
+    "n_positive_gain": 180,
+    "n_eval": 180,
+    "mean_penalty": 0.0,
+    "max_residual": 8.504308368628699e-14,
+    "stage": "holdout"
+  }
+}

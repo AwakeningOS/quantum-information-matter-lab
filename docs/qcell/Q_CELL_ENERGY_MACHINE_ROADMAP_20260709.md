@@ -293,6 +293,95 @@ quantum advantage
 efficiency improvement after controller switching work
 ```
 
+### 8. Controller evolution v0
+
+The next step tested whether trial-and-error parameter search could improve the
+hand-coded local controller.
+
+Protocol:
+
+```text
+experiments/qcell_controller_evolution_v0_protocol_20260710.md
+```
+
+Run shape:
+
+```text
+grids = QFCBM_0988, QFCBM_0496, QFCBM_0399
+population = 12
+generations = 4
+train seeds = 20
+validation seeds = 20
+holdout seeds = 60
+switching cost = not_modeled
+```
+
+Best evolved parameters:
+
+```text
+gain = 0.895497
+leak = 0.0
+downstream_bias = 1.616854
+ad_gate = 1.272455
+d_block = 1.241107
+max_angle_mult = 1.911673
+```
+
+Holdout comparison:
+
+```text
+best evolved mean gain over fixed = 4.553862
+hand-coded mean gain over fixed = 3.324505
+```
+
+Grid breakdown:
+
+```text
+QFCBM_0988:
+  evolved attributed W = 29.307286
+  fixed attributed W = 15.857558
+  evolved gain = 13.449729
+  hand-coded gain = 9.784250
+
+QFCBM_0496:
+  evolved attributed W = 0.259866
+  fixed attributed W = 0.056039
+  evolved gain = 0.203827
+  hand-coded gain = 0.179294
+
+QFCBM_0399:
+  evolved attributed W = 0.016027
+  fixed attributed W = 0.007995
+  evolved gain = 0.008031
+  hand-coded gain = 0.009971
+```
+
+Readout:
+
+```text
+Trial-and-error improved the controller overall, mainly by improving the
+high-output ring and strong-output-suppression regions. It did not improve the
+marginal internal-transport region over the hand-coded controller.
+```
+
+Claim ceiling:
+
+```text
+small evolutionary search improved a parameterized local controller on
+held-out seeds
+```
+
+Still not allowed:
+
+```text
+global optimum
+autonomous agency
+purpose
+life/metabolism/homeostasis
+quantum advantage
+efficiency improvement while switching cost is not modeled
+```
+
 ### Step 3 — Battery-powered actuator
 
 Require stored energy in `E` to decrease when an output action occurs.

@@ -106,3 +106,18 @@
   `QFCBM_0496` internal controller attributed W `0.258512` vs fixed
   `0.055903`, also beating both controls in 100/100 seeds. `QFCBM_0399` is
   marginal against time-shift action: 64/100 positive.
+
+## Controller evolution v0
+
+- Time: 2026-07-10 JST
+- Action: Ran small evolutionary/random search over interpretable local
+  internal-controller parameters on RTX 3090.
+- Evidence: population 12, generations 4, train seeds 20, validation seeds 20,
+  holdout seeds 60, grids `QFCBM_0988`, `QFCBM_0496`, `QFCBM_0399`; manifest
+  wall seconds `255.96470093727112`; max holdout residual `8.504e-14`.
+- Files: raw local output at
+  `/home/youthk/work/qcell_experiment_outputs/qcell_controller_evolution_v0_outputs`;
+  compact CSV/report copied to `data/quantum_observation/` and `results/`.
+- Result: best evolved controller holdout mean gain `4.553862` versus
+  hand-coded `3.324505`. Evolved controller improved `QFCBM_0988` and
+  `QFCBM_0496`; hand-coded remained slightly better on `QFCBM_0399`.
