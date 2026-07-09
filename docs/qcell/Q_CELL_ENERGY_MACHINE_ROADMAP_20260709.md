@@ -613,6 +613,31 @@ the current claim must stay at finite store gating of action
 do not claim time-specific stored-power dynamics yet
 ```
 
+Delayed-use test:
+
+```text
+scripts/quantum_observation/qcell_stored_power_delayed_use_v0_gpu.py
+results/qcell_stored_power_delayed_use_v0_report_2026-07-10.md
+```
+
+Readout:
+
+```text
+no supply late action W_attr ~ 0
+early supply, action only after cycle 120: W_attr = 4.196372
+initial store, action only after cycle 120: W_attr = 4.195732
+late supply, action only after cycle 120: W_attr = 12.061033
+continuous supply, action only after cycle 120: W_attr = 12.030517
+```
+
+Interpretation:
+
+```text
+stored budget can be held while action is blocked, then spent later
+early stored supply behaves like initial stored budget
+late/continuous supply is stronger in this setup
+```
+
 ### Step 3b — Battery-powered actuator
 
 Require stored energy in `E` to decrease when an output action occurs.

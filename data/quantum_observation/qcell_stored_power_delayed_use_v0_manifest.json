@@ -1,0 +1,23 @@
+{
+  "experiment": "qcell_stored_power_delayed_use_v0",
+  "status": "completed",
+  "grid_id": "QFCBM_0988",
+  "device": "cuda",
+  "gpu": "NVIDIA GeForce RTX 3090",
+  "n_seeds": 60,
+  "conditions": [
+    "no_supply_late_action",
+    "early_supply_late_action",
+    "late_supply_late_action",
+    "continuous_supply_late_action",
+    "initial_store_late_action"
+  ],
+  "action_start": 120,
+  "cycle_rows": 60000,
+  "seed_rows": 300,
+  "wall_seconds": 15.406663179397583,
+  "max_zero_store_action_violations": 0,
+  "max_action_without_spend_violations": 0,
+  "max_empty_store_action_violations": 0,
+  "max_accounting_residual_abs": 4.707345624410664e-14
+}
