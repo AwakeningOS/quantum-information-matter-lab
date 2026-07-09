@@ -778,6 +778,34 @@ diagonal unitary is clean but does not reliably improve structure
 structure-maintenance-cost full run remains blocked
 ```
 
+Resource partition counterfactual:
+
+```text
+scripts/quantum_observation/qcell_resource_partition_counterfactual_v0_gpu.py
+results/qcell_resource_partition_counterfactual_v0_report_2026-07-10.md
+```
+
+Readout:
+
+```text
+same-population W_loss_to_structure = 0 for all arms
+quantum_keep_structure W_attr = 15.857558
+dephase_25 W_attr = 12.383500
+dephase_50 W_attr = 9.765229
+dephase_75 W_attr = 8.282828
+full_dephase W_attr = 7.810684
+classical_same_graph_transport W_attr = 25.919585
+```
+
+Interpretation:
+
+```text
+the proposed "quantum structure consumes W at fixed population" hypothesis was not supported
+deleting structure at the same population did not increase W
+dephasing reduced W instead of increasing it
+classical transport's higher W is likely a population-routing effect, not a structure-discard effect
+```
+
 ### Step 5 — Selected hardware observations
 
 Do not send the full map to a QPU. Select a small preregistered subset after
