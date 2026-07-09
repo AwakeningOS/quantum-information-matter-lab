@@ -1,0 +1,48 @@
+{
+  "experiment": "classical_vs_quantum_part_coupling_v1a_formal_signed_witness",
+  "date": "2026-07-09",
+  "status": "OBSERVATION_LOG",
+  "protocol": "experiments/classical_vs_quantum_part_coupling_v1a_protocol_20260709.md",
+  "summary_csv": "data/quantum_observation/classical_vs_quantum_part_coupling_v1a_formal_seed20260725_20260740_summary.csv",
+  "config": {
+    "shots_per_seed": 4096,
+    "formal_seeds": [20260725, 20260726, 20260727, 20260728, 20260729, 20260730, 20260731, 20260732, 20260733, 20260734, 20260735, 20260736, 20260737, 20260738, 20260739, 20260740],
+    "bootstrap_resamples": 10000,
+    "estimator": "oriented_phase_effect_P1W = P1_W(phaseM=0,M perturb) - P1_W(phaseM=pi/2,M perturb)",
+    "inference_unit": "seed",
+    "orientation_note": "v1 exact signed effect under pi/2 - 0 was negative for direct_coupled; v1a reports 0 - pi/2 so a true direct effect is positive.",
+    "diagnostic_seeds_not_reused": true,
+    "arms": ["quantum_field_only", "quantum_no_entangle", "quantum_direct_coupled", "quantum_dephased_control"]
+  },
+  "exact": {
+    "quantum_field_only": {"P1W_phase0_exact": 0.549317271972, "P1W_phase_pi2_exact": 0.549317271972, "oriented_effect_exact": 0.0},
+    "quantum_no_entangle": {"P1W_phase0_exact": 0.531648646949, "P1W_phase_pi2_exact": 0.531648646949, "oriented_effect_exact": 0.0},
+    "quantum_direct_coupled": {"P1W_phase0_exact": 0.336506004923, "P1W_phase_pi2_exact": 0.290373506765, "oriented_effect_exact": 0.046132498158},
+    "quantum_dephased_control": {"P1W_phase0_exact": 0.498614178608, "P1W_phase_pi2_exact": 0.498499579953, "oriented_effect_exact": 0.000114598656}
+  },
+  "summary": [
+    {"arm": "quantum_field_only", "exact_oriented_effect": 0.0, "mean_oriented_effect": -0.000030517578, "std_oriented_effect": 0.011785992451, "min_oriented_effect": -0.0244140625, "max_oriented_effect": 0.021728515625, "positive_count": 8, "negative_count": 8, "zero_count": 0, "bootstrap_ci95_low": -0.007507705688, "bootstrap_ci95_high": 0.001800537109},
+    {"arm": "quantum_no_entangle", "exact_oriented_effect": 0.0, "mean_oriented_effect": -0.003921508789, "std_oriented_effect": 0.010824535202, "min_oriented_effect": -0.022705078125, "max_oriented_effect": 0.017333984375, "positive_count": 6, "negative_count": 10, "zero_count": 0, "bootstrap_ci95_low": -0.005813980103, "bootstrap_ci95_high": 0.002975845337},
+    {"arm": "quantum_direct_coupled", "exact_oriented_effect": 0.046132498158, "mean_oriented_effect": 0.049987792969, "std_oriented_effect": 0.012283128693, "min_oriented_effect": 0.0283203125, "max_oriented_effect": 0.073974609375, "positive_count": 16, "negative_count": 0, "zero_count": 0, "bootstrap_ci95_low": 0.044082641602, "bootstrap_ci95_high": 0.055694961548},
+    {"arm": "quantum_dephased_control", "exact_oriented_effect": 0.000114598656, "mean_oriented_effect": 0.000122070312, "std_oriented_effect": 0.014334194482, "min_oriented_effect": -0.0234375, "max_oriented_effect": 0.0283203125, "positive_count": 9, "negative_count": 7, "zero_count": 0, "bootstrap_ci95_low": -0.006714248657, "bootstrap_ci95_high": 0.006820678711}
+  ],
+  "comparisons": {
+    "quantum_field_only": {"direct_minus_control_seed_mean": 0.052751835632, "direct_minus_control_ci95_low": 0.046524047852, "direct_minus_control_ci95_high": 0.059600830078, "mann_whitney_u": 256.0, "mann_whitney_u_max": 256, "one_sided_exact_p_if_u_max": 1.6636709775209934e-9, "direct_min_minus_control_max": 0.015625},
+    "quantum_no_entangle": {"direct_minus_control_seed_mean": 0.051404362488, "direct_minus_control_ci95_low": 0.042892074585, "direct_minus_control_ci95_high": 0.059051513672, "mann_whitney_u": 256.0, "mann_whitney_u_max": 256, "one_sided_exact_p_if_u_max": 1.6636709775209934e-9, "direct_min_minus_control_max": 0.010986328125},
+    "quantum_dephased_control": {"direct_minus_control_seed_mean": 0.049805055237, "direct_minus_control_ci95_low": 0.041198348999, "direct_minus_control_ci95_high": 0.059006118774, "mann_whitney_u": 255.5, "mann_whitney_u_max": 256, "one_sided_exact_p_if_u_max": null, "direct_min_minus_control_max": 0.0}
+  },
+  "criteria": {
+    "main_pass": true,
+    "leakage_pass": true,
+    "separation_pass": true,
+    "field_support": true,
+    "dephased_support": true,
+    "verdict": "PASS_SIGNED_MULTI_SEED_WITNESS_SURVIVES"
+  },
+  "notes": [
+    "Formal v1a uses fresh seeds not used in the v1a diagnostic.",
+    "Primary inference treats seed as the independent unit.",
+    "Seed-level P1_W values are logged in the companion summary CSV.",
+    "No noise model and no QPU submission are included."
+  ]
+}
