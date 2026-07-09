@@ -1,0 +1,57 @@
+name: Materialize Q-cell trace shards for PR 28
+
+on:
+  push:
+    branches:
+      - qcell-phenomenon-map-wide-observation
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  export-traces:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout PR branch
+        uses: actions/checkout@v4
+        with:
+          ref: qcell-phenomenon-map-wide-observation
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Export full Q-cell trace shards
+        run: |
+          cd scripts/quantum_observation
+          python qcell_phenomenon_map_trace_export.py \
+            --seed 20260709 \
+            --trace-dir ../../data/quantum_observation/qcell_phenomenon_map_wide_observation_seed20260709_traces
+
+      - name: Validate trace shard count
+        run: |
+          test -f data/quantum_observation/qcell_phenomenon_map_wide_observation_seed20260709_traces/qcell_phenomenon_map_wide_observation_seed20260709_trace_manifest.json
+          count=$(find data/quantum_observation/qcell_phenomenon_map_wide_observation_seed20260709_traces -name '*.jsonl' | wc -l)
+          rows=$(find data/quantum_observation/qcell_phenomenon_map_wide_observation_seed20260709_traces -name '*.jsonl' -print0 | xargs -0 cat | wc -l)
+          echo "trace shard count=$count"
+          echo "trace row count=$rows"
+          test "$count" -eq 48
+          test "$rows" -eq 2688
+
+      - name: Commit generated traces
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/quantum_observation/qcell_phenomenon_map_wide_observation_seed20260709_traces
+          if git diff --cached --quiet; then
+            echo "No trace changes to commit."
+          else
+            git commit -m "Materialize full Q-cell trace JSONL shards"
+            git push origin HEAD:qcell-phenomenon-map-wide-observation
+          fi
