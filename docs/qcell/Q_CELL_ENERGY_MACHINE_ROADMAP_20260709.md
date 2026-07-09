@@ -588,6 +588,31 @@ The store-shuffle result is the current weak point. A stronger trajectory-matche
 shuffle control is required before claiming that correct store timing is
 necessary.
 
+Strict trajectory-matched shuffle:
+
+```text
+scripts/quantum_observation/qcell_stored_power_actuator_v0_strict_shuffle_gpu.py
+results/qcell_stored_power_actuator_v0_strict_shuffle_report_2026-07-10.md
+```
+
+Readout:
+
+```text
+real restart W_attr = 22.478503
+reverse shuffled store W_attr = 20.989177
+roll-73 shuffled store W_attr = 21.436209
+block-swap shuffled store W_attr = 20.683934
+```
+
+Interpretation:
+
+```text
+trajectory-matched store shuffling does not collapse the effect
+exact store timing is only a modest effect in this setup
+the current claim must stay at finite store gating of action
+do not claim time-specific stored-power dynamics yet
+```
+
 ### Step 3b — Battery-powered actuator
 
 Require stored energy in `E` to decrease when an output action occurs.
