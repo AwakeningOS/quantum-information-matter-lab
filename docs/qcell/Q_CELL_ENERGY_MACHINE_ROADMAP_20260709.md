@@ -823,6 +823,37 @@ classical transport routes less resource back out through R and loses less to
 modeled noise, so more reaches W
 ```
 
+Internal information map:
+
+```text
+scripts/quantum_observation/qcell_internal_information_map_v0_gpu.py
+results/qcell_internal_information_map_v0_report_2026-07-10.md
+```
+
+Readout:
+
+```text
+quantum_keep_structure:
+  W_attr = 15.857558
+  coherence = 1.669012
+  mean pair MI = 0.064643
+  mean negativity = 0.001741
+
+classical_same_graph_transport:
+  W_attr = 25.919585
+  coherence = 0
+  mean pair MI = 0.003213
+  mean negativity = 0
+```
+
+Current best interpretation:
+
+```text
+classical same-graph transport is a coarse W-output-biased transport rule
+quantum transport is lower-W but retains richer internal dynamics
+W alone is not a complete readout of the model
+```
+
 ### Step 5 — Selected hardware observations
 
 Do not send the full map to a QPU. Select a small preregistered subset after
