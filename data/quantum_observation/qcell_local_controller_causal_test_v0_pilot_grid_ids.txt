@@ -1,0 +1,14 @@
+# qcell_local_controller_causal_test_v0 pilot grid IDs
+# Purpose: small pilot before any wide local-controller run.
+# Source: corrected fixed-circuit Stage 2 confirmation.
+#
+# QFCBM_0488: highest fixed output, chain, effective outlet angle 0.8
+# QFCBM_0408: highest resource-to-W efficiency, low output
+# QFCBM_0496: strong-output overswap/suppression, chain
+# QFCBM_0988: best ring representative
+# QFCBM_0441: bad-ratio example; high fixed/central ratio only because output is tiny
+QFCBM_0488
+QFCBM_0408
+QFCBM_0496
+QFCBM_0988
+QFCBM_0441

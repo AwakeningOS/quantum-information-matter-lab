@@ -178,6 +178,30 @@ and should not be committed.
 
 ### Step 2 — Local coordination causal test
 
+Active planning artifact:
+
+```text
+experiments/qcell_local_controller_causal_test_v0_protocol_20260710.md
+docs/qcell/Q_CELL_LOCAL_CONTROLLER_CLOUD_REVIEW_PROMPT_20260710.md
+data/quantum_observation/qcell_local_controller_causal_test_v0_pilot_grid_ids.txt
+```
+
+Division of work:
+
+```text
+Cloud GPT:
+  review local-controller policy family
+  review shuffled-signal and time-shuffled-action controls
+  identify failure modes and stop/go rules from compact Stage 2 facts
+
+Local Codex/GPU:
+  reuse the existing full 2^7 GPU engine
+  implement the pilot runner
+  run only 5 grids x 20 seeds first
+  store raw logs under /home/youthk/work/qcell_experiment_outputs/
+  commit only compact summaries, manifest, protocol, and report
+```
+
 Compare under matched resources, noise, time, and switching-work accounting:
 
 ```text

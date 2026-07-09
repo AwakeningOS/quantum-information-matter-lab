@@ -7,8 +7,8 @@ GitHub so another agent can continue and the record can support later papers.
 
 ## Current Task
 
-Record the completed corrected fixed-circuit Stage 2 confirmation and keep
-raw multi-gigabyte logs out of Git.
+Prepare the next Q-cell experiment: a local-controller causal test that checks
+whether local state-dependent actions beat the fixed-circuit envelope.
 
 ## Hard Constraints
 
@@ -57,8 +57,7 @@ Branch: `codex/qcell-full2q7-and-bottleneck-record`
 
 ## Current Blockers
 
-None for Stage 2 execution. Compact results need commit/push if the user wants
-PR 29 updated.
+None. Next work is protocol and runner design for local-controller causal test.
 
 Local Stage 1 output:
 
@@ -70,9 +69,9 @@ Local Stage 2 raw output:
 
 ## Next 1-3 Actions
 
-1. Inspect Stage 2 git diff.
-2. Commit compact Stage 2 summaries/report and runner CLI update.
-3. Push PR 29 update if appropriate.
+1. Write local-controller causal-test protocol.
+2. Write a compact cloud-GPT review prompt using Stage 2 facts only.
+3. Implement a pilot runner by reusing the existing full 2^7 GPU engine.
 
 ## Last Updated
 
