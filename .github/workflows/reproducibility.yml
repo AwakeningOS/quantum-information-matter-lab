@@ -38,6 +38,8 @@ jobs:
           test "$rows" -eq 2688
       - name: Commit PR28 Q-cell trace shards
         if: ${{ github.head_ref == 'qcell-phenomenon-map-wide-observation' || github.ref_name == 'qcell-phenomenon-map-wide-observation' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -45,6 +47,8 @@ jobs:
           if git diff --cached --quiet; then
             echo "No trace changes to commit."
           else
+            git status --short
             git commit -m "Materialize full Q-cell trace JSONL shards"
-            git push origin HEAD:qcell-phenomenon-map-wide-observation
+            git pull --rebase origin qcell-phenomenon-map-wide-observation
+            git push "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:qcell-phenomenon-map-wide-observation
           fi
