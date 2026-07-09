@@ -23,7 +23,7 @@ jobs:
       - name: Check bootstrap raw logs
         run: python scripts/check_raw_logs.py
       - name: Materialize PR28 Q-cell trace shards
-        if: github.ref == 'refs/heads/qcell-phenomenon-map-wide-observation'
+        if: ${{ github.head_ref == 'qcell-phenomenon-map-wide-observation' || github.ref_name == 'qcell-phenomenon-map-wide-observation' }}
         run: |
           cd scripts/quantum_observation
           python qcell_phenomenon_map_trace_export.py \
@@ -37,7 +37,7 @@ jobs:
           test "$count" -eq 48
           test "$rows" -eq 2688
       - name: Commit PR28 Q-cell trace shards
-        if: github.ref == 'refs/heads/qcell-phenomenon-map-wide-observation'
+        if: ${{ github.head_ref == 'qcell-phenomenon-map-wide-observation' || github.ref_name == 'qcell-phenomenon-map-wide-observation' }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
