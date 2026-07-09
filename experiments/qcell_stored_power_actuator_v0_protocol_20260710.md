@@ -2,7 +2,7 @@
 
 Date: 2026-07-10 JST
 
-Status: cloud-reviewed protocol, not yet executed.
+Status: executed on QFCBM_0988 minimum condition set.
 
 ## Purpose
 
@@ -203,5 +203,43 @@ docs/qcell/Q_CELL_STORED_POWER_ACTUATOR_CLOUD_REVIEW_PROMPT_20260710.md
 docs/qcell/Q_CELL_STORED_POWER_ACTUATOR_CLOUD_REVIEW_RESPONSE_20260710.md
 ```
 
-Do not run the GPU experiment until the review has been considered or the user
-explicitly asks to proceed without it.
+The review was incorporated before execution.
+
+## Execution record
+
+```text
+script = scripts/quantum_observation/qcell_stored_power_actuator_v0_gpu.py
+postprocess = scripts/quantum_observation/qcell_stored_power_actuator_v0_postprocess.py
+grid = QFCBM_0988
+seeds = 60
+conditions = 5
+cycle rows = 60000
+kappa = 0.03
+store_capacity = 1.0
+supply_gain = 0.08
+gate_policy = strict
+```
+
+Compact committed outputs:
+
+```text
+data/quantum_observation/qcell_stored_power_actuator_v0_condition_summary.csv
+data/quantum_observation/qcell_stored_power_actuator_v0_window_summary.csv
+data/quantum_observation/qcell_stored_power_actuator_v0_manifest.json
+results/qcell_stored_power_actuator_v0_report_2026-07-10.md
+```
+
+Full cycle trace remains local:
+
+```text
+/home/youthk/work/qcell_experiment_outputs/qcell_stored_power_actuator_v0_outputs/qcell_stored_power_actuator_v0_cycle_trace.csv
+```
+
+Minimum-run integrity checks:
+
+```text
+zero-store action violations = 0
+action-without-spend violations = 0
+insufficient-store action violations = 0
+max accounting residual = 5.285e-14
+```

@@ -507,12 +507,15 @@ quantum advantage
 
 ### Step 3 — Stored-power actuator
 
-Active design-review artifacts:
+Executed minimum-run artifacts:
 
 ```text
 experiments/qcell_stored_power_actuator_v0_protocol_20260710.md
 docs/qcell/Q_CELL_STORED_POWER_ACTUATOR_CLOUD_REVIEW_PROMPT_20260710.md
 docs/qcell/Q_CELL_STORED_POWER_ACTUATOR_CLOUD_REVIEW_RESPONSE_20260710.md
+scripts/quantum_observation/qcell_stored_power_actuator_v0_gpu.py
+scripts/quantum_observation/qcell_stored_power_actuator_v0_postprocess.py
+results/qcell_stored_power_actuator_v0_report_2026-07-10.md
 ```
 
 Target:
@@ -523,8 +526,8 @@ store empty -> action stops
 supply resumes -> store refills -> action resumes
 ```
 
-This should be reviewed before GPU execution. The first run should stay small,
-preferably `QFCBM_0988` only.
+The first GPU run was kept small: `QFCBM_0988` only, 60 seeds, 5 supply/store
+conditions.
 
 Cloud review sharpened the requirement:
 
@@ -532,10 +535,25 @@ Cloud review sharpened the requirement:
 store_before_action must causally gate controller_action_allowed
 ```
 
-The first run must log the cyclewise store trace before and after action. The
+The minimum run logged the cyclewise store trace before and after action. It
+found zero zero-store action violations, zero action-without-spend violations,
+zero insufficient-store action violations, and max accounting residual
+`5.285e-14`.
+
+Readout:
+
+```text
+supply_never_on_initial_zero: allowed cycles 0.00, W_attr ~ 0
+supply_always_on_initial_zero: allowed cycles 200.00, W_attr 30.348654
+supply_stop_midway_initial_zero: allowed 101.67, starved 98.33, W_attr 14.415770
+supply_restart_after_stop_initial_zero: allowed 158.08, starved 41.92, W_attr 22.478503
+supply_never_on_initial_positive: allowed 21.57, starved 178.43, W_attr 3.042161
+```
+
+This supports only a model-level finite internal store gating claim. The
 store-shuffle, supply-label-only, equal-total-supply timing, no-controller-drain,
-and fixed-controller controls are required before promoting a stored-power
-claim.
+and fixed-controller controls remain required before promoting a broader
+stored-power claim.
 
 ### Step 3b — Battery-powered actuator
 
