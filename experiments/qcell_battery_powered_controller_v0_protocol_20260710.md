@@ -2,7 +2,7 @@
 
 Date: 2026-07-10 JST
 
-Status: design-review protocol, not yet executed.
+Status: reviewed protocol for execution.
 
 ## Purpose
 
@@ -48,7 +48,15 @@ QFCBM_0399:
 ## Proposed explicit actuator model
 
 Add a controller battery/reservoir `M` as an accounting object first, not a new
-coherent qubit.
+coherent qubit. This is a finite controller actuator-budget model.
+
+It does not model:
+
+```text
+signal acquisition cost
+controller computation cost
+physical coupling-switching work
+```
 
 At each cycle:
 
@@ -67,6 +75,15 @@ M_energy -> 0
 ```
 
 This makes controller action resource-limited.
+
+Implementation requirements:
+
+```text
+scale all dynamic angles together after intended action calculation
+do not consume M for the fixed/static circuit baseline
+if M_energy <= 0, dynamic action must be exactly zero
+record signal/computation/switching costs as not_modelled
+```
 
 ## Conditions
 
@@ -88,6 +105,7 @@ Cost levels:
 
 ```text
 kappa = 0
+kappa = 0.00003
 kappa = 0.0001
 kappa = 0.0003
 kappa = 0.001
@@ -104,6 +122,7 @@ M_initial_energy = 20
 M_initial_energy = 5
 M_initial_energy = 1
 M_initial_energy = 0.2
+M_initial_energy = 0
 ```
 
 ## Required controls
@@ -113,6 +132,9 @@ fixed circuit
 evolved controller with M battery
 hand-coded controller with M battery
 zero-battery controller
+evolved shuffled-signal controller with M battery
+evolved time-shift action controller with M battery
+evolved random budget-matched controller with M battery
 resource/no_resource paired variants
 ```
 
@@ -128,6 +150,12 @@ controller_starved_cycles
 net_gain_after_controller_cost
 gain_over_fixed
 gain_over_hand_coded
+gain_over_shuffled_signal
+gain_over_time_shift
+gain_over_random_budget_matched
+signal_cost_status
+computation_cost_status
+coupling_switching_cost_status
 ```
 
 ## Failure conditions
@@ -140,6 +168,11 @@ gain disappears for realistic kappa near cost-accounting break-even
 gain is caused by lowering W_no_resource
 controller consumes more energy than added W gain
 QFCBM_0988 only succeeds while QFCBM_0496/QFCBM_0399 collapse
+zero-battery still improves
+kappa > 0 but M_energy does not decrease
+starved cycles still emit dynamic action
+shuffled/time-shift/random budget controls match the evolved controller
+W_resource does not increase and resource_attributable_W improves only by lowering W_no_resource
 ```
 
 ## Guardrails
@@ -148,6 +181,7 @@ Do not claim:
 
 ```text
 real thermodynamic work
+complete controller energy model
 physical metabolism
 homeostasis
 life
@@ -162,3 +196,12 @@ under an explicit finite controller-energy accounting model, the controller
 remained net-positive in selected regions
 ```
 
+Recommended wording:
+
+```text
+This v0 model does not claim a physical thermodynamic controller. It tests
+whether the evolved controller remains net-positive when its dynamic
+actuator-angle budget is paid from a finite monotone-depleting M reservoir.
+Signal acquisition, computation, and coupling-switching costs are not modeled
+and are recorded as unaccounted.
+```

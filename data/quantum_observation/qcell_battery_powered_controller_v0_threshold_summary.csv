@@ -1,0 +1,4 @@
+grid_id,max_kappa_all_seed_attr_positive,max_kappa_all_seed_net_after_spend_positive,min_finite_M_attr_positive_any_kappa,min_finite_M_net_after_spend_positive_any_kappa,zero_battery_max_angle_budget,zero_battery_max_resource_attr
+QFCBM_0399,0.03,3e-05,0.2,0.2,0.0,0.0
+QFCBM_0496,0.03,0.0003,0.2,0.2,0.0,0.0
+QFCBM_0988,0.03,0.03,0.2,0.2,0.0,2.220446049250313e-16

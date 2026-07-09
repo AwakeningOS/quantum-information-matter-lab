@@ -434,6 +434,77 @@ Next step if pursuing physicality:
 replace post-hoc cost with an explicit actuator/battery model
 ```
 
+### 10. Battery-powered controller v0
+
+The next experiment replaced post-hoc controller-cost subtraction with an
+explicit finite controller reservoir `M`.
+
+Protocol:
+
+```text
+experiments/qcell_battery_powered_controller_v0_protocol_20260710.md
+```
+
+Run shape:
+
+```text
+grids = QFCBM_0988, QFCBM_0496, QFCBM_0399
+seeds = 60
+kappa = 0, 0.00003, 0.0001, 0.0003, 0.001, 0.003, 0.01, 0.03
+M_initial = unlimited, 20, 5, 1, 0.2, 0
+controllers = fixed, evolved, hand_coded, shuffled signal, time shift,
+              random budget
+```
+
+Validation facts:
+
+```text
+seed rows = 43,380
+max residual = 8.73e-14
+zero-battery dynamic angle max = 0
+starved-cycle emitted action max = 0
+```
+
+Readout:
+
+```text
+QFCBM_0988:
+  robust finite-reservoir result
+  at kappa = 0.03 and M = 1.0:
+    mean attributed W = 3.10877
+    positive seeds = 60/60
+  at kappa = 0.03 and M = 5.0:
+    mean attributed W = 14.7233
+    positive seeds = 60/60
+
+QFCBM_0496:
+  finite-reservoir effect survives selected settings, but with smaller margin
+  at kappa = 0.03 and M = 1.0:
+    mean attributed W = 0.02761
+    positive seeds = 60/60
+
+QFCBM_0399:
+  remains fragile
+  kappa = 0.03 and M = 0.2 is not mean-positive
+  kappa = 0.03 and M = 1.0 remains small but positive
+```
+
+Claim ceiling:
+
+```text
+finite controller-reservoir accounting supports that the QFCBM_0988 evolved
+controller gain is not a free-action artifact
+```
+
+Still not allowed:
+
+```text
+complete thermodynamic actuator
+signal acquisition or computation cost closure
+metabolism/homeostasis/life/agency
+quantum advantage
+```
+
 ### Step 3 — Battery-powered actuator
 
 Require stored energy in `E` to decrease when an output action occurs.
