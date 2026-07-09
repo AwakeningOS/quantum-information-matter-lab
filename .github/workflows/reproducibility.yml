@@ -22,7 +22,7 @@ jobs:
         run: pip install -r requirements.txt
       - name: Check bootstrap raw logs
         run: python scripts/check_raw_logs.py
-      - name: Materialize PR28 Q-cell trace shards
+      - name: Materialize PR28 Q-cell observation data
         if: ${{ github.head_ref == 'qcell-phenomenon-map-wide-observation' || github.ref_name == 'qcell-phenomenon-map-wide-observation' }}
         run: |
           cd scripts/quantum_observation
@@ -44,7 +44,7 @@ jobs:
           untamed_rows=$(cat data/quantum_observation/qcell_untamed_situation_observation_v0_seed20260709.jsonl | wc -l)
           echo "untamed situation rows=$untamed_rows"
           test "$untamed_rows" -eq 54
-      - name: Commit PR28 Q-cell trace shards
+      - name: Commit PR28 Q-cell observation data
         if: ${{ github.head_ref == 'qcell-phenomenon-map-wide-observation' || github.ref_name == 'qcell-phenomenon-map-wide-observation' }}
         env:
           GH_TOKEN: ${{ github.token }}
@@ -60,6 +60,5 @@ jobs:
           else
             git status --short
             git commit -m "Materialize untamed Q-cell observation data"
-            git pull --rebase origin qcell-phenomenon-map-wide-observation
             git push "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:qcell-phenomenon-map-wide-observation
           fi
