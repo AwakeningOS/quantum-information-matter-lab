@@ -4,6 +4,9 @@
 Draft status: smoke-tested only. The repair actuator is a nonunitary convex
 blend toward the pre-noise state, so this runner separates physical residual
 from store residual and must not be treated as a thermodynamic ledger result.
+
+Do not run this as a full claim experiment until a repair actuator passes
+qcell_repair_actuator_audit_v0.
 """
 from __future__ import annotations
 

@@ -718,6 +718,42 @@ central upper is a positive control, not a fair competitor
 this is not quantum advantage
 ```
 
+### Step 4b — Quantum-structure maintenance cost
+
+Draft artifacts:
+
+```text
+experiments/qcell_quantum_structure_maintenance_cost_v0_protocol_20260710.md
+scripts/quantum_observation/qcell_quantum_structure_maintenance_cost_v0_gpu.py
+experiments/qcell_repair_actuator_audit_v0_protocol_20260710.md
+```
+
+Status:
+
+```text
+prototype only
+full run intentionally halted after smoke
+no result claim
+```
+
+Reason:
+
+```text
+the prototype repair actuator used a nonunitary blend toward the pre-noise state
+the blend changed internal energy
+therefore W loss cannot cleanly be called structure-maintenance cost
+```
+
+Next:
+
+```text
+run repair actuator audit first
+require energy_delta ~ 0
+require diagonal population change ~ 0
+charge explicit store cost separately
+then rerun structure-maintenance-cost experiment
+```
+
 ### Step 5 — Selected hardware observations
 
 Do not send the full map to a QPU. Select a small preregistered subset after

@@ -50,6 +50,15 @@ prototype runner only
 no full GPU result claim
 ```
 
+Next required audit before full run:
+
+```text
+experiments/qcell_repair_actuator_audit_v0_protocol_20260710.md
+```
+
+The repair actuator must pass energy/population preservation checks before it
+can be used to support a structure-maintenance-cost claim.
+
 ## Arms
 
 ```text
