@@ -22,7 +22,8 @@ GRID_ID = "QFCBM_0988"
 ARMS = [
     ("quantum_direct", "ring"),
     ("quantum_no_internal_links", "coupling_off"),
-    ("quantum_dephased", "strong_dephase"),
+    ("quantum_post_internal_dephased", "strong_dephase"),
+    ("quantum_dephase_after_each_link", "dephase_each_link"),
     ("classical_probability_transport", "classical_probability_transport"),
     ("central_upper_quantum", "central_control"),
 ]
@@ -52,9 +53,10 @@ def q0988_grid():
 
 
 def make_cond(grid, arm: str, variant: str) -> cpu.Condition:
+    cond_variant = "ring" if variant == "dephase_each_link" else variant
     return cpu.Condition(
         condition_id=f"{GRID_ID}_{arm}",
-        variant=variant,
+        variant=cond_variant,
         resource="R3_pure_1",
         noise="N4_dephase_plus_amplitude_damping",
         p=0.06,
@@ -80,6 +82,10 @@ def run_arm(grid, arm: str, variant: str, seeds: list[int], resource_on: bool, d
     coh_int = torch.zeros(n, dtype=eng.RDTYPE, device=device)
     max_res = torch.zeros(n, dtype=eng.RDTYPE, device=device)
     cycle_rows: list[dict] = []
+    max_trace_error = torch.zeros(n, dtype=eng.RDTYPE, device=device)
+    max_hermiticity_error = torch.zeros(n, dtype=eng.RDTYPE, device=device)
+    min_eigenvalue = torch.full((n,), float("inf"), dtype=eng.RDTYPE, device=device)
+    nan_count = torch.zeros(n, dtype=eng.RDTYPE, device=device)
 
     for cycle in range(200):
         start_energy = eng.sys_energy(rho, bits)
@@ -97,7 +103,12 @@ def run_arm(grid, arm: str, variant: str, seeds: list[int], resource_on: bool, d
                 rho = eng.trace_full_to_sys(full)
                 rout += rred[:, 1, 1].real
 
-        rho, _flows = eng.apply_internal(rho, cond, cycle, bits, device)
+        if variant == "dephase_each_link":
+            for a, b, angle, _name in cpu.links(cond, cycle):
+                rho = eng.apply_two_local(rho, eng.exchange(angle, device), cpu.N_SYS, a, b)
+                rho = rho * (0.0 ** hamming)
+        else:
+            rho, _flows = eng.apply_internal(rho, cond, cycle, bits, device)
         if variant == "strong_dephase":
             rho = rho * (0.0 ** hamming)
 
@@ -161,11 +172,23 @@ def run_arm(grid, arm: str, variant: str, seeds: list[int], resource_on: bool, d
                     "accounting_residual": float(host["residual"][ix]),
                 })
 
+        tr = rho.diagonal(dim1=-2, dim2=-1).sum(-1).real
+        max_trace_error = torch.maximum(max_trace_error, (tr - 1.0).abs())
+        herm = (rho - rho.mH).abs().amax(dim=(1, 2))
+        max_hermiticity_error = torch.maximum(max_hermiticity_error, herm.real)
+        eig = torch.linalg.eigvalsh((rho + rho.mH) * 0.5).real
+        min_eigenvalue = torch.minimum(min_eigenvalue, eig.min(dim=1).values)
+        nan_count += (~torch.isfinite(rho)).reshape(n, -1).any(dim=1).to(eng.RDTYPE)
+
     host = {k: v.detach().cpu().numpy() for k, v in cum.items()}
     neg_host = {k: (v / 200).detach().cpu().numpy() for k, v in neg_int.items()}
     mi_host = {k: (v / 200).detach().cpu().numpy() for k, v in mi_int.items()}
     coh_host = (coh_int / 200).detach().cpu().numpy()
     res_host = max_res.detach().cpu().numpy()
+    trace_host = max_trace_error.detach().cpu().numpy()
+    herm_host = max_hermiticity_error.detach().cpu().numpy()
+    mineig_host = min_eigenvalue.detach().cpu().numpy()
+    nan_host = nan_count.detach().cpu().numpy()
     rows = []
     for ix, seed in enumerate(seeds):
         rows.append({
@@ -186,6 +209,10 @@ def run_arm(grid, arm: str, variant: str, seeds: list[int], resource_on: bool, d
             "mean_neg_CD": float(neg_host["CD"][ix]),
             "mean_neg_AD": float(neg_host["AD"][ix]),
             "energy_balance_residual_max_abs": float(res_host[ix]),
+            "trace_error_max": float(trace_host[ix]),
+            "hermiticity_error_max": float(herm_host[ix]),
+            "min_eigenvalue_min": float(mineig_host[ix]),
+            "nan_count": int(nan_host[ix]),
         })
     return rows, cycle_rows
 
@@ -223,6 +250,11 @@ def main() -> None:
                 "W_no_resource": no["W_cum"],
                 "resource_attributable_W": r["W_cum"] - no["W_cum"],
                 "mean_link_negativity_no_resource": no["mean_link_negativity"],
+                "delta_link_negativity": r["mean_link_negativity"] - no["mean_link_negativity"],
+                "mean_link_MI_no_resource": no["mean_link_MI"],
+                "delta_link_MI": r["mean_link_MI"] - no["mean_link_MI"],
+                "mean_l1_coherence_no_resource": no["mean_l1_coherence"],
+                "delta_l1_coherence": r["mean_l1_coherence"] - no["mean_l1_coherence"],
             })
         cycle_rows.extend(res_cycles)
         cycle_rows.extend(no_cycles)
@@ -233,17 +265,37 @@ def main() -> None:
     arm_rows = []
     for arm, _variant in ARMS:
         sub = [r for r in rows if r["arm"] == arm]
+        vals = sorted(r["resource_attributable_W"] for r in sub)
+        mean = sum(vals) / len(vals)
+        std = (sum((x - mean) ** 2 for x in vals) / (len(vals) - 1)) ** 0.5
+        ci = 1.96 * std / (len(vals) ** 0.5)
         arm_rows.append({
             "arm": arm,
             "n_seed": len(sub),
             "mean_W_resource": sum(r["W_cum"] for r in sub) / len(sub),
             "mean_W_no_resource": sum(r["W_no_resource"] for r in sub) / len(sub),
-            "mean_resource_attributable_W": sum(r["resource_attributable_W"] for r in sub) / len(sub),
-            "min_resource_attributable_W": min(r["resource_attributable_W"] for r in sub),
+            "mean_resource_attributable_W": mean,
+            "std_resource_attributable_W": std,
+            "median_resource_attributable_W": vals[len(vals) // 2],
+            "ci95_low_resource_attributable_W": mean - ci,
+            "ci95_high_resource_attributable_W": mean + ci,
+            "seed_win_count_resource_gt_no_resource": sum(1 for r in sub if r["resource_attributable_W"] > 0),
+            "min_resource_attributable_W": min(vals),
+            "max_resource_attributable_W": max(vals),
             "mean_link_negativity": sum(r["mean_link_negativity"] for r in sub) / len(sub),
+            "mean_link_negativity_no_resource": sum(r["mean_link_negativity_no_resource"] for r in sub) / len(sub),
+            "delta_link_negativity": sum(r["delta_link_negativity"] for r in sub) / len(sub),
             "mean_link_MI": sum(r["mean_link_MI"] for r in sub) / len(sub),
+            "mean_link_MI_no_resource": sum(r["mean_link_MI_no_resource"] for r in sub) / len(sub),
+            "delta_link_MI": sum(r["delta_link_MI"] for r in sub) / len(sub),
             "mean_l1_coherence": sum(r["mean_l1_coherence"] for r in sub) / len(sub),
+            "mean_l1_coherence_no_resource": sum(r["mean_l1_coherence_no_resource"] for r in sub) / len(sub),
+            "delta_l1_coherence": sum(r["delta_l1_coherence"] for r in sub) / len(sub),
             "max_residual": max(r["energy_balance_residual_max_abs"] for r in sub),
+            "trace_error_max": max(r["trace_error_max"] for r in sub),
+            "hermiticity_error_max": max(r["hermiticity_error_max"] for r in sub),
+            "min_eigenvalue_min": min(r["min_eigenvalue_min"] for r in sub),
+            "nan_count": sum(r["nan_count"] for r in sub),
         })
     write_csv_atomic(out / f"{EXPERIMENT}_arm_summary.csv", arm_rows)
 

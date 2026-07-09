@@ -8,13 +8,14 @@
   "arms": [
     "quantum_direct",
     "quantum_no_internal_links",
-    "quantum_dephased",
+    "quantum_post_internal_dephased",
+    "quantum_dephase_after_each_link",
     "classical_probability_transport",
     "central_upper_quantum"
   ],
-  "seed_rows": 300,
-  "checkpoint_rows": 3600,
-  "wall_seconds": 16.895163774490356,
+  "seed_rows": 360,
+  "checkpoint_rows": 4320,
+  "wall_seconds": 22.58716654777527,
   "max_residual": 5.306866057708248e-14,
   "claim_ceiling": "comparison of modeled quantum links, dephased links, no links, classical probability transport, and central upper bound; no quantum advantage claim"
 }

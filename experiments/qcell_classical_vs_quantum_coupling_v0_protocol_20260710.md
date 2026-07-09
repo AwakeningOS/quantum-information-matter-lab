@@ -11,7 +11,8 @@ Compare the current Q-cell fixed region under matched resource/output settings:
 ```text
 quantum direct links
 no internal links
-fully dephased quantum links
+post-internal dephased quantum links
+dephase-after-each-link quantum links
 classical probability transport
 central upper quantum comparison
 ```
@@ -40,6 +41,40 @@ mean_link_negativity
 mean_link_MI
 mean_l1_coherence
 energy_balance_residual
+resource/no_resource deltas for link negativity, MI, and coherence
+seed-level mean/std/CI/win counts for W
+density-matrix health checks
+```
+
+## Arm implementation notes
+
+```text
+quantum_direct:
+  graph = QFCBM_0988 ring
+  internal update = unitary exchange links
+
+quantum_no_internal_links:
+  graph = no internal links
+  resource/output schedule unchanged
+
+quantum_post_internal_dephased:
+  graph = QFCBM_0988 ring
+  internal update = unitary exchange links
+  dephase timing = after internal update within each cycle
+
+quantum_dephase_after_each_link:
+  graph = QFCBM_0988 ring
+  internal update = unitary exchange link followed immediately by full dephase
+
+classical_probability_transport:
+  graph = QFCBM_0988 ring links through the existing links() mapping
+  state representation = diagonal probability only
+  update = classical probability swap/mixing using g-derived alpha
+  coherence/negativity = forced absent by representation/dephase
+
+central_upper_quantum:
+  positive-control / upper-bound arm
+  not a fair competitor in the same class as ring or classical transport
 ```
 
 ## Committed artifacts
@@ -72,6 +107,7 @@ Not allowed:
 ```text
 quantum advantage
 QPU result
+stored-power actuator
 physical energy generation
 life/metabolism/homeostasis/agency
 ```

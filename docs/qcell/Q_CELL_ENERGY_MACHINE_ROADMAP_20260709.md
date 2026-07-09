@@ -688,8 +688,13 @@ quantum_direct:
 quantum_no_internal_links:
   W_attr ~ 0
 
-quantum_dephased:
+quantum_post_internal_dephased:
   W_attr = 7.810684
+  link negativity = 0
+  coherence = 0
+
+quantum_dephase_after_each_link:
+  W_attr = 8.309966
   link negativity = 0
   coherence = 0
 
@@ -708,6 +713,8 @@ Interpretation:
 the linkage types differ
 quantum direct preserves quantum-link signatures
 classical probability transport gives larger W in this setting
+dephased quantum arms keep some W without quantum-link signatures
+central upper is a positive control, not a fair competitor
 this is not quantum advantage
 ```
 
