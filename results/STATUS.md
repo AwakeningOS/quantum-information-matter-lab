@@ -61,6 +61,13 @@ META:
 | `scripts/quantum_observation/classical_vs_quantum_part_coupling_v2_noise_model.py` | OBSERVATION_LOG | QUANTUM_OBSERVATION | implements simple pre-hardware noise profiles for the signed/oriented P1_W witness |
 | `experiments/qcell_phenomenon_map_wide_observation_protocol_20260709.md` | OBSERVATION_LOG | QUANTUM_OBSERVATION | protocol for broad Q-cell intervention mapping; explicitly excludes v2 witness/noise/QPU-ready improvement |
 | `scripts/quantum_observation/qcell_phenomenon_map_wide_observation.py` | OBSERVATION_LOG | QUANTUM_OBSERVATION | independent 2688-condition Q-cell intervention map with mechanical phenomenon labels and no PASS/FAIL promotion |
+| `scripts/quantum_observation/qcell_local_linked_energy_machine_full2q7_final_v0.py` | OBSERVATION_LOG | QUANTUM_OBSERVATION | full seven-qubit CPU runner for resource-driven local energy transport |
+| `scripts/quantum_observation/qcell_local_linked_energy_machine_full2q7_final_v0_gpu.py` | OBSERVATION_LOG | QUANTUM_OBSERVATION | validated batched CUDA runner with per-condition resume and sharding |
+| `data/quantum_observation/qcell_local_linked_energy_machine_full2q7_final_v0_manifest.json` | META | QUANTUM_OBSERVATION | compact manifest for the completed 37-condition, 100-initial-state full run; raw multi-GB logs excluded |
+| `results/qcell_local_linked_energy_machine_full2q7_final_v0_report_2026-07-09.md` | OBSERVATION_LOG | QUANTUM_OBSERVATION | full-model transport, structure, resource-schedule, noise, and ledger summary |
+| `scripts/quantum_observation/qcell_fixed_circuit_output_bottleneck_map_v0_gpu.py` | CODE_BACKED | QUANTUM_OBSERVATION | resumable CUDA Stage 1 runner for the corrected 1,000-point paired bottleneck map |
+| `scripts/quantum_observation/qcell_fixed_circuit_output_bottleneck_map_v0_postprocess.py` | CODE_BACKED | QUANTUM_OBSERVATION | corrected paired attribution and matched-central postprocessor |
+| `results/qcell_fixed_circuit_output_bottleneck_map_v0_runner_note_2026-07-09.md` | META | QUANTUM_OBSERVATION | records the running Stage 1 grid without claiming incomplete results |
 | `data/quantum_observation/classical_vs_quantum_part_coupling_v1_seed20260709.json` | OBSERVATION_LOG | QUANTUM_OBSERVATION | raw counts and bootstrap comparisons for v1 measurable witness |
 | `data/quantum_observation/classical_vs_quantum_part_coupling_v1_seed20260709_summary.csv` | OBSERVATION_LOG | QUANTUM_OBSERVATION | compact summary data for v1 measurable witness |
 | `data/quantum_observation/classical_vs_quantum_part_coupling_v1a_seed_sweep_seed20260709_20260716.json` | OBSERVATION_LOG | QUANTUM_OBSERVATION | raw multi-seed signed-estimator diagnostic data for v1a planning |
