@@ -1,0 +1,20 @@
+{
+  "experiment": "qcell_classical_vs_quantum_coupling_v0",
+  "status": "completed",
+  "grid_id": "QFCBM_0988",
+  "device": "cuda",
+  "gpu": "NVIDIA GeForce RTX 3090",
+  "n_seeds": 60,
+  "arms": [
+    "quantum_direct",
+    "quantum_no_internal_links",
+    "quantum_dephased",
+    "classical_probability_transport",
+    "central_upper_quantum"
+  ],
+  "seed_rows": 300,
+  "checkpoint_rows": 3600,
+  "wall_seconds": 16.895163774490356,
+  "max_residual": 5.306866057708248e-14,
+  "claim_ceiling": "comparison of modeled quantum links, dephased links, no links, classical probability transport, and central upper bound; no quantum advantage claim"
+}

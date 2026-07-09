@@ -669,6 +669,48 @@ output definition
 Compare coherent quantum, dephased matched, classical stochastic, and central
 upper-bound models. No quantum-advantage claim before this comparison.
 
+First current-Q-cell comparison:
+
+```text
+experiments/qcell_classical_vs_quantum_coupling_v0_protocol_20260710.md
+scripts/quantum_observation/qcell_classical_vs_quantum_coupling_v0_gpu.py
+results/qcell_classical_vs_quantum_coupling_v0_report_2026-07-10.md
+```
+
+Readout on `QFCBM_0988`:
+
+```text
+quantum_direct:
+  W_attr = 15.857558
+  mean link negativity = 0.001741
+  mean coherence = 1.669012
+
+quantum_no_internal_links:
+  W_attr ~ 0
+
+quantum_dephased:
+  W_attr = 7.810684
+  link negativity = 0
+  coherence = 0
+
+classical_probability_transport:
+  W_attr = 25.919585
+  link negativity = 0
+  coherence = 0
+
+central_upper_quantum:
+  W_attr = 38.424002
+```
+
+Interpretation:
+
+```text
+the linkage types differ
+quantum direct preserves quantum-link signatures
+classical probability transport gives larger W in this setting
+this is not quantum advantage
+```
+
 ### Step 5 — Selected hardware observations
 
 Do not send the full map to a QPU. Select a small preregistered subset after
