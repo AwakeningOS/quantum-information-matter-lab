@@ -41,7 +41,9 @@ Branch: `codex/qcell-full2q7-and-bottleneck-record`
 - Full-run maximum absolute energy-balance residual: `1.154632e-13`.
 - CPU/GPU smoke outputs agreed at order `1e-15`.
 - Corrected bottleneck smoke completed with maximum residual `3.46e-14`.
-- Active bottleneck run had 400/1000 completed grid markers at last refresh.
+- Active bottleneck run had 443/1000 completed grid markers at last refresh.
+- Commit `8bd4ba6` was pushed and draft PR 29 was opened against the PR 28
+  head branch.
 
 ## Current Blockers
 

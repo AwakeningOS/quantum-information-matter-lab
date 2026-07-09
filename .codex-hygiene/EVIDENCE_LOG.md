@@ -31,9 +31,17 @@
 
 - Time: latest refresh 2026-07-09 JST
 - Action: Counted atomic completion markers.
-- Evidence: `400`
+- Evidence: `443`
 - Files: local Stage 1 output `parts/*_complete.json`
 - Result: Stage 1 in progress; not a completed result.
+
+## GitHub publication
+
+- Time: 2026-07-09 JST
+- Action: Pushed the evidence-record branch and opened a draft stacked PR.
+- Evidence: commit `8bd4ba6`; PR 29.
+- Files: 16 changed files; no multi-gigabyte raw outputs.
+- Result: `https://github.com/AwakeningOS/quantum-information-matter-lab/pull/29`
 
 ## User requirements
 

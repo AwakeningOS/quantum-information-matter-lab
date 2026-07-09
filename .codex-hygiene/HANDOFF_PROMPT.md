@@ -26,7 +26,8 @@ Finish and analyze `qcell_fixed_circuit_output_bottleneck_map_v0` Stage 1.
 - Chain baseline: `0.361389`; classical transport: `0.388945`.
 - Full-run maximum ledger residual: `1.154632e-13`.
 - Corrected bottleneck runner smoke passed with residual `3.46e-14`.
-- Stage 1 had 400/1000 completed grids at last evidence refresh.
+- Stage 1 had 443/1000 completed grids at last evidence refresh.
+- Draft PR 29 records the completed full run and active-map handoff.
 
 ## Files Touched
 
