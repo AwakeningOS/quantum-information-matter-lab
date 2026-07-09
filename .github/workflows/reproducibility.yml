@@ -39,6 +39,11 @@ jobs:
             --summary-csv ../../data/quantum_observation/qcell_seed_instability_and_expanded_situations_v0_seed20260710_20260719_summary.csv \
             --volatility-csv ../../data/quantum_observation/qcell_seed_instability_and_expanded_situations_v0_seed20260710_20260719_seed_volatility.csv \
             --manifest ../../data/quantum_observation/qcell_seed_instability_and_expanded_situations_v0_seed20260710_20260719_manifest.json
+          python qcell_temporal_free_contact_mask_observation_v0.py \
+            --out-jsonl ../../data/quantum_observation/qcell_temporal_free_contact_mask_observation_v0_seed20260710_20260719.jsonl \
+            --events-csv ../../data/quantum_observation/qcell_temporal_free_contact_mask_observation_v0_seed20260710_20260719_events.csv \
+            --mask-csv ../../data/quantum_observation/qcell_temporal_free_contact_mask_observation_v0_seed20260710_20260719_metric_masks.csv \
+            --manifest ../../data/quantum_observation/qcell_temporal_free_contact_mask_observation_v0_seed20260710_20260719_manifest.json
           cd ../..
           count=$(find data/quantum_observation/qcell_phenomenon_map_wide_observation_seed20260709_traces -name '*.jsonl' | wc -l)
           rows=$(find data/quantum_observation/qcell_phenomenon_map_wide_observation_seed20260709_traces -name '*.jsonl' -print0 | xargs -0 cat | wc -l)
@@ -52,6 +57,9 @@ jobs:
           seed_sweep_rows=$(cat data/quantum_observation/qcell_seed_instability_and_expanded_situations_v0_seed20260710_20260719.jsonl | wc -l)
           echo "seed instability sweep rows=$seed_sweep_rows"
           test "$seed_sweep_rows" -eq 750
+          temporal_rows=$(cat data/quantum_observation/qcell_temporal_free_contact_mask_observation_v0_seed20260710_20260719.jsonl | wc -l)
+          echo "temporal/free/contact/mask rows=$temporal_rows"
+          test "$temporal_rows" -eq 620
       - name: Commit PR28 Q-cell observation data
         if: ${{ github.head_ref == 'qcell-phenomenon-map-wide-observation' || github.ref_name == 'qcell-phenomenon-map-wide-observation' }}
         env:
@@ -69,10 +77,14 @@ jobs:
           git add data/quantum_observation/qcell_seed_instability_and_expanded_situations_v0_seed20260710_20260719_summary.csv
           git add data/quantum_observation/qcell_seed_instability_and_expanded_situations_v0_seed20260710_20260719_seed_volatility.csv
           git add data/quantum_observation/qcell_seed_instability_and_expanded_situations_v0_seed20260710_20260719_manifest.json
+          git add data/quantum_observation/qcell_temporal_free_contact_mask_observation_v0_seed20260710_20260719.jsonl
+          git add data/quantum_observation/qcell_temporal_free_contact_mask_observation_v0_seed20260710_20260719_events.csv
+          git add data/quantum_observation/qcell_temporal_free_contact_mask_observation_v0_seed20260710_20260719_metric_masks.csv
+          git add data/quantum_observation/qcell_temporal_free_contact_mask_observation_v0_seed20260710_20260719_manifest.json
           if git diff --cached --quiet; then
             echo "No trace changes to commit."
           else
             git status --short
-            git commit -m "Materialize Q-cell seed instability sweep data"
+            git commit -m "Materialize temporal free contact mask observation data"
             git push "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:qcell-phenomenon-map-wide-observation
           fi
