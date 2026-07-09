@@ -1,0 +1,834 @@
+{
+  "experiment": "qcell_phenomenon_map_wide_observation",
+  "date": "2026-07-09",
+  "status": "OBSERVATION_LOG",
+  "seed": 20260709,
+  "generation_settings": {
+    "n_qubits": 4,
+    "roles": {
+      "M": 0,
+      "C": 1,
+      "R": 2,
+      "W": 3
+    },
+    "prep_ry": {
+      "M": 1.35,
+      "C": 0.82,
+      "R": 0.5,
+      "W": 0.26
+    },
+    "layers": 6,
+    "coupling_modes": [
+      "field_only",
+      "no_entangle",
+      "direct_chain",
+      "dephased_chain",
+      "broken_middle_link",
+      "ring_coupled"
+    ],
+    "interventions": [
+      "ry_touch",
+      "rz_phase_kick",
+      "x_flip_touch",
+      "z_dephase_patch",
+      "weak_measurement_patch",
+      "reset_patch",
+      "echo_reversal",
+      "saturation_drive"
+    ],
+    "targets": [
+      "M",
+      "C",
+      "R",
+      "W",
+      "MC",
+      "CR",
+      "RW"
+    ],
+    "intensities": [
+      0.25,
+      0.5,
+      1.0,
+      1.5
+    ],
+    "phase_contexts": [
+      0.0,
+      1.570796326795
+    ],
+    "population_basis": "computational Z basis, bit order M C R W",
+    "pair_correlation_basis": "ZZ over all six unordered role pairs"
+  },
+  "trace_step_policy": "snapshots after initial preparation, after intervention, and after each of six propagation layers; operation_history records operations inside those snapshots",
+  "total_conditions": 2688,
+  "sharding": "one JSONL per coupling_mode × intervention; 48 shards × 56 rows",
+  "files": [
+    {
+      "path": "../../data/quantum_observation/qcell_phenomenon_map_wide_observation_seed20260709_traces/qcell_phenomenon_map_wide_observation_seed20260709_trace_field_only__ry_touch.jsonl",
+      "coupling_mode": "field_only",
+      "intervention": "ry_touch",
+      "rows": 56,
+      "format": "jsonl",
+      "contains": [
+        "condition settings",
+        "per-step populations",
+        "all six pair ZZ correlations",
+        "coherence",
+        "purity",
+        "operation history",
+        "seed and generation settings"
+      ]
+    },
+    {
+      "path": "../../data/quantum_observation/qcell_phenomenon_map_wide_observation_seed20260709_traces/qcell_phenomenon_map_wide_observation_seed20260709_trace_field_only__rz_phase_kick.jsonl",
+      "coupling_mode": "field_only",
+      "intervention": "rz_phase_kick",
+      "rows": 56,
+      "format": "jsonl",
+      "contains": [
+        "condition settings",
+        "per-step populations",
+        "all six pair ZZ correlations",
+        "coherence",
+        "purity",
+        "operation history",
+        "seed and generation settings"
+      ]
+    },
+    {
+      "path": "../../data/quantum_observation/qcell_phenomenon_map_wide_observation_seed20260709_traces/qcell_phenomenon_map_wide_observation_seed20260709_trace_field_only__x_flip_touch.jsonl",
+      "coupling_mode": "field_only",
+      "intervention": "x_flip_touch",
+      "rows": 56,
+      "format": "jsonl",
+      "contains": [
+        "condition settings",
+        "per-step populations",
+        "all six pair ZZ correlations",
+        "coherence",
+        "purity",
+        "operation history",
+        "seed and generation settings"
+      ]
+    },
+    {
+      "path": "../../data/quantum_observation/qcell_phenomenon_map_wide_observation_seed20260709_traces/qcell_phenomenon_map_wide_observation_seed20260709_trace_field_only__z_dephase_patch.jsonl",
+      "coupling_mode": "field_only",
+      "intervention": "z_dephase_patch",
+      "rows": 56,
+      "format": "jsonl",
+      "contains": [
+        "condition settings",
+        "per-step populations",
+        "all six pair ZZ correlations",
+        "coherence",
+        "purity",
+        "operation history",
+        "seed and generation settings"
+      ]
+    },
+    {
+      "path": "../../data/quantum_observation/qcell_phenomenon_map_wide_observation_seed20260709_traces/qcell_phenomenon_map_wide_observation_seed20260709_trace_field_only__weak_measurement_patch.jsonl",
+      "coupling_mode": "field_only",
+      "intervention": "weak_measurement_patch",
+      "rows": 56,
+      "format": "jsonl",
+      "contains": [
+        "condition settings",
+        "per-step populations",
+        "all six pair ZZ correlations",
+        "coherence",
+        "purity",
+        "operation history",
+        "seed and generation settings"
+      ]
+    },
+    {
+      "path": "../../data/quantum_observation/qcell_phenomenon_map_wide_observation_seed20260709_traces/qcell_phenomenon_map_wide_observation_seed20260709_trace_field_only__reset_patch.jsonl",
+      "coupling_mode": "field_only",
+      "intervention": "reset_patch",
+      "rows": 56,
+      "format": "jsonl",
+      "contains": [
+        "condition settings",
+        "per-step populations",
+        "all six pair ZZ correlations",
+        "coherence",
+        "purity",
+        "operation history",
+        "seed and generation settings"
+      ]
+    },
+    {
+      "path": "../../data/quantum_observation/qcell_phenomenon_map_wide_observation_seed20260709_traces/qcell_phenomenon_map_wide_observation_seed20260709_trace_field_only__echo_reversal.jsonl",
+      "coupling_mode": "field_only",
+      "intervention": "echo_reversal",
+      "rows": 56,
+      "format": "jsonl",
+      "contains": [
+        "condition settings",
+        "per-step populations",
+        "all six pair ZZ correlations",
+        "coherence",
+        "purity",
+        "operation history",
+        "seed and generation settings"
+      ]
+    },
+    {
+      "path": "../../data/quantum_observation/qcell_phenomenon_map_wide_observation_seed20260709_traces/qcell_phenomenon_map_wide_observation_seed20260709_trace_field_only__saturation_drive.jsonl",
+      "coupling_mode": "field_only",
+      "intervention": "saturation_drive",
+      "rows": 56,
+      "format": "jsonl",
+      "contains": [
+        "condition settings",
+        "per-step populations",
+        "all six pair ZZ correlations",
+        "coherence",
+        "purity",
+        "operation history",
+        "seed and generation settings"
+      ]
+    },
+    {
+      "path": "../../data/quantum_observation/qcell_phenomenon_map_wide_observation_seed20260709_traces/qcell_phenomenon_map_wide_observation_seed20260709_trace_no_entangle__ry_touch.jsonl",
+      "coupling_mode": "no_entangle",
+      "intervention": "ry_touch",
+      "rows": 56,
+      "format": "jsonl",
+      "contains": [
+        "condition settings",
+        "per-step populations",
+        "all six pair ZZ correlations",
+        "coherence",
+        "purity",
+        "operation history",
+        "seed and generation settings"
+      ]
+    },
+    {
+      "path": "../../data/quantum_observation/qcell_phenomenon_map_wide_observation_seed20260709_traces/qcell_phenomenon_map_wide_observation_seed20260709_trace_no_entangle__rz_phase_kick.jsonl",
+      "coupling_mode": "no_entangle",
+      "intervention": "rz_phase_kick",
+      "rows": 56,
+      "format": "jsonl",
+      "contains": [
+        "condition settings",
+        "per-step populations",
+        "all six pair ZZ correlations",
+        "coherence",
+        "purity",
+        "operation history",
+        "seed and generation settings"
+      ]
+    },
+    {
+      "path": "../../data/quantum_observation/qcell_phenomenon_map_wide_observation_seed20260709_traces/qcell_phenomenon_map_wide_observation_seed20260709_trace_no_entangle__x_flip_touch.jsonl",
+      "coupling_mode": "no_entangle",
+      "intervention": "x_flip_touch",
+      "rows": 56,
+      "format": "jsonl",
+      "contains": [
+        "condition settings",
+        "per-step populations",
+        "all six pair ZZ correlations",
+        "coherence",
+        "purity",
+        "operation history",
+        "seed and generation settings"
+      ]
+    },
+    {
+      "path": "../../data/quantum_observation/qcell_phenomenon_map_wide_observation_seed20260709_traces/qcell_phenomenon_map_wide_observation_seed20260709_trace_no_entangle__z_dephase_patch.jsonl",
+      "coupling_mode": "no_entangle",
+      "intervention": "z_dephase_patch",
+      "rows": 56,
+      "format": "jsonl",
+      "contains": [
+        "condition settings",
+        "per-step populations",
+        "all six pair ZZ correlations",
+        "coherence",
+        "purity",
+        "operation history",
+        "seed and generation settings"
+      ]
+    },
+    {
+      "path": "../../data/quantum_observation/qcell_phenomenon_map_wide_observation_seed20260709_traces/qcell_phenomenon_map_wide_observation_seed20260709_trace_no_entangle__weak_measurement_patch.jsonl",
+      "coupling_mode": "no_entangle",
+      "intervention": "weak_measurement_patch",
+      "rows": 56,
+      "format": "jsonl",
+      "contains": [
+        "condition settings",
+        "per-step populations",
+        "all six pair ZZ correlations",
+        "coherence",
+        "purity",
+        "operation history",
+        "seed and generation settings"
+      ]
+    },
+    {
+      "path": "../../data/quantum_observation/qcell_phenomenon_map_wide_observation_seed20260709_traces/qcell_phenomenon_map_wide_observation_seed20260709_trace_no_entangle__reset_patch.jsonl",
+      "coupling_mode": "no_entangle",
+      "intervention": "reset_patch",
+      "rows": 56,
+      "format": "jsonl",
+      "contains": [
+        "condition settings",
+        "per-step populations",
+        "all six pair ZZ correlations",
+        "coherence",
+        "purity",
+        "operation history",
+        "seed and generation settings"
+      ]
+    },
+    {
+      "path": "../../data/quantum_observation/qcell_phenomenon_map_wide_observation_seed20260709_traces/qcell_phenomenon_map_wide_observation_seed20260709_trace_no_entangle__echo_reversal.jsonl",
+      "coupling_mode": "no_entangle",
+      "intervention": "echo_reversal",
+      "rows": 56,
+      "format": "jsonl",
+      "contains": [
+        "condition settings",
+        "per-step populations",
+        "all six pair ZZ correlations",
+        "coherence",
+        "purity",
+        "operation history",
+        "seed and generation settings"
+      ]
+    },
+    {
+      "path": "../../data/quantum_observation/qcell_phenomenon_map_wide_observation_seed20260709_traces/qcell_phenomenon_map_wide_observation_seed20260709_trace_no_entangle__saturation_drive.jsonl",
+      "coupling_mode": "no_entangle",
+      "intervention": "saturation_drive",
+      "rows": 56,
+      "format": "jsonl",
+      "contains": [
+        "condition settings",
+        "per-step populations",
+        "all six pair ZZ correlations",
+        "coherence",
+        "purity",
+        "operation history",
+        "seed and generation settings"
+      ]
+    },
+    {
+      "path": "../../data/quantum_observation/qcell_phenomenon_map_wide_observation_seed20260709_traces/qcell_phenomenon_map_wide_observation_seed20260709_trace_direct_chain__ry_touch.jsonl",
+      "coupling_mode": "direct_chain",
+      "intervention": "ry_touch",
+      "rows": 56,
+      "format": "jsonl",
+      "contains": [
+        "condition settings",
+        "per-step populations",
+        "all six pair ZZ correlations",
+        "coherence",
+        "purity",
+        "operation history",
+        "seed and generation settings"
+      ]
+    },
+    {
+      "path": "../../data/quantum_observation/qcell_phenomenon_map_wide_observation_seed20260709_traces/qcell_phenomenon_map_wide_observation_seed20260709_trace_direct_chain__rz_phase_kick.jsonl",
+      "coupling_mode": "direct_chain",
+      "intervention": "rz_phase_kick",
+      "rows": 56,
+      "format": "jsonl",
+      "contains": [
+        "condition settings",
+        "per-step populations",
+        "all six pair ZZ correlations",
+        "coherence",
+        "purity",
+        "operation history",
+        "seed and generation settings"
+      ]
+    },
+    {
+      "path": "../../data/quantum_observation/qcell_phenomenon_map_wide_observation_seed20260709_traces/qcell_phenomenon_map_wide_observation_seed20260709_trace_direct_chain__x_flip_touch.jsonl",
+      "coupling_mode": "direct_chain",
+      "intervention": "x_flip_touch",
+      "rows": 56,
+      "format": "jsonl",
+      "contains": [
+        "condition settings",
+        "per-step populations",
+        "all six pair ZZ correlations",
+        "coherence",
+        "purity",
+        "operation history",
+        "seed and generation settings"
+      ]
+    },
+    {
+      "path": "../../data/quantum_observation/qcell_phenomenon_map_wide_observation_seed20260709_traces/qcell_phenomenon_map_wide_observation_seed20260709_trace_direct_chain__z_dephase_patch.jsonl",
+      "coupling_mode": "direct_chain",
+      "intervention": "z_dephase_patch",
+      "rows": 56,
+      "format": "jsonl",
+      "contains": [
+        "condition settings",
+        "per-step populations",
+        "all six pair ZZ correlations",
+        "coherence",
+        "purity",
+        "operation history",
+        "seed and generation settings"
+      ]
+    },
+    {
+      "path": "../../data/quantum_observation/qcell_phenomenon_map_wide_observation_seed20260709_traces/qcell_phenomenon_map_wide_observation_seed20260709_trace_direct_chain__weak_measurement_patch.jsonl",
+      "coupling_mode": "direct_chain",
+      "intervention": "weak_measurement_patch",
+      "rows": 56,
+      "format": "jsonl",
+      "contains": [
+        "condition settings",
+        "per-step populations",
+        "all six pair ZZ correlations",
+        "coherence",
+        "purity",
+        "operation history",
+        "seed and generation settings"
+      ]
+    },
+    {
+      "path": "../../data/quantum_observation/qcell_phenomenon_map_wide_observation_seed20260709_traces/qcell_phenomenon_map_wide_observation_seed20260709_trace_direct_chain__reset_patch.jsonl",
+      "coupling_mode": "direct_chain",
+      "intervention": "reset_patch",
+      "rows": 56,
+      "format": "jsonl",
+      "contains": [
+        "condition settings",
+        "per-step populations",
+        "all six pair ZZ correlations",
+        "coherence",
+        "purity",
+        "operation history",
+        "seed and generation settings"
+      ]
+    },
+    {
+      "path": "../../data/quantum_observation/qcell_phenomenon_map_wide_observation_seed20260709_traces/qcell_phenomenon_map_wide_observation_seed20260709_trace_direct_chain__echo_reversal.jsonl",
+      "coupling_mode": "direct_chain",
+      "intervention": "echo_reversal",
+      "rows": 56,
+      "format": "jsonl",
+      "contains": [
+        "condition settings",
+        "per-step populations",
+        "all six pair ZZ correlations",
+        "coherence",
+        "purity",
+        "operation history",
+        "seed and generation settings"
+      ]
+    },
+    {
+      "path": "../../data/quantum_observation/qcell_phenomenon_map_wide_observation_seed20260709_traces/qcell_phenomenon_map_wide_observation_seed20260709_trace_direct_chain__saturation_drive.jsonl",
+      "coupling_mode": "direct_chain",
+      "intervention": "saturation_drive",
+      "rows": 56,
+      "format": "jsonl",
+      "contains": [
+        "condition settings",
+        "per-step populations",
+        "all six pair ZZ correlations",
+        "coherence",
+        "purity",
+        "operation history",
+        "seed and generation settings"
+      ]
+    },
+    {
+      "path": "../../data/quantum_observation/qcell_phenomenon_map_wide_observation_seed20260709_traces/qcell_phenomenon_map_wide_observation_seed20260709_trace_dephased_chain__ry_touch.jsonl",
+      "coupling_mode": "dephased_chain",
+      "intervention": "ry_touch",
+      "rows": 56,
+      "format": "jsonl",
+      "contains": [
+        "condition settings",
+        "per-step populations",
+        "all six pair ZZ correlations",
+        "coherence",
+        "purity",
+        "operation history",
+        "seed and generation settings"
+      ]
+    },
+    {
+      "path": "../../data/quantum_observation/qcell_phenomenon_map_wide_observation_seed20260709_traces/qcell_phenomenon_map_wide_observation_seed20260709_trace_dephased_chain__rz_phase_kick.jsonl",
+      "coupling_mode": "dephased_chain",
+      "intervention": "rz_phase_kick",
+      "rows": 56,
+      "format": "jsonl",
+      "contains": [
+        "condition settings",
+        "per-step populations",
+        "all six pair ZZ correlations",
+        "coherence",
+        "purity",
+        "operation history",
+        "seed and generation settings"
+      ]
+    },
+    {
+      "path": "../../data/quantum_observation/qcell_phenomenon_map_wide_observation_seed20260709_traces/qcell_phenomenon_map_wide_observation_seed20260709_trace_dephased_chain__x_flip_touch.jsonl",
+      "coupling_mode": "dephased_chain",
+      "intervention": "x_flip_touch",
+      "rows": 56,
+      "format": "jsonl",
+      "contains": [
+        "condition settings",
+        "per-step populations",
+        "all six pair ZZ correlations",
+        "coherence",
+        "purity",
+        "operation history",
+        "seed and generation settings"
+      ]
+    },
+    {
+      "path": "../../data/quantum_observation/qcell_phenomenon_map_wide_observation_seed20260709_traces/qcell_phenomenon_map_wide_observation_seed20260709_trace_dephased_chain__z_dephase_patch.jsonl",
+      "coupling_mode": "dephased_chain",
+      "intervention": "z_dephase_patch",
+      "rows": 56,
+      "format": "jsonl",
+      "contains": [
+        "condition settings",
+        "per-step populations",
+        "all six pair ZZ correlations",
+        "coherence",
+        "purity",
+        "operation history",
+        "seed and generation settings"
+      ]
+    },
+    {
+      "path": "../../data/quantum_observation/qcell_phenomenon_map_wide_observation_seed20260709_traces/qcell_phenomenon_map_wide_observation_seed20260709_trace_dephased_chain__weak_measurement_patch.jsonl",
+      "coupling_mode": "dephased_chain",
+      "intervention": "weak_measurement_patch",
+      "rows": 56,
+      "format": "jsonl",
+      "contains": [
+        "condition settings",
+        "per-step populations",
+        "all six pair ZZ correlations",
+        "coherence",
+        "purity",
+        "operation history",
+        "seed and generation settings"
+      ]
+    },
+    {
+      "path": "../../data/quantum_observation/qcell_phenomenon_map_wide_observation_seed20260709_traces/qcell_phenomenon_map_wide_observation_seed20260709_trace_dephased_chain__reset_patch.jsonl",
+      "coupling_mode": "dephased_chain",
+      "intervention": "reset_patch",
+      "rows": 56,
+      "format": "jsonl",
+      "contains": [
+        "condition settings",
+        "per-step populations",
+        "all six pair ZZ correlations",
+        "coherence",
+        "purity",
+        "operation history",
+        "seed and generation settings"
+      ]
+    },
+    {
+      "path": "../../data/quantum_observation/qcell_phenomenon_map_wide_observation_seed20260709_traces/qcell_phenomenon_map_wide_observation_seed20260709_trace_dephased_chain__echo_reversal.jsonl",
+      "coupling_mode": "dephased_chain",
+      "intervention": "echo_reversal",
+      "rows": 56,
+      "format": "jsonl",
+      "contains": [
+        "condition settings",
+        "per-step populations",
+        "all six pair ZZ correlations",
+        "coherence",
+        "purity",
+        "operation history",
+        "seed and generation settings"
+      ]
+    },
+    {
+      "path": "../../data/quantum_observation/qcell_phenomenon_map_wide_observation_seed20260709_traces/qcell_phenomenon_map_wide_observation_seed20260709_trace_dephased_chain__saturation_drive.jsonl",
+      "coupling_mode": "dephased_chain",
+      "intervention": "saturation_drive",
+      "rows": 56,
+      "format": "jsonl",
+      "contains": [
+        "condition settings",
+        "per-step populations",
+        "all six pair ZZ correlations",
+        "coherence",
+        "purity",
+        "operation history",
+        "seed and generation settings"
+      ]
+    },
+    {
+      "path": "../../data/quantum_observation/qcell_phenomenon_map_wide_observation_seed20260709_traces/qcell_phenomenon_map_wide_observation_seed20260709_trace_broken_middle_link__ry_touch.jsonl",
+      "coupling_mode": "broken_middle_link",
+      "intervention": "ry_touch",
+      "rows": 56,
+      "format": "jsonl",
+      "contains": [
+        "condition settings",
+        "per-step populations",
+        "all six pair ZZ correlations",
+        "coherence",
+        "purity",
+        "operation history",
+        "seed and generation settings"
+      ]
+    },
+    {
+      "path": "../../data/quantum_observation/qcell_phenomenon_map_wide_observation_seed20260709_traces/qcell_phenomenon_map_wide_observation_seed20260709_trace_broken_middle_link__rz_phase_kick.jsonl",
+      "coupling_mode": "broken_middle_link",
+      "intervention": "rz_phase_kick",
+      "rows": 56,
+      "format": "jsonl",
+      "contains": [
+        "condition settings",
+        "per-step populations",
+        "all six pair ZZ correlations",
+        "coherence",
+        "purity",
+        "operation history",
+        "seed and generation settings"
+      ]
+    },
+    {
+      "path": "../../data/quantum_observation/qcell_phenomenon_map_wide_observation_seed20260709_traces/qcell_phenomenon_map_wide_observation_seed20260709_trace_broken_middle_link__x_flip_touch.jsonl",
+      "coupling_mode": "broken_middle_link",
+      "intervention": "x_flip_touch",
+      "rows": 56,
+      "format": "jsonl",
+      "contains": [
+        "condition settings",
+        "per-step populations",
+        "all six pair ZZ correlations",
+        "coherence",
+        "purity",
+        "operation history",
+        "seed and generation settings"
+      ]
+    },
+    {
+      "path": "../../data/quantum_observation/qcell_phenomenon_map_wide_observation_seed20260709_traces/qcell_phenomenon_map_wide_observation_seed20260709_trace_broken_middle_link__z_dephase_patch.jsonl",
+      "coupling_mode": "broken_middle_link",
+      "intervention": "z_dephase_patch",
+      "rows": 56,
+      "format": "jsonl",
+      "contains": [
+        "condition settings",
+        "per-step populations",
+        "all six pair ZZ correlations",
+        "coherence",
+        "purity",
+        "operation history",
+        "seed and generation settings"
+      ]
+    },
+    {
+      "path": "../../data/quantum_observation/qcell_phenomenon_map_wide_observation_seed20260709_traces/qcell_phenomenon_map_wide_observation_seed20260709_trace_broken_middle_link__weak_measurement_patch.jsonl",
+      "coupling_mode": "broken_middle_link",
+      "intervention": "weak_measurement_patch",
+      "rows": 56,
+      "format": "jsonl",
+      "contains": [
+        "condition settings",
+        "per-step populations",
+        "all six pair ZZ correlations",
+        "coherence",
+        "purity",
+        "operation history",
+        "seed and generation settings"
+      ]
+    },
+    {
+      "path": "../../data/quantum_observation/qcell_phenomenon_map_wide_observation_seed20260709_traces/qcell_phenomenon_map_wide_observation_seed20260709_trace_broken_middle_link__reset_patch.jsonl",
+      "coupling_mode": "broken_middle_link",
+      "intervention": "reset_patch",
+      "rows": 56,
+      "format": "jsonl",
+      "contains": [
+        "condition settings",
+        "per-step populations",
+        "all six pair ZZ correlations",
+        "coherence",
+        "purity",
+        "operation history",
+        "seed and generation settings"
+      ]
+    },
+    {
+      "path": "../../data/quantum_observation/qcell_phenomenon_map_wide_observation_seed20260709_traces/qcell_phenomenon_map_wide_observation_seed20260709_trace_broken_middle_link__echo_reversal.jsonl",
+      "coupling_mode": "broken_middle_link",
+      "intervention": "echo_reversal",
+      "rows": 56,
+      "format": "jsonl",
+      "contains": [
+        "condition settings",
+        "per-step populations",
+        "all six pair ZZ correlations",
+        "coherence",
+        "purity",
+        "operation history",
+        "seed and generation settings"
+      ]
+    },
+    {
+      "path": "../../data/quantum_observation/qcell_phenomenon_map_wide_observation_seed20260709_traces/qcell_phenomenon_map_wide_observation_seed20260709_trace_broken_middle_link__saturation_drive.jsonl",
+      "coupling_mode": "broken_middle_link",
+      "intervention": "saturation_drive",
+      "rows": 56,
+      "format": "jsonl",
+      "contains": [
+        "condition settings",
+        "per-step populations",
+        "all six pair ZZ correlations",
+        "coherence",
+        "purity",
+        "operation history",
+        "seed and generation settings"
+      ]
+    },
+    {
+      "path": "../../data/quantum_observation/qcell_phenomenon_map_wide_observation_seed20260709_traces/qcell_phenomenon_map_wide_observation_seed20260709_trace_ring_coupled__ry_touch.jsonl",
+      "coupling_mode": "ring_coupled",
+      "intervention": "ry_touch",
+      "rows": 56,
+      "format": "jsonl",
+      "contains": [
+        "condition settings",
+        "per-step populations",
+        "all six pair ZZ correlations",
+        "coherence",
+        "purity",
+        "operation history",
+        "seed and generation settings"
+      ]
+    },
+    {
+      "path": "../../data/quantum_observation/qcell_phenomenon_map_wide_observation_seed20260709_traces/qcell_phenomenon_map_wide_observation_seed20260709_trace_ring_coupled__rz_phase_kick.jsonl",
+      "coupling_mode": "ring_coupled",
+      "intervention": "rz_phase_kick",
+      "rows": 56,
+      "format": "jsonl",
+      "contains": [
+        "condition settings",
+        "per-step populations",
+        "all six pair ZZ correlations",
+        "coherence",
+        "purity",
+        "operation history",
+        "seed and generation settings"
+      ]
+    },
+    {
+      "path": "../../data/quantum_observation/qcell_phenomenon_map_wide_observation_seed20260709_traces/qcell_phenomenon_map_wide_observation_seed20260709_trace_ring_coupled__x_flip_touch.jsonl",
+      "coupling_mode": "ring_coupled",
+      "intervention": "x_flip_touch",
+      "rows": 56,
+      "format": "jsonl",
+      "contains": [
+        "condition settings",
+        "per-step populations",
+        "all six pair ZZ correlations",
+        "coherence",
+        "purity",
+        "operation history",
+        "seed and generation settings"
+      ]
+    },
+    {
+      "path": "../../data/quantum_observation/qcell_phenomenon_map_wide_observation_seed20260709_traces/qcell_phenomenon_map_wide_observation_seed20260709_trace_ring_coupled__z_dephase_patch.jsonl",
+      "coupling_mode": "ring_coupled",
+      "intervention": "z_dephase_patch",
+      "rows": 56,
+      "format": "jsonl",
+      "contains": [
+        "condition settings",
+        "per-step populations",
+        "all six pair ZZ correlations",
+        "coherence",
+        "purity",
+        "operation history",
+        "seed and generation settings"
+      ]
+    },
+    {
+      "path": "../../data/quantum_observation/qcell_phenomenon_map_wide_observation_seed20260709_traces/qcell_phenomenon_map_wide_observation_seed20260709_trace_ring_coupled__weak_measurement_patch.jsonl",
+      "coupling_mode": "ring_coupled",
+      "intervention": "weak_measurement_patch",
+      "rows": 56,
+      "format": "jsonl",
+      "contains": [
+        "condition settings",
+        "per-step populations",
+        "all six pair ZZ correlations",
+        "coherence",
+        "purity",
+        "operation history",
+        "seed and generation settings"
+      ]
+    },
+    {
+      "path": "../../data/quantum_observation/qcell_phenomenon_map_wide_observation_seed20260709_traces/qcell_phenomenon_map_wide_observation_seed20260709_trace_ring_coupled__reset_patch.jsonl",
+      "coupling_mode": "ring_coupled",
+      "intervention": "reset_patch",
+      "rows": 56,
+      "format": "jsonl",
+      "contains": [
+        "condition settings",
+        "per-step populations",
+        "all six pair ZZ correlations",
+        "coherence",
+        "purity",
+        "operation history",
+        "seed and generation settings"
+      ]
+    },
+    {
+      "path": "../../data/quantum_observation/qcell_phenomenon_map_wide_observation_seed20260709_traces/qcell_phenomenon_map_wide_observation_seed20260709_trace_ring_coupled__echo_reversal.jsonl",
+      "coupling_mode": "ring_coupled",
+      "intervention": "echo_reversal",
+      "rows": 56,
+      "format": "jsonl",
+      "contains": [
+        "condition settings",
+        "per-step populations",
+        "all six pair ZZ correlations",
+        "coherence",
+        "purity",
+        "operation history",
+        "seed and generation settings"
+      ]
+    },
+    {
+      "path": "../../data/quantum_observation/qcell_phenomenon_map_wide_observation_seed20260709_traces/qcell_phenomenon_map_wide_observation_seed20260709_trace_ring_coupled__saturation_drive.jsonl",
+      "coupling_mode": "ring_coupled",
+      "intervention": "saturation_drive",
+      "rows": 56,
+      "format": "jsonl",
+      "contains": [
+        "condition settings",
+        "per-step populations",
+        "all six pair ZZ correlations",
+        "coherence",
+        "purity",
+        "operation history",
+        "seed and generation settings"
+      ]
+    }
+  ]
+}
