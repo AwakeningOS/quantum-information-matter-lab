@@ -111,6 +111,8 @@ META:
 | `data/quantum_observation/qcell_battery_powered_controller_v0_threshold_summary.csv` | OBSERVATION_LOG | QUANTUM_OBSERVATION | threshold summary for evolved controller finite-reservoir survival |
 | `data/quantum_observation/qcell_battery_powered_controller_v0_manifest.json` | META | QUANTUM_OBSERVATION | battery-powered controller execution shape and validation metadata |
 | `results/qcell_battery_powered_controller_v0_report_2026-07-10.md` | OBSERVATION_LOG | QUANTUM_OBSERVATION | finite controller-reservoir report; QFCBM_0988 remains robust under finite M while QFCBM_0399 remains fragile |
+| `experiments/qcell_stored_power_actuator_v0_protocol_20260710.md` | PHENOMENOLOGY_NOTE | QUANTUM_OBSERVATION | design-review protocol for internal stored-power actuator accounting; not yet executed |
+| `docs/qcell/Q_CELL_STORED_POWER_ACTUATOR_CLOUD_REVIEW_PROMPT_20260710.md` | META | QUANTUM_OBSERVATION | cloud review prompt for stored-power actuator controls and claim limits |
 | `data/quantum_observation/classical_vs_quantum_part_coupling_v1_seed20260709.json` | OBSERVATION_LOG | QUANTUM_OBSERVATION | raw counts and bootstrap comparisons for v1 measurable witness |
 | `data/quantum_observation/classical_vs_quantum_part_coupling_v1_seed20260709_summary.csv` | OBSERVATION_LOG | QUANTUM_OBSERVATION | compact summary data for v1 measurable witness |
 | `data/quantum_observation/classical_vs_quantum_part_coupling_v1a_seed_sweep_seed20260709_20260716.json` | OBSERVATION_LOG | QUANTUM_OBSERVATION | raw multi-seed signed-estimator diagnostic data for v1a planning |

@@ -505,7 +505,27 @@ metabolism/homeostasis/life/agency
 quantum advantage
 ```
 
-### Step 3 — Battery-powered actuator
+### Step 3 — Stored-power actuator
+
+Active design-review artifacts:
+
+```text
+experiments/qcell_stored_power_actuator_v0_protocol_20260710.md
+docs/qcell/Q_CELL_STORED_POWER_ACTUATOR_CLOUD_REVIEW_PROMPT_20260710.md
+```
+
+Target:
+
+```text
+external supply -> internal store -> controller action -> store decreases
+store empty -> action stops
+supply resumes -> store refills -> action resumes
+```
+
+This should be reviewed before GPU execution. The first run should stay small,
+preferably `QFCBM_0988` only.
+
+### Step 3b — Battery-powered actuator
 
 Require stored energy in `E` to decrease when an output action occurs.
 Separate:
