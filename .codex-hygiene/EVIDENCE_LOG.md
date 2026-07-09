@@ -43,6 +43,18 @@
 - Files: 16 changed files; no multi-gigabyte raw outputs.
 - Result: `https://github.com/AwakeningOS/quantum-information-matter-lab/pull/29`
 
+## Bottleneck Stage 1 completion
+
+- Time: 2026-07-09 JST
+- Action: Completed 1,000-grid corrected fixed-circuit map and postprocessed
+  compact paired summaries.
+- Evidence: 1,000/1,000 markers; 40,000 raw condition-seed summary rows;
+  10,000 paired rows; all four variants in every pair; no non-finite compact
+  values; maximum residual `1.381117442633695e-13`; commutator maximum `0`.
+- Files: local Stage 1 outputs; compact grid and promising-region CSV files.
+- Result: maximum attributed fixed output `17.6555578850702`; matched central
+  `38.380658814001`; fixed/central `0.4600009968262461`.
+
 ## User requirements
 
 - Time: 2026-07-09 JST

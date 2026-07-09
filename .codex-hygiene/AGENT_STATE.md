@@ -7,8 +7,8 @@ GitHub so another agent can continue and the record can support later papers.
 
 ## Current Task
 
-Publish full-2^7 validated artifacts and the corrected fixed-circuit
-bottleneck-map runner while Stage 1 continues locally.
+Publish the completed corrected fixed-circuit Stage 1 compact results and
+prepare representative Stage 2 confirmation.
 
 ## Hard Constraints
 
@@ -41,13 +41,16 @@ Branch: `codex/qcell-full2q7-and-bottleneck-record`
 - Full-run maximum absolute energy-balance residual: `1.154632e-13`.
 - CPU/GPU smoke outputs agreed at order `1e-15`.
 - Corrected bottleneck smoke completed with maximum residual `3.46e-14`.
-- Active bottleneck run had 443/1000 completed grid markers at last refresh.
+- Bottleneck Stage 1 completed 1000/1000 grid points.
+- Stage 1 paired rows: 10,000; all four variants present for every pair.
+- Stage 1 maximum absolute energy-balance residual: `1.381117e-13`.
+- Maximum attributed fixed output: `17.655558`; matched central `38.380659`.
 - Commit `8bd4ba6` was pushed and draft PR 29 was opened against the PR 28
   head branch.
 
 ## Current Blockers
 
-None. Stage 1 is still running and must be validated after completion.
+None. Stage 2 region selection is the next research action.
 
 Local Stage 1 output:
 
@@ -55,9 +58,9 @@ Local Stage 1 output:
 
 ## Next 1-3 Actions
 
-1. Complete and validate Stage 1; create compact corrected summaries.
-2. Commit Stage 1 results in a follow-up without raw cyclewise logs.
-3. Run representative Stage 2 regions with 100 initial states.
+1. Commit compact Stage 1 summaries and report without raw cyclewise logs.
+2. Freeze representative Stage 2 grid IDs.
+3. Run those regions with 100 initial states.
 
 ## Last Updated
 

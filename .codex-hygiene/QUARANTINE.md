@@ -27,9 +27,11 @@
 - Risk: Confusing fixed transport with adaptive coordination.
 - Can be restored if: The planned local-coordination causal test succeeds.
 
-## Bottleneck Stage 1 completion
+## Single universal Stage 1 winner
 
-- Text / Summary: The 1,000-grid map is complete and has identified an optimum.
-- Reason: The run was still in progress at the last evidence refresh.
-- Risk: False completion and premature result selection.
-- Can be restored if: 1,000 completion markers and validation are recorded.
+- Text / Summary: One fixed grid is globally optimal for all purposes.
+- Reason: Maximum output, maximum efficiency, and maximum fixed/central ratio
+  occur in different regions; the ratio can favor trivial low-output cases.
+- Risk: Collapsing a multi-objective bottleneck map into one misleading rank.
+- Can be restored if: A future task explicitly defines and preregisters one
+  scalar objective with all resource and control costs.

@@ -7,7 +7,8 @@ continue toward locally coordinated, resource-driven information machinery.
 
 ## Current Task
 
-Finish and analyze `qcell_fixed_circuit_output_bottleneck_map_v0` Stage 1.
+Freeze and execute representative `qcell_fixed_circuit_output_bottleneck_map_v0`
+Stage 2 regions with 100 initial states.
 
 ## Hard Constraints
 
@@ -26,7 +27,9 @@ Finish and analyze `qcell_fixed_circuit_output_bottleneck_map_v0` Stage 1.
 - Chain baseline: `0.361389`; classical transport: `0.388945`.
 - Full-run maximum ledger residual: `1.154632e-13`.
 - Corrected bottleneck runner smoke passed with residual `3.46e-14`.
-- Stage 1 had 443/1000 completed grids at last evidence refresh.
+- Stage 1 completed 1000/1000 grids with complete four-variant pairing.
+- Stage 1 maximum residual: `1.381117e-13`.
+- Maximum attributed W: `17.655558`; matched central: `38.380659`.
 - Draft PR 29 records the completed full run and active-map handoff.
 
 ## Files Touched
@@ -40,8 +43,8 @@ Finish and analyze `qcell_fixed_circuit_output_bottleneck_map_v0` Stage 1.
 
 ## Current Status
 
-Stage 1 is running locally with atomic per-grid files and `--resume`. The
-GitHub branch records code and verified completed work, not unfinished claims.
+Stage 1 is complete. Compact corrected summaries and a report are prepared;
+multi-gigabyte raw files remain local.
 
 Local output directory:
 
@@ -49,15 +52,13 @@ Local output directory:
 
 ## Next Actions
 
-1. Count `parts/*_complete.json`; require 1000.
-2. Validate NaN/Inf, energy residual, commutator, and paired row completeness.
-3. Merge only the compact condition-seed summary first.
-4. Run corrected postprocessor and select representative Stage 2 regions.
-5. Commit compact summaries and final Stage 1 report; exclude raw logs.
+1. Commit compact Stage 1 summary/regions/report; exclude raw logs.
+2. Freeze representative Stage 2 grid IDs across the preregistered regions.
+3. Run Stage 2 with 100 initial states and four matched variants.
+4. Commit compact Stage 2 summary and final comparison report.
 
 ## Do Not Assume
 
-- Do not assume Stage 1 completed because it was launched.
 - Do not use old central `W=1.028` as the denominator for the new grid.
 - Do not call raw W output resource-attributable without subtracting the
   matched no-resource output.

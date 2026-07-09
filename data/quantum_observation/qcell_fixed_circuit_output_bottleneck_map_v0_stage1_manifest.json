@@ -1,0 +1,14 @@
+{
+  "experiment": "qcell_fixed_circuit_output_bottleneck_map_v0",
+  "stage": "stage1",
+  "device": "cuda",
+  "gpu": "NVIDIA GeForce RTX 3090",
+  "n_grids": 1000,
+  "variants_per_grid": 4,
+  "n_seeds": 10,
+  "cycles": 200,
+  "completed_grids": 1000,
+  "resume_supported": true,
+  "wall_seconds": 3794.049728870392,
+  "output_switching_cost_status": "not_modeled"
+}

@@ -1,6 +1,6 @@
 # Q-cell fixed-circuit output bottleneck map v0 runner note
 
-Status: `OBSERVATION_LOG / STAGE1_RUNNING`
+Status: `OBSERVATION_LOG / STAGE1_COMPLETED`
 
 ## Purpose
 
@@ -69,13 +69,23 @@ python scripts/quantum_observation/qcell_fixed_circuit_output_bottleneck_map_v0_
 
 ## Execution state
 
-Stage 1 was launched locally on an RTX 3090 with a 250 W power limit. This note
-does not claim a result while the grid is incomplete.
+Stage 1 completed locally:
+
+```text
+1,000/1,000 grid points
+10 initial states
+4 paired variants
+200 cycles
+wall time: 3,794.05 s
+maximum absolute energy-balance residual: 1.381117e-13
+```
+
+See `results/qcell_fixed_circuit_output_bottleneck_map_v0_stage1_report_2026-07-09.md`.
 
 ## Non-claims
 
 ```text
-No optimization result yet.
+No adaptive-optimization result.
 No adaptive-control result.
 No decision-making or purpose.
 No life, metabolism, repair, or homeostasis.

@@ -67,7 +67,11 @@ META:
 | `results/qcell_local_linked_energy_machine_full2q7_final_v0_report_2026-07-09.md` | OBSERVATION_LOG | QUANTUM_OBSERVATION | full-model transport, structure, resource-schedule, noise, and ledger summary |
 | `scripts/quantum_observation/qcell_fixed_circuit_output_bottleneck_map_v0_gpu.py` | CODE_BACKED | QUANTUM_OBSERVATION | resumable CUDA Stage 1 runner for the corrected 1,000-point paired bottleneck map |
 | `scripts/quantum_observation/qcell_fixed_circuit_output_bottleneck_map_v0_postprocess.py` | CODE_BACKED | QUANTUM_OBSERVATION | corrected paired attribution and matched-central postprocessor |
-| `results/qcell_fixed_circuit_output_bottleneck_map_v0_runner_note_2026-07-09.md` | META | QUANTUM_OBSERVATION | records the running Stage 1 grid without claiming incomplete results |
+| `results/qcell_fixed_circuit_output_bottleneck_map_v0_runner_note_2026-07-09.md` | META | QUANTUM_OBSERVATION | records the completed Stage 1 execution and routes to the compact result report |
+| `data/quantum_observation/qcell_fixed_circuit_output_bottleneck_map_stage1_grid_summary_corrected.csv` | OBSERVATION_LOG | QUANTUM_OBSERVATION | compact corrected 1,000-grid Stage 1 summary; raw multi-GB logs excluded |
+| `data/quantum_observation/qcell_fixed_circuit_output_bottleneck_map_stage1_promising_regions_corrected.csv` | OBSERVATION_LOG | QUANTUM_OBSERVATION | representative Stage 2 regions from output, efficiency, matched-central, and bottleneck views |
+| `data/quantum_observation/qcell_fixed_circuit_output_bottleneck_map_v0_stage1_manifest.json` | META | QUANTUM_OBSERVATION | completed Stage 1 execution shape and runtime |
+| `results/qcell_fixed_circuit_output_bottleneck_map_v0_stage1_report_2026-07-09.md` | OBSERVATION_LOG | QUANTUM_OBSERVATION | corrected fixed-circuit output envelope, tradeoff, and overswap summary |
 | `data/quantum_observation/classical_vs_quantum_part_coupling_v1_seed20260709.json` | OBSERVATION_LOG | QUANTUM_OBSERVATION | raw counts and bootstrap comparisons for v1 measurable witness |
 | `data/quantum_observation/classical_vs_quantum_part_coupling_v1_seed20260709_summary.csv` | OBSERVATION_LOG | QUANTUM_OBSERVATION | compact summary data for v1 measurable witness |
 | `data/quantum_observation/classical_vs_quantum_part_coupling_v1a_seed_sweep_seed20260709_20260716.json` | OBSERVATION_LOG | QUANTUM_OBSERVATION | raw multi-seed signed-estimator diagnostic data for v1a planning |
