@@ -512,6 +512,7 @@ Active design-review artifacts:
 ```text
 experiments/qcell_stored_power_actuator_v0_protocol_20260710.md
 docs/qcell/Q_CELL_STORED_POWER_ACTUATOR_CLOUD_REVIEW_PROMPT_20260710.md
+docs/qcell/Q_CELL_STORED_POWER_ACTUATOR_CLOUD_REVIEW_RESPONSE_20260710.md
 ```
 
 Target:
@@ -524,6 +525,17 @@ supply resumes -> store refills -> action resumes
 
 This should be reviewed before GPU execution. The first run should stay small,
 preferably `QFCBM_0988` only.
+
+Cloud review sharpened the requirement:
+
+```text
+store_before_action must causally gate controller_action_allowed
+```
+
+The first run must log the cyclewise store trace before and after action. The
+store-shuffle, supply-label-only, equal-total-supply timing, no-controller-drain,
+and fixed-controller controls are required before promoting a stored-power
+claim.
 
 ### Step 3b — Battery-powered actuator
 

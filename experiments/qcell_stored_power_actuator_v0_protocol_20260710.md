@@ -2,12 +2,13 @@
 
 Date: 2026-07-10 JST
 
-Status: design-review protocol, not yet executed.
+Status: cloud-reviewed protocol, not yet executed.
 
 ## Purpose
 
 Test whether the next Q-cell controller can be tied to an internal stored-power
-accounting variable rather than a free or purely external controller budget.
+state variable rather than a free, purely external, or post-hoc accounting
+budget.
 
 Core question:
 
@@ -15,6 +16,14 @@ Core question:
 Can model-level stored power fill under supply, be spent by controller action,
 stop action when empty, and support output recovery when supply resumes?
 ```
+
+The central causal requirement is:
+
+```text
+store_before_action must decide whether controller action is allowed.
+```
+
+The experiment must not explain `store` after observing `W`.
 
 ## Starting point
 
@@ -48,17 +57,46 @@ action spending reduces S
 This is an explicit accounting model. It is not a physical thermodynamic
 actuator.
 
+Predeclared update rule:
+
+```text
+S[t+1] =
+  clamp(
+    S[t]
+    + supply_gain * external_supply_in[t]
+    - controller_energy_spent[t]
+    - leak[t],
+    0,
+    store_capacity
+  )
+```
+
+Action gating:
+
+```text
+controller_action_allowed[t] =
+  controller_action_requested[t] and S_before_action[t] >= action_cost
+```
+
+If action cost is only partially payable, the v0 implementation must choose one
+policy before running:
+
+```text
+strict gate: insufficient S means zero dynamic action
+```
+
+Do not choose the policy after seeing output.
+
 ## Minimal conditions
 
 Run first on `QFCBM_0988` only.
 
 ```text
-supply_always_on
-supply_never_on
-supply_stop_midway
-supply_restart_after_stop
-initial_store_zero
-initial_store_positive
+supply_never_on + initial_store_zero
+supply_always_on + initial_store_zero
+supply_stop_midway + initial_store_zero
+supply_restart_after_stop + initial_store_zero
+supply_never_on + initial_store_positive
 ```
 
 Controller/control families:
@@ -69,6 +107,10 @@ evolved stored-power controller
 zero-store controller
 shuffled-signal stored-power controller
 time-shift stored-power controller
+store-shuffle controller
+supply-label-only controller
+equal-total-supply timing controls
+no-controller-drain control
 ```
 
 ## Required outputs
@@ -78,9 +120,13 @@ S_initial
 S_final
 S_min
 S_max
+S_before_action_cyclewise
+S_after_action_cyclewise
 external_supply_added
 controller_energy_spent
 controller_starved_cycles
+controller_action_requested
+controller_action_allowed
 zero_store_action_check
 W_resource
 W_no_resource
@@ -89,16 +135,40 @@ restart_recovery_score
 energy/accounting residual
 ```
 
+Required cyclewise trace fields:
+
+```text
+t
+seed
+condition
+supply_on
+external_supply_in[t]
+store_before_action[t]
+controller_action_requested[t]
+controller_action_allowed[t]
+controller_energy_spent[t]
+store_after_action[t]
+controller_starved[t]
+W_resource[t]
+W_no_resource[t]
+resource_attributable_W[t]
+accounting_residual[t]
+```
+
 ## Stop or fail conditions
 
 ```text
 S does not increase under supply
 S does not decrease under action
 controller emits dynamic action when S is zero
+controller action fires while controller_energy_spent is zero
+supply_never_on + initial_store_zero sustains action
 supply stop does not reduce available action
 supply restart does not restore available action in a region that worked before
 apparent gain comes only from lowering W_no_resource
 shuffled/time-shift controls match the evolved controller
+store-shuffle control matches the real store trace
+supply-label-only control recovers without store filling
 energy/accounting residual exceeds tolerance
 ```
 
@@ -130,8 +200,8 @@ Review prompt:
 
 ```text
 docs/qcell/Q_CELL_STORED_POWER_ACTUATOR_CLOUD_REVIEW_PROMPT_20260710.md
+docs/qcell/Q_CELL_STORED_POWER_ACTUATOR_CLOUD_REVIEW_RESPONSE_20260710.md
 ```
 
 Do not run the GPU experiment until the review has been considered or the user
 explicitly asks to proceed without it.
-
