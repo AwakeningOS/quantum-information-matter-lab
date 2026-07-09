@@ -1,0 +1,35 @@
+{
+  "experiment": "classical_vs_quantum_part_coupling_v2_diag_single_noise",
+  "date": "2026-07-09",
+  "status": "OBSERVATION_LOG",
+  "protocol": "experiments/classical_vs_quantum_part_coupling_v2_diag_protocol_20260709.md",
+  "summary_csv": "data/quantum_observation/classical_vs_quantum_part_coupling_v2_diag_single_noise_seed20260757_20260772_summary.csv",
+  "config": {
+    "shots_per_seed": 4096,
+    "seeds": [20260757, 20260758, 20260759, 20260760, 20260761, 20260762, 20260763, 20260764, 20260765, 20260766, 20260767, 20260768, 20260769, 20260770, 20260771, 20260772],
+    "inference_unit": "seed",
+    "estimator": "P1_W(phaseM=0,M perturb) - P1_W(phaseM=pi/2,M perturb)"
+  },
+  "key_results": {
+    "medium_dephase_only": {"direct_mean": 0.038406, "no_entangle_mean": -0.002441, "direct_vs_no_U": "256/256", "gap": 0.005615},
+    "medium_depol1q_only": {"direct_mean": 0.036697, "no_entangle_mean": 0.002670, "direct_vs_no_U": "250/256", "gap": -0.013184},
+    "medium_depol2q_only": {"direct_mean": 0.038391, "no_entangle_mean": -0.001923, "direct_vs_no_U": "256/256", "gap": 0.010498},
+    "medium_readout_only": {"direct_mean": 0.047333, "no_entangle_mean": -0.002014, "direct_vs_no_U": "256/256", "gap": 0.011719},
+    "heavy_dephase_only": {"direct_mean": 0.031052, "no_entangle_mean": 0.004379, "direct_vs_no_U": "249/256", "gap": -0.004639},
+    "heavy_depol1q_only": {"direct_mean": 0.035065, "no_entangle_mean": -0.000290, "direct_vs_no_U": "253/256", "gap": -0.008301},
+    "heavy_depol2q_only": {"direct_mean": 0.033829, "no_entangle_mean": -0.001923, "direct_vs_no_U": "256/256", "gap": 0.004883},
+    "heavy_readout_only": {"direct_mean": 0.039429, "no_entangle_mean": 0.002197, "direct_vs_no_U": "253.5/256", "gap": -0.004395}
+  },
+  "diagnostic_reading": {
+    "readout_only": "not culprit: medium/heavy readout-only keep no_entangle zero-centered; exact no_entangle remains 0",
+    "dephase_only": "erodes direct but does not explain medium strict-separation failure; medium_dephase_only still has U=256/256 vs no_entangle",
+    "depol2q_only": "erodes direct but remains separated against no_entangle in medium/heavy single-noise profiles",
+    "depol1q_only": "best reproduces strict-separation fragility; medium_depol1q_only has U=250/256 and negative min-max gap despite positive paired CI",
+    "overall": "primary cause of strict separation loss is 1q depolarization plus seed/shot tail overlap, not symmetric readout bias"
+  },
+  "notes": [
+    "Diagnostic only; not a QPU-ready claim.",
+    "The current readout model is symmetric bit flip, so readout-only should scale a true difference and should not create no_entangle truth leakage.",
+    "Readout asymmetry remains a real hardware concern, but it was not tested by this symmetric readout-only diagnostic."
+  ]
+}
