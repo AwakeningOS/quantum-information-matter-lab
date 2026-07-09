@@ -555,6 +555,39 @@ store-shuffle, supply-label-only, equal-total-supply timing, no-controller-drain
 and fixed-controller controls remain required before promoting a broader
 stored-power claim.
 
+First anti-bookkeeping controls:
+
+```text
+scripts/quantum_observation/qcell_stored_power_actuator_v0_controls_gpu.py
+results/qcell_stored_power_actuator_v0_controls_report_2026-07-10.md
+```
+
+Readout:
+
+```text
+real restart W_attr = 22.478503
+supply-label-only restart W_attr ~ 0
+no-controller-drain W_attr ~ 0
+equal-total early W_attr = 14.415770
+equal-total late W_attr = 12.061025
+equal-total pulsed W_attr = 23.281421
+equal-total continuous W_attr = 23.729508
+store-shuffle restart W_attr = 25.042978
+```
+
+Interpretation:
+
+```text
+supply label alone is not enough
+store fill alone without action is not enough
+timing/history changes output
+store-shuffle is not yet defeated
+```
+
+The store-shuffle result is the current weak point. A stronger trajectory-matched
+shuffle control is required before claiming that correct store timing is
+necessary.
+
 ### Step 3b — Battery-powered actuator
 
 Require stored energy in `E` to decrease when an output action occurs.

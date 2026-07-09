@@ -1,0 +1,37 @@
+{
+  "experiment": "qcell_stored_power_actuator_v0_controls",
+  "status": "completed",
+  "grid_id": "QFCBM_0988",
+  "device": "cuda",
+  "gpu": "NVIDIA GeForce RTX 3090",
+  "n_seeds": 60,
+  "conditions": [
+    "real_restart",
+    "supply_label_only_restart",
+    "store_shuffle_restart",
+    "equal_total_early",
+    "equal_total_late",
+    "equal_total_pulsed",
+    "equal_total_continuous",
+    "no_controller_drain_always"
+  ],
+  "n_cycles": 200,
+  "kappa": 0.03,
+  "store_capacity": 1.0,
+  "supply_gain": 0.08,
+  "cycle_rows": 96000,
+  "seed_rows": 480,
+  "wall_seconds": 24.39385414123535,
+  "max_zero_store_action_violations": 0,
+  "max_action_without_spend_violations": 0,
+  "max_empty_store_action_violations": 0,
+  "max_accounting_residual_abs": 5.284661597215745e-14,
+  "input_seed_summary": "/home/youthk/work/qcell_experiment_outputs/qcell_stored_power_actuator_v0_controls_outputs/qcell_stored_power_actuator_v0_controls_seed_summary.csv",
+  "input_cycle_trace": "/home/youthk/work/qcell_experiment_outputs/qcell_stored_power_actuator_v0_controls_outputs/qcell_stored_power_actuator_v0_controls_cycle_trace.csv",
+  "postprocess_outputs": [
+    "qcell_stored_power_actuator_v0_controls_condition_summary.csv",
+    "qcell_stored_power_actuator_v0_controls_manifest.json",
+    "qcell_stored_power_actuator_v0_controls_report_2026-07-10.md"
+  ],
+  "note": "full cycle trace remains local"
+}
