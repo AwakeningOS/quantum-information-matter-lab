@@ -1,0 +1,53 @@
+{
+  "experiment": "qcell_seed_instability_and_expanded_situations_v0",
+  "date": "2026-07-09",
+  "status": "OBSERVATION_LOG",
+  "seed_range": [
+    20260710,
+    20260711,
+    20260712,
+    20260713,
+    20260714,
+    20260715,
+    20260716,
+    20260717,
+    20260718,
+    20260719
+  ],
+  "n_macro_situations": 75,
+  "n_original_54_situations": 54,
+  "n_expanded_situations": 21,
+  "n_records": 750,
+  "families": {
+    "all_24_touch_orders": 24,
+    "rhythm_stop_burst": 5,
+    "damage_restore_rewire": 8,
+    "topology_mutation": 5,
+    "initial_environment_variation": 7,
+    "two_cell_contact": 5,
+    "external_periodic_drive": 6,
+    "multi_cell_chain_ring": 5,
+    "measurement_timing_intervention": 5,
+    "duplication_asymmetry": 5
+  },
+  "policy": {
+    "no_pass_fail": true,
+    "no_ranking": true,
+    "no_single_witness": true,
+    "no_qpu_ready_claim": true,
+    "parts_A_B_C_D_have_no_preassigned_roles": true,
+    "seed_sweep_purpose": "find situations that vary across seeds, not certify reproducibility",
+    "seed_controls": "microscopic preparation jitter plus existing random-product/depolarize randomness"
+  },
+  "added_axes": [
+    "external periodic/burst drive",
+    "three/four node chain/ring contact",
+    "measurement timing as intervention",
+    "duplication-like/asymmetric situations"
+  ],
+  "outputs": {
+    "jsonl": "../../data/quantum_observation/qcell_seed_instability_and_expanded_situations_v0_seed20260710_20260719.jsonl",
+    "summary_csv": "../../data/quantum_observation/qcell_seed_instability_and_expanded_situations_v0_seed20260710_20260719_summary.csv",
+    "volatility_csv": "../../data/quantum_observation/qcell_seed_instability_and_expanded_situations_v0_seed20260710_20260719_seed_volatility.csv"
+  }
+}

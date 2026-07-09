@@ -1,0 +1,34 @@
+{
+  "experiment": "qcell_untamed_situation_observation_v0",
+  "date": "2026-07-09",
+  "status": "OBSERVATION_LOG",
+  "seed": 20260709,
+  "n_scenarios": 54,
+  "families": [
+    "all_24_touch_orders",
+    "damage_restore_rewire",
+    "initial_environment_variation",
+    "rhythm_stop_burst",
+    "topology_mutation",
+    "two_cell_contact"
+  ],
+  "policy": {
+    "no_pass_fail": true,
+    "no_ranking": true,
+    "no_single_witness": true,
+    "no_qpu_ready_claim": true,
+    "parts_A_B_C_D_have_no_preassigned_roles": true
+  },
+  "contents_per_scenario": [
+    "condition/situation settings",
+    "operation history",
+    "full quantum trajectory snapshots",
+    "population for all basis states",
+    "all pair ZZ correlations",
+    "all pair negativity values",
+    "coherence",
+    "purity",
+    "entropy",
+    "classical parallel trajectory"
+  ]
+}
