@@ -854,6 +854,34 @@ quantum transport is lower-W but retains richer internal dynamics
 W alone is not a complete readout of the model
 ```
 
+Phase-key readout:
+
+```text
+scripts/quantum_observation/qcell_phase_key_readout_v0_gpu.py
+results/qcell_phase_key_readout_v0_report_2026-07-10.md
+```
+
+Readout:
+
+```text
+raw key gain is not specific:
+  all arms gain large W from population routing
+
+after same-population diagonal-shadow subtraction:
+  quantum correct_key coherence-attributable W = +0.000312, 60/60 positive
+  quantum wrong_key coherence-attributable W = -0.000312, 0/60 positive
+  quantum phase-shuffled correct_key = -0.000080, 25/60 positive
+  classical/full_dephase correct_key = 0
+```
+
+Current best interpretation:
+
+```text
+small phase-key readout candidate
+effect is tiny compared with population-routed W
+needs stronger/readout-optimized key before promotion
+```
+
 ### Step 5 — Selected hardware observations
 
 Do not send the full map to a QPU. Select a small preregistered subset after

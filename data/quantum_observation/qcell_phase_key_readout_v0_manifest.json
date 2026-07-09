@@ -1,0 +1,22 @@
+{
+  "experiment": "qcell_phase_key_readout_v0",
+  "status": "completed",
+  "grid_id": "QFCBM_0988",
+  "n_seeds": 60,
+  "prep_cycles": 120,
+  "readout_cycles": 80,
+  "source_arms": [
+    "quantum",
+    "classical",
+    "full_dephase",
+    "no_internal_links"
+  ],
+  "keys": [
+    "no_key",
+    "correct_key",
+    "wrong_key",
+    "phase_shuffled_correct_key"
+  ],
+  "wall_seconds": 13.42062497138977,
+  "claim_ceiling": "model-level delayed readout-key test; no quantum advantage or physical energy claim"
+}
