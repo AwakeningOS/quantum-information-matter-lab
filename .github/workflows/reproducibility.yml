@@ -4,11 +4,17 @@ on:
   push:
   pull_request:
 
+permissions:
+  contents: write
+
 jobs:
   raw-log-check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
@@ -16,3 +22,29 @@ jobs:
         run: pip install -r requirements.txt
       - name: Check bootstrap raw logs
         run: python scripts/check_raw_logs.py
+      - name: Materialize PR28 Q-cell trace shards
+        if: github.ref == 'refs/heads/qcell-phenomenon-map-wide-observation'
+        run: |
+          cd scripts/quantum_observation
+          python qcell_phenomenon_map_trace_export.py \
+            --seed 20260709 \
+            --trace-dir ../../data/quantum_observation/qcell_phenomenon_map_wide_observation_seed20260709_traces
+          cd ../..
+          count=$(find data/quantum_observation/qcell_phenomenon_map_wide_observation_seed20260709_traces -name '*.jsonl' | wc -l)
+          rows=$(find data/quantum_observation/qcell_phenomenon_map_wide_observation_seed20260709_traces -name '*.jsonl' -print0 | xargs -0 cat | wc -l)
+          echo "trace shard count=$count"
+          echo "trace row count=$rows"
+          test "$count" -eq 48
+          test "$rows" -eq 2688
+      - name: Commit PR28 Q-cell trace shards
+        if: github.ref == 'refs/heads/qcell-phenomenon-map-wide-observation'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/quantum_observation/qcell_phenomenon_map_wide_observation_seed20260709_traces
+          if git diff --cached --quiet; then
+            echo "No trace changes to commit."
+          else
+            git commit -m "Materialize full Q-cell trace JSONL shards"
+            git push origin HEAD:qcell-phenomenon-map-wide-observation
+          fi
