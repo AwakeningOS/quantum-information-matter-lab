@@ -176,7 +176,7 @@ This closes the fixed-circuit envelope baseline before local adaptive control.
 Done for Stage 1 and Stage 2 in compact committed form. Raw logs remain local
 and should not be committed.
 
-### Step 2 — Local coordination causal test
+### 7. Local coordination causal test
 
 Active planning artifact:
 
@@ -221,6 +221,77 @@ Claim ceiling:
 > Local state-dependent actions causally improved whole-system output.
 
 Do not call this purpose, understanding, or autonomous optimization.
+
+Verified v0 result:
+
+```text
+pilot:
+  6 grids
+  20 seeds
+  fixed/internal/output/shuffled/time-shift/central paired variants
+
+confirmation:
+  3 grids
+  100 seeds
+  internal-only controller with fixed/shuffled/time-shift/central pairs
+
+max residual:
+  <= 7.33e-14
+```
+
+100-seed confirmation:
+
+```text
+QFCBM_0988:
+  fixed attributed W = 15.840497
+  internal controller attributed W = 26.024037
+  gain over fixed = 10.183540
+  gain over shuffled signal = 14.554753
+  gain over time-shift action = 2.575167
+  positive over all controls = 100/100 seeds
+
+QFCBM_0496:
+  fixed attributed W = 0.055903
+  internal controller attributed W = 0.258512
+  gain over fixed = 0.202609
+  gain over shuffled signal = 0.215405
+  gain over time-shift action = 0.037659
+  positive over all controls = 100/100 seeds
+
+QFCBM_0399:
+  fixed attributed W = 0.007974
+  internal controller attributed W = 0.017535
+  gain over fixed = 0.009561
+  gain over shuffled signal = 0.016375
+  gain over time-shift action = 0.000527
+  positive over time-shift = 64/100 seeds
+```
+
+Readout:
+
+```text
+The local-gradient internal controller produced selected-region causal gains
+over fixed circuits. Two regions survived shuffled-signal and time-shift
+controls cleanly. One internal-transport region remained marginal and timing
+sensitive.
+```
+
+Claim ceiling remains:
+
+```text
+local state-dependent controller improved attributed output in selected regions
+```
+
+Do not promote:
+
+```text
+optimization
+purpose
+agency
+homeostasis
+quantum advantage
+efficiency improvement after controller switching work
+```
 
 ### Step 3 — Battery-powered actuator
 

@@ -88,3 +88,21 @@
 - Result: interrupted the run after 7 completed grids, moved partial outputs to
   `/home/youthk/work/qcell_experiment_outputs/`, and resumed successfully from
   completion markers.
+
+## Local-controller causal test v0
+
+- Time: 2026-07-10 JST
+- Action: Ran local-controller v0 pilot and 100-seed confirmation on RTX 3090.
+- Evidence: pilot completed 6 grids x 20 seeds x 16 variants; confirmation
+  completed 3 grids x 100 seeds x 10 variants; maximum residual in summaries
+  `7.327471962526033e-14`.
+- Files: raw local outputs under
+  `/home/youthk/work/qcell_experiment_outputs/qcell_local_controller_causal_test_v0_pilot_outputs`
+  and
+  `/home/youthk/work/qcell_experiment_outputs/qcell_local_controller_causal_test_v0_confirm_outputs`;
+  compact CSV/report copied to `data/quantum_observation/` and `results/`.
+- Result: `QFCBM_0988` internal controller attributed W `26.024037` vs fixed
+  `15.840497`, beating shuffled-signal/time-shift controls in 100/100 seeds.
+  `QFCBM_0496` internal controller attributed W `0.258512` vs fixed
+  `0.055903`, also beating both controls in 100/100 seeds. `QFCBM_0399` is
+  marginal against time-shift action: 64/100 positive.

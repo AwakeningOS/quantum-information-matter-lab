@@ -79,14 +79,23 @@ cycle count, and output definition.
 fixed_local_resource
 fixed_local_no_resource
 
-local_controller_resource
-local_controller_no_resource
+internal_controller_resource
+internal_controller_no_resource
 
-shuffled_signal_controller_resource
-shuffled_signal_controller_no_resource
+internal_shuffled_signal_resource
+internal_shuffled_signal_no_resource
 
-time_shuffled_action_controller_resource
-time_shuffled_action_controller_no_resource
+internal_time_shift_action_resource
+internal_time_shift_action_no_resource
+
+output_controller_resource
+output_controller_no_resource
+
+output_shuffled_signal_resource
+output_shuffled_signal_no_resource
+
+output_time_shift_action_resource
+output_time_shift_action_no_resource
 
 matched_central_resource
 matched_central_no_resource
@@ -100,13 +109,94 @@ Minimum variants for a smoke run:
 ```text
 fixed_local_resource
 fixed_local_no_resource
-local_controller_resource
-local_controller_no_resource
-shuffled_signal_controller_resource
-shuffled_signal_controller_no_resource
+internal_controller_resource
+internal_controller_no_resource
+internal_shuffled_signal_resource
+internal_shuffled_signal_no_resource
+internal_time_shift_action_resource
+internal_time_shift_action_no_resource
 matched_central_resource
 matched_central_no_resource
 ```
+
+## Controller policy families
+
+Pilot v0 separates internal transport changes from output timing changes.
+Do not combine them until each is understood separately.
+
+### P0 fixed
+
+The Stage 2 fixed local circuit.
+
+```text
+RE inlet: fixed
+internal links: fixed
+DW outlet: fixed
+```
+
+### P1 internal-only budgeted local gradient
+
+Main causal candidate.
+
+```text
+RE inlet: fixed
+DW outlet: fixed
+internal links only: adjusted
+```
+
+Per link, the controller reads local part energies and adjusts only the local
+link angle. The total internal angle budget must be no greater than the fixed
+circuit budget for the same grid/cycle.
+
+Initial deterministic rule family:
+
+```text
+For directed chain links E-A, A-B, B-C, C-D:
+  if upstream_energy > downstream_energy:
+    give that link extra budget
+  else:
+    reduce that link
+
+For ring AD:
+  treat A-D as an auxiliary bypass only when D is below its running median-like
+  local threshold and A has higher energy than D.
+
+Normalize all internal link angles so:
+  sum(dynamic internal angles) <= sum(fixed internal angles)
+  max_link_angle <= max(2 * g_internal, 0.8)
+```
+
+No RE or DW change is allowed in this variant.
+
+### P2 output-only budgeted D gate
+
+Separate outlet-timing diagnostic.
+
+```text
+RE inlet: fixed
+internal links: fixed
+DW outlet only: controlled
+```
+
+This tests whether strong-output overswap/suppression can be reduced by using
+D state to time the outlet. It is not credited as internal coordination unless
+it is clearly separated from P1.
+
+Initial deterministic rule family:
+
+```text
+if D_population is above a local threshold:
+  open DW for this cycle using fixed theta_out_DW/out_layers budget
+else:
+  skip or reduce DW outlet action
+
+Total DW outlet angle budget over the run must be <= the fixed-circuit DW
+budget for the same grid.
+```
+
+### P3 combined internal plus output
+
+Optional later condition only. Do not use it as the main pilot decision.
 
 ## Controller information limits
 
@@ -139,13 +229,14 @@ QFCBM_0488  high fixed output
 QFCBM_0408  high efficiency, low output
 QFCBM_0496  strong-output suppression
 QFCBM_0988  best ring representative
+QFCBM_0399  internal transport / wasted-transfer example
 QFCBM_0441  bad ratio example
 ```
 
 Pilot scale:
 
 ```text
-5 grids
+6 grids
 20 seeds
 200 cycles
 matched resource/no-resource pairs
@@ -173,8 +264,12 @@ resource_attributable_W =
 Controller improvement:
 
 ```text
-controller_gain_over_fixed =
-  resource_attributable_W(local_controller)
+internal_controller_gain_over_fixed =
+  resource_attributable_W(internal_controller)
+  - resource_attributable_W(fixed_local)
+
+output_controller_gain_over_fixed =
+  resource_attributable_W(output_controller)
   - resource_attributable_W(fixed_local)
 ```
 
@@ -211,6 +306,12 @@ must record:
 ```text
 controller_action_count
 controller_angle_budget
+per_link_angle_budget
+max_link_angle
+controller_action_count_by_link
+controller_angle_budget_by_link
+controller_output_action_count
+controller_internal_action_count
 controller_switching_cost_status
 ```
 
@@ -259,24 +360,104 @@ residence_D
 
 controller_action_count
 controller_angle_budget
+per_link_angle_budget
+max_link_angle
+controller_action_count_by_link
+controller_angle_budget_by_link
+controller_output_action_count
+controller_internal_action_count
 controller_switching_cost_status
+signal_shuffle_seed
+time_shift_amount
+action_source_variant
 ```
 
 Paired grid summary:
 
 ```text
 fixed_resource_attributable_W
-local_controller_resource_attributable_W
-shuffled_signal_resource_attributable_W
-time_shuffled_resource_attributable_W
+internal_controller_resource_attributable_W
+internal_shuffled_signal_resource_attributable_W
+internal_time_shift_resource_attributable_W
+output_controller_resource_attributable_W
+output_shuffled_signal_resource_attributable_W
+output_time_shift_resource_attributable_W
 matched_central_resource_attributable_W
 classical_controller_resource_attributable_W
 
-controller_gain_over_fixed
-controller_gain_over_shuffled_signal
-controller_gain_over_time_shuffled
+internal_gain_over_fixed
+internal_gain_over_shuffled_signal
+internal_gain_over_time_shift
+output_gain_over_fixed
+output_gain_over_shuffled_signal
+output_gain_over_time_shift
 controller_to_central_ratio
+
+W_resource_delta_vs_fixed
+W_no_resource_delta_vs_fixed
+resource_attributable_delta_vs_fixed
 ```
+
+## Shuffled controls
+
+### Shuffled signal controller
+
+The signal distribution is preserved but the current-state/seed pairing is
+broken.
+
+```text
+same grid_id
+same controller family
+same resource/no_resource status
+same cycle t
+derangement shuffle across seeds
+```
+
+The state being acted on remains the original seed state. The controller reads
+local signals from another seed in the same grid/status/cycle.
+
+Do not shuffle across grids, resource status, cycles, or central-control runs.
+
+### Time-shifted action controller
+
+Primary action timing control:
+
+```text
+A_control[g, seed, t, link] = A[g, seed, (t + 37) mod 200, link]
+```
+
+This preserves total action amount and link distribution but breaks current
+state/action timing. A full random time permutation may be added later but is
+not the primary control.
+
+## 20-seed pilot stop/go rule
+
+Proceed to 100 seeds only if:
+
+```text
+all variants finite
+all paired resource/no_resource rows complete
+energy_balance_residual_max_abs <= 1e-4
+controller_angle_budget <= fixed angle budget, or excess is explicitly labeled
+median gain over fixed is positive
+median gain over shuffled signal is positive
+median gain over time-shift action is positive
+paired seeds improved:
+  >= 14/20 over fixed
+  >= 13/20 over shuffled signal
+  >= 13/20 over time-shift action
+gain >= 5% of fixed-to-central gap
+```
+
+For low-output conditions, also require:
+
+```text
+gain >= max(0.02, 5% of fixed resource_attributable_W)
+```
+
+Stop if improvement comes only from lowering `W_no_resource`, if action budget
+exceeds the fixed budget without being labeled, or if gains appear only in
+`QFCBM_0496` output timing.
 
 ## Report guardrails
 
@@ -301,4 +482,3 @@ local state-dependent controller improved attributed output over fixed circuit
 local controller effect survived shuffled-signal/action controls
 fixed-circuit envelope was or was not exceeded
 ```
-

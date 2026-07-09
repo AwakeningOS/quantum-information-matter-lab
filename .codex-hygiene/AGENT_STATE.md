@@ -7,8 +7,8 @@ GitHub so another agent can continue and the record can support later papers.
 
 ## Current Task
 
-Prepare the next Q-cell experiment: a local-controller causal test that checks
-whether local state-dependent actions beat the fixed-circuit envelope.
+Record the completed Q-cell local-controller causal test v0 and keep raw logs
+out of Git.
 
 ## Hard Constraints
 
@@ -52,12 +52,22 @@ Branch: `codex/qcell-full2q7-and-bottleneck-record`
   `38.374395`.
 - Stage 2 raw logs are stored outside Downloads and outside the repo at
   `/home/youthk/work/qcell_experiment_outputs/qcell_fixed_circuit_output_bottleneck_map_v0_stage2_outputs`.
+- Local-controller v0 pilot completed 6 grids x 20 seeds.
+- Local-controller v0 confirmation completed 3 grids x 100 seeds.
+- In confirmation, `QFCBM_0988` internal controller attributed W
+  `26.024037` vs fixed `15.840497`, beating shuffled-signal and time-shift
+  controls in 100/100 seeds.
+- In confirmation, `QFCBM_0496` internal controller attributed W `0.258512`
+  vs fixed `0.055903`, beating shuffled-signal and time-shift controls in
+  100/100 seeds.
+- `QFCBM_0399` is marginal: gain over fixed positive, but only 64/100 seeds
+  beat time-shift action.
 - Commit `8bd4ba6` was pushed and draft PR 29 was opened against the PR 28
   head branch.
 
 ## Current Blockers
 
-None. Next work is protocol and runner design for local-controller causal test.
+None for local-controller v0 execution. Compact results need commit/push.
 
 Local Stage 1 output:
 
@@ -69,9 +79,10 @@ Local Stage 2 raw output:
 
 ## Next 1-3 Actions
 
-1. Write local-controller causal-test protocol.
-2. Write a compact cloud-GPT review prompt using Stage 2 facts only.
-3. Implement a pilot runner by reusing the existing full 2^7 GPU engine.
+1. Inspect local-controller v0 diff.
+2. Commit compact local-controller v0 code/results/report.
+3. Next research action: battery-powered actuator or fair quantum/classical
+   comparison design, depending on user priority.
 
 ## Last Updated
 

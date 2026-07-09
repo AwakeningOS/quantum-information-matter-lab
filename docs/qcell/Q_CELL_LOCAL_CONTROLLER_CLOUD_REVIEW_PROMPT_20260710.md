@@ -72,9 +72,12 @@ Use matched resource/no-resource pairs.
 
 ```text
 fixed_local
-local_controller
-shuffled_signal_controller
-time_shuffled_action_controller
+internal_controller
+internal_shuffled_signal_controller
+internal_time_shift_action_controller
+output_controller
+output_shuffled_signal_controller
+output_time_shift_action_controller
 matched_central
 classical_local_controller
 ```
@@ -119,7 +122,9 @@ Please return:
 
 1. A minimal local-controller policy family worth testing first.
 2. The exact shuffled-signal and time-shuffled-action controls.
-3. The 5 best pilot grids from Stage 2 and why.
+3. Whether the 6 pilot grids are sufficient:
+   `QFCBM_0488`, `QFCBM_0408`, `QFCBM_0496`, `QFCBM_0988`,
+   `QFCBM_0399`, `QFCBM_0441`.
 4. A stop/go rule for expanding from 20 seeds to 100 seeds.
 5. The exact summary columns needed for a paper-ready result.
 6. Failure modes that would make an apparent gain invalid.
@@ -129,4 +134,3 @@ existing full 2^7 GPU implementation.
 
 Do not claim purpose, life, metabolism, homeostasis, optimization, or quantum
 advantage.
-
