@@ -59,6 +59,8 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin qcell-phenomenon-map-wide-observation
+          git rebase origin/qcell-phenomenon-map-wide-observation
           git add data/quantum_observation/qcell_phenomenon_map_wide_observation_seed20260709_traces
           git add data/quantum_observation/qcell_untamed_situation_observation_v0_seed20260709.jsonl
           git add data/quantum_observation/qcell_untamed_situation_observation_v0_seed20260709_summary.csv
