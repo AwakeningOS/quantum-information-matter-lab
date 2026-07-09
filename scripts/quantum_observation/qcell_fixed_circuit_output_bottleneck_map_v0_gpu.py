@@ -329,27 +329,41 @@ def concatenate_csv(inputs, output, compressed=False):
     os.replace(tmp, output)
 
 
-def merge(out, selected):
+def merge(out, selected, stage):
     parts = out / "parts"
     concatenate_csv(
         [parts / f"{g.grid_id}_summary.csv" for g in selected],
-        out / "stage1_condition_seed_summary.csv",
+        out / f"{stage}_condition_seed_summary.csv",
     )
     concatenate_csv(
         [parts / f"{g.grid_id}_cyclewise.csv.gz" for g in selected],
-        out / f"{EXPERIMENT}_stage1_cyclewise.csv",
+        out / f"{EXPERIMENT}_{stage}_cyclewise.csv",
         compressed=True,
     )
     concatenate_csv(
         [parts / f"{g.grid_id}_linkflow.csv.gz" for g in selected],
-        out / f"{EXPERIMENT}_stage1_linkflow.csv",
+        out / f"{EXPERIMENT}_{stage}_linkflow.csv",
         compressed=True,
     )
     concatenate_csv(
         [parts / f"{g.grid_id}_ledger.csv.gz" for g in selected],
-        out / f"{EXPERIMENT}_stage1_ledger.csv",
+        out / f"{EXPERIMENT}_{stage}_ledger.csv",
         compressed=True,
     )
+
+
+def read_grid_ids_file(path):
+    """Read one grid_id per line, allowing comments and comma-separated lines."""
+    ids = []
+    for raw in Path(path).read_text(encoding="utf-8").splitlines():
+        line = raw.split("#", 1)[0].strip()
+        if not line:
+            continue
+        for part in line.split(","):
+            grid_id = part.strip()
+            if grid_id:
+                ids.append(grid_id)
+    return ids
 
 
 def main():
@@ -359,6 +373,11 @@ def main():
     ap.add_argument("--outdir", default=f"{EXPERIMENT}_outputs")
     ap.add_argument("--grid-start", type=int, default=0)
     ap.add_argument("--grid-end", type=int, default=0)
+    ap.add_argument(
+        "--grid-ids-file",
+        default="",
+        help="Optional file with explicit QFCBM_#### grid IDs to run, one per line.",
+    )
     ap.add_argument("--max-grids", type=int, default=0)
     ap.add_argument("--shard-index", type=int, default=0)
     ap.add_argument("--shard-count", type=int, default=1)
@@ -370,6 +389,13 @@ def main():
         raise RuntimeError("CUDA unavailable")
     device = torch.device(args.device)
     selected = grids()
+    if args.grid_ids_file:
+        wanted = read_grid_ids_file(args.grid_ids_file)
+        by_id = {g.grid_id: g for g in selected}
+        missing = [grid_id for grid_id in wanted if grid_id not in by_id]
+        if missing:
+            raise SystemExit(f"unknown grid IDs in {args.grid_ids_file}: {missing}")
+        selected = [by_id[grid_id] for grid_id in wanted]
     end = args.grid_end or len(selected)
     selected = selected[args.grid_start:end]
     selected = [g for i,g in enumerate(selected) if i % args.shard_count == args.shard_index]
@@ -394,7 +420,7 @@ def main():
               f"grid_seconds={time.time()-g0:.2f} total_seconds={time.time()-t0:.2f}",
               flush=True)
     if not args.no_merge and completed == len(selected):
-        merge(out, selected)
+        merge(out, selected, args.stage)
     manifest = {
         "experiment": EXPERIMENT, "stage": args.stage,
         "device": str(device),
@@ -402,6 +428,8 @@ def main():
         "n_grids": len(selected), "variants_per_grid": 4,
         "n_seeds": len(seeds), "cycles": 200,
         "completed_grids": completed, "resume_supported": True,
+        "grid_ids_file": args.grid_ids_file,
+        "grid_ids": [g.grid_id for g in selected],
         "wall_seconds": time.time()-t0,
         "output_switching_cost_status": "not_modeled",
     }

@@ -62,3 +62,29 @@
   experiment order be stored in GitHub for paper writing and agent handoff.
 - Evidence: explicit user instruction.
 - Result: raw multi-gigabyte logs excluded by user request.
+
+## Bottleneck Stage 2 completion
+
+- Time: 2026-07-10 JST
+- Action: Ran corrected fixed-circuit Stage 2 selected-grid confirmation on
+  RTX 3090 using 28 representative grid IDs, 100 seeds, four matched variants,
+  and 200 cycles.
+- Evidence: runner manifest reports 28/28 completed grids, 2,800 paired
+  postprocessed rows, maximum absolute energy-balance residual
+  `1.3944401189291966e-13`, and commutator maximum `0`.
+- Files: raw local output at
+  `/home/youthk/work/qcell_experiment_outputs/qcell_fixed_circuit_output_bottleneck_map_v0_stage2_outputs`;
+  compact CSV/report copied into `data/quantum_observation/` and `results/`.
+- Result: highest attributed fixed output `17.632413845010216` for
+  `QFCBM_0488`/`QFCBM_0497`; matched central `38.37439457135488`; highest
+  efficiency `0.5608344141133803` for `QFCBM_0408`.
+
+## Raw-output storage correction
+
+- Time: 2026-07-10 JST
+- Action: User instructed not to put experiment raw data directly under
+  Downloads and to use an appropriate storage location.
+- Evidence: explicit user instruction during Stage 2 run.
+- Result: interrupted the run after 7 completed grids, moved partial outputs to
+  `/home/youthk/work/qcell_experiment_outputs/`, and resumed successfully from
+  completion markers.

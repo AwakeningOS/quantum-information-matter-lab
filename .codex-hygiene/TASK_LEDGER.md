@@ -7,8 +7,8 @@
 | QEM-03 | Corrected bottleneck protocol | done_verified | Existing protocol and postprocessor | Paired no-resource and matched central |
 | QEM-04 | Bottleneck GPU runner | done_verified | Smoke: 1 grid, 2 seeds, 4 variants; max residual `3.46e-14` | Supports resume |
 | QEM-05 | Stage 1 1000-grid run | done_verified | 1000 markers; 10,000 complete pairs; max residual `1.381117e-13` | Raw logs local |
-| QEM-06 | Stage 1 compact result commit | in_progress | Compact grid/region CSV and report prepared | Exclude raw logs |
-| QEM-07 | Stage 2 100-seed confirmation | todo | Requires Stage 1 region selection | Representative regions |
+| QEM-06 | Stage 1 compact result commit | done_verified | Commit `492aca6`; compact grid/region CSV and report | Raw logs excluded |
+| QEM-07 | Stage 2 100-seed confirmation | done_verified | 28/28 grids completed; 2,800 paired rows; max residual `1.394440e-13` | Raw logs local under `/home/youthk/work/qcell_experiment_outputs/` |
 | QEM-08 | Local coordination causal test | todo | Roadmap only | Fixed/shuffled/central/classical controls |
 | QEM-09 | Battery-powered actuator | todo | Roadmap only | Account for action energy and switching work |
 | QEM-10 | Fair quantum/classical efficiency comparison | todo | Roadmap only | No advantage claim before completion |

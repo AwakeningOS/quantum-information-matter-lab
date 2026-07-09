@@ -93,7 +93,7 @@ middle cut = 0.244341
 This verifies resource-dependent local transport in the full model. It does
 not show that parts know a global objective or adapt their behavior.
 
-## Active experiment
+### 6. Fixed-circuit output bottleneck map
 
 `qcell_fixed_circuit_output_bottleneck_map_v0`
 
@@ -121,42 +121,62 @@ resource_attributable_W
 Raw multi-gigabyte logs remain local. Only compact validated summaries,
 manifests, protocols, code, and final reports should be committed.
 
+Stage 1 completed the full 1,000-grid map with 10 initial states. Stage 2
+confirmed 28 representative regions with 100 initial states.
+
+Stage 2 verified facts:
+
+```text
+selected grids = 28
+initial states per grid = 100
+variants per grid = 4
+cycles = 200
+maximum absolute energy-balance residual = 1.394440e-13
+max [U_DW, H_D+H_W] norm = 0
+output switching cost = not_modeled
+```
+
+Stage 2 high-output region:
+
+```text
+QFCBM_0488 / QFCBM_0497
+structure = chain
+g_internal = 0.4
+theta_in_RE = 0.8
+effective outlet angle = 0.8
+resource_attributable_W_mean = 17.632414
+matched central = 38.374395
+fixed/central ratio = 0.459473
+efficiency_resource_to_W = 0.521259
+```
+
+Stage 2 high-efficiency region:
+
+```text
+QFCBM_0408
+structure = chain
+g_internal = 0.4
+theta_in_RE = 0.05
+effective outlet angle = 0.8
+resource_attributable_W_mean = 0.234025
+efficiency_resource_to_W = 0.560834
+```
+
+The high-output and high-efficiency regions are not the same. Strong output
+coupling still shows overswap/suppression: in the high-input chain family,
+attributed W drops from `17.632414` at effective outlet `0.8` to `0.055903`
+at effective outlet `3.2`.
+
+This closes the fixed-circuit envelope baseline before local adaptive control.
+
 ## Next experiment order
 
-### Step 1 — Finish and validate the fixed-circuit map
+### Step 1 — Fixed-circuit map
 
-Required:
+Done for Stage 1 and Stage 2 in compact committed form. Raw logs remain local
+and should not be committed.
 
-```text
-1,000/1,000 complete markers
-no NaN/Inf
-closed energy ledger
-commutator check
-paired resource/no-resource attribution
-matched central comparison
-```
-
-Then extract representative regions rather than one universal winner.
-
-### Step 2 — Stage 2 confirmation
-
-Rerun representative regions with 100 initial states:
-
-```text
-high attributed output
-high resource-to-W efficiency
-central-control-nearest
-outlet narrow
-internal transport slow
-ring circulation
-strong-output overswap/suppression
-chain-best
-ring-best
-```
-
-Commit compact Stage 1/2 summaries and a result report, not raw cycle logs.
-
-### Step 3 — Local coordination causal test
+### Step 2 — Local coordination causal test
 
 Compare under matched resources, noise, time, and switching-work accounting:
 
@@ -178,7 +198,7 @@ Claim ceiling:
 
 Do not call this purpose, understanding, or autonomous optimization.
 
-### Step 4 — Battery-powered actuator
+### Step 3 — Battery-powered actuator
 
 Require stored energy in `E` to decrease when an output action occurs.
 Separate:
@@ -192,7 +212,7 @@ mixed/thermal controls
 Include switching work. Demonstrate supply, storage, action, depletion,
 stopping, and restarting without free control energy.
 
-### Step 5 — Fair quantum/classical comparison
+### Step 4 — Fair quantum/classical comparison
 
 Hold constant:
 
@@ -209,7 +229,7 @@ output definition
 Compare coherent quantum, dephased matched, classical stochastic, and central
 upper-bound models. No quantum-advantage claim before this comparison.
 
-### Step 6 — Selected hardware observations
+### Step 5 — Selected hardware observations
 
 Do not send the full map to a QPU. Select a small preregistered subset after
 simulation, use measurable observables rather than full tomography where
