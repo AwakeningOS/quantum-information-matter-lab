@@ -1,0 +1,7 @@
+arm,phase_sens_P1W_exact,output_nonadditivity_P1W_exact,output_nonadditivity_ZZRW_exact,link_negativity_aux_max,phase_sens_P1W_shot,output_nonadditivity_P1W_shot,output_nonadditivity_ZZRW_shot
+classical_if,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+classical_coupled,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+quantum_field_only,0.0,0.0,0.0,0.0,0.0078125,0.00927734375,0.02587890625
+quantum_no_entangle,0.0,0.0,0.0,0.0,0.020751953125,0.01171875,0.01611328125
+quantum_direct_coupled,0.046132498158,0.000024986623,0.033988893603,0.137534675829,0.048583984375,0.02099609375,0.09521484375
+quantum_dephased_control,0.000114598656,0.000002578177,0.001771692296,0.0,0.009033203125,0.026123046875,0.041015625
