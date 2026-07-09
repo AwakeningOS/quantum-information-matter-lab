@@ -7,7 +7,8 @@ GitHub so another agent can continue and the record can support later papers.
 
 ## Current Task
 
-Record completed Q-cell controller evolution v0 and keep raw logs out of Git.
+Record completed Q-cell controller cost accounting v0 and keep raw logs out of
+Git.
 
 ## Hard Constraints
 
@@ -66,12 +67,18 @@ Branch: `codex/qcell-full2q7-and-bottleneck-record`
   controller holdout mean gain: `3.324505`.
 - Best evolved controller improved `QFCBM_0988` and `QFCBM_0496`; hand-coded
   remained slightly better on `QFCBM_0399`.
+- Controller cost accounting v0 completed as a post-hoc conservative gross
+  per-angle sweep.
+- Under that accounting, evolved `QFCBM_0988` stayed all-seed positive through
+  swept `cost_per_angle=0.03`; `QFCBM_0496` through `0.0003`; `QFCBM_0399`
+  through `0.00003`.
 - Commit `8bd4ba6` was pushed and draft PR 29 was opened against the PR 28
   head branch.
 
 ## Current Blockers
 
-None for controller evolution v0 execution. Compact results need commit/push.
+None for controller cost accounting v0 execution. Compact results need
+commit/push.
 
 Local Stage 1 output:
 
@@ -83,9 +90,9 @@ Local Stage 2 raw output:
 
 ## Next 1-3 Actions
 
-1. Inspect controller evolution v0 diff.
-2. Commit compact controller evolution v0 code/results/report.
-3. Next research action: battery-powered actuator or fair quantum/classical
+1. Inspect controller cost accounting v0 diff.
+2. Commit compact controller cost accounting v0 code/results/report.
+3. Next research action: explicit battery-powered actuator or fair quantum/classical
    comparison design, depending on user priority.
 
 ## Last Updated

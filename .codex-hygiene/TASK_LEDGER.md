@@ -11,5 +11,6 @@
 | QEM-07 | Stage 2 100-seed confirmation | done_verified | 28/28 grids completed; 2,800 paired rows; max residual `1.394440e-13` | Raw logs local under `/home/youthk/work/qcell_experiment_outputs/` |
 | QEM-08 | Local coordination causal test | done_verified | Pilot 6x20 and confirmation 3x100 completed; QFCBM_0988 and QFCBM_0496 beat fixed/shuffled/time-shift controls | Raw logs local; compact results prepared |
 | QEM-11 | Controller evolution v0 | done_verified | Population 12, generations 4; holdout mean gain `4.553862` vs hand-coded `3.324505` | Trial-and-error parameter search only |
+| QEM-12 | Controller cost accounting v0 | done_verified | Conservative per-angle sweep; QFCBM_0988 all-seed positive up to cost `0.03` | Post-hoc accounting only, not physical actuator |
 | QEM-09 | Battery-powered actuator | todo | Roadmap only | Account for action energy and switching work |
 | QEM-10 | Fair quantum/classical efficiency comparison | todo | Roadmap only | No advantage claim before completion |

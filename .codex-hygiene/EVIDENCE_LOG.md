@@ -121,3 +121,17 @@
 - Result: best evolved controller holdout mean gain `4.553862` versus
   hand-coded `3.324505`. Evolved controller improved `QFCBM_0988` and
   `QFCBM_0496`; hand-coded remained slightly better on `QFCBM_0399`.
+
+## Controller cost accounting v0
+
+- Time: 2026-07-10 JST
+- Action: Applied conservative gross per-angle cost sweep to controller
+  evolution holdout detail rows.
+- Evidence: de-duplicated 360 holdout rows; swept cost_per_angle values from
+  `0` through `0.1`; output summary and report generated.
+- Files: local output at
+  `/home/youthk/work/qcell_experiment_outputs/qcell_controller_cost_accounting_v0_outputs`;
+  compact CSV/report copied to `data/quantum_observation/` and `results/`.
+- Result: evolved `QFCBM_0988` remained all-seed positive through swept
+  cost_per_angle `0.03` with minimum break-even `0.042163`; `QFCBM_0496`
+  through `0.0003`; `QFCBM_0399` only through `0.00003`.

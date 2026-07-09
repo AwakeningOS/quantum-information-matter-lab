@@ -382,6 +382,58 @@ quantum advantage
 efficiency improvement while switching cost is not modeled
 ```
 
+### 9. Controller cost accounting v0
+
+Before building a physical actuator, a conservative post-hoc cost accounting
+was applied to the controller-evolution holdout rows.
+
+Cost model:
+
+```text
+net_gain_after_cost =
+  gain_over_fixed - cost_per_angle * angle_budget
+```
+
+This charges the controller for all controlled internal angle budget and does
+not subtract any equivalent fixed-circuit operation cost. It is conservative,
+but not a physical switching-work model.
+
+Break-even results:
+
+```text
+QFCBM_0988 evolved:
+  mean gain before cost = 13.449729
+  mean angle budget = 302.139762
+  min break-even cost_per_angle = 0.042163
+  all-seed positive through swept cost_per_angle = 0.03
+
+QFCBM_0496 evolved:
+  mean gain before cost = 0.203827
+  mean angle budget = 290.232737
+  min break-even cost_per_angle = 0.000673
+  all-seed positive through swept cost_per_angle = 0.0003
+
+QFCBM_0399 evolved:
+  mean gain before cost = 0.008031
+  mean angle budget = 152.298233
+  min break-even cost_per_angle = 0.000039
+  all-seed positive through swept cost_per_angle = 0.00003
+```
+
+Readout:
+
+```text
+QFCBM_0988 has enough margin to survive nonzero hypothetical controller cost.
+QFCBM_0496 survives small cost.
+QFCBM_0399 is fragile.
+```
+
+Next step if pursuing physicality:
+
+```text
+replace post-hoc cost with an explicit actuator/battery model
+```
+
 ### Step 3 — Battery-powered actuator
 
 Require stored energy in `E` to decrease when an output action occurs.
