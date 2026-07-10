@@ -1,0 +1,22 @@
+{
+  "experiment": "qcell_local_linked_energy_machine_full2q7_final_v0",
+  "runner": "batched_cuda",
+  "device": "cuda",
+  "gpu": "NVIDIA GeForce RTX 3090",
+  "n_conditions": 37,
+  "n_seeds": 100,
+  "cycles": 200,
+  "completed_conditions": 37,
+  "new_rows": {
+    "metrics": 743700,
+    "ledger": 740000,
+    "flows": 740000,
+    "checkpoint_arrays": 456
+  },
+  "wall_seconds": 235.32622003555298,
+  "resume_supported": true,
+  "shard": {
+    "index": 0,
+    "count": 1
+  }
+}

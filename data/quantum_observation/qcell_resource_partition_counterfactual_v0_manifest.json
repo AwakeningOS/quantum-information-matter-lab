@@ -1,0 +1,18 @@
+{
+  "experiment": "qcell_resource_partition_counterfactual_v0",
+  "grid_id": "QFCBM_0988",
+  "n_seeds": 60,
+  "cycles": 200,
+  "arms": [
+    "quantum_keep_structure",
+    "dephase_after_internal_25",
+    "dephase_after_internal_50",
+    "dephase_after_internal_75",
+    "full_dephase_after_internal",
+    "classical_same_graph_transport",
+    "no_internal_links"
+  ],
+  "wall_seconds": 31.160258531570435,
+  "max_residual": 5.306866057708248e-14,
+  "claim_ceiling": "model-level resource partition counterfactual; no quantum advantage or physical energy claim"
+}

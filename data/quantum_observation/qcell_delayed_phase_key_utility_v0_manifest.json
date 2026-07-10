@@ -1,0 +1,30 @@
+{
+  "experiment": "qcell_delayed_phase_key_utility_v0",
+  "status": "completed",
+  "grid_id": "QFCBM_0988",
+  "n_seeds": 60,
+  "encode_cycles": 100,
+  "delay_cycles": 50,
+  "readout_cycles": 80,
+  "source_arms": [
+    "quantum",
+    "classical",
+    "full_dephase"
+  ],
+  "keys": [
+    "angle_key",
+    "phase_shuffled_angle_key"
+  ],
+  "angle_multipliers": [
+    -1.5,
+    -1.0,
+    1.0,
+    1.5
+  ],
+  "labels": [
+    "plus",
+    "minus"
+  ],
+  "wall_seconds": 43.24632811546326,
+  "claim_ceiling": "model-level delayed phase-bit utility test; no quantum advantage or physical energy claim"
+}

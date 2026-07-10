@@ -1,0 +1,19 @@
+{
+  "experiment": "qcell_controller_cost_accounting_v0",
+  "input": "/home/youthk/work/qcell_experiment_outputs/qcell_controller_evolution_v0_outputs/qcell_controller_evolution_v0_holdout_detail_rows.csv",
+  "n_input_rows_deduplicated": 360,
+  "costs": [
+    0.0,
+    1e-05,
+    3e-05,
+    0.0001,
+    0.0003,
+    0.001,
+    0.003,
+    0.01,
+    0.03,
+    0.1
+  ],
+  "cost_model": "net_gain_after_cost = gain_over_fixed - cost_per_angle * angle_budget",
+  "note": "conservative gross controller cost; fixed-circuit operation cost is not subtracted"
+}

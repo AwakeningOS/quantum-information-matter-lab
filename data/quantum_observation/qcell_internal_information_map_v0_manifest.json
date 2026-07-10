@@ -1,0 +1,16 @@
+{
+  "experiment": "qcell_internal_information_map_v0",
+  "status": "completed",
+  "grid_id": "QFCBM_0988",
+  "n_seeds": 60,
+  "cycles": 200,
+  "arms": [
+    "quantum_keep_structure",
+    "full_dephase_after_internal",
+    "classical_same_graph_transport",
+    "no_internal_links"
+  ],
+  "wall_seconds": 15.632917404174805,
+  "max_residual": 5.306866057708248e-14,
+  "claim_ceiling": "model-level internal information map; no quantum advantage or physical energy claim"
+}

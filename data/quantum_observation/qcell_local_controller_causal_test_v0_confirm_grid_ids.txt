@@ -1,0 +1,13 @@
+# qcell_local_controller_causal_test_v0 100-seed confirmation grid IDs
+# Source: 20-seed pilot stop/go screen.
+# Confirm internal-only budgeted local-gradient controller only.
+#
+# Pilot GO conditions met:
+# - positive gain over fixed
+# - positive gain over shuffled signal
+# - positive gain over time-shift action
+# - positive median/paired-seed tendency
+# - residual <= 1e-4
+QFCBM_0399
+QFCBM_0496
+QFCBM_0988

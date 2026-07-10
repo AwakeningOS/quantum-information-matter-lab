@@ -1,0 +1,39 @@
+{
+  "experiment": "qcell_local_controller_causal_test_v0",
+  "profile": "pilot",
+  "device": "cuda",
+  "gpu": "NVIDIA GeForce RTX 3090",
+  "n_grids": 6,
+  "grid_ids": [
+    "QFCBM_0488",
+    "QFCBM_0408",
+    "QFCBM_0496",
+    "QFCBM_0988",
+    "QFCBM_0399",
+    "QFCBM_0441"
+  ],
+  "n_seeds": 20,
+  "cycles": 200,
+  "variants": [
+    "fixed_local_resource",
+    "fixed_local_no_resource",
+    "internal_controller_resource",
+    "internal_controller_no_resource",
+    "internal_shuffled_signal_resource",
+    "internal_shuffled_signal_no_resource",
+    "internal_time_shift_action_resource",
+    "internal_time_shift_action_no_resource",
+    "output_controller_resource",
+    "output_controller_no_resource",
+    "output_shuffled_signal_resource",
+    "output_shuffled_signal_no_resource",
+    "output_time_shift_action_resource",
+    "output_time_shift_action_no_resource",
+    "matched_central_resource",
+    "matched_central_no_resource"
+  ],
+  "completed_grids": 6,
+  "wall_seconds": 86.1507568359375,
+  "controller_switching_cost_status": "not_modeled",
+  "time_shift_amount": 37
+}

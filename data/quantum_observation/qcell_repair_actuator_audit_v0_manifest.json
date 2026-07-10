@@ -1,0 +1,16 @@
+{
+  "experiment": "qcell_repair_actuator_audit_v0",
+  "status": "completed",
+  "grid_id": "QFCBM_0988",
+  "n_seeds": 60,
+  "cycles": 40,
+  "candidates": [
+    "population_fixed_offdiag_restore",
+    "phase_only_alignment",
+    "diagonal_phase_unitary_alignment"
+  ],
+  "rows": 7200,
+  "wall_seconds": 1.7158372402191162,
+  "passed_candidates": [],
+  "claim_ceiling": "actuator audit only; no structure-maintenance result claim"
+}
