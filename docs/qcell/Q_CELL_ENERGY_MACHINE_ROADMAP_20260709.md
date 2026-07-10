@@ -882,6 +882,33 @@ effect is tiny compared with population-routed W
 needs stronger/readout-optimized key before promotion
 ```
 
+Phase-key angle sweep:
+
+```text
+scripts/quantum_observation/qcell_phase_key_angle_sweep_v0_gpu.py
+results/qcell_phase_key_angle_sweep_v0_report_2026-07-10.md
+```
+
+Readout after same-population diagonal-shadow subtraction:
+
+```text
+quantum angle -1.5: +0.000553, 60/60 positive
+quantum angle -1.0: +0.000312, 60/60 positive
+quantum angle  1.0: -0.000312, 0/60 positive
+quantum angle  1.5: -0.000553, 0/60 positive
+
+phase-shuffled quantum: near null / sign-incoherent
+classical/full_dephase: zero at every angle
+```
+
+Current best interpretation:
+
+```text
+the tiny phase-key residual has a real angle-dependent sign curve
+this supports a small model-level phase-key readout residual
+effect remains tiny compared with population-routed W
+```
+
 ### Step 5 — Selected hardware observations
 
 Do not send the full map to a QPU. Select a small preregistered subset after

@@ -1,0 +1,30 @@
+{
+  "experiment": "qcell_phase_key_angle_sweep_v0",
+  "status": "completed",
+  "grid_id": "QFCBM_0988",
+  "n_seeds": 60,
+  "prep_cycles": 120,
+  "readout_cycles": 80,
+  "source_arms": [
+    "quantum",
+    "classical",
+    "full_dephase"
+  ],
+  "keys": [
+    "angle_key",
+    "phase_shuffled_angle_key"
+  ],
+  "angle_multipliers": [
+    -2.0,
+    -1.5,
+    -1.0,
+    -0.5,
+    0.0,
+    0.5,
+    1.0,
+    1.5,
+    2.0
+  ],
+  "wall_seconds": 46.58528137207031,
+  "claim_ceiling": "model-level phase-key angle sweep; no quantum advantage or physical energy claim"
+}
