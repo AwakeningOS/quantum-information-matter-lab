@@ -909,6 +909,39 @@ this supports a small model-level phase-key readout residual
 effect remains tiny compared with population-routed W
 ```
 
+Delayed phase-key utility:
+
+```text
+scripts/quantum_observation/qcell_delayed_phase_key_utility_v0_gpu.py
+results/qcell_delayed_phase_key_utility_v0_report_2026-07-10.md
+scripts/quantum_observation/qcell_phase_key_controller_utility_v0.py
+results/qcell_phase_key_controller_utility_v0_report_2026-07-10.md
+```
+
+Readout:
+
+```text
+delayed phase-bit:
+  quantum angle_key oriented accuracy = 1.0
+  mean abs plus/minus margin = 2e-8 to 4e-8
+  classical/full_dephase = 0.5 no signal
+  phase-shuffled quantum = near random
+
+train/test branch utility:
+  train first 30 seeds, test last 30 seeds
+  quantum angle_key test accuracy = 1.0
+  classical/full_dephase = 0.5 no signal
+  phase-shuffled quantum = near random
+```
+
+Current best interpretation:
+
+```text
+the delayed phase-key residual can carry a tiny phase bit
+it can be used as a tiny downstream branch-control signal in this model
+effect remains extremely small
+```
+
 ### Step 5 — Selected hardware observations
 
 Do not send the full map to a QPU. Select a small preregistered subset after

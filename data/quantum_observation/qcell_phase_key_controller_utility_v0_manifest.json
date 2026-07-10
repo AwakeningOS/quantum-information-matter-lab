@@ -1,0 +1,8 @@
+{
+  "experiment": "qcell_phase_key_controller_utility_v0",
+  "status": "completed",
+  "input": "/home/youthk/work/qcell_experiment_outputs/qcell_delayed_phase_key_utility_v0_outputs/qcell_delayed_phase_key_utility_v0_seed_summary.csv",
+  "train_seed_count": 30,
+  "test_seed_count": 30,
+  "claim_ceiling": "model-level downstream branch utility from delayed phase-key residuals; no quantum advantage claim"
+}
